@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Animalheart · Clínica Veterinaria</title>
+
+  <!-- Fuentes y CSS de terceros que se cargan antes para evitar FOUC -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Bootstrap 5 para rejillas y componentes -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Íconos de Bootstrap usados en la sección de contacto -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- CSS propio que se carga al final para poder sobrescribir estilos de terceros -->
+  <link rel="stylesheet" href="../CSS/estilos.css">
+</head>
+<body>
+
+  <!--
+    BARRA SUPERIOR / HEADER
+  -->
+<header class="barra navbar navbar-expand-lg">
+  <div class="envoltura container-fluid align-items-center">
+
+    <!-- Logo_2 + Hamburguesa (cuando ponemos la pagina mas chiquita) -->
+    <div class="d-flex align-items-center w-100 d-lg-none">
+      <div class="logotipo-movil">
+        <img src="../IMAGES/Logo_2.PNG" alt="Logo AnimalHeart" style="height:50px; object-fit:contain;">
+      </div>
+      <button class="navbar-toggler ms-auto" type="button"
+        data-bs-toggle="collapse" data-bs-target="#barraContenido"
+        aria-controls="barraContenido" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+
+    <!-- Logo_2 centrado -->
+    <div class="logotipo-central d-none d-lg-flex">
+      <img src="../IMAGES/Logo_2.PNG" alt="Logo AnimalHeart">
+    </div>
+
+    <!-- Contenido colapsable -->
+    <div class="collapse navbar-collapse justify-content-between" id="barraContenido">
+
+      <!-- Menú izquierdo -->
+      <ul class="navbar-nav menu-izq me-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#inicio" aria-current="page">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="contacto.html">Contacto</a>
+        </li>
+      </ul>
+
+      <!-- Menú derecho -->
+      <ul class="navbar-nav menu-der ms-auto">
+        <li class="nav-item">
+          <a class="nav-link pastilla" href="login-veterinario.html">Veterinario</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link pastilla" href="login-admin.html">Administrador</a>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</header>
+
+
+  <!--
+    PORTADA / HERO
+ 
+  -->
+  <section id="inicio" class="portada">
+  <div class="contenedor-portada">
+    <!-- Bloque izquierdo con nombre y tarjeta -->
+    <div class="bloque-izquierdo">
+      <h1 id="nombre">
+        <span class="rosa">A</span>nimal<span class="rosa">H</span>eart
+      </h1>
+      
+      <article class="tarjeta-portada">
+        <h1>Clínica Veterinaria con <span class="corazon" aria-hidden="true">❤</span></h1>
+        <p>Especializados en el cuidado de tu mascota.</p>
+        <p>Con dedicación, confianza y cariño.</p>
+        <a href="#servicios" class="llamada-accion">Nuestros servicios</a>
+      </article>
+    </div>
+    
+    <!-- Bloque derecho con el perrito -->
+    <div class="bloque-derecho">
+      <img class="perrito" alt="Perrito asomando" src="../IMAGES/perrito_2.png"/>
+    </div>
+  </div>
+</section>
+    <!--
+    MISION Y VISIÓN
+    - Se usa un carrusel de Bootstrap para mostrar imágenes con texto superpuesto.
+  -->
+
+  <section id="destacados">
+  <div class="container-fluid">
+    <div id="carouselExampleCaptions" class="carousel slide">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      </div>
+      
+      <div class="carousel-inner">
+
+        <div class="carousel-item active">
+          <div class="img-overlay">
+            <img src="../IMAGES/vet_mision.jpg" class="d-block w-100" alt="Destacado 1">
+            <div class="image-overlay"></div>
+              <div class="carousel-caption d-none d-md-block">
+                <h5>Nuestra Misión</h5>
+                <p>En Animal Heart cuidamos a cada mascota como si fuera parte de nuestra familia. Ofrecemos atención veterinaria con amor, respeto y dedicación, asegurándonos de que cada visita sea una experiencia segura, tranquila y llena de cariño, tanto para los animales como para sus dueños.</p>
+              </div>
+            </div>
+          </div>
+
+
+        <div class="carousel-item">
+          <div class="img-overlay">
+            <img src="../IMAGES/vet_vision.jpg" class="d-block w-100" alt="Destacado 2">
+            <div class="image-overlay"></div>
+              <div class="carousel-caption d-none d-md-block">
+              <h5>Visión</h5>
+              <p>Queremos ser el lugar de confianza al que las familias acuden cuando sus mascotas necesitan cuidado, prevención o simplemente un chequeo. Soñamos con una comunidad donde todos los animales reciban el amor y la atención que merecen, y donde podamos acompañar cada etapa de su vida con una sonrisa.</p>
+            </div>
+          </div>
+        </div>
+
+
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Anterior</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Siguiente</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+  <!--
+    SERVICIOS
+    - Se usa grid de Bootstrap (.row/.col-*) para responsividad rápida.
+    - Cada card incluye un botón que despliega un .collapse de Bootstrap que no requiere JS propio.
+    - Las clases auxiliares .card-grupo1/.card-grupo2 permiten colorear alternadamente vía CSS.
+  -->
+  <section id="servicios" class="py-5">
+    <div class="container">
+      <h2 class="text-center mb-4">Nuestros Servicios</h2>
+      <div class="row g-4">
+
+        <!-- Consulta General -->
+        <div class="col-md-4 card-grupo1">
+          <div class="card shadow-sm h-100">
+            <div class="card-body">
+              <h5 class="card-title">Consulta General</h5>
+              <p class="card-text">Cuidamos su salud desde el primer día.</p>
+              <!-- data-bs-* activa el comportamiento de collapse de Bootstrap -->
+              <button class="btn btn-sm btn-primary" data-bs-toggle="collapse" data-bs-target="#desc1">Ver más</button>
+              <div id="desc1" class="collapse mt-2">
+                <p class="small text-muted">
+                  Nuestro equipo escucha cada latido y cada suspiro de tu mascota.  
+                  ¡Aquí las colitas se mueven y los ronroneos florecen!
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Urgencias 24/7 -->
+        <div class="col-md-4 card-grupo2">
+          <div class="card shadow-sm h-100">
+            <div class="card-body">
+              <h5 class="card-title">Urgencias 24/7</h5>
+              <p class="card-text">Porque tu mejor amigo no tiene horario, nosotros tampoco.</p>
+              <button class="btn btn-sm btn-primary" data-bs-toggle="collapse" data-bs-target="#desc2">Ver más</button>
+              <div id="desc2" class="collapse mt-2">
+                <p class="small text-muted">
+                  Sin importar si es de madrugada o domingo, estamos listos para saltar a la acción  
+                  y devolverle la energía a tu peludo.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Vacunación -->
+        <div class="col-md-4 card-grupo1">
+          <div class="card shadow-sm h-100">
+            <div class="card-body">
+              <h5 class="card-title">Vacunación</h5>
+              <p class="card-text">Una picadita de amor y protección.</p>
+              <button class="btn btn-sm btn-primary" data-bs-toggle="collapse" data-bs-target="#desc3">Ver más</button>
+              <div id="desc3" class="collapse mt-2">
+                <p class="small text-muted">
+                  Cada vacuna es un escudo invisible que envuelve a tu amigo peludo  
+                  para que pueda explorar el mundo sin preocupaciones.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Farmacia -->
+        <div class="col-md-4 card-grupo2">
+          <div class="card shadow-sm h-100">
+            <div class="card-body">
+              <h5 class="card-title">Farmacia</h5>
+              <p class="card-text">Medicinas y suplementos siempre al alcance.</p>
+              <button class="btn btn-sm btn-primary" data-bs-toggle="collapse" data-bs-target="#desc4">Ver más</button>
+              <div id="desc4" class="collapse mt-2">
+                <p class="small text-muted">
+                  Desde jarabes que curan resfriados hasta golosinas medicinales  
+                  que sanan sin lágrimas: todo para que tu peludo recupere su alegría.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hospitalización -->
+        <div class="col-md-4 card-grupo1">
+          <div class="card shadow-sm h-100">
+            <div class="card-body">
+              <h5 class="card-title">Hospitalización</h5>
+              <p class="card-text">Todo lo que necesita para sanar, en un solo lugar.</p>
+              <button class="btn btn-sm btn-primary" data-bs-toggle="collapse" data-bs-target="#desc5">Ver más</button>
+              <div id="desc5" class="collapse mt-2">
+                <p class="small text-muted">
+                  Habitaciones cómodas, atención constante y cariño sin medida  
+                  para que tu compañero se recupere rodeado de cuidado y calor.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cirugía -->
+        <div class="col-md-4 card-grupo2">
+          <div class="card shadow-sm h-100">
+            <div class="card-body">
+              <h5 class="card-title">Cirugía</h5>
+              <p class="card-text">Manos expertas, corazones dedicados.</p>
+              <button class="btn btn-sm btn-primary" data-bs-toggle="collapse" data-bs-target="#desc6">Ver más</button>
+              <div id="desc6" class="collapse mt-2">
+                <p class="small text-muted">
+                  Con precisión, experiencia y una pizca de amor,  
+                  devolvemos la salud a quienes más te importan.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLIENTES / TESTIMONIOS (con carrusel) -->
+   <div class="figura-mascotas" aria-hidden="true">
+    <img class="mascotas" alt="Mascotas asomadas" src="../IMAGES/Mascotas_asomadas.png"/>
+  </div>
+
+<section id="clientes" class="clientes py-5">
+  <div class="container">
+    <h2 class="text-center mb-4">¡Escúchalo de ellos mismos!</h2>
+
+    <div id="carouselClientes" class="carousel slide" data-bs-ride="carousel">
+      <!-- Indicadores -->
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselClientes" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Testimonio 1"></button>
+        <button type="button" data-bs-target="#carouselClientes" data-bs-slide-to="1" aria-label="Testimonio 2"></button>
+        <button type="button" data-bs-target="#carouselClientes" data-bs-slide-to="2" aria-label="Testimonio 3"></button>
+      </div>
+
+      <!-- Slides -->
+      <div class="carousel-inner">
+
+        <!-- Slide 1 -->
+        <div class="carousel-item active" data-bs-interval="6000">
+          <div class="d-flex justify-content-center">
+            <div class="card shadow-sm border-0 p-4">
+              <h5 class="fw-bold text-center fs-3">Milo</h5>
+              <img src="../IMAGES/milo.jpeg" alt="Milo"
+                  class="rounded-circle mx-auto mb-3"
+                  style="width:180px;height:180px;object-fit:cover;">
+              <div class="text-warning estrellas mb-2 text-center fs-4">★★★★★</div>
+              <p class="text-muted mb-2 text-center fs-5">“Llevé a mi gato Milo a consulta general y quedé encantada con la atención. Lo revisaron con paciencia y cariño, y además pude conseguir en la farmacia todo lo que necesitaba. ¡Muy recomendado!”</p>
+              <small class="text-secondary text-center d-block">12 de agosto del 2025</small>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="carousel-item" data-bs-interval="6000">
+          <div class="d-flex justify-content-center">
+            <div class="card shadow-sm border-0 p-4">
+              <h5 class="fw-bold text-center fs-3">Iris</h5>
+              <img src="../IMAGES/iris.jpeg" alt="Iris"
+                  class="rounded-circle mx-auto mb-3"
+                  style="width:180px;height:180px;object-fit:cover;">
+              <div class="text-warning estrellas mb-2 text-center fs-4">★★★★★</div>
+              <p class="text-muted mb-2 text-center fs-5">“Traje a Iris para su vacunación y la experiencia fue excelente. El equipo fue muy amable, la tranquilizó todo el tiempo y me dieron recomendaciones para su salud. Se nota que aman a los animales.”</p>
+              <small class="text-secondary text-center d-block">12 de agosto del 2025</small>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="carousel-item" data-bs-interval="6000">
+          <div class="d-flex justify-content-center">
+            <div class="card shadow-sm border-0 p-4">
+              <h5 class="fw-bold text-center fs-3">Tony</h5>
+              <img src="../IMAGES/tony.jpeg" alt="Tony"
+                  class="rounded-circle mx-auto mb-3"
+                  style="width:180px;height:180px;object-fit:cover;">
+              <div class="text-warning estrellas mb-2 text-center fs-4">★★★★★</div>
+              <p class="text-muted mb-2 text-center fs-5">“Mi gato Tony necesitó atención de urgencias y en Animal Heart lo atendieron de inmediato. Me explicaron todo con claridad y lo dejaron hospitalizado hasta que estuvo mejor. Estoy muy agradecida por el cuidado que le dieron.”</p>
+              <small class="text-secondary text-center d-block">12 de agosto del 2025</small>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+
+      <!-- Controles -->
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselClientes" data-bs-slide="prev" aria-label="Anterior">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselClientes" data-bs-slide="next" aria-label="Siguiente">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      </button>
+    </div>
+  </div>
+</section>
+
+
+  <!--
+    PIE DE PÁGINA
+    - Contiene redes, enlaces de navegación rápida y datos de contacto.
+    - Las imágenes de redes son redondas y pequeñas; se abren en nueva pestaña.
+  -->
+  <footer class="pie text-light pt-5 pb-3">
+    <div class="container">
+      <div class="row gy-4">
+
+        <!-- Redes sociales -->
+        <div class="col-md-4">
+          <h4 class="fw-bold mb-3">❤ Animalheart</h4>
+          <p class="small text-white">Cuidamos de tus mascotas con amor, profesionalismo y una sonrisa.</p>
+
+          <div class="d-flex gap-2 mt-3 align-items-center redes">
+            <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+              <img src="../IMAGES/facebook.png" alt="Facebook" class="rounded-circle" style="width:36px; height:36px; object-fit:cover;">
+            </a>
+            <a href="https://www.x.com" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">
+              <img src="../IMAGES/twitter.png" alt="X (Twitter)" class="rounded-circle" style="width:36px; height:36px; object-fit:cover;">
+            </a>
+            <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <img src="../IMAGES/instagram.webp" alt="Instagram" class="rounded-circle" style="width:36px; height:36px; object-fit:cover;">
+            </a>
+            <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+              <img src="../IMAGES/youtube.png" alt="YouTube" class="rounded-circle" style="width:36px; height:36px; object-fit:cover;">
+            </a>
+          </div>
+        </div>
+
+        <!-- Links de referencias para servicios -->
+        <div class="col-md-2">
+          <h6 class="fw-bold">Servicios</h6>
+          <ul class="list-unstyled small">
+            <!-- Todos apuntan a #servicios para mantener el foco en la sección -->
+            <li><a href="#servicios" class="text-decoration-none text-light">Consulta General</a></li>
+            <li><a href="#servicios" class="text-decoration-none text-light">Urgencias 24/7</a></li>
+            <li><a href="#servicios" class="text-decoration-none text-light">Vacunación</a></li>
+            <li><a href="#servicios" class="text-decoration-none text-light">Farmacia</a></li>
+            <li><a href="#servicios" class="text-decoration-none text-light">Hospitalización</a></li>
+            <li><a href="#servicios" class="text-decoration-none text-light">Cirugía</a></li>
+          </ul>
+        </div>
+
+        <!-- Links de referencia generales -->
+        <div class="col-md-2">
+          <h6 class="fw-bold">Explorar</h6>
+          <ul class="list-unstyled small">
+            <li><a href="#sobre" class="text-decoration-none text-light">Sobre Nosotros</a></li>
+            <li><a href="#clientes" class="text-decoration-none text-light">Nuestros Clientes</a></li>
+            <li><a href="#contacto" class="text-decoration-none text-light">Contacto</a></li>
+          </ul>
+        </div>
+
+        <!-- Contacto -->
+        <div class="col-md-4">
+          <h6 class="fw-bold">Contacto</h6>
+          <p class="small mb-1"><i class="bi bi-geo-alt-fill"></i> Carrera 77#20-40, Bogotá, Colombia</p>
+          <p class="small mb-1"><i class="bi bi-telephone-fill"></i> +57 3205344512</p>
+          <p class="small mb-1"><i class="bi bi-envelope-fill"></i> animalheart@gmail.com</p>
+        </div>
+
+      </div>
+
+      <div class="text-center mt-4 border-top border-light pt-3 small text-muted">
+        © 2025 Animalheart · Todos los derechos reservados
+      </div>
+    </div>
+  </footer>
+
+  <!--
+    JS: primero el script para la lógica de navegación ligera,
+    después el bundle de Bootstrap que habilita Collapse, etc.
+  -->
+  <script src="../JS/script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
