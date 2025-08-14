@@ -1,0 +1,503 @@
+/* ===================== TOKENS ===================== */
+:root{
+  --teal-700:#054d7c;     /* barra superior */
+  --teal-600:#2a9a99;     /* portada/cta */
+  --teal-200:#bfe6e5;     /* detalles */
+  --pink-200:#7AABBF;     /* sección clientes */
+  --pink-300:#58AAAE;     /* pie de página */
+  --bg:#f7f7f8;
+  --surface:#ffffff;
+  --text:#1b1e22;
+  --muted:#5e6a72;
+  --radius:18px;
+  --shadow:0 8px 24px rgba(0, 0, 0, 0.08);
+  --servicios-bg: #fff7e6;
+  --servicios-title: #043454;
+  --corazon: #ED3A4D;
+}
+/* ===================== BASE ===================== */
+*{box-sizing:border-box}
+html,body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  line-height:1.45;
+}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+
+/* ===================== BARRA ===================== */
+
+@media (min-width: 992px) {
+  .menu-izq, .menu-der { gap: clamp(16px, 2vw, 28px); }
+}
+
+.barra {
+  position: sticky; top: 0; z-index: 50;
+  background: #073352; color: #fff;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+  height: 100px;
+}
+
+
+.barra .envoltura {
+  max-width: 1120px; margin: auto; padding: 0 20px; height: 100%;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; position: relative;
+}
+
+.menu-izq, .menu-der {
+  display: flex; gap: 16px;
+}
+
+.menu-izq a, .menu-der a {
+  padding: 10px 14px; border-radius: 999px;
+  font-weight: 500; opacity: 0.95;
+  color: #fff; text-decoration: none;
+}
+.menu-izq a[aria-current="page"], .menu-izq a:hover, .menu-der a:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.menu-izq .nav-link, .menu-der .nav-link {
+  min-width: clamp(120px, 12vw, 180px);
+  padding: clamp(12px, 1.2vw, 16px) clamp(18px, 2.2vw, 28px);
+  font-size: clamp(14px, 1vw, 16.5px);
+  border-radius: 999px; text-align: center; white-space: nowrap;
+}
+
+.menu-der .pastilla {
+  background: #fff; color: var(--teal-700) !important; font-weight: 700;
+  transition: color .3s, background .3s, transform .15s;
+}
+.menu-der .pastilla:hover, .menu-der .pastilla:focus {
+  background: var(--teal-700) !important; color: #fff !important; transform: translateY(-1px);
+}
+
+.logotipo-central {
+  position: absolute; left: 50%; transform: translateX(-50%);
+  z-index: 10; width: 110px; height: 110px;
+  display: flex; align-items: center; justify-content: center;
+}
+.logotipo-central img { width: 100%; height: 100%; object-fit: contain; }
+
+@media (max-width: 991.98px) {
+  .logotipo-central { display: none !important; }
+  .navbar-collapse .navbar-nav {
+    width: 100%; justify-content: center; text-align: center;
+    background: var(--teal-700); padding: 16px 16px 24px;
+    border-radius: 0 0 12px 12px;
+  }
+  .navbar-collapse .nav-item { width: 100%; }
+  .navbar-collapse .nav-link {
+    display: block; width: 100%; padding: 12px 0; margin: 6px 0;
+    border-radius: 12px; font-size: 16px;
+  }
+  .navbar-collapse .pastilla { background: #fff; color: var(--teal-700) !important; font-weight: 700; }
+  .navbar-collapse .pastilla:hover { background: rgba(255,255,255,.9); }
+}
+
+.navbar { padding: 0; }
+.navbar-toggler { border-color: rgba(255, 255, 255, 0.4); }
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255,255,255,0.8%29' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+.navbar-nav .nav-link { color: #fff; }
+.navbar-nav .nav-link:hover, .navbar-nav .nav-link.active {
+  background: rgba(26, 12, 215, 0.18); border-radius: 999px;
+}
+.logotipo-movil img { height: 50px; object-fit: contain; }
+
+@media (max-width: 991.98px) {
+  .container-fluid { display: flex; align-items: center; }
+  .navbar-toggler { margin-left: auto; }
+}
+
+@media (min-width: 1200px) and (max-width: 1400px) {
+  .menu-izq .nav-link, .menu-der .nav-link { min-width: clamp(120px, 10vw, 160px); }
+}
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .menu-izq .nav-link, .menu-der .nav-link { min-width: clamp(110px, 9.5vw, 150px); }
+}
+
+/* ===================== PORTADA CONTACTO ===================== */
+.portada-contacto {
+  position: relative;
+  background: url("../IMAGES/vet-contacto.jpg") center/cover no-repeat; /* Imagen */
+  min-height: 60vh;
+  padding: 40px 20px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 80px;
+}
+
+.portada-contacto::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(42, 154, 153, 0.85); /* color con opacidad */
+  z-index: 1;
+}
+
+.portada-contacto .envoltura {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  position: relative; 
+  z-index: 2;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+/* ===================== FORMULARIO CONTACTO ===================== */
+.contacto {
+  padding: 0 20px 80px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.contacto h2 {
+  color: var(--teal-700);
+  font-size: clamp(32px, 3vw, 42px);
+  font-weight: 700;
+  margin-bottom: 30px;
+  font-family: "Open Sans", sans-serif;
+}
+
+.contacto .form-label {
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.contacto .form-control {
+  padding: 12px 16px;
+  border-radius: var(--radius);
+  border: 1px solid var(--teal-200);
+  transition: all 0.3s ease;
+}
+
+.contacto .form-control:focus {
+  border-color: var(--teal-600);
+  box-shadow: 0 0 0 0.25rem rgba(42, 154, 153, 0.25);
+}
+
+.contacto .btn {
+  padding: 12px 24px;
+  font-weight: 600;
+  border-radius: 999px;
+  transition: all 0.3s ease;
+}
+
+.contacto .btn-primary {
+  background: var(--teal-700);
+  border: none;
+}
+
+.contacto .btn-primary:hover {
+  background: var(--teal-600);
+  transform: translateY(-2px);
+}
+
+.contacto .btn-outline-secondary {
+  border-color: var(--teal-200);
+  color: var(--teal-700);
+}
+
+.contacto .btn-outline-secondary:hover {
+  background: var(--teal-200);
+  border-color: var(--teal-200);
+}
+
+/* Tarjeta de información */
+.contacto .card {
+  border: none;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.tarjeta-portada {
+  width: 300px; 
+  height: 300px;
+  background-color: var(--teal-200); /* Usando la variable de color */
+  border-radius: 50%; /* Esto hace que sea completamente redonda */
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  border: 8px solid rgba(255, 255, 255, 0.3); /* Borde sutil */
+  transition: all 0.4s ease;
+  overflow: hidden; 
+  position: relative; 
+}
+
+/* Efecto hover para interactividad */
+.tarjeta-portada:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+/* Contenido interno de la tarjeta */
+.tarjeta-portada h1 {
+  margin: 0 0 15px;
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1.2;
+  align-items: center;
+  color: var(--teal-700);
+  font-family: "Open Sans", sans-serif;
+}
+
+.tarjeta-portada p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+
+/* Versión responsive */
+@media (max-width: 768px) {
+  .tarjeta-portada {
+    width: 250px;
+    height: 250px;
+    padding: 30px;
+  }
+  
+  .tarjeta-portada h1 {
+    font-size: 24px;
+  }
+  
+  .tarjeta-portada p {
+    font-size: 14px;
+  }
+}
+
+
+.contacto .card-body {
+  padding: 30px;
+}
+
+.contacto .card-title {
+  color: var(--teal-700);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  font-family: "Open Sans", sans-serif;
+}
+
+.contacto .card p {
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text);
+}
+
+.contacto .card i {
+  color: var(--teal-600);
+  font-size: 1.2rem;
+  min-width: 24px;
+}
+
+/* Mapa */
+.contacto .ratio {
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  margin-top: 20px;
+}
+
+/* Alerta de éxito */
+.contacto .alert {
+  border-radius: var(--radius);
+  padding: 16px;
+  margin-top: 20px;
+}
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width: 992px) {
+  .portada-contacto {
+    min-height: 50vh;
+    margin-bottom: 60px;
+  }
+  
+  .contacto .row > div:first-child {
+    margin-bottom: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .portada-contacto {
+    min-height: 40vh;
+  }
+  
+  .contacto {
+    padding-bottom: 60px;
+  }
+  
+  .contacto .btn {
+    width: 100%;
+  }
+  
+  .contacto .d-sm-inline-flex {
+    flex-direction: column;
+    gap: 12px;
+  }
+}
+
+/* ===================== BARRA DE NAVEGACIÓN ===================== */
+.barra {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: var(--teal-700);
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+  height: 100px;
+  display: flex;
+  align-items: center;
+}
+
+.barra .envoltura {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+/* Logo */
+.marca {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 10;
+}
+
+.logotipo {
+  width: 60px;
+  height: 60px;
+}
+
+.logotipo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.marca span {
+  font-family: "Open Sans", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+/* Menú principal */
+.menu {
+  display: flex;
+  gap: 8px;
+}
+
+.menu a {
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-weight: 500;
+  color: #fff;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+}
+
+.menu a:hover, 
+.menu a[aria-current="page"] {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+/* Botones especiales */
+.menu .pastilla {
+  background: #fff;
+  color: var(--teal-700) !important;
+  font-weight: 700;
+  margin-left: 8px;
+}
+
+.menu .pastilla:hover {
+  background: var(--teal-600) !important;
+  color: #fff !important;
+  transform: translateY(-2px);
+}
+
+/* Menú hamburguesa para móviles */
+.navbar-toggler {
+  border: none;
+  padding: 8px;
+  z-index: 20;
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255,255,255,0.8%29' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+  width: 1.5em;
+  height: 1.5em;
+}
+
+/* Menú móvil */
+@media (max-width: 991.98px) {
+  .menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: var(--teal-700);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    transform: translateY(-100%);
+    transition: transform 0.3s ease;
+    z-index: 5;
+    padding-top: 100px;
+  }
+  
+  .menu.active {
+    transform: translateY(0);
+  }
+  
+  .menu a {
+    width: 80%;
+    text-align: center;
+    padding: 15px;
+    font-size: 1.2rem;
+  }
+  
+  .menu .pastilla {
+    margin-left: 0;
+    margin-top: 20px;
+  }
+  
+  .marca {
+    position: relative;
+    z-index: 20;
+  }
+}
+
+/* Ajustes para pantallas muy grandes */
+@media (min-width: 1600px) {
+  .barra .envoltura {
+    max-width: 1400px;
+  }
+}
+
