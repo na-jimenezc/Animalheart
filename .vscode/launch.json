@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-AnimalheartApplication<animalheart>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.animalheart.animalheart.AnimalheartApplication",
+            "projectName": "animalheart",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
