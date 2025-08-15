@@ -3,6 +3,6 @@ package com.animalheart.animalheart.service;
 import org.springframework.stereotype.Service;
 
 @Service
-public class vetService {
+public class veterinarioService {
     
 }

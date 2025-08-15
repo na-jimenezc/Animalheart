@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/vet")
-public class vetController {
+public class veterinarioController {
 
     
 }
