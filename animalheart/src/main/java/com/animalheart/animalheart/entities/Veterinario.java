@@ -14,4 +14,6 @@ public class Veterinario{
     private Integer numeroAtenciones;
     private Integer idAdmin;
 
+    private String nombreUsuario;
+    private String contrasenia;
 }

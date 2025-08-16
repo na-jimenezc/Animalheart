@@ -603,4 +603,101 @@ img {
   display: block;
 }
 
+/*Pacientes*/
+.vet-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
 
+.vet-page-title {
+  color: var(--teal-700);
+  font-weight: 700;
+}
+
+.vet-pet-avatar {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid var(--teal-200);
+  transition: transform 0.3s ease;
+}
+.vet-pet-avatar:hover { transform: scale(1.1); }
+
+.vet-action-btn {
+  border-radius: 999px;
+  padding: 6px 18px;
+  font-size: 0.9rem;
+  background-color: var(--teal-600);
+  color: #fff;
+  border: none;
+  transition: all 0.2s ease;
+}
+.vet-action-btn:hover {
+  background-color: var(--teal-700);
+  transform: translateY(-2px);
+}
+
+.vet-table-header {
+  background-color: var(--teal-700);
+  color: #fff;
+}
+.vet-table-row:hover {
+  background-color: rgba(191, 230, 229, 0.25);
+}
+
+.vet-age-badge {
+  background-color: var(--teal-200);
+  color: var(--teal-700);
+  font-weight: 600;
+}
+
+/*Ficha clínica*/
+.vet-pet-img {
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: var(--radius);
+  border: 3px solid var(--teal-200);
+  box-shadow: var(--shadow);
+}
+
+.vet-info-card {
+  border-radius: var(--radius);
+  border: none;
+  box-shadow: var(--shadow);
+}
+
+.vet-info-header {
+  background-color: var(--teal-700);
+  color: #fff;
+  border-top-left-radius: var(--radius) !important;
+  border-top-right-radius: var(--radius) !important;
+}
+
+.vet-info-section {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: var(--radius);
+  margin-bottom: 20px;
+  box-shadow: var(--shadow);
+}
+
+.vet-subtitle {
+  color: var(--teal-700);
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.vet-back-btn {
+  background-color: var(--teal-600);
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 20px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+.vet-back-btn:hover {
+  background-color: var(--teal-700);
+  transform: translateY(-2px);
+}

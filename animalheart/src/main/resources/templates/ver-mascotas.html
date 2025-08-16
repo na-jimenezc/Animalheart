@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pacientes · Animalheart</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Iconos de Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Fuente -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Estilo -->
+  <link th:href="@{/CSS/estilos.css}" rel="stylesheet">
+
+</head>
+<body class="bg-light">
+  <!-- Barra de navegación -->
+  <nav class="barra">
+    <div class="envoltura">
+        <img th:src="@{/IMAGES/Logo_2.png}" alt="Animalheart" class="logotipo-central">
+    </div>
+  </nav>
+
+  <!-- Contenido principal -->
+  <main class="vet-container my-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h1 class="vet-page-title">
+        <i class="bi bi-heart-pulse"></i> Listado de Pacientes
+      </h1>
+      <div>
+        <span class="badge vet-age-badge" th:text="${mascotas.size()} + ' mascotas'"></span>
+      </div>
+    </div>
+
+    <!-- Tabla de pacientes -->
+    <div class="card shadow-sm" style="border-radius: var(--radius);">
+      <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0">
+          <thead class="vet-table-header">
+            <tr>
+              <th width="80" style="border-top-left-radius: var(--radius);"></th>
+              <th>Nombre</th>
+              <th>Raza</th>
+              <th>Edad</th>
+              <th style="border-top-right-radius: var(--radius);">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="vet-table-row" th:each="mascota : ${mascotas}">
+              <td>
+                <img th:src="${mascota.fotoURL}" 
+                     th:alt="${mascota.nombre}" 
+                     class="vet-pet-avatar">
+              </td>
+              <td>
+                <span class="fw-bold" th:text="${mascota.nombre}"></span>
+              </td>
+              <td th:text="${mascota.raza}"></td>
+              <td>
+                <span class="badge vet-age-badge" th:text="${mascota.edad} + ' años'"></span>
+              </td>
+              <td>
+                <a th:href="@{'/mascotas/' + ${mascota.id}}" 
+                   class="btn vet-action-btn">
+                  <i class="bi bi-eye-fill"></i> Detalle
+                </a>
+              </td>
+            </tr>
+            <tr th:if="${mascotas.empty}">
+              <td colspan="5" class="text-center py-4 text-muted">
+                <i class="bi bi-exclamation-circle fs-4"></i>
+                <p class="mt-2">No se encontraron mascotas registradas</p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="pie mt-5 py-4">
+    <div class="container text-center">
+      <p class="mb-0 text-white">
+        <i class="bi bi-c-circle"></i> 2025 - Animalheart
+      </p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

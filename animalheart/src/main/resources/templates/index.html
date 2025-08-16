@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -15,7 +15,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 
   <!-- CSS propio que se carga al final para poder sobrescribir estilos de terceros -->
-  <link rel="stylesheet" href="../static/CSS/estilos.css">
+  <link th:href="@{/CSS/estilos.css}" rel="stylesheet">
 </head>
 <body>
 
@@ -28,7 +28,7 @@
     <!-- Logo_2 + Hamburguesa (cuando ponemos la pagina mas chiquita) -->
     <div class="d-flex align-items-center w-100 d-lg-none">
       <div class="logotipo-movil">
-        <img src="../static/IMAGES/Logo_2.PNG" alt="Logo AnimalHeart" style="height:50px; object-fit:contain;">
+        <img th:src="@{/IMAGES/Logo_2.PNG}" alt="Logo AnimalHeart" style="height:50px; object-fit:contain;">
       </div>
       <button class="navbar-toggler ms-auto" type="button"
         data-bs-toggle="collapse" data-bs-target="#barraContenido"
@@ -39,7 +39,7 @@
 
     <!-- Logo_2 centrado -->
     <div class="logotipo-central d-none d-lg-flex">
-      <img src="../static/IMAGES/Logo_2.PNG" alt="Logo AnimalHeart">
+      <img th:src="@{/IMAGES/Logo_2.PNG}" alt="Logo AnimalHeart">
     </div>
 
     <!-- Contenido colapsable -->
@@ -58,7 +58,7 @@
       <!-- Menú derecho -->
       <ul class="navbar-nav menu-der ms-auto">
         <li class="nav-item">
-          <a class="nav-link pastilla" href="../template/login-veterinario.html">Veterinario</a>
+          <a class="nav-link pastilla" th:href="@{/login-veterinario}">Veterinario</a>
         </li>
         <li class="nav-item">
           <a class="nav-link pastilla" href="../template/login-admin.html">Administrador</a>
@@ -72,7 +72,6 @@
 
   <!--
     PORTADA / HERO
- 
   -->
   <section id="inicio" class="portada">
   <div class="contenedor-portada">
@@ -92,7 +91,7 @@
     
     <!-- Bloque derecho con el perrito -->
     <div class="bloque-derecho">
-      <img class="perrito" alt="Perrito asomando" src="../static/IMAGES/perrito_2.png"/>
+      <img class="perrito" alt="Perrito asomando" th:src="@{/IMAGES/perrito_2.png}"/>
     </div>
   </div>
 </section>
@@ -113,7 +112,7 @@
 
         <div class="carousel-item active">
           <div class="img-overlay">
-            <img src="../static/IMAGES/vet_mision.jpg" class="d-block w-100" alt="Destacado 1">
+            <img th:src="@{/IMAGES/vet_mision.jpg}" class="d-block w-100" alt="Destacado 1">
             <div class="image-overlay"></div>
               <div class="carousel-caption d-none d-md-block">
                 <h5>Nuestra Misión</h5>
@@ -125,7 +124,7 @@
 
         <div class="carousel-item">
           <div class="img-overlay">
-            <img src="../static/IMAGES/vet_vision.jpg" class="d-block w-100" alt="Destacado 2">
+            <img th:src="@{/IMAGES/vet_vision.jpg}" class="d-block w-100" alt="Destacado 2">
             <div class="image-overlay"></div>
               <div class="carousel-caption d-none d-md-block">
               <h5>Visión</h5>
@@ -266,7 +265,7 @@
 
   <!-- CLIENTES / TESTIMONIOS (con carrusel) -->
    <div class="figura-mascotas" aria-hidden="true">
-    <img class="mascotas" alt="Mascotas asomadas" src="../static/IMAGES/Mascotas_asomadas.png"/>
+    <img class="mascotas" alt="Mascotas asomadas" th:src="@{/IMAGES/Mascotas_asomadas.png}"/>
   </div>
 
 <section id="clientes" class="clientes py-5">
@@ -289,7 +288,7 @@
           <div class="d-flex justify-content-center">
             <div class="card shadow-sm border-0 p-4">
               <h5 class="fw-bold text-center fs-3">Milo</h5>
-              <img src="../static/IMAGES/milo.jpeg" alt="Milo"
+              <img th:src="@{/IMAGES/milo.jpeg}" alt="Milo"
                   class="rounded-circle mx-auto mb-3"
                   style="width:180px;height:180px;object-fit:cover;">
               <div class="text-warning estrellas mb-2 text-center fs-4">★★★★★</div>
@@ -304,7 +303,7 @@
           <div class="d-flex justify-content-center">
             <div class="card shadow-sm border-0 p-4">
               <h5 class="fw-bold text-center fs-3">Iris</h5>
-              <img src="../static/IMAGES/iris.jpeg" alt="Iris"
+              <img th:src="@{/IMAGES/iris.jpeg}" alt="Iris"
                   class="rounded-circle mx-auto mb-3"
                   style="width:180px;height:180px;object-fit:cover;">
               <div class="text-warning estrellas mb-2 text-center fs-4">★★★★★</div>
@@ -319,7 +318,7 @@
           <div class="d-flex justify-content-center">
             <div class="card shadow-sm border-0 p-4">
               <h5 class="fw-bold text-center fs-3">Tony</h5>
-              <img src="../static/IMAGES/tony.jpeg" alt="Tony"
+              <img th:src="@{/IMAGES/tony.jpeg}" alt="Tony"
                   class="rounded-circle mx-auto mb-3"
                   style="width:180px;height:180px;object-fit:cover;">
               <div class="text-warning estrellas mb-2 text-center fs-4">★★★★★</div>
@@ -359,16 +358,16 @@
 
           <div class="d-flex gap-2 mt-3 align-items-center redes">
             <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-              <img src="../static/IMAGES/facebook.png" alt="Facebook" class="rounded-circle" style="width:36px; height:36px; object-fit:cover;">
+              <img th:src="@{/IMAGES/facebook.png}" alt="Facebook" class="rounded-circle" style="width:36px; height:36px; object-fit:cover;">
             </a>
             <a href="https://www.x.com" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">
-              <img src="../static/IMAGES/twitter.png" alt="X (Twitter)" class="rounded-circle" style="width:36px; height:36px; object-fit:cover;">
+              <img th:src="@{/IMAGES/twitter.png}" alt="X (Twitter)" class="rounded-circle" style="width:36px; height:36px; object-fit:cover;">
             </a>
             <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-              <img src="../static/IMAGES/instagram.webp" alt="Instagram" class="rounded-circle" style="width:36px; height:36px; object-fit:cover;">
+              <img th:src="@{/IMAGES/instagram.webp}" alt="Instagram" class="rounded-circle" style="width:36px; height:36px; object-fit:cover;">
             </a>
             <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
-              <img src="../static/IMAGES/youtube.png" alt="YouTube" class="rounded-circle" style="width:36px; height:36px; object-fit:cover;">
+              <img th:src="@{/IMAGES/youtube.png}" alt="YouTube" class="rounded-circle" style="width:36px; height:36px; object-fit:cover;">
             </a>
           </div>
         </div>
@@ -417,7 +416,7 @@
     JS: primero el script para la lógica de navegación ligera,
     después el bundle de Bootstrap que habilita Collapse, etc.
   -->
-  <script src="../static/JS/script.js"></script>
+  <script th:src="@{/JS/script.js}"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
