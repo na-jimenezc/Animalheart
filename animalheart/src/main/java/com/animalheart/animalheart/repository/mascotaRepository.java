@@ -11,17 +11,19 @@ public class MascotaRepository {
 
     private final List<Mascota> mascotas = new ArrayList<>();
 
-    /* Datos quemados */
+    /*Datos quemados*/
     public MascotaRepository() {
-        mascotas.add(new Mascota(1, "Firulais", "Criollo", 3, 25.4f, "Ninguna", "../static/IMAGES/firulais.jpg", true, 101));
-        mascotas.add(new Mascota(2, "Roberto", "Persa", 2, 4.8f, "VIH", "../static/IMAGES/roberto.jpeg", false, 102));
-        mascotas.add(new Mascota(3, "Rocky", "Criollo", 5, 30.2f, "Patita torcida", "../static/IMAGES/rocky.jpeg", true, 103));
+        mascotas.add(new Mascota(1, "Firulais", "Criollo", 3, 25.4f, "Ninguna", "/IMAGES/firulais.jpg", true, 101));
+        mascotas.add(new Mascota(2, "Roberto", "Persa", 2, 4.8f, "VIH", "/IMAGES/roberto.jpeg", false, 102));
+        mascotas.add(new Mascota(3, "Rocky", "Criollo", 5, 30.2f, "Patita torcida", "/IMAGES/rocky.jpeg", true, 103));
     }
 
+    /*Para retornar todas las mascotas*/
     public List<Mascota> findAll() {
         return mascotas;
     }
 
+    /*Para retornar mascota por ID*/
     public Mascota findById(Integer id) {
         return mascotas.stream()
                 .filter(m -> m.getId().equals(id))

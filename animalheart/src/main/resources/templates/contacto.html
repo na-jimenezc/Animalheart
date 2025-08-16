@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="es">
 <head>
-  <!-- Meta tags y título -->
+  <!--Meta tags y título-->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contacto · Animalheart</title>
   
-  <!-- Recursos externos -->
+  <!--Recursos externos-->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
   
-  <!-- Estilos propios -->
+  <!--Estilos propios-->
   <link th:href="@{/CSS/estilos-contacto.css}" rel="stylesheet">
 </head>
 <body>
 
-  <!-- Barra de navegación -->
+  <!--Barra de navegación-->
   <header class="barra" role="banner">
     <div class="envoltura">
       <div class="marca">
@@ -36,7 +36,7 @@
     </div>
   </header>
 
-  <!-- Portada -->
+  <!--Portada-->
   <section class="portada portada-contacto">
     <div class="envoltura">
       <article class="tarjeta-portada">
@@ -47,14 +47,14 @@
     </div>
   </section>
 
-  <!-- Contenido principal -->
+  <!--Contenido principal-->
   <main class="contacto container py-5">
     <div class="row g-4">
       <div class="col-lg-7">
         <h2>Envíanos un mensaje</h2>
 
         <form id="form-contacto" th:action="@{/contacto}" method="post" novalidate>
-          <!-- Campo honeypot anti-spam -->
+
           <input type="text" name="company" class="d-none" tabindex="-1" autocomplete="off">
 
           <div class="row g-3">
@@ -97,14 +97,14 @@
           </div>
         </form>
 
-        <!-- Alerta de éxito -->
+        <!--Alerta de éxito-->
         <div th:if="${mensajeExito}" class="alert alert-success mt-3" role="alert" aria-live="polite">
           <i class="bi bi-check-circle-fill me-2"></i>
           <span th:text="${mensajeExito}">¡Gracias! Recibimos tu mensaje y te contactaremos pronto.</span>
         </div>
       </div>
 
-      <!-- Información de contacto -->
+      <!--Información de contacto-->
       <div class="col-lg-5">
         <div class="card">
           <div class="card-body">
@@ -117,7 +117,7 @@
             <p><i class="bi bi-clock-history"></i> Sábados: 9:00 am - 2:00 pm</p>
             <p><i class="bi bi-exclamation-triangle-fill"></i> Emergencias: 24/7</p>
 
-            <!-- Mapa -->
+            <!--Mapa-->
             <div class="ratio ratio-4x3 rounded overflow-hidden mt-4">
               <iframe
                 title="Ubicación de Animalheart"
@@ -130,7 +130,7 @@
     </div>
   </main>
 
-  <!-- Footer -->
+  <!--Footer-->
   <footer class="pie text-light pt-5 pb-3">
     <div class="container">
       <div class="text-center border-top border-light pt-3 small text-muted">
@@ -139,11 +139,11 @@
     </div>
   </footer>
 
-  <!-- Scripts -->
+  <!--Scripts-->
   <script th:src="@{/JS/script.js}"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-    // Validación del formulario
+    //Para la validación del formulario :D
     (function(){
       const form = document.getElementById('form-contacto');
       

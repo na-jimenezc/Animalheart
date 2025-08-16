@@ -5,21 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title th:text="${mascota.nombre} + ' | Animalheart'"></title>
 
-  <!-- Bootstrap -->
+  <!--Bootstrap-->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Iconos de Bootstrap -->
+  <!--Iconos de Bootstrap-->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-
-  <!-- Fuente -->
+  <!--Fuente-->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-  <!-- Estilo -->
+  <!--Estilo - Manejamos el Estilo General-->
   <link th:href="@{/CSS/estilos.css}" rel="stylesheet">
 
 </head>
 <body class="bg-light">
-  <!-- Barra de navegación -->
+  <!--Barra de navegación (HACE FALTA IMPLEMENTAR LO DE TRATAMIENTO, PERZONALIZAR PERFIL ETC.)-->
   <nav class="barra">
       
       <div class="logotipo-central">
@@ -29,7 +26,7 @@
     </div>
   </nav>
 
-  <!-- Contenido principal -->
+  <!--Contenido principal-->
   <main class="vet-container my-5">
     <div class="d-flex justify-content-between align-items-center mb-4">
       <a th:href="@{/mascotas}" class="btn vet-back-btn">
@@ -50,14 +47,14 @@
       
       <div class="card-body">
         <div class="row">
-          <!-- Columna de imagen -->
+          <!--Columna para la imagen-->
           <div class="col-lg-4 text-center mb-4 mb-lg-0">
             <img th:src="${mascota.fotoURL}" 
                  th:alt="${mascota.nombre}" 
                  class="vet-pet-img img-fluid">
           </div>
           
-          <!-- Columna de información -->
+          <!--Columna de información-->
           <div class="col-lg-8">
             <div class="vet-info-section">
               <h4 class="vet-subtitle">
@@ -104,7 +101,7 @@
     </div>
   </main>
 
-  <!-- Footer -->
+  <!--Footer - MEJORAR PARA QUE SEA IGUAL PARA TODO EL PERFIL DE VETERINARIO Y ADMINISTRADOR-->
   <footer class="pie mt-5 py-4">
     <div class="container text-center">
       <p class="mb-0 text-white">
@@ -113,7 +110,7 @@
     </div>
   </footer>
 
-  <!-- Bootstrap JS -->
+  <!--Bootstrap JS-->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
