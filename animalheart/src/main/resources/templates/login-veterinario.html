@@ -1,69 +1,112 @@
 <!DOCTYPE html>
+<!--
+  Login de Veterinario – Animalheart
+  - Usa Bootstrap 5, Bootstrap Icons y fuente Poppins.
+  - Aplica el tema "veterinario" desde estilos-login.css (body.veterinario).
+  - Envía POST a /login-veterinario con campos "nombreUsuario" y "contrasenia",
+    que deben coincidir con los @RequestParam del VeterinarioController.
+-->
 <html xmlns:th="http://www.thymeleaf.org" lang="es">
 <head>
   <meta charset="utf-8">
+  <!-- Vista responsive en móviles -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Login Veterinario · Animalheart</title>
 
-  <!--Bootstrap-->
+  <!-- Bootstrap (CSS de layout y componentes) -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!--Iconos de Bootstrap-->
+
+  <!-- Iconos (Bootstrap Icons) -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-  <!--Fuente-->
+
+  <!-- Fuente Poppins (coherente con el resto del sitio) -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <!--Estilo-->
+
+  <!-- Hoja de estilos para pantallas de login; Thymeleaf resuelve /CSS/estilos-login.css -->
   <link th:href="@{/CSS/estilos-login.css}" rel="stylesheet">
-  
 </head>
+
+<!--
+  La clase "veterinario" activa la paleta teal en estilos-login.css
+  (gradientes, contraste y estilos de inputs/botones para este perfil).
+-->
 <body class="veterinario">
+  <!-- Tarjeta contenedora del formulario -->
   <div class="tarjeta-login">
+
+    <!-- Encabezado de marca/sistema -->
     <div class="encabezado-pagina">
       <div class="nombre-sistema">Animalheart</div>
       <div class="subtitulo-sistema">Portal del Veterinario</div>
     </div>
     
+    <!-- Encabezado del formulario (ícono, título y microcopy) -->
     <div class="encabezado-login">
       <div class="icono-login">🐾</div>
       <h3>Acceso Veterinario</h3>
       <p>Por favor ingresa tus credenciales</p>
     </div>
     
-    <!--Mensaje de error-->
+    <!-- Mensaje de error (controlado desde el backend)
+         - Se muestra si el controlador envía "error" en el modelo. -->
     <div th:if="${error}" class="alert alert-danger alert-dismissible fade show" role="alert">
       <span th:text="${error}"></span>
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     
+    <!-- Formulario de login: POST /login-veterinario
+         - "nombreUsuario" y "contrasenia" deben coincidir con el controlador.
+         - required en inputs asegura validación básica del navegador. -->
     <form th:action="@{/login-veterinario}" method="post">
+      <!-- Campo: nombre de usuario -->
       <div class="campo-formulario">
         <label for="nombreUsuario" class="etiqueta">Nombre de Usuario</label>
-        <input type="text" class="control" id="nombreUsuario" name="nombreUsuario" 
-               placeholder="Nombre de Usuario" required>
+        <input
+          type="text"
+          class="control"
+          id="nombreUsuario"
+          name="nombreUsuario"
+          placeholder="Nombre de Usuario"
+          required
+          autocomplete="username">  <!-- mejora el autocompletado -->
       </div>
       
+      <!-- Campo: contraseña con botón para mostrar/ocultar -->
       <div class="campo-formulario">
         <label for="contrasenia" class="etiqueta">Contraseña</label>
         <div class="grupo-entrada">
-          <input type="password" class="control" id="contrasenia" name="contrasenia" 
-                 placeholder="••••••••" required>
+          <input
+            type="password"
+            class="control"
+            id="contrasenia"
+            name="contrasenia"
+            placeholder="••••••••"
+            required
+            autocomplete="current-password"
+          >
+          <!-- Botón de visibilidad de clave. -->
           <button type="button" class="boton-ver-clave" onclick="togglePassword()">
             <i class="bi bi-eye"></i>
           </button>
         </div>
       </div>
       
+      <!-- Submit principal -->
       <button type="submit" class="boton-enviar">Ingresar</button>
       
+      <!-- Enlace de ayuda / recuperación -->
       <div class="text-center">
         <a href="#" class="enlace-recuperar">¿Olvidaste tu contraseña?</a>
       </div>
     </form>
   </div>
 
-  <!--JS-->
+  <!-- Lógica de interfaz:
+       - script-login.js marca el enlace activo por hash y maneja mostrar/ocultar contraseña
+         cuando se usa la clase .boton-ver-clave (sin necesidad de onclick). -->
   <script th:src="@{/JS/script-login.js}"></script>
 
-  <!--Bootstrap y JS-->
+  <!-- Bundle de Bootstrap (incluye Popper para componentes) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

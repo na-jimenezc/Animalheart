@@ -1,33 +1,53 @@
 <!DOCTYPE html>
+<!--
+  Página de Contacto · Animalheart
+  - Usa Bootstrap 5, Bootstrap Icons y fuentes (Open Sans, Poppins).
+  - Estilos específicos en /CSS/estilos-contacto.css (vía Thymeleaf).
+  - Incluye:
+    * Barra de navegación accesible.
+    * Portada (hero) con CTA hacia el formulario.
+    * Formulario con validación HTML5 + Bootstrap (was-validated).
+    * "Honeypot" anti-bots (input oculto "company").
+    * Tarjeta lateral con info de contacto + mapa embebido.
+-->
 <html xmlns:th="http://www.thymeleaf.org" lang="es">
 <head>
-  <!--Meta tags y título-->
+  <!-- Meta tags y título de la pestaña -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contacto · Animalheart</title>
   
-  <!--Recursos externos-->
+  <!-- Preconexión + fuentes (mejora performance de carga) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Bootstrap + Bootstrap Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
   
-  <!--Estilos propios-->
+  <!-- Estilos propios (resueltos por Thymeleaf) -->
   <link th:href="@{/CSS/estilos-contacto.css}" rel="stylesheet">
 </head>
 <body>
 
-  <!--Barra de navegación-->
+  <!-- =================== BARRA DE NAVEGACIÓN ===================
+       - "banner" para semántica ARIA de encabezado.
+       - .menu con "Principal" para lectores de pantalla.
+  ---------------------------------------------------------------->
   <header class="barra" role="banner">
     <div class="envoltura">
+      <!-- Marca: logo + nombre -->
       <div class="marca">
         <div class="logotipo">
           <img th:src="@{/IMAGES/Logo_2.PNG}" alt="Logo Animalheart">
         </div>
         <span>Animalheart</span>
       </div>
+
+      <!-- Navegación principal -->
       <nav class="menu" aria-label="Principal">
+        <!-- Enlaces resueltos por Thymeleaf; "Contacto" marcado como actual -->
         <a th:href="@{/}">Inicio</a>
         <a th:href="@{/contacto}" aria-current="page">Contacto</a>
         <a class="pastilla" th:href="@{/login-veterinario}">Veterinario</a>
@@ -36,7 +56,10 @@
     </div>
   </header>
 
-  <!--Portada-->
+  <!-- =================== PORTADA (HERO) ===================
+       - Imagen de fondo + overlay (se define en CSS).
+       - CTA que baja al formulario (#form-contacto).
+  --------------------------------------------------------->
   <section class="portada portada-contacto">
     <div class="envoltura">
       <article class="tarjeta-portada">
@@ -47,47 +70,64 @@
     </div>
   </section>
 
-  <!--Contenido principal-->
+  <!-- =================== CONTENIDO PRINCIPAL ===================
+       - Dos columnas: formulario (izq.) e información/ubicación (der.).
+  ---------------------------------------------------------------->
   <main class="contacto container py-5">
     <div class="row g-4">
+      
+      <!-- ========== COLUMNA IZQUIERDA: FORMULARIO ========== -->
       <div class="col-lg-7">
         <h2>Envíanos un mensaje</h2>
 
+        <!--
+          Formulario con validación HTML5 + Bootstrap:
+          - novalidate: desactiva UI nativa del navegador para usar .was-validated
+          - th:action -> POST /contacto (método del ContactoController)
+        -->
         <form id="form-contacto" th:action="@{/contacto}" method="post" novalidate>
 
+          <!-- Honeypot anti-spam:
+               - Campo oculto a usuarios; si viene con valor, es probablemente un bot. -->
           <input type="text" name="company" class="d-none" tabindex="-1" autocomplete="off">
 
           <div class="row g-3">
+            <!-- Nombre (requerido, mínimo 2 caracteres) -->
             <div class="col-md-6">
               <label for="nombre" class="form-label">Nombre</label>
               <input id="nombre" name="nombre" type="text" class="form-control" required minlength="2" />
               <div class="invalid-feedback">Ingresa tu nombre (mín. 2 caracteres).</div>
             </div>
             
+            <!-- Correo (requerido, validación type=email) -->
             <div class="col-md-6">
               <label for="email" class="form-label">Correo</label>
               <input id="email" name="email" type="email" class="form-control" required />
               <div class="invalid-feedback">Ingresa un correo válido.</div>
             </div>
             
+            <!-- Teléfono (opcional, patrón con números/espacios/+) -->
             <div class="col-md-6">
               <label for="telefono" class="form-label">Teléfono (opcional)</label>
               <input id="telefono" name="telefono" type="tel" class="form-control" pattern="[0-9+\s()-]{7,}" />
               <div class="invalid-feedback">Usa solo números y + (mín. 7 dígitos).</div>
             </div>
             
+            <!-- Asunto (requerido) -->
             <div class="col-md-6">
               <label for="asunto" class="form-label">Asunto</label>
               <input id="asunto" name="asunto" type="text" class="form-control" required />
               <div class="invalid-feedback">Cuéntanos el asunto del mensaje.</div>
             </div>
             
+            <!-- Mensaje (requerido, mínimo 10 caracteres) -->
             <div class="col-12">
               <label for="mensaje" class="form-label">Mensaje</label>
               <textarea id="mensaje" name="mensaje" class="form-control" rows="6" required minlength="10"></textarea>
               <div class="invalid-feedback">Escribe al menos 10 caracteres.</div>
             </div>
             
+            <!-- Botones: enviar y limpiar -->
             <div class="col-12 d-grid d-sm-inline-flex gap-2">
               <button class="btn btn-primary" type="submit">
                 <i class="bi bi-send-fill me-1"></i> Enviar
@@ -97,19 +137,24 @@
           </div>
         </form>
 
-        <!--Alerta de éxito-->
+        <!--
+          Alerta de éxito:
+          - Se muestra cuando el controlador agrega "mensajeExito" al modelo.
+          - "polite" para anunciar cambios sin interrumpir al usuario.
+        -->
         <div th:if="${mensajeExito}" class="alert alert-success mt-3" role="alert" aria-live="polite">
           <i class="bi bi-check-circle-fill me-2"></i>
           <span th:text="${mensajeExito}">¡Gracias! Recibimos tu mensaje y te contactaremos pronto.</span>
         </div>
       </div>
 
-      <!--Información de contacto-->
+      <!-- ========== COLUMNA DERECHA: INFO + MAPA ========== -->
       <div class="col-lg-5">
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">Información de contacto</h5>
             
+            <!-- Datos de contacto (simple listado con iconos) -->
             <p><i class="bi bi-geo-alt-fill"></i> Carrera 77#20-40, Bogotá, Colombia</p>
             <p><i class="bi bi-telephone-fill"></i> +57 320 534 4512</p>
             <p><i class="bi bi-envelope-fill"></i> animalheart@gmail.com</p>
@@ -117,7 +162,7 @@
             <p><i class="bi bi-clock-history"></i> Sábados: 9:00 am - 2:00 pm</p>
             <p><i class="bi bi-exclamation-triangle-fill"></i> Emergencias: 24/7</p>
 
-            <!--Mapa-->
+            <!-- Mapa (iframe) dentro de contenedor con relación 4:3 -->
             <div class="ratio ratio-4x3 rounded overflow-hidden mt-4">
               <iframe
                 title="Ubicación de Animalheart"
@@ -127,10 +172,11 @@
           </div>
         </div>
       </div>
+      <!-- /col derecha -->
     </div>
   </main>
 
-  <!--Footer-->
+  <!-- =================== PIE DE PÁGINA =================== -->
   <footer class="pie text-light pt-5 pb-3">
     <div class="container">
       <div class="text-center border-top border-light pt-3 small text-muted">
@@ -139,20 +185,23 @@
     </div>
   </footer>
 
-  <!--Scripts-->
+  <!-- =================== SCRIPTS ===================
+       - script.js: marca item activo por hash (#) y utilidades de menú.
+       - Bundle Bootstrap con Popper para componentes.
+       - IIFE final: valida HTML5 y aplica .was-validated si hay campos inválidos.
+  --------------------------------------------------->
   <script th:src="@{/JS/script.js}"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-    //Para la validación del formulario :D
+    // Validación del formulario con la API de Constraint Validation (HTML5)
     (function(){
       const form = document.getElementById('form-contacto');
-      
       if (form) {
         form.addEventListener('submit', function(e) {
           if (!form.checkValidity()) {
-            e.preventDefault();
-            e.stopPropagation();
-            form.classList.add('was-validated');
+            e.preventDefault();          // Evita el envío si hay inválidos
+            e.stopPropagation();         // Detiene burbujeo
+            form.classList.add('was-validated'); // Activa estilos de error Bootstrap
           }
         }, false);
       }

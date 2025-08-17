@@ -1,21 +1,27 @@
-/* ===================== TOKENS ===================== */
+/* ===================== TOKENS (Design System) =====================
+   Paleta, tipografía base y “tokens” reutilizables.
+   - Cambiando aquí ajustas todo el tema del sitio.
+------------------------------------------------------------------- */
 :root{
-  --teal-700:#054d7c;     /* barra superior */
-  --teal-600:#2a9a99;     /* portada/cta */
-  --teal-200:#bfe6e5;     /* detalles */
-  --pink-200:#7AABBF;     /* sección clientes */
+  --teal-700:#054d7c;     /* barra superior / acentos oscuros */
+  --teal-600:#2a9a99;     /* CTAs y botones */
+  --teal-200:#bfe6e5;     /* badges / resaltados suaves */
+  --pink-200:#7AABBF;     /* variante secundaria (cards expandidas) */
   --pink-300:#58AAAE;     /* pie de página */
-  --bg:#f7f7f8;
-  --surface:#ffffff;
-  --text:#1b1e22;
-  --muted:#5e6a72;
-  --radius:18px;
-  --shadow:0 8px 24px rgba(0, 0, 0, 0.08);
+  --bg:#f7f7f8;           /* fondo general */
+  --surface:#ffffff;      /* superficies/ tarjetas */
+  --text:#1b1e22;         /* texto principal */
+  --muted:#5e6a72;        /* texto secundario */
+  --radius:18px;          /* radio estándar */
+  --shadow:0 8px 24px rgba(0, 0, 0, 0.08);  /* sombra suave */
   --servicios-bg: #fff7e6;
   --servicios-title: #043454;
   --corazon: #ED3A4D;
 }
-/* ===================== BASE ===================== */
+
+/* ===================== BASE =====================
+   Reset mínimo y tipografía global
+------------------------------------------------- */
 *{box-sizing:border-box}
 html,body{
   margin:0;
@@ -27,7 +33,10 @@ html,body{
 a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block}
 
-/* ===================== BARRA ===================== */
+/* ===================== BARRA (Header / Navbar) =====================
+   - Barra sticky con logotipo centrado y menús a ambos lados.
+   - En móvil se colapsa y se centra el menú.
+-------------------------------------------------------------------- */
 
 @media (min-width: 992px) {
   .menu-izq, .menu-der { gap: clamp(16px, 2vw, 28px); }
@@ -46,20 +55,18 @@ img{max-width:100%;display:block}
   gap: 16px; position: relative;
 }
 
-.menu-izq, .menu-der {
-  display: flex; gap: 16px;
-}
+.menu-izq, .menu-der { display: flex; gap: 16px; }
 
 .menu-izq a, .menu-der a {
   padding: 10px 14px; border-radius: 999px;
-  font-weight: 500; opacity: 0.95;
-  color: #fff; text-decoration: none;
+  font-weight: 500; opacity: 0.95; color: #fff;
 }
 .menu-izq a[aria-current="page"], .menu-izq a:hover, .menu-der a:hover {
   background: rgba(255, 255, 255, 0.18);
 }
 
 .menu-izq .nav-link, .menu-der .nav-link {
+  /* Pastilla responsiva */
   min-width: clamp(120px, 12vw, 180px);
   padding: clamp(12px, 1.2vw, 16px) clamp(18px, 2.2vw, 28px);
   font-size: clamp(14px, 1vw, 16.5px);
@@ -67,6 +74,7 @@ img{max-width:100%;display:block}
 }
 
 .menu-der .pastilla {
+  /* Botón invertido (fondo blanco) */
   background: #fff; color: var(--teal-700) !important; font-weight: 700;
   transition: color .3s, background .3s, transform .15s;
 }
@@ -74,6 +82,7 @@ img{max-width:100%;display:block}
   background: var(--teal-700) !important; color: #fff !important; transform: translateY(-1px);
 }
 
+/* Logotipo centrado solo en escritorio */
 .logotipo-central {
   position: absolute; left: 50%; transform: translateX(-50%);
   z-index: 10; width: 110px; height: 110px;
@@ -81,6 +90,7 @@ img{max-width:100%;display:block}
 }
 .logotipo-central img { width: 100%; height: 100%; object-fit: contain; }
 
+/* Navbar colapsada (móvil) */
 @media (max-width: 991.98px) {
   .logotipo-central { display: none !important; }
   .navbar-collapse .navbar-nav {
@@ -89,17 +99,16 @@ img{max-width:100%;display:block}
     border-radius: 0 0 12px 12px;
   }
   .navbar-collapse .nav-item { width: 100%; }
-  .navbar-collapse .nav-link {
-    display: block; width: 100%; padding: 12px 0; margin: 6px 0;
-    border-radius: 12px; font-size: 16px;
-  }
+  .navbar-collapse .nav-link { display: block; width: 100%; padding: 12px 0; margin: 6px 0; border-radius: 12px; font-size: 16px; }
   .navbar-collapse .pastilla { background: #fff; color: var(--teal-700) !important; font-weight: 700; }
   .navbar-collapse .pastilla:hover { background: rgba(255,255,255,.9); }
 }
 
+/* Ajustes de Bootstrap */
 .navbar { padding: 0; }
 .navbar-toggler { border-color: rgba(255, 255, 255, 0.4); }
 .navbar-toggler-icon {
+  /* Ícono hamburguesa claro */
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255,255,255,0.8%29' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
 .navbar-nav .nav-link { color: #fff; }
@@ -113,6 +122,7 @@ img{max-width:100%;display:block}
   .navbar-toggler { margin-left: auto; }
 }
 
+/* Anchuras mínimas por breakpoint (fina sintonía) */
 @media (min-width: 1200px) and (max-width: 1400px) {
   .menu-izq .nav-link, .menu-der .nav-link { min-width: clamp(120px, 10vw, 160px); }
 }
@@ -120,8 +130,10 @@ img{max-width:100%;display:block}
   .menu-izq .nav-link, .menu-der .nav-link { min-width: clamp(110px, 9.5vw, 150px); }
 }
 
-
-/* ===================== PORTADA ===================== */
+/* ===================== PORTADA (Hero) =====================
+   - Fondo con overlay y “perrito” en primer plano.
+   - Se reserva espacio inferior para que el perrito sobresalga.
+----------------------------------------------------------- */
 .portada {
   position: relative;
   background: url("../IMAGES/vet_animalheart.jpeg") center/cover no-repeat;
@@ -130,574 +142,255 @@ img{max-width:100%;display:block}
   z-index: 2;
   display: flex;
   align-items: center;
-  overflow: visible; /* Permite que el perrito sobresalga */
-  margin-bottom: 100px; /* Espacio para el perrito */
+  overflow: visible;      /* Permite que el perrito se salga visualmente */
+  margin-bottom: 100px;   /* Espacio para el perrito */
 }
-
 .portada::before {
+  /* Overlay rosado semitransparente */
   content: "";
-  position: absolute;
-  inset: 0;
+  position: absolute; inset: 0;
   background-color: rgba(246, 189, 197, 0.8);
   z-index: 1;
 }
 
 .contenedor-portada {
-  max-width: 1200px;
-  width: 100%;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 40px;
-  position: relative;
-  z-index: 5;
+  max-width: 1200px; width: 100%; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 40px; position: relative; z-index: 5;
 }
 
-.bloque-izquierdo {
-  flex: 1;
-  max-width: 600px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
+.bloque-izquierdo { flex: 1; max-width: 600px; display: flex; flex-direction: column; gap: 20px; }
 
-#nombre {
-  margin: 0;
-  color: #fff;
-  font-weight: 700;
-  line-height: 1.1;
-  font-size: clamp(48px, 6vw, 98px);
-  pointer-events: none;
+#nombre{
+  margin:0; color:#fff; font-weight:700; line-height:1.1;
+  font-size: clamp(48px, 6vw, 98px); pointer-events:none;
 }
+#nombre .rosa { color: var(--corazon); }
 
-#nombre .rosa { 
-  color: var(--corazon); 
+.tarjeta-portada{
+  /* Tarjeta de mensaje en portada */
+  width:100%; min-height:300px; padding: clamp(24px, 3vw, 40px);
+  display:flex; flex-direction:column; border-radius:29px;
+  background:#fff; box-shadow: var(--shadow);
 }
+.tarjeta-portada h1{ margin:0 0 10px; font-size: clamp(28px,2.4vw,42px); font-weight:800; line-height:1.15; font-family:"Open Sans", sans-serif; }
+.tarjeta-portada p{ margin:8px 0; color:var(--muted); font-size: clamp(16px,1.3vw,20px); line-height:1.55; }
 
-.tarjeta-portada {
-  width: 100%;
-  min-height: 300px;
-  padding: clamp(24px, 3vw, 40px);
-  display: flex;
-  flex-direction: column;
-  border-radius: 29px;
-  background: #fff;
-  box-shadow: var(--shadow);
-}
+.bloque-derecho{ flex:1; display:flex; justify-content:flex-end; align-items:flex-end; position:relative; }
 
-.tarjeta-portada h1 {
-  margin: 0 0 10px;
-  font-size: clamp(28px, 2.4vw, 42px);
-  font-weight: 800;
-  line-height: 1.15;
-  font-family: "Open Sans", sans-serif;
-}
-
-.tarjeta-portada p {
-  margin: 8px 0;
-  color: var(--muted);
-  font-size: clamp(16px, 1.3vw, 20px);
-  line-height: 1.55;
-}
-
-.bloque-derecho {
-  flex: 1;
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
-  height: 100%;
-  position: relative;
-}
-
-.perrito {
+.perrito{
+  /* Ilustración en primer plano */
   width: clamp(250px, 30vw, 500px);
-  height: auto;
-  filter: drop-shadow(0 18px 32px rgba(29, 31, 78, 0.25));
-  position: absolute;
-  top: -200px; 
-  right: 0;
+  height:auto; filter: drop-shadow(0 18px 32px rgba(29,31,78,.25));
+  position:absolute; top:-200px; right:0;
 }
 
-.llamada-accion {
-  display: inline-block;
-  margin-top: 20px;
-  width: 100%;
-  max-width: 300px;
-  background: #fff;
-  border: 2px solid var(--teal-700);
-  color: var(--teal-700);
-  padding: 16px 0;
-  border-radius: 999px;
-  font-weight: 700;
-  font-size: clamp(16px, 1.5vw, 20px);
-  text-align: center;
-  transition: all 0.3s ease;
+.llamada-accion{
+  /* Botón bordeado de la tarjeta */
+  display:inline-block; margin-top:20px; width:100%; max-width:300px;
+  background:#fff; border:2px solid var(--teal-700); color:var(--teal-700);
+  padding:16px 0; border-radius:999px; font-weight:700;
+  font-size: clamp(16px, 1.5vw, 20px); text-align:center; transition:all .3s ease;
 }
+.llamada-accion:hover{ background: var(--teal-700); color:#fff; transform: translateY(-2px); }
 
-.llamada-accion:hover {
-  background: var(--teal-700);
-  color: #fff;
-  transform: translateY(-2px);
-}
-
-/* Responsive para tablet */
+/* Tablet: columnas apiladas y perrito más pequeño */
 @media (max-width: 992px) {
-  .contenedor-portada {
-    flex-direction: column;
-    gap: 30px;
-  }
-  
-  .bloque-izquierdo,
-  .bloque-derecho {
-    max-width: 100%;
-    justify-content: center;
-  }
-  
-  .perrito {
-    width: clamp(200px, 50vw, 400px);
-      @media (max-width: 768px) {
-    display: none;
-  }
+  .contenedor-portada{ flex-direction: column; gap: 30px; }
+  .bloque-izquierdo, .bloque-derecho{ max-width: 100%; justify-content: center; }
+  .perrito{ width: clamp(200px, 50vw, 400px); }
 }
-  }
 
-
-
-/* Ocultar perrito cuando aparece el hamburguesa (como ya tenías) */
+/* Ocultar perrito cuando aparece el hamburguesa (móvil) */
 @media (max-width: 991.98px){ .perrito{ display:none; } }
 
-
-
-/* ===================== MISION Y VISION CARRUSEL ===================== */
-
-#destacados {
-   padding-top: 0;
-  margin-top: 80px;
-  height: 639.38px;
-  margin-bottom: 80px;
-
+/* ===================== MISION Y VISION – Carrusel ===================== */
+#destacados{
+  padding-top:0; margin-top:80px; height:639.38px; margin-bottom:80px;
 }
+#destacados .carousel-inner img{ width:100%; height:100%; object-fit:cover; }
+#destacados .carousel-item{ height:700px; min-height:700px; position:relative; overflow:hidden; }
 
-#destacados .carousel-inner img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.img-overlay{ position:relative; height:100%; }
+.img-overlay .image-overlay{ position:absolute; inset:0; background: rgba(255,255,255,.5); z-index:1; }
+.img-overlay .carousel-caption{
+  position:absolute; top:50%; left:50%; transform: translate(-50%,-50%);
+  z-index:2; text-align:center; padding:20px; max-width:90%; width:100%; pointer-events:none;
 }
-
-#destacados .carousel-item {
-  height: 700px;
-  min-height: 700px;
-  position: relative;
-  overflow: hidden;
+.img-overlay .carousel-caption h5{
+  font-size:78px; margin-bottom:1rem; color:var(--servicios-title);
+  font-family:"Open Sans", sans-serif; font-weight:700;
+  line-clamp: var(); /* placeholder, no tiene efecto por sí solo */
 }
-
-.img-overlay {
-  position: relative;
-  height: 100%;
+.img-overlay .carousel-caption p{
+  font-size:28px; line-height:1.6; color:var(--text); max-width:700px; margin:0 auto;
+  font-family:"Open Sans", sans-serif; font-weight:700;
 }
-
-.img-overlay .image-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(255, 255, 255, 0.5);
-  z-index: 1;
-}
-
-.img-overlay .carousel-caption {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 2;
-  text-align: center;
-  padding: 20px;
-  max-width: 90%;
-  width: 100%;
-  pointer-events: none;
-}
-
-.img-overlay .carousel-caption h5 {
-  font-size: 78px;
-  margin-bottom: 1rem;
-  color: var(--servicios-title);
-  font-family: "Open Sans", sans-serif;
-  font-style: bold;
-  font-weight: 700;
- line-clamp: var();
-}
-
-.img-overlay .carousel-caption p {
-  font-size: 28px;
-  line-height: 1.6;
-  color: var(--text);
-  max-width: 700px;
-  margin: 0 auto;
-  font-family: "Open Sans", sans-serif;
-  font-style: bold;
-}
-
 #destacados .carousel-control-prev-icon,
-#destacados .carousel-control-next-icon {
-  filter: invert(0.8) sepia(1) saturate(5) hue-rotate(180deg);
-  z-index: 3;
-}
-
-#destacados .carousel-indicators button {
-  background-color: var(--teal-700);
-}
-
-#destacados .carousel-indicators .active {
-  opacity: 1;
-}
-
-
+#destacados .carousel-control-next-icon{ filter: invert(.8) sepia(1) saturate(5) hue-rotate(180deg); z-index:3; }
+#destacados .carousel-indicators button{ background-color: var(--teal-700); }
+#destacados .carousel-indicators .active{ opacity:1; }
 
 /* ===================== TARJETAS DE SERVICIOS ===================== */
 #servicios{
-  background: #B8D2D4;
-  padding-top: 3rem;
-  padding-bottom: 3rem;
-  margin-bottom: 200px;
+  background:#B8D2D4; padding-top:3rem; padding-bottom:3rem; margin-bottom:200px;
 }
-
 #servicios h2{
-  color: #18527D;
-text-align: center;
-font-family: "Open Sans", sans-serif;
-font-size: 48px;
-font-style: normal;
-font-weight: 700;
-line-height: 100%; 
+  color:#18527D; text-align:center; font-family:"Open Sans", sans-serif;
+  font-size:48px; font-weight:700; line-height:100%;
 }
-#servicios .row {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-  gap: 40px; /* mismo espacio horizontal y vertical */
+#servicios .row{
+  /* Grid responsivo para cards */
+  display:grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap:40px;
 }
 
-
+/* Cards: que el botón se pegue abajo (flex column) */
 .card .card-body{ display:flex; flex-direction:column }
-.card .card-body .btn,
-.card .card-body button{
-  margin-top:auto;
-  width:100%;
-  justify-content:center;
-  background:rgba(255,255,255,0.2);
-  border:none; font-weight:600;
+.card .card-body .btn, .card .card-body button{
+  margin-top:auto; width:100%; justify-content:center;
+  background:rgba(255,255,255,0.2); border:none; font-weight:600;
   transition:background .3s ease, transform .15s ease;
 }
-.card .card-body button:hover{ background:rgba(255, 255, 255, 0.645) }
+.card .card-body button:hover{ background:rgba(255,255,255,.645) }
 
-/* Colores alternos robustos (sin :nth-child frágiles) */
-.card-grupo1 .card { 
-  width: 429px;
-height: 199px;
-flex-shrink: 0;background-color:#043454; color:#fff }
-.card-grupo2 .card { 
-  width: 429px;
-height: 199px;
-flex-shrink: 0;background-color:#58AAAE; color:#fff }
+/* Dos grupos con colores alternos (sin :nth-child) */
+.card-grupo1 .card { width:429px; height:199px; flex-shrink:0; background:#043454; color:#fff }
+.card-grupo2 .card { width:429px; height:199px; flex-shrink:0; background:#58AAAE; color:#fff }
 
-/* Contraste interno de texto/controles en cards coloreadas */
+/* Tipografía interior en cards coloreadas */
 .card-grupo1 .card .card-text,
 .card-grupo1 .card p,
 .card-grupo2 .card .card-text,
-.card-grupo2 .card p {
-  color: #FFF;
-  font-family: "Open Sans", sans-serif;
-  font-size: 24px;
-  margin-top: 40px;
-  margin-bottom: 40px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 100%; 
-  letter-spacing: 3.6px;
-  display: flex;
-width: 387px;
-height: 72px;
-flex-direction: column;
-justify-content: center;
-flex-shrink: 0;
+.card-grupo2 .card p{
+  color:#FFF; font-family:"Open Sans", sans-serif; font-size:24px;
+  margin:40px 0; font-weight:400; letter-spacing:3.6px; line-height:100%;
+  display:flex; width:387px; height:72px; justify-content:center; flex-shrink:0;
 }
-
-
-.card-grupo1 .card button,
-.card-grupo2 .card button {
-  display: flex;
-width: 390px;
-height: 47px;
-padding: var(--sds-size-space-300);
-justify-content: center;
-align-items: center;
-gap: var(--sds-size-space-200);
-flex-shrink: 0;
-border-radius: var(--sds-size-radius-200);
-background: rgba(130, 164, 193, 0.52);
+.card-grupo1 .card button, .card-grupo2 .card button{
+  display:flex; width:390px; height:47px; justify-content:center; align-items:center;
+  border-radius: var(--sds-size-radius-200);
+  background: rgba(130, 164, 193, 0.52);
 }
-.card-grupo1 .card .card-title,
-.card-grupo2 .card .card-title {
- color: #FFF;
-font-family: "Open Sans", sans-serif;
-font-size: 32px;
-font-style: normal;
-font-weight: 700;
-line-height: 100%; /* 32px */
+.card-grupo1 .card .card-title, .card-grupo2 .card .card-title{
+  color:#FFF; font-family:"Open Sans", sans-serif; font-size:32px; font-weight:700; line-height:100%;
 }
-
 /* Estados al expandir */
-.card-grupo1 .card .card-body button[aria-expanded="true"]{
-  background-color:var(--teal-200); color:#043454;
-}
-.card-grupo2 .card .card-body button[aria-expanded="true"]{
-  background-color:var(--pink-200); color:#043454;
-}
+.card-grupo1 .card .card-body button[aria-expanded="true"]{ background:var(--teal-200); color:#043454; }
+.card-grupo2 .card .card-body button[aria-expanded="true"]{ background:var(--pink-200); color:#043454; }
 .card .collapse p{ color:#fff !important }
 
-/* ===================== CLIENTES ===================== */
+/* ===================== CLIENTES (Sección carrusel) ===================== */
+.figura-mascotas{ position:relative; width:100%; margin-bottom:-120px; z-index:5; }
+.mascotas{
+  position:relative; left:50%; transform:translateX(-50%);
+  width: clamp(300px, 70vw, 1400px); height:auto; margin-top:-80px; pointer-events:none;
+}
+@media (max-width: 768px){ .mascotas{ display:none; } }
 
-.figura-mascotas {
-  position: relative;
-  width: 100%;
-  margin-bottom: -120px;
-  z-index: 5;
+@media (max-width: 991.98px){
+  .mascotas{ width: clamp(200px, 80vw, 800px); bottom:-60px; }
 }
 
-.mascotas {
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
-  width: clamp(300px, 70vw, 1400px);
-  height: auto;
-  margin-top: -80px; 
-  pointer-events: none;
-
-  @media (max-width: 768px) {
-    display: none; 
-  }
-  
+.clientes{
+  position:relative; background:url("../IMAGES/clientes_2.jpg") center/cover no-repeat;
+  padding:32px 0; margin-top:24px; z-index:4;
 }
-
-@media (max-width: 991.98px) {
-  .mascotas {
-    width: clamp(200px, 80vw, 800px);
-    bottom: -60px;
-  }
+.clientes::before{
+  /* Overlay cian para mejor legibilidad del texto */
+  content:""; position:absolute; inset:0;
+  background-color: rgba(127, 173, 192, 0.8); z-index:0; pointer-events:none;
 }
-
-.clientes {
-  
-  position: relative; 
-  background:url("../IMAGES/clientes_2.jpg") center/cover no-repeat;
-  padding: 32px 0;
-  margin-top: 24px;
-  z-index: 4; 
-}
-
-
-.clientes::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-color: rgba(127, 173, 192, 0.8); /* #7FADC0 con 80% de opacidad */
-  z-index: 0; /* detrás del contenido */
-  pointer-events: none; /* no bloquea clics */
-}
-
-.clientes > * {
-  position: relative;
-  z-index: 2; 
-}
-
+.clientes > *{ position:relative; z-index:2; }
 
 #clientes .carousel{ padding:8px 0 }
 #clientes .carousel-item{ transition:transform .6s ease, opacity .6s ease }
-#clientes .carousel .card{
-  border:0; border-radius:var(--radius); box-shadow:var(--shadow);
-}
-#clientes .carousel-indicators [data-bs-target]{
-  width:8px; height:8px; border-radius:999px; background:#fff; opacity:.6;
-}
+#clientes .carousel .card{ border:0; border-radius:var(--radius); box-shadow:var(--shadow); }
+#clientes .carousel-indicators [data-bs-target]{ width:8px; height:8px; border-radius:999px; background:#fff; opacity:.6; }
 #clientes .carousel-indicators .active{ opacity:1 }
-#clientes .carousel-control-prev,
-#clientes .carousel-control-next{
-  width:8%; filter:drop-shadow(0 6px 18px rgba(0,0,0,.2));
-}
+#clientes .carousel-control-prev, #clientes .carousel-control-next{ width:8%; filter:drop-shadow(0 6px 18px rgba(0,0,0,.2)); }
 
-/* ===================== PIE ===================== */
-.pie{background:var(--pink-300); margin-top:22px}
-.redes a{display:inline-grid; place-items:center}
+/* ===================== PIE DE PÁGINA ===================== */
+.pie{ background:var(--pink-300); margin-top:22px }
+.redes a{ display:inline-grid; place-items:center }
 
-/* ===================== RESPONSIVE ===================== */
+/* ===================== RESPONSIVE MISC ===================== */
 @media (max-width:980px){
-  .portada .envoltura{ grid-template-columns:1fr }
-  .perrito{ position:relative; top:-20px; right:auto; margin-left:auto  }
-
+  .portada .envoltura{ grid-template-columns:1fr } /* Solo tiene efecto si .envoltura es grid */
+  .perrito{ position:relative; top:-20px; right:auto; margin-left:auto }
 }
 
+/* Tarjeta más ancha dentro del carrusel de clientes */
+#clientes .carousel .card{ max-width:800px; width:100%; background:#DBE5E7; }
+#clientes .carousel .card img{
+  width:414px; height:380px; border-radius:414px;
+  background: url(<path-to-image>) lightgray 50% / cover no-repeat;
+}
+#clientes .carousel .card h5{
+  font-size:1.75rem; color:#18527D; font-family:"Open Sans"; font-size:32px; font-weight:700; letter-spacing:-0.96px;
+}
+#clientes .carousel .card p{
+  font-size:1.1rem; color:#18527D; text-align:center; font-family:"Open Sans", sans-serif;
+  font-size:16px; font-weight: var(--sds-typography-body-font-weight-regular); line-height:100%; letter-spacing:1.6px;
+}
+#clientes .carousel{ padding:40px 0 60px; }
+#clientes .carousel .carousel-item{ min-height:320px; }
+#clientes .carousel-control-prev, #clientes .carousel-control-next{ z-index:5; }
+#clientes .carousel-indicators{ bottom:10px; }
 
-/* Tarjeta más ancha en el carrusel */
-#clientes .carousel .card {
-  max-width: 800px;
-  width: 100%;
-  background-color: #DBE5E7;
-}
+/* Utilidades */
+.navbar-toggler{ border:none; }
+img{ max-width:100%; height:auto; display:block; }
 
-#clientes .carousel .card img {
-  width: 414px;
-  height: 380px;
-  border-radius: 414px;
-background: url(<path-to-image>) lightgray 50% / cover no-repeat;
-}
+/* ===================== ESTILOS VETERINARIO / PACIENTES ===================== */
+/* Tabla de pacientes (listado) */
+.vet-container{ max-width:1200px; margin:0 auto; padding:0 20px; }
+.vet-page-title{ color:var(--teal-700); font-weight:700; }
+.vet-pet-avatar{ width:60px; height:60px; object-fit:cover; border-radius:50%; border:2px solid var(--teal-200); transition: transform .3s ease; }
+.vet-pet-avatar:hover{ transform: scale(1.1); }
 
-#clientes .carousel .card h5 {
-  font-size: 1.75rem;
-  color:#18527D;
-  font-family: "Open Sans";
-  font-size: 32px;
-  font-weight: 700;
-  letter-spacing: -0.96px;
+.vet-action-btn{
+  border-radius:999px; padding:6px 18px; font-size:.9rem;
+  background:var(--teal-600); color:#fff; border:none; transition: all .2s ease;
 }
+.vet-action-btn:hover{ background:var(--teal-700); transform: translateY(-2px); }
 
-#clientes .carousel .card p {
-  font-size: 1.1rem;
-  color: #18527D;
-  text-align: center;
-  font-family: "Open Sans", sans-serif;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: var(--sds-typography-body-font-weight-regular);
-  line-height: 100%; /* 16px */
-  letter-spacing: 1.6px;
-}
+.vet-table-header{ background:var(--teal-700); color:#fff; }
+.vet-table-row:hover{ background: rgba(191,230,229,.25); }
 
-#clientes .carousel {
-  padding: 40px 0 60px;
-}
+.vet-age-badge{ background:var(--teal-200); color:var(--teal-700); font-weight:600; }
 
-#clientes .carousel .carousel-item {
-  min-height: 320px;
-  
+/* Ficha clínica */
+.vet-pet-img{
+  max-height:300px; object-fit:cover; border-radius:var(--radius);
+  border:3px solid var(--teal-200); box-shadow: var(--shadow);
 }
+.vet-info-card{ border-radius:var(--radius); border:none; box-shadow:var(--shadow); }
+.vet-info-header{
+  background:var(--teal-700); color:#fff;
+  border-top-left-radius:var(--radius) !important; border-top-right-radius:var(--radius) !important;
+}
+.vet-info-section{
+  background:#fff; padding:20px; border-radius:var(--radius);
+  margin-bottom:20px; box-shadow: var(--shadow);
+}
+.vet-subtitle{ color:var(--teal-700); font-weight:600; margin-bottom:15px; }
 
-#clientes .carousel-control-prev,
-#clientes .carousel-control-next {
-  z-index: 5;
+.vet-back-btn{
+  background:var(--teal-600); color:#fff; border-radius:999px; padding:8px 20px; font-weight:600; transition: all .2s ease;
 }
+.vet-back-btn:hover{ background:var(--teal-700); transform: translateY(-2px); }
 
-#clientes .carousel-indicators {
-  bottom: 10px;
-}
+/* Estado de veterinario (badges) */
+.vet-status--ok{ background:var(--teal-200); color:var(--teal-700); font-weight:600; }
+.vet-status--off{ background:#fadde0; color:#a61b2b; font-weight:600; }
 
+/* Ancho fijo de la 1ª columna (avatar) */
+.vet-col-avatar { width: 80px; }
 
-.navbar-toggler {
-  border: none;
-}
+/* Esquinas redondeadas del header */
+.vet-th-left  { border-top-left-radius: var(--radius); }
+.vet-th-right { border-top-right-radius: var(--radius); }
 
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-
-/*Pacientes*/
-.vet-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-.vet-page-title {
-  color: var(--teal-700);
-  font-weight: 700;
-}
-
-.vet-pet-avatar {
-  width: 60px;
-  height: 60px;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 2px solid var(--teal-200);
-  transition: transform 0.3s ease;
-}
-.vet-pet-avatar:hover { transform: scale(1.1); }
-
-.vet-action-btn {
-  border-radius: 999px;
-  padding: 6px 18px;
-  font-size: 0.9rem;
-  background-color: var(--teal-600);
-  color: #fff;
-  border: none;
-  transition: all 0.2s ease;
-}
-.vet-action-btn:hover {
-  background-color: var(--teal-700);
-  transform: translateY(-2px);
-}
-
-.vet-table-header {
-  background-color: var(--teal-700);
-  color: #fff;
-}
-.vet-table-row:hover {
-  background-color: rgba(191, 230, 229, 0.25);
-}
-
-.vet-age-badge {
-  background-color: var(--teal-200);
-  color: var(--teal-700);
-  font-weight: 600;
-}
-
-/*Ficha clínica*/
-.vet-pet-img {
-  max-height: 300px;
-  object-fit: cover;
-  border-radius: var(--radius);
-  border: 3px solid var(--teal-200);
-  box-shadow: var(--shadow);
-}
-
-.vet-info-card {
-  border-radius: var(--radius);
-  border: none;
-  box-shadow: var(--shadow);
-}
-
-.vet-info-header {
-  background-color: var(--teal-700);
-  color: #fff;
-  border-top-left-radius: var(--radius) !important;
-  border-top-right-radius: var(--radius) !important;
-}
-
-.vet-info-section {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: var(--radius);
-  margin-bottom: 20px;
-  box-shadow: var(--shadow);
-}
-
-.vet-subtitle {
-  color: var(--teal-700);
-  font-weight: 600;
-  margin-bottom: 15px;
-}
-
-.vet-back-btn {
-  background-color: var(--teal-600);
-  color: #fff;
-  border-radius: 999px;
-  padding: 8px 20px;
-  font-weight: 600;
-  transition: all 0.2s ease;
-}
-.vet-back-btn:hover {
-  background-color: var(--teal-700);
-  transform: translateY(-2px);
-}
+/* Para que los anchos se respeten mejor en tablas Bootstrap */
+.vet-table { table-layout: fixed; }
