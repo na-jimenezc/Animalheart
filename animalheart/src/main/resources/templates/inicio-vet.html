@@ -20,6 +20,7 @@
 
   <!-- Hoja de estilos específica del panel de veterinario -->
   <link th:href="@{/CSS/estilos-vet.css}" rel="stylesheet">
+  
 </head>
 <body>
 
@@ -28,18 +29,45 @@
        - Muestra la marca "AnimalHeart" y, a la derecha, saludo con el nombre
          del veterinario proveniente del modelo Thymeleaf.
   ----------------------------------------------------------->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <div class="container">
-      <!-- Marca / logotipo textual -->
-      <a class="navbar-brand" href="#">AnimalHeart</a>
+  <header class="barra navbar navbar-expand-lg">
+  <div class="envoltura container-fluid align-items-center">
 
-      <!-- Texto alineado a la derecha (ms-auto) -->
-      <div class="navbar-text ms-auto text-white">
-        <!-- Inserta el nombre del veterinario del modelo -->
-        Bienvenido, <span th:text="${veterinario.nombre}"></span>
+    <!-- Logo compacto + botón hamburguesa (solo móvil) -->
+    <div class="d-flex align-items-center w-100 d-lg-none">
+      <div class="logotipo-movil">
+        <img th:src="@{/IMAGES/Logo_2.PNG}" alt="Logo AnimalHeart" style="height:50px; object-fit:contain;">
       </div>
+      <button class="navbar-toggler ms-auto" type="button"
+        data-bs-toggle="collapse" data-bs-target="#barraContenido"
+        aria-controls="barraContenido" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
     </div>
-  </nav>
+
+    <!-- Logotipo centrado (oculto en móvil, visible en escritorio) -->
+    <div class="logotipo-central d-none d-lg-flex">
+      <img th:src="@{/IMAGES/Logo_2.PNG}" alt="Logo AnimalHeart">
+    </div>
+
+    <!-- Contenedor colapsable del menú -->
+    <div class="collapse navbar-collapse justify-content-between" id="barraContenido">
+
+      <!-- Menú derecho: accesos a login de roles -->
+      <ul class="navbar-nav menu-der ms-auto">
+        <li class="nav-item">
+          <a class="nav-link pastilla"
+            href="/aniadir-mascota-dueno" th:href="@{/login-veterinario}">Registrar Mascota</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link pastilla"
+            href="/index" th:href="@{/login-admin}">Cerrar Sesión</a>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</header>
+
 
   <!-- ================ CONTENIDO PRINCIPAL =================
        - Contenedor centrado con una tarjeta de "Panel Veterinario".

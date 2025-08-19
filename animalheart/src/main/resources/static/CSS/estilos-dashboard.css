@@ -1,0 +1,201 @@
+/* Cabecera del dashboard con logo y botones */
+/* Cabecera del dashboard con logo y botones */
+.header-dashboard {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #fddde6;
+    flex-wrap: wrap;
+}
+
+/* Tamaño del logo */
+#logo {
+    width: 181.25px;
+    height: 224.59px;
+    mix-blend-mode: multiply;
+    object-fit: contain;
+}
+
+/* Contenedor de los botones */
+.botones-dashboard {
+    display: flex;
+    flex: 1;
+    gap: 1rem;
+    justify-content: flex-end;
+}
+
+/* Botones */
+.botones-dashboard .btn {
+    flex: 1;
+    max-width: 180px;
+    padding: 0.75rem 1rem;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 8px;
+    text-decoration: none;
+    color: white;
+    border: none;
+    display: inline-block;
+    white-space: nowrap;
+    transition: background-color 0.3s ease;
+}
+
+/* Colores personalizados */
+.btn-rojo {
+    background-color: #ED3A4D !important;
+    border: 1px solid #ED3A4D !important;
+}
+
+.btn-turquesa {
+    background-color: #409E9F !important;
+    border: 1px solid #409E9F !important;
+}
+
+/* Hover opcional */
+.btn-rojo:hover {
+    background-color: #c52e40 !important;
+}
+
+.btn-turquesa:hover {
+    background-color: #368a91 !important;
+}
+
+
+#carta-dashboard {
+    position: relative;
+    width: 100vw;
+    min-height: 350px; 
+    background: url('/IMAGES/AdminIMG.webp') no-repeat center center;
+    background-size: cover;
+    margin-bottom: 2rem;
+
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* centra verticalmente */
+    align-items: center;     /* centra horizontalmente */
+    text-align: center;
+    font-family: "Open Sans", sans-serif;
+}
+
+#carta-dashboard::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(24, 82, 125, 0.43); /* Overlay azul */
+    z-index: 1;
+}
+
+#carta-dashboard .titulo-dashboard,
+#carta-dashboard .subtitulo-dashboard {
+    position: relative;
+    z-index: 2;
+    color: white; /* Mejor contraste sobre fondo oscuro */
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+    padding: 1rem;
+}
+
+/* Tamaño del logo */
+#logo {
+    width: auto;
+    height: 100px;
+    mix-blend-mode: multiply;
+}
+
+
+
+/* Contenedor principal */
+.contenedor-dashboard {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+
+
+}
+
+/* Encabezado */
+.titulo-dashboard {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    color: #ffffff;
+}
+
+.subtitulo-dashboard {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #ffffff;
+}
+
+/* Layout de filas */
+.fila-charts {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%; /* Ocupa todo el ancho disponible */
+}
+
+/* Contenedor para filas con múltiples elementos */
+.fila-multiple {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.chart-card {
+    background-color: #ffffff;
+    border-radius: 34px;
+    box-shadow: 0 4px 24px rgba(64, 158, 159, 0.50);
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    overflow: hidden; /* Evita que el contenido se desborde */
+    position: relative; /* Para posicionar elementos hijos */
+}
+
+/* Tamaños específicos para charts */
+.chart-card.large {
+    width: 100%;
+    max-width: 1200px; /* Ancho máximo para mantener proporción */
+    height:auto;
+}
+
+.chart-card.medium {
+    width: calc(50% - 1rem); /* Toma el 50% del ancho menos el espacio */
+    max-width: 684px; /* Máximo del diseño original */
+    min-width: 400px; /* Ancho mínimo para mantener legibilidad */
+    height: auto;
+}
+
+/* Ajuste para imágenes */
+.chart-card img {
+    max-width: 100%;
+    max-height: auto;
+    object-fit: fill; /* Mantiene relación de aspecto sin desbordar */
+}
+
+/* Ajuste para canvas */
+.chart-card canvas {
+    max-width: 100%;
+    max-height: auto;
+    object-fit: contain;
+}
+
+/* Footer */
+.footer-dashboard {
+    padding: 1rem;
+    background-color: #f0f0f0;
+    font-size: 0.9rem;
+    background: #409E9F;
+    text-align: center;
+}

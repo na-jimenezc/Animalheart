@@ -61,14 +61,16 @@
        - CTA que baja al formulario (#form-contacto).
   --------------------------------------------------------->
   <section class="portada portada-contacto">
-    <div class="envoltura">
-      <article class="tarjeta-portada">
-        <h1>Hablemos <span class="rosa">🐾</span></h1>
-        <p>¿Dudas, citas o urgencias? Escríbenos y te respondemos pronto.</p>
-        <a href="#form-contacto" class="llamada-accion">Enviar mensaje</a>
-      </article>
+  <div class="envoltura">
+    <div class="circulos-portada">
+      <div class="circulo"> Servicio🐾</div>
+      <a th:href="@{/login-cliente}" class="circulo">Ve a tu Mascota</a>
+      <div class="circulo">Planes de Medicina</div>
+      <div class="circulo">Urgencias</div>
     </div>
-  </section>
+  </div>
+</section>
+
 
   <!-- =================== CONTENIDO PRINCIPAL ===================
        - Dos columnas: formulario (izq.) e información/ubicación (der.).

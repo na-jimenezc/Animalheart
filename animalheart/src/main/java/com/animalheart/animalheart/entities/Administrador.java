@@ -35,8 +35,9 @@ public class Administrador implements Serializable {
      * @param id     identificador del administrador
      * @param nombre nombre para mostrar
      * @param correo correo electrónico (login/identificador)
+     * @param clave  clave de acceso (no se almacena aquí, solo en repositorio)
      */
-    public Administrador(Integer id, String nombre, String correo) {
+    public Administrador(Integer id, String nombre, String correo, String clave) {
         this.id = id;
         this.nombre = nombre;
         this.correo = correo;
@@ -63,5 +64,9 @@ public class Administrador implements Serializable {
 
     /** @param correo correo electrónico del administrador. */
     public void setCorreo(String correo) { this.correo = correo; }
+
+
+
+   
 
 }

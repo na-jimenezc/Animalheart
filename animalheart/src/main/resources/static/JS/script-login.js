@@ -74,3 +74,13 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+// script-login.js
+document.querySelector('form').addEventListener('submit', function(e) {
+  const correo = document.getElementById('correo').value;
+  if (!correo.includes('@')) {
+    e.preventDefault();
+    alert('Por favor, introduce un correo válido.');
+  }
+});
+

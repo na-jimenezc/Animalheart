@@ -436,3 +436,41 @@ img{max-width:100%;display:block}
 @media (min-width: 1600px) {
   .barra .envoltura { max-width: 1400px; }
 }
+
+.circulos-portada {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.circulo {
+  flex: 1;
+  max-width: 250px; /* o un ancho adecuado */
+  aspect-ratio: 1 / 1;
+  background-color: var(--teal-200); /* puedes adaptar el color existente */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+  margin: 0 10px;
+  color: var(--teal-700);
+  font-weight: 600;
+  cursor: default;
+  box-shadow: var(--shadow);
+}
+
+.circulo a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.portada-contacto .envoltura {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+

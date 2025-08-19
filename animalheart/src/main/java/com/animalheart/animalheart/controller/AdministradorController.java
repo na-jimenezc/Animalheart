@@ -69,7 +69,8 @@ public class AdministradorController {
         if (adminAuthService.validar(correo, clave)) {
             Administrador admin = adminAuthService.obtenerPorCorreo(correo);
             session.setAttribute(ADMIN_AUTH, admin); // marca sesión activa
-            return "redirect:/admin/veterinarios";
+             return "redirect:/admin/dashboard";
+            //return "redirect:/admin/veterinarios";
         }
 
         // Si las credenciales son incorrectas, vuelve al formulario con mensaje.
@@ -125,4 +126,9 @@ public class AdministradorController {
         model.addAttribute("veterinario", vet);
         return "detalle-veterinario";
     }
+    @GetMapping("/admin/dashboard")
+public String dashboardAdmin(HttpSession session) {
+    if (noLogueado(session)) return "redirect:/login-admin?error=Debes%20iniciar%20sesión";
+    return "dashboard-admin";
+}
 }

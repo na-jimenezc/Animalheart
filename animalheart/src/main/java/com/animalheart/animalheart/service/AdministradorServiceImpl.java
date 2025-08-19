@@ -25,8 +25,9 @@ public class AdministradorServiceImpl implements AdministradorService {
 
     // Mapa de administradores disponibles: correo -> Administrador
     private static final Map<String, Administrador> ADMINES = Map.of(
-        ADMIN_EMAIL, new Administrador(ADMIN_ID, ADMIN_NOMBRE, ADMIN_EMAIL)
+        ADMIN_EMAIL, new Administrador(ADMIN_ID, ADMIN_NOMBRE, ADMIN_EMAIL, ADMIN_CLAVE)
     );
+
 
     @Override
     public boolean validar(String correo, String clave) {
