@@ -462,6 +462,13 @@ img{max-width:100%;display:block}
   box-shadow: var(--shadow);
 }
 
+.circulo:hover {
+  background-color: var(--teal-600);
+  color: #ffffff;
+  transform: translateY(-2px);
+  transition: background-color 0.3s, color 0.3s, transform 0.3s;
+}
+
 .circulo a {
   text-decoration: none;
   color: inherit;
