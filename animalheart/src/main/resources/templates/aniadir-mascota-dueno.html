@@ -1,126 +1,444 @@
-<body class="bg-page">
-  <!-- Barra superior -->
-  <header class="topbar">
-    <div class="topbar__left">
-      <a class="btn-top btn-top--back" th:href="@{/veterinario/mascotas}">
-        <i class="bi bi-arrow-left"></i> Regresar
-      </a>
-      <a class="btn-top btn-top--ghost" th:href="@{/veterinario/mascotas}">
-        Regresar a Listado
-      </a>
-    </div>
-    <div class="topbar__brand">
-      <img th:src="@{/IMAGES/Logo_2.png}" alt="AnimalHeart" />
-      <span>Añadir Mascota</span>
-    </div>
-    <div class="topbar__right">
-      <a class="btn-top btn-top--primary" th:href="@{/login-veterinario}">
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Añadir Mascota - Animalheart</title>
+
+  <!-- Bootstrap + Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Fuente Poppins -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Estilos del proyecto -->
+  <link th:href="@{/CSS/estilos.css}" rel="stylesheet">
+  
+  <style>
+    .form-container {
+      max-width: 1000px;
+      margin: 2rem auto;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+    
+    .form-header {
+      background: linear-gradient(135deg, #4e73df 0%, #224abe 100%);
+      color: white;
+      padding: 2rem;
+      text-align: center;
+    }
+    
+    .form-header h1 {
+      margin: 0;
+      font-weight: 600;
+      font-size: 2rem;
+    }
+    
+    .form-body {
+      padding: 2rem;
+    }
+    
+    .form-section {
+      margin-bottom: 2.5rem;
+    }
+    
+    .form-section-title {
+      color: #4e73df;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid #e3e6f0;
+    }
+    
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    
+    .form-field {
+      margin-bottom: 1.5rem;
+    }
+    
+    .form-label {
+      font-weight: 500;
+      color: #5a5c69;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+    
+    .form-input {
+      width: 100%;
+      padding: 0.75rem;
+      border: 2px solid #d1d3e2;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+    }
+    
+    .form-input:focus {
+      outline: none;
+      border-color: #4e73df;
+      box-shadow: 0 0 0 3px rgba(78, 115, 223, 0.1);
+    }
+    
+    .form-select {
+      width: 100%;
+      padding: 0.75rem;
+      border: 2px solid #d1d3e2;
+      border-radius: 8px;
+      font-size: 1rem;
+      background: white;
+    }
+    
+    .required::after {
+      content: " *";
+      color: #e74a3b;
+    }
+    
+    .btn-container {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+    
+    .btn-primary {
+      background: linear-gradient(135deg, #4e73df 0%, #224abe 100%);
+      border: none;
+      padding: 12px 30px;
+      color: white;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(78, 115, 223, 0.4);
+    }
+    
+    .btn-secondary {
+      background: #858796;
+      border: none;
+      padding: 12px 30px;
+      color: white;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-secondary:hover {
+      background: #6c6e7e;
+      transform: translateY(-2px);
+    }
+    
+    .client-card {
+      background: #f8f9fa;
+      border-radius: 10px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border-left: 4px solid #4e73df;
+    }
+    
+    .client-info {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .client-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #4e73df;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+    }
+    
+    .client-details h4 {
+      margin: 0;
+      color: #4e73df;
+      font-size: 1rem;
+    }
+    
+    .client-details p {
+      margin: 0;
+      color: #858796;
+      font-size: 0.9rem;
+    }
+    
+    .photo-preview {
+      width: 200px;
+      height: 200px;
+      border-radius: 10px;
+      object-fit: cover;
+      border: 3px solid #e3e6f0;
+      display: none;
+    }
+    
+    .photo-placeholder {
+      width: 200px;
+      height: 200px;
+      border-radius: 10px;
+      background: #f8f9fa;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #858796;
+      border: 2px dashed #d1d3e2;
+      margin-bottom: 1rem;
+    }
+    
+    .photo-container {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    
+    @media (max-width: 768px) {
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .form-body {
+        padding: 1.5rem;
+      }
+      
+      .btn-container {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-light">
+  <!-- Barra Superior -->
+  <header style="background: white; padding: 1rem; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+    <div style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center;">
+      <div style="display: flex; gap: 1rem;">
+        <a th:href="@{/mascotas}" style="text-decoration: none; color: #4e73df; font-weight: 500;">
+          <i class="bi bi-arrow-left"></i> Regresar
+        </a>
+        <a th:href="@{/mascotas}" style="text-decoration: none; color: #4e73df; font-weight: 500;">
+          Regresar a Listado
+        </a>
+      </div>
+      <a th:href="@{/logout}" style="text-decoration: none; color: #e74a3b; font-weight: 500;">
         Cerrar Sesión
       </a>
     </div>
   </header>
 
-  <!-- Contenedor del formulario -->
-  <main class="container form-mockup">
-    <form class="mock-form" th:action="@{/mascotas/nueva}" th:object="${mascota}" method="post">
-      <!-- Título grande -->
-      <h1 class="mock-title">Añadir Mascota</h1>
-
-      <!-- Grid principal -->
-      <section class="mock-grid">
-        <!-- Preview / imagen -->
-        <aside class="mock-photo">
-          <div class="mock-photo__box">
-            <span class="mock-photo__placeholder">Foto</span>
-          </div>
-        </aside>
-
-        <!-- Campos de la Mascota -->
-        <section class="mock-card">
-          <div class="mock-field mock-field--xl">
-            <label>Nombre de la Mascota</label>
-            <input type="text" th:field="*{nombre}" placeholder="Nombre" required />
-          </div>
-
-          <div class="mock-row">
-            <div class="mock-field">
-              <label>Edad</label>
-              <input type="number" th:field="*{edad}" placeholder="Ej: 3" />
-            </div>
-            <div class="mock-field">
-              <label>Sexo</label>
-              <input type="text" th:field="*{tipo}" placeholder="Macho/Hembra" />
-            </div>
-          </div>
-
-          <div class="mock-row">
-            <div class="mock-field">
-              <label>Raza</label>
-              <input type="text" th:field="*{raza}" placeholder="Ej: Criollo" />
-            </div>
-            <div class="mock-field">
-              <label>Peso</label>
-              <input type="number" step="0.01" th:field="*{peso}" placeholder="Ej: 5.2" />
-            </div>
-          </div>
-
-          <div class="mock-row">
-            <div class="mock-field">
-              <label>Tipo de Animal</label>
-              <input type="text" placeholder="Perro / Gato" />
-            </div>
-            <div class="mock-field">
-              <label>Foto (URL)</label>
-              <input type="url" th:field="*{fotoURL}" placeholder="https://..." />
-            </div>
-          </div>
-        </section>
-      </section>
-
-      <!-- Bloque: Información del Dueño -->
-      <section class="mock-owner">
-        <h2>Información del Dueño</h2>
-
-        <div class="mock-row">
-          <div class="mock-field">
-            <label>Cédula</label>
-            <input type="text" placeholder="Documento" />
-          </div>
-          <div class="mock-field">
-            <label>ID</label>
-            <input type="text" placeholder="ID interno" />
-          </div>
-        </div>
-
-        <div class="mock-field">
-          <label>Nombres</label>
-          <input type="text" th:field="*{nombreDueno}" placeholder="Nombre del dueño" required />
-        </div>
-
-        <div class="mock-field">
-          <label>Correo</label>
-          <input type="email" th:field="*{correoDueno}" placeholder="correo@ejemplo.com" />
-        </div>
-
-        <div class="mock-field">
-          <label>Teléfono</label>
-          <div class="mock-phone">
-            <span class="mock-phone__cc">+57</span>
-            <input type="text" th:field="*{telefonoDueno}" placeholder="Número" />
-          </div>
-        </div>
-      </section>
-
-      <!-- Botón grande “diskette” -->
-      <div class="mock-save">
-        <button type="submit" class="save-disk" aria-label="Guardar">
-          <i class="bi bi-save-fill"></i>
-        </button>
+  <!-- Contenido Principal -->
+  <main>
+    <div class="form-container">
+      <!-- Header del Formulario -->
+      <div class="form-header">
+        <h1><i class="bi bi-plus-circle me-2"></i>Añadir Mascota</h1>
       </div>
-    </form>
+
+      <!-- Cuerpo del Formulario -->
+      <div class="form-body">
+        <form th:action="@{/mascotas/nueva}" th:object="${mascota}" method="post">
+          <!-- Sección: Foto de la Mascota -->
+          <div class="form-section">
+            <h2 class="form-section-title">Foto de la Mascota</h2>
+            <div class="photo-container">
+              <div class="photo-placeholder" id="photoPlaceholder">
+                <i class="bi bi-camera me-2"></i> Imagen de la mascota
+              </div>
+              <img th:src="*{fotoURL}" class="photo-preview" id="fotoPreview" 
+                   onerror="this.style.display='none'; document.getElementById('photoPlaceholder').style.display='flex';" />
+            </div>
+            
+            <div class="form-field">
+              <label class="form-label">URL de la Foto</label>
+              <input type="url" th:field="*{fotoURL}" class="form-input" 
+                     placeholder="https://ejemplo.com/imagen.jpg" id="fotoURLInput" />
+              <div class="form-text">Pega la URL de una imagen o deja vacío para usar imagen por defecto</div>
+            </div>
+          </div>
+
+          <!-- Sección: Información de la Mascota -->
+          <div class="form-section">
+            <h2 class="form-section-title">Información de la Mascota</h2>
+            
+            <div class="form-grid">
+
+              <!-- Nombre -->
+              <div class="form-field">
+                <label class="form-label required">Nombre de la Mascota</label>
+                <input type="text" name="nombre" class="form-input" required />
+              </div>
+
+              <!-- Edad -->
+              <div class="form-field">
+                <label class="form-label required">Edad (años)</label>
+                <input type="number" th:field="*{edad}" class="form-input" min="0" max="30" required />
+              </div>
+
+              <!-- Tipo -->
+              <div class="form-field">
+                <label class="form-label required">Tipo de Animal</label>
+                <select th:field="*{tipo}" class="form-select" required>
+                  <option value="">Seleccionar...</option>
+                  <option value="Perro">Perro</option>
+                  <option value="Gato">Gato</option>
+                </select>
+              </div>
+
+              <!-- Raza -->
+              <div class="form-field">
+                <label class="form-label required">Raza</label>
+                <input type="text" th:field="*{raza}" class="form-input" placeholder="Ej: Criollo, Labrador, etc." required />
+              </div>
+
+              <!-- Peso -->
+              <div class="form-field">
+                <label class="form-label">Peso (kg)</label>
+                <input type="number" step="0.1" th:field="*{peso}" class="form-input" placeholder="Ej: 5.2" min="0" />
+              </div>
+
+              <!-- Enfermedad -->
+              <div class="form-field">
+                <label class="form-label">Enfermedad/Diagnóstico</label>
+                <input type="text" th:field="*{enfermedad}" class="form-input" placeholder="Ej: Ninguna, Alergias, etc." />
+              </div>
+            </div>
+          </div>
+
+          <!-- Sección: Dueño de la Mascota -->
+          <div class="form-section">
+            <h2 class="form-section-title">Información del Dueño</h2>
+            
+            <!-- Selector de Cliente -->
+            <div class="form-field">
+              <label class="form-label required">Seleccionar Cliente</label>
+              <select name="clienteId" class="form-select" required>
+              <option value="">Seleccionar cliente existente...</option>
+              <option th:each="cliente : ${clientes}" 
+                      th:value="${cliente.id}" 
+                      th:text="${cliente.nombre + ' - C.C. ' + cliente.cedula}">
+              </option>
+              </select>
+            </div>
+
+            <!-- Información del cliente seleccionado -->
+            <div id="clientInfo" style="display: none;">
+              <div class="client-card">
+                <div class="client-info">
+                  <div class="client-avatar">
+                    <i class="bi bi-person"></i>
+                  </div>
+                  <div class="client-details">
+                    <h4 id="clientName"></h4>
+                    <p id="clientDetails"></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Botón para nuevo cliente -->
+            <div style="text-align: center; margin-top: 1rem;">
+              <a th:href="@{/clientes/nuevo}" class="btn btn-outline-primary">
+                <i class="bi bi-person-plus me-2"></i>Registrar Nuevo Cliente
+              </a>
+            </div>
+          </div>
+
+          <!-- Botones de Acción -->
+          <div class="btn-container">
+            <a th:href="@{/mascotas}" class="btn-secondary">
+              <i class="bi bi-x-circle me-2"></i>Cancelar
+            </a>
+            <button type="submit" class="btn-primary">
+              <i class="bi bi-check-circle me-2"></i>Registrar Mascota
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
   </main>
 
-  <footer class="mock-footer">
-    <p>© 2025 – Animalheart</p>
-  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  
+    <script>
+    // Preview de imagen
+    document.getElementById('fotoURLInput')?.addEventListener('input', function() {
+      const preview = document.getElementById('fotoPreview');
+      const placeholder = document.getElementById('photoPlaceholder');
+      const url = this.value.trim();
+      
+      if (url && preview && placeholder) {
+        preview.src = url;
+        preview.style.display = 'block';
+        placeholder.style.display = 'none';
+      } else if (preview && placeholder) {
+        preview.style.display = 'none';
+        placeholder.style.display = 'flex';
+      }
+    });
+
+    // Mostrar información del cliente seleccionado
+    document.querySelector('select[th\\:field="*{cliente.id}"]')?.addEventListener('change', function() {
+      const clientInfo = document.getElementById('clientInfo');
+      const clientName = document.getElementById('clientName');
+      const clientDetails = document.getElementById('clientDetails');
+      
+      if (this.value && clientInfo && clientName && clientDetails) {
+        const selectedOption = this.options[this.selectedIndex];
+        const text = selectedOption.text;
+        
+        const parts = text.split(' - C.C. ');
+        if (parts.length === 2) {
+          clientName.textContent = parts[0];
+          clientDetails.textContent = 'Cédula: ' + parts[1];
+          clientInfo.style.display = 'block';
+        }
+      } else if (clientInfo) {
+        clientInfo.style.display = 'none';
+      }
+    });
+
+    // Validación básica sin manipular estilos
+    document.querySelector('form')?.addEventListener('submit', function(e) {
+      const requiredFields = this.querySelectorAll('[required]');
+      let isValid = true;
+      
+      requiredFields.forEach(field => {
+        if (!field.value.trim()) {
+          isValid = false;
+        }
+      });
+      
+      if (!isValid) {
+        e.preventDefault();
+        alert('Por favor, complete todos los campos obligatorios marcados con *.');
+      }
+    });
+
+    // Inicializar preview si ya hay una URL
+    document.addEventListener('DOMContentLoaded', function() {
+      const urlInput = document.getElementById('fotoURLInput');
+      if (urlInput && urlInput.value) {
+        urlInput.dispatchEvent(new Event('input'));
+      }
+      
+      // Inicializar selector de cliente si hay valor
+      const clienteSelect = document.querySelector('select[th\\:field="*{cliente.id}"]');
+      if (clienteSelect && clienteSelect.value) {
+        clienteSelect.dispatchEvent(new Event('change'));
+      }
+    });
+</script>
 </body>
+</html>

@@ -27,5 +27,10 @@ public class VeterinarioServiceImpl implements VeterinarioService {
     public Veterinario obtenerVeterinarioPorId(Long id) {
         return veterinarioRepository.findById(id).orElse(null);
     }
+
+    @Override
+    public Veterinario guardarVeterinario(Veterinario veterinario) {
+        return veterinarioRepository.save(veterinario);
+    }
     
 }

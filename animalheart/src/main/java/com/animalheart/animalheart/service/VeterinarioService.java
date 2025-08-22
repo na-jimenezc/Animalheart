@@ -10,5 +10,5 @@ public interface VeterinarioService {
     Veterinario validarVeterinario(String nombreUsuario, String contrasenia);
     List<Veterinario> obtenerVeterinariosActivos();
     Veterinario obtenerVeterinarioPorId(Long id);
-    
+    Veterinario guardarVeterinario(Veterinario veterinario);
 }

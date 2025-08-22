@@ -57,7 +57,6 @@ public class Medicamento {
         this.unidadesDisponibles += cantidad;
     }
 
-    //TODO LO DE DATA
     public Long getId() {
         return id;
     }

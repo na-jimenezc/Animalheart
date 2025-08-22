@@ -58,7 +58,6 @@ public class Administrador{
         veterinario.getAdministradores().remove(this);
     }
 
-    //TODO LO DE DATA, ESTABA DANDO PROBLEMAS CON LAS RELACIONES
     public Long getId() {
         return id;
     }

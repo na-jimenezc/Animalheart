@@ -49,7 +49,6 @@ public class Cliente {
         this.celular = celular;
     }
 
-        //TODO LO DE DATA
         public Long getId() {
         return id;
         }
@@ -105,4 +104,5 @@ public class Cliente {
         public void setVeterinarios(List<Veterinario> veterinarios) {
         this.veterinarios = veterinarios;
         }
+
 }

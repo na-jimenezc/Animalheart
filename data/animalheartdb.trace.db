@@ -1,4 +1,0 @@
-2025-08-22 14:22:40.002013-05:00 jdbc[13]: exception
-org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "SELECT * FROM MASCOTA [*]AND CLIENTE"
-Syntax error in SQL statement "SELECT * FROM MASCOTA [*]AND CLIENTE"; SQL statement:
-SELECT * FROM MASCOTA AND CLIENTE [42000-232]
