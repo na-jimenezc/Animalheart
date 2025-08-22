@@ -13,13 +13,14 @@ import org.springframework.web.bind.annotation.*;
 public class AdministradorController {
 
     private static final String ADMIN_AUTH = "ADMIN_AUTH";
+
     private final VeterinarioService veterinarioService;
-    private final AdministradorService adminAuthService;
+    private final AdministradorService administradorService;
 
     public AdministradorController(VeterinarioService veterinarioService,
-                                   AdministradorService adminAuthService) {
+                                   AdministradorService administradorService) {
         this.veterinarioService = veterinarioService;
-        this.adminAuthService = adminAuthService;
+        this.administradorService = administradorService;
     }
 
     @GetMapping("/login-admin")
@@ -37,10 +38,10 @@ public class AdministradorController {
                              Model model,
                              HttpSession session) {
 
-        if (adminAuthService.validar(correo, clave)) {
-            Administrador admin = adminAuthService.obtenerPorCorreo(correo);
+        if (administradorService.validar(correo, clave)) {
+            Administrador admin = administradorService.obtenerPorCorreo(correo);
             session.setAttribute(ADMIN_AUTH, admin);
-             return "redirect:/admin/dashboard";
+            return "redirect:/admin/dashboard";
         }
 
         model.addAttribute("error", "Credenciales incorrectas");
@@ -75,10 +76,10 @@ public class AdministradorController {
         model.addAttribute("veterinario", vet);
         return "detalle-veterinario";
     }
-    
+
     @GetMapping("/admin/dashboard")
     public String dashboardAdmin(HttpSession session) {
-    if (noLogueado(session)) return "redirect:/login-admin?error=Debes%20iniciar%20sesión";
-    return "dashboard-admin";
-}
+        if (noLogueado(session)) return "redirect:/login-admin?error=Debes%20iniciar%20sesión";
+        return "dashboard-admin";
+    }
 }
