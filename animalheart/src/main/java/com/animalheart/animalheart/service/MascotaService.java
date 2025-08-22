@@ -1,11 +1,12 @@
 package com.animalheart.animalheart.service;
 
-import com.animalheart.animalheart.entities.Mascota;
 import java.util.List;
+
+import com.animalheart.animalheart.model.Mascota;
 
 public interface MascotaService {
 
     List<Mascota> obtenerTodasMascotas();
-    Mascota obtenerMascotaPorId(Integer id);
+    Mascota obtenerMascotaPorId(Long id);
     
 }

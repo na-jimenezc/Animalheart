@@ -22,7 +22,7 @@ public class MascotaController {
     }
 
     @GetMapping("/{id}")
-    public String verDetalleMascota(@PathVariable Integer id, Model model) {
+    public String verDetalleMascota(@PathVariable Long id, Model model) {
         model.addAttribute("mascota", mascotaService.obtenerMascotaPorId(id));
         return "detalle-mascota";
     }

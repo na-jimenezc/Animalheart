@@ -1,7 +1,7 @@
 package com.animalheart.animalheart.controller;
 
+import com.animalheart.animalheart.model.Veterinario;
 import com.animalheart.animalheart.service.VeterinarioService;
-import com.animalheart.animalheart.entities.Veterinario;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

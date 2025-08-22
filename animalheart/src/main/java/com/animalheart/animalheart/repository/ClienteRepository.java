@@ -1,7 +1,8 @@
 package com.animalheart.animalheart.repository;
 
-import com.animalheart.animalheart.entities.Cliente;
 import org.springframework.stereotype.Repository;
+
+import com.animalheart.animalheart.model.Cliente;
 
 import java.util.ArrayList;
 import java.util.List;

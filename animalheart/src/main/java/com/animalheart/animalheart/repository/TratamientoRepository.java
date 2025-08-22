@@ -1,11 +1,11 @@
 package com.animalheart.animalheart.repository;
 
 
-import com.animalheart.animalheart.entities.Tratamiento;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.animalheart.animalheart.model.Tratamiento;
 
 public class TratamientoRepository {
 

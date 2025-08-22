@@ -2,7 +2,8 @@ package com.animalheart.animalheart.service;
 
 import org.springframework.stereotype.Service;
 import java.util.List;
-import com.animalheart.animalheart.entities.Cliente;
+
+import com.animalheart.animalheart.model.Cliente;
 import com.animalheart.animalheart.repository.ClienteRepository;
 
 @Service

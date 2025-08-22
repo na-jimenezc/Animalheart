@@ -1,6 +1,6 @@
 package com.animalheart.animalheart.service;
 
-import com.animalheart.animalheart.entities.Veterinario;
+import com.animalheart.animalheart.model.Veterinario;
 import com.animalheart.animalheart.repository.VeterinarioRepository;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -17,14 +17,14 @@ public class VeterinarioServiceImpl implements VeterinarioService {
     }
     @Override
     public Veterinario validarVeterinario(String nombreUsuario, String contrasenia) {
-        return veterinarioRepository.buscarPorCredenciales(nombreUsuario, contrasenia);
+        return veterinarioRepository.findByNombreUsuarioAndContrasenia(nombreUsuario, contrasenia);
     }
     @Override
     public List<Veterinario> obtenerVeterinariosActivos() {
-        return veterinarioRepository.findAllActivos();
+        return veterinarioRepository.findByActivo(1);
     }
     @Override
-    public Veterinario obtenerVeterinarioPorId(Integer id) {
+    public Veterinario obtenerVeterinarioPorId(Long id) {
         return veterinarioRepository.findById(id).orElse(null);
     }
     

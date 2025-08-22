@@ -1,7 +1,8 @@
 package com.animalheart.animalheart.service;
 
-import com.animalheart.animalheart.entities.Cliente;
 import java.util.List;
+
+import com.animalheart.animalheart.model.Cliente;
 
 public interface ClienteService {
 

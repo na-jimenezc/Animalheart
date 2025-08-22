@@ -1,6 +1,6 @@
 package com.animalheart.animalheart.service;
 
-import com.animalheart.animalheart.entities.Mascota;
+import com.animalheart.animalheart.model.Mascota;
 import com.animalheart.animalheart.repository.MascotaRepository;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +21,7 @@ public class MascotaServiceImpl implements MascotaService {
     }
 
     @Override
-    public Mascota obtenerMascotaPorId(Integer id) {
+    public Mascota obtenerMascotaPorId(Long id) {
         return mascotaRepository.findById(id).orElse(null);
     }
 

@@ -1,7 +1,7 @@
 package com.animalheart.animalheart.controller;
 
-import com.animalheart.animalheart.entities.Administrador;
-import com.animalheart.animalheart.entities.Veterinario;
+import com.animalheart.animalheart.model.Administrador;
+import com.animalheart.animalheart.model.Veterinario;
 import com.animalheart.animalheart.service.AdministradorService;
 import com.animalheart.animalheart.service.VeterinarioService;
 import jakarta.servlet.http.HttpSession;
@@ -66,7 +66,7 @@ public class AdministradorController {
     }
 
     @GetMapping("/admin/veterinarios/{id}")
-    public String detalleVeterinario(@PathVariable Integer id, Model model, HttpSession session) {
+    public String detalleVeterinario(@PathVariable Long id, Model model, HttpSession session) {
         if (noLogueado(session)) return "redirect:/login-admin?error=Debes%20iniciar%20sesión";
 
         Veterinario vet = veterinarioService.obtenerVeterinarioPorId(id);

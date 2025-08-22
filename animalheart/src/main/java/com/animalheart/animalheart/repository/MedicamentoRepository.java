@@ -1,9 +1,9 @@
 package com.animalheart.animalheart.repository;
 
-import com.animalheart.animalheart.entities.Medicamento;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import com.animalheart.animalheart.model.Medicamento;
 
 public class MedicamentoRepository {
 

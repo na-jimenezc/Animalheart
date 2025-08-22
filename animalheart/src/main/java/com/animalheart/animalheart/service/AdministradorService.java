@@ -1,6 +1,6 @@
 package com.animalheart.animalheart.service;
 
-import com.animalheart.animalheart.entities.Administrador;
+import com.animalheart.animalheart.model.Administrador;
 
 public interface AdministradorService {
 

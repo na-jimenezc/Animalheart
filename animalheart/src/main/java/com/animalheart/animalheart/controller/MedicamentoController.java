@@ -1,6 +1,6 @@
 package com.animalheart.animalheart.controller;
 
-import com.animalheart.animalheart.entities.Medicamento;
+import com.animalheart.animalheart.model.Medicamento;
 import com.animalheart.animalheart.repository.MedicamentoRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
