@@ -1,6 +1,9 @@
 package com.animalheart.animalheart.controller;
 
+import com.animalheart.animalheart.model.Mascota;
 import com.animalheart.animalheart.service.MascotaService;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -9,11 +12,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/mascotas")
 public class MascotaController {
 
-    private final MascotaService mascotaService;
-
-    public MascotaController(MascotaService mascotaService) {
-        this.mascotaService = mascotaService;
-    }
+    @Autowired
+    MascotaService mascotaService;
 
     @GetMapping
     public String listarMascotas(Model model) {
@@ -23,7 +23,8 @@ public class MascotaController {
 
     @GetMapping("/{id}")
     public String verDetalleMascota(@PathVariable Long id, Model model) {
-        model.addAttribute("mascota", mascotaService.obtenerMascotaPorId(id));
+        Mascota mascota = mascotaService.obtenerMascotaPorId(id);
+        model.addAttribute("mascota", mascota);
         return "detalle-mascota";
     }
 }

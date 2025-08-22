@@ -1,12 +1,18 @@
 package com.animalheart.animalheart.model;
 
+import java.util.ArrayList;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import lombok.Data;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.CascadeType;
+import java.util.List;
+import jakarta.persistence.JoinColumn;
 
 @Entity
-@Data
 public class Mascota {
     @Id
     @GeneratedValue
@@ -18,15 +24,21 @@ public class Mascota {
     private String tipo;
     private String enfermedad;
     private Double peso;
-    private Integer idDueno;
     private String fotoURL;
+
+    //UNA MASCOTA PERTENECE A UN CLIENTE
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cliente_id")
+    private Cliente cliente;
+
+    //UNA MASCOTA PUEDE TENER MUCHOS TRATAMIENTOS
+    @OneToMany(mappedBy = "mascota", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<Tratamiento> tratamientos = new ArrayList<>();
 
     public Mascota() {}
 
-
-    public Mascota(Long id, String nombre, String raza, Integer edad,
-                   String tipo, String enfermedad, Double peso,
-                   Integer idDueno, String fotoURL) {
+     public Mascota(Long id, String nombre, String raza, Integer edad,
+                   String tipo, String enfermedad, Double peso, String fotoURL) {
         this.id = id;
         this.nombre = nombre;
         this.raza = raza;
@@ -34,20 +46,97 @@ public class Mascota {
         this.tipo = tipo;
         this.enfermedad = enfermedad;
         this.peso = peso;
-        this.idDueno = idDueno;
         this.fotoURL = fotoURL;
     }
 
-     public Mascota(String nombre, String raza, Integer edad,
-                   String tipo, String enfermedad, Double peso,
-                   Integer idDueno, String fotoURL) {
+    public Mascota(String nombre, String raza, Integer edad,
+                   String tipo, String enfermedad, Double peso, String fotoURL) {
         this.nombre = nombre;
         this.raza = raza;
         this.edad = edad;
         this.tipo = tipo;
         this.enfermedad = enfermedad;
         this.peso = peso;
-        this.idDueno = idDueno;
         this.fotoURL = fotoURL;
+    }
+
+     public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getRaza() {
+        return raza;
+    }
+
+    public void setRaza(String raza) {
+        this.raza = raza;
+    }
+
+    public Integer getEdad() {
+        return edad;
+    }
+
+    public void setEdad(Integer edad) {
+        this.edad = edad;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public String getEnfermedad() {
+        return enfermedad;
+    }
+
+    public void setEnfermedad(String enfermedad) {
+        this.enfermedad = enfermedad;
+    }
+
+    public Double getPeso() {
+        return peso;
+    }
+
+    public void setPeso(Double peso) {
+        this.peso = peso;
+    }
+
+    public String getFotoURL() {
+        return fotoURL;
+    }
+
+    public void setFotoURL(String fotoURL) {
+        this.fotoURL = fotoURL;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public List<Tratamiento> getTratamientos() {
+        return tratamientos;
+    }
+
+    public void setTratamientos(List<Tratamiento> tratamientos) {
+        this.tratamientos = tratamientos;
     }
 }

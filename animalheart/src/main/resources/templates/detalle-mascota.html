@@ -23,12 +23,12 @@
         <a th:href="@{/mascotas}" class="vmk-btn vmk-btn--ghost">
           <i class="bi bi-arrow-left"></i> Regresar
         </a>
-        <a href="#" class="vmk-btn vmk-btn--outline">
+        <a th:href="@{/mascotas/nueva}" class="vmk-btn vmk-btn--outline">
           <i class="bi bi-plus-circle"></i> Registrar Mascota
         </a>
       </div>
       <div class="menu-der">
-        <a th:href="@{/veterinario/login}" class="vmk-btn vmk-btn--danger">
+        <a th:href="@{/login-veterinario}" class="vmk-btn vmk-btn--danger">
           <i class="bi bi-box-arrow-right"></i> Cerrar Sesión
         </a>
       </div>
@@ -55,11 +55,7 @@
             </div>
             <div class="pet-chip">
               <i class="bi bi-gender-ambiguous"></i>
-              <span>
-                <strong>Tipo</strong>
-                <span th:if="${mascota.tipo}">Perro</span>
-                <span th:unless="${mascota.tipo}">Gato</span>
-              </span>
+              <span><strong>Tipo</strong> <span th:text="${mascota.tipo}">Perro</span></span>
             </div>
             <div class="pet-chip">
               <i class="bi bi-badge-ad"></i>
@@ -72,20 +68,54 @@
           </div>
 
           <!-- Información del Dueño -->
-          <div class="pet-owner mt-3">
+          <div class="pet-owner mt-3" th:if="${mascota.cliente != null}">
             <div class="pet-owner-title">
               <span>Información del Dueño</span>
-              <i class="bi bi-pencil-square"></i>
+              <i class="bi bi-person-circle"></i>
             </div>
 
             <div class="pet-field">
               <i class="bi bi-person-badge"></i>
               <div>
                 <small>Cédula</small>
-                <div th:text="${mascota.idDueno}">1001</div>
+                <div th:text="${mascota.cliente.cedula}">123456789</div>
               </div>
             </div>
 
+            <div class="pet-field">
+              <i class="bi bi-person"></i>
+              <div>
+                <small>Nombre</small>
+                <div th:text="${mascota.cliente.nombre}">Carlos Ruiz</div>
+              </div>
+            </div>
+
+            <div class="pet-field">
+              <i class="bi bi-envelope"></i>
+              <div>
+                <small>Correo</small>
+                <div th:text="${mascota.cliente.correo}">carlos@email.com</div>
+              </div>
+            </div>
+
+            <div class="pet-field">
+              <i class="bi bi-telephone"></i>
+              <div>
+                <small>Celular</small>
+                <div th:text="${mascota.cliente.celular}">3214567890</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="pet-owner mt-3" th:unless="${mascota.cliente != null}">
+            <div class="pet-owner-title">
+              <span>Información del Dueño</span>
+              <i class="bi bi-exclamation-triangle"></i>
+            </div>
+            <div class="text-center text-muted py-3">
+              <i class="bi bi-info-circle"></i>
+              <small>No hay información del dueño registrada</small>
+            </div>
           </div>
         </div>
       </aside>
@@ -105,7 +135,10 @@
                 <span class="fw-semibold">Diagnóstico</span>
               </div>
               <div class="col">
-                <span class="text-muted" th:text="${#strings.defaultString(mascota.enfermedad,'Ninguno')}">Ninguno</span>
+                <span th:if="${mascota.enfermedad != null and !mascota.enfermedad.isEmpty()}" 
+                      th:text="${mascota.enfermedad}" class="text-info fw-medium">Ninguno</span>
+                <span th:unless="${mascota.enfermedad != null and !mascota.enfermedad.isEmpty()}" 
+                      class="text-muted">Ninguno</span>
               </div>
             </div>
           </div>
@@ -113,13 +146,44 @@
           <!-- Tratamientos -->
           <div class="pet-section">
             <div class="pet-section-title">Tratamientos</div>
-            <div class="pet-notepad"></div>
+            
+            <div th:if="${mascota.tratamientos != null and !mascota.tratamientos.isEmpty()}">
+              <div class="tratamiento-item mb-3 p-3 border rounded" th:each="tratamiento : ${mascota.tratamientos}">
+                <div class="d-flex justify-content-between align-items-start">
+                  <div>
+                    <h6 class="mb-1" th:text="${tratamiento.medicamento != null ? tratamiento.medicamento.nombre : 'Medicamento no especificado'}">Amoxicilina</h6>
+                    <small class="text-muted">
+                      <i class="bi bi-calendar"></i> 
+                      <span th:text="${#temporals.format(tratamiento.fecha, 'dd/MM/yyyy')}">01/01/2024</span>
+                    </small>
+                  </div>
+                  <span class="badge bg-primary">
+                    <i class="bi bi-capsule"></i> 
+                    <span th:text="${tratamiento.cantidadUsada}">2</span> unidades
+                  </span>
+                </div>
+                <div th:if="${tratamiento.veterinario != null}" class="mt-2">
+                  <small class="text-muted">
+                    <i class="bi bi-person-badge"></i> 
+                    Aplicado por: <span th:text="${tratamiento.veterinario.nombre}">Dr. Juan Pérez</span>
+                  </small>
+                </div>
+              </div>
+            </div>
+            
+            <div th:unless="${mascota.tratamientos != null and !mascota.tratamientos.isEmpty()}" class="pet-notepad">
+              <div class="text-center text-muted py-4">
+                <i class="bi bi-inbox display-4"></i>
+                <p class="mt-2">No hay tratamientos registrados</p>
+                <small>Los tratamientos aparecerán aquí cuando sean aplicados</small>
+              </div>
+            </div>
           </div>
 
           <div class="text-center mt-3">
-            <button type="button" class="btn btn-lg pet-cta">
+            <a th:href="@{'/mascotas/' + ${mascota.id} + '/tratamiento/nuevo'}" class="btn btn-lg pet-cta">
               <i class="bi bi-capsule"></i> Dar Tratamiento
-            </button>
+            </a>
           </div>
         </div>
       </section>

@@ -1,12 +1,17 @@
 package com.animalheart.animalheart.model;
 
+import java.util.ArrayList;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import lombok.Data;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.CascadeType;
+import java.util.List;
+
 
 @Entity
-@Data
 public class Medicamento {
 
     @Id
@@ -18,6 +23,10 @@ public class Medicamento {
     private float precioVenta;
     private int unidadesDisponibles;
     private int unidadesVendidas;
+
+    //UN MEDICAMENTO PUEDE ESTAR EN MUCHOS TRATAMIENTOS
+    @OneToMany(mappedBy = "medicamento", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Tratamiento> tratamientos = new ArrayList<>();
 
     public Medicamento() {}
     public Medicamento(String nombre, float precioCompra, float precioVenta,
@@ -31,6 +40,7 @@ public class Medicamento {
 
     public Medicamento(Long id, String nombre, float precioCompra, float precioVenta,
                        int unidadesDisponibles, int unidadesVendidas) {
+        this.id = id;
         this.nombre = nombre;
         this.precioCompra = precioCompra;
         this.precioVenta = precioVenta;
@@ -45,6 +55,63 @@ public class Medicamento {
 
     public void aumentarStock(int cantidad) {
         this.unidadesDisponibles += cantidad;
+    }
+
+    //TODO LO DE DATA
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public float getPrecioCompra() {
+        return precioCompra;
+    }
+
+    public void setPrecioCompra(float precioCompra) {
+        this.precioCompra = precioCompra;
+    }
+
+    public float getPrecioVenta() {
+        return precioVenta;
+    }
+
+    public void setPrecioVenta(float precioVenta) {
+        this.precioVenta = precioVenta;
+    }
+
+    public int getUnidadesDisponibles() {
+        return unidadesDisponibles;
+    }
+
+    public void setUnidadesDisponibles(int unidadesDisponibles) {
+        this.unidadesDisponibles = unidadesDisponibles;
+    }
+
+    public int getUnidadesVendidas() {
+        return unidadesVendidas;
+    }
+
+    public void setUnidadesVendidas(int unidadesVendidas) {
+        this.unidadesVendidas = unidadesVendidas;
+    }
+
+    public List<Tratamiento> getTratamientos() {
+        return tratamientos;
+    }
+
+    public void setTratamientos(List<Tratamiento> tratamientos) {
+        this.tratamientos = tratamientos;
     }
     
 }
