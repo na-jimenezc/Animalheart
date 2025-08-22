@@ -14,6 +14,8 @@ public class Administrador{
     private Long id;
     private String nombre;
     private String correo;
+    private String clave;
+
 
     public Administrador() {}
 
@@ -21,11 +23,13 @@ public class Administrador{
         this.id = id;
         this.nombre = nombre;
         this.correo = correo;
+        this.clave = clave;
     }
 
     public Administrador(String nombre, String correo, String clave) {
         this.nombre = nombre;
         this.correo = correo;
+        this.clave = clave;
     }
 
 }

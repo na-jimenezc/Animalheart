@@ -1,36 +1,26 @@
 package com.animalheart.animalheart.service;
 
 import org.springframework.stereotype.Service;
-
 import com.animalheart.animalheart.model.Administrador;
-
-import java.util.Map;
+import com.animalheart.animalheart.repository.AdministradorRepository;
 
 @Service
 public class AdministradorServiceImpl implements AdministradorService {
 
-    private static final String ADMIN_EMAIL   = "admin@animalheart.com";
-    private static final String ADMIN_CLAVE   = "admin123";
+    private final AdministradorRepository administradorRepository;
 
-    private static final String ADMIN_NOMBRE  = "Administrador";
-
-    private static final Map<String, String> CREDENCIALES = Map.of(
-        ADMIN_EMAIL, ADMIN_CLAVE
-    );
-
-    private static final Map<String, Administrador> ADMINES = Map.of(
-        ADMIN_EMAIL, new Administrador(ADMIN_NOMBRE, ADMIN_EMAIL, ADMIN_CLAVE)
-    );
+    public AdministradorServiceImpl(AdministradorRepository administradorRepository) {
+        this.administradorRepository = administradorRepository;
+    }
 
     @Override
     public boolean validar(String correo, String clave) {
-        return clave != null && clave.equals(CREDENCIALES.get(correo));
+        Administrador admin = administradorRepository.findByCorreo(correo);
+        return admin != null && admin.getClave().equals(clave);
     }
 
     @Override
     public Administrador obtenerPorCorreo(String correo) {
-        return ADMINES.get(correo);
+        return administradorRepository.findByCorreo(correo);
     }
-
 }
-
