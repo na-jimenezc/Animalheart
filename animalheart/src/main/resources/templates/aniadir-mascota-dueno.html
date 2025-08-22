@@ -1,120 +1,126 @@
-<!--
-  Formulario para añadir una mascota junto con información de su dueño.
-  - Enviado mediante POST a /mascotas/nueva
-  - Utiliza Thymeleaf para el binding de datos.
-  - Estilizado con estilos personalizados y Bootstrap.
--->
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Añadir Mascota y Dueño | AnimalHeart</title>
-
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-
-    <!-- Bootstrap y estilos personalizados -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link th:href="@{/CSS/estilos-mascota-dueno.css}" rel="stylesheet">
-</head>
-<body class="bg-light">
-
-<!-- Barra superior con logo -->
-<nav class="barra">
-    <div class="logotipo-central">
-        <img th:src="@{/IMAGES/Logo_2.png}" alt="Animalheart" class="logotipo-central">
+<body class="bg-page">
+  <!-- Barra superior -->
+  <header class="topbar">
+    <div class="topbar__left">
+      <a class="btn-top btn-top--back" th:href="@{/veterinario/mascotas}">
+        <i class="bi bi-arrow-left"></i> Regresar
+      </a>
+      <a class="btn-top btn-top--ghost" th:href="@{/veterinario/mascotas}">
+        Regresar a Listado
+      </a>
     </div>
-</nav>
+    <div class="topbar__brand">
+      <img th:src="@{/IMAGES/Logo_2.png}" alt="AnimalHeart" />
+      <span>Añadir Mascota</span>
+    </div>
+    <div class="topbar__right">
+      <a class="btn-top btn-top--primary" th:href="@{/login-veterinario}">
+        Cerrar Sesión
+      </a>
+    </div>
+  </header>
 
-<!-- Contenedor del formulario -->
-<main class="formulario-mascota-dueno container py-5">
-    <h2 class="text-center mb-4">Registrar Mascota y Dueño</h2>
+  <!-- Contenedor del formulario -->
+  <main class="container form-mockup">
+    <form class="mock-form" th:action="@{/mascotas/nueva}" th:object="${mascota}" method="post">
+      <!-- Título grande -->
+      <h1 class="mock-title">Añadir Mascota</h1>
 
-    <!-- Formulario principal -->
-    <form th:action="@{/mascotas/nueva}" th:object="${mascota}" method="post">
-        <div class="row g-4">
-            <!-- Columna izquierda: datos mascota -->
-            <div class="col-md-6">
-                <div class="card p-4 shadow-sm">
-                    <h4 class="mb-3">Datos de la Mascota</h4>
+      <!-- Grid principal -->
+      <section class="mock-grid">
+        <!-- Preview / imagen -->
+        <aside class="mock-photo">
+          <div class="mock-photo__box">
+            <span class="mock-photo__placeholder">Foto</span>
+          </div>
+        </aside>
 
-                    <div class="mb-3">
-                        <label for="nombre" class="form-label">Nombre</label>
-                        <input type="text" id="nombre" th:field="*{nombre}" class="form-control" required>
-                    </div>
+        <!-- Campos de la Mascota -->
+        <section class="mock-card">
+          <div class="mock-field mock-field--xl">
+            <label>Nombre de la Mascota</label>
+            <input type="text" th:field="*{nombre}" placeholder="Nombre" required />
+          </div>
 
-                    <div class="mb-3">
-                        <label for="raza" class="form-label">Raza</label>
-                        <input type="text" id="raza" th:field="*{raza}" class="form-control">
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="edad" class="form-label">Edad</label>
-                        <input type="number" id="edad" th:field="*{edad}" class="form-control">
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="peso" class="form-label">Peso</label>
-                        <input type="number" id="peso" step="0.01" th:field="*{peso}" class="form-control">
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="enfermedad" class="form-label">Enfermedad</label>
-                        <input type="text" id="enfermedad" th:field="*{enfermedad}" class="form-control">
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="fotoURL" class="form-label">Foto (URL)</label>
-                        <input type="url" id="fotoURL" th:field="*{fotoURL}" class="form-control">
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label">Tipo</label>
-                        <select th:field="*{tipo}" class="form-select">
-                            <option th:value="true">Perro</option>
-                            <option th:value="false">Gato</option>
-                        </select>
-                    </div>
-                </div>
+          <div class="mock-row">
+            <div class="mock-field">
+              <label>Edad</label>
+              <input type="number" th:field="*{edad}" placeholder="Ej: 3" />
             </div>
-
-            <!-- Columna derecha: datos dueño -->
-            <div class="col-md-6">
-                <div class="card p-4 shadow-sm">
-                    <h4 class="mb-3">Datos del Dueño</h4>
-
-                    <div class="mb-3">
-                        <label for="nombreDueno" class="form-label">Nombre del Dueño</label>
-                        <input type="text" id="nombreDueno" th:field="*{nombreDueno}" class="form-control" required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="telefono" class="form-label">Teléfono</label>
-                        <input type="text" id="telefono" th:field="*{telefonoDueno}" class="form-control">
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="correo" class="form-label">Correo</label>
-                        <input type="email" id="correo" th:field="*{correoDueno}" class="form-control">
-                    </div>
-                </div>
+            <div class="mock-field">
+              <label>Sexo</label>
+              <input type="text" th:field="*{tipo}" placeholder="Macho/Hembra" />
             </div>
+          </div>
+
+          <div class="mock-row">
+            <div class="mock-field">
+              <label>Raza</label>
+              <input type="text" th:field="*{raza}" placeholder="Ej: Criollo" />
+            </div>
+            <div class="mock-field">
+              <label>Peso</label>
+              <input type="number" step="0.01" th:field="*{peso}" placeholder="Ej: 5.2" />
+            </div>
+          </div>
+
+          <div class="mock-row">
+            <div class="mock-field">
+              <label>Tipo de Animal</label>
+              <input type="text" placeholder="Perro / Gato" />
+            </div>
+            <div class="mock-field">
+              <label>Foto (URL)</label>
+              <input type="url" th:field="*{fotoURL}" placeholder="https://..." />
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <!-- Bloque: Información del Dueño -->
+      <section class="mock-owner">
+        <h2>Información del Dueño</h2>
+
+        <div class="mock-row">
+          <div class="mock-field">
+            <label>Cédula</label>
+            <input type="text" placeholder="Documento" />
+          </div>
+          <div class="mock-field">
+            <label>ID</label>
+            <input type="text" placeholder="ID interno" />
+          </div>
         </div>
 
-        <!-- Botón de enviar -->
-        <div class="text-center mt-4">
-            <button type="submit" class="btn btn-primary">Registrar</button>
+        <div class="mock-field">
+          <label>Nombres</label>
+          <input type="text" th:field="*{nombreDueno}" placeholder="Nombre del dueño" required />
         </div>
+
+        <div class="mock-field">
+          <label>Correo</label>
+          <input type="email" th:field="*{correoDueno}" placeholder="correo@ejemplo.com" />
+        </div>
+
+        <div class="mock-field">
+          <label>Teléfono</label>
+          <div class="mock-phone">
+            <span class="mock-phone__cc">+57</span>
+            <input type="text" th:field="*{telefonoDueno}" placeholder="Número" />
+          </div>
+        </div>
+      </section>
+
+      <!-- Botón grande “diskette” -->
+      <div class="mock-save">
+        <button type="submit" class="save-disk" aria-label="Guardar">
+          <i class="bi bi-save-fill"></i>
+        </button>
+      </div>
     </form>
-</main>
+  </main>
 
-<!-- Pie de página -->
-<footer class="pie mt-5 py-3 text-center">
-    <p class="mb-0 text-white">&copy; 2025 - Animalheart</p>
-</footer>
-
-<!-- JS (opcional si no hay validación) -->
-<script th:src="@{/JS/script-mascota-dueno.js}"></script>
+  <footer class="mock-footer">
+    <p>© 2025 – Animalheart</p>
+  </footer>
 </body>
-</html>

@@ -1,483 +1,163 @@
-/* ===================== TOKENS =====================
-   Variables de diseño (colores, radios, sombras, etc.).
-   Cambiarlas aquí impacta en todo el sitio.
---------------------------------------------------- */
+/* ===================== TOKENS / PALETA ===================== */
 :root{
-  --teal-700:#054d7c;     /* barra superior */
-  --teal-600:#2a9a99;     /* portada/cta */
-  --teal-200:#bfe6e5;     /* detalles */
-  --pink-200:#7AABBF;     /* sección clientes */
-  --pink-300:#58AAAE;     /* pie de página */
-  --bg:#f7f7f8;           /* fondo general */
-  --surface:#ffffff;      /* superficies / tarjetas */
-  --text:#1b1e22;         /* texto principal */
-  --muted:#5e6a72;        /* texto secundario */
-  --radius:18px;          /* radio estándar de bordes */
-  --shadow:0 8px 24px rgba(0, 0, 0, 0.08); /* sombra suave */
-  --servicios-bg: #fff7e6;
-  --servicios-title: #043454;
-  --corazon: #ED3A4D;
+  --teal-700:#073352;   /* barra superior */
+  --teal-600:#2a9a99;   /* acentos */
+  --teal-200:#cfe9e8;   /* detalles suaves */
+  --bg:#f3f6f7;
+  --surface:#ffffff;
+  --text:#17303f;
+  --muted:#5e6a72;
+  --radius:18px;
+  --shadow:0 10px 28px rgba(0,0,0,.10);
 }
 
-/* ===================== BASE =====================
-   Reset mínimo + tipografía global y utilidades
-------------------------------------------------- */
+/* Base */
 *{box-sizing:border-box}
-html,body{
-  margin:0;
-  background:var(--bg);
-  color:var(--text);
-  font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-  line-height:1.45;
-}
+html,body{margin:0;background:var(--bg);color:var(--text);font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.45}
 a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block}
 
-/* ===================== BARRA (NAV) =====================
-   Barra fija con menús laterales y logo centrado en desktop.
-   En móvil, el logo central se oculta y el menú se colapsa.
--------------------------------------------------------- */
+/* ===================== NAV (mockup) ===================== */
+.barra{
+  position:sticky;top:0;z-index:1000;
+  height:100px;background:var(--teal-700);color:#fff;
+  box-shadow:0 4px 14px rgba(0,0,0,.12);
+  display:flex;align-items:center;
+}
+.barra .envoltura{
+  max-width:1200px;margin:0 auto;width:100%;padding:0 20px;
+  display:flex;align-items:center;justify-content:space-between;position:relative;
+}
+.menu-izq,.menu-der{display:flex;gap:14px}
+.menu-izq a,.menu-der a{
+  padding:10px 16px;border-radius:999px;font-weight:600;opacity:.95;color:#fff
+}
+.menu-izq a:hover,.menu-der a:hover,
+.menu-izq a[aria-current="page"]{background:rgba(255,255,255,.18)}
+.menu-der .pastilla{
+  background:#fff;color:var(--teal-700)!important;font-weight:800;
+  transition:color .25s, background .25s, transform .15s;
+}
+.menu-der .pastilla:hover{background:var(--teal-600)!important;color:#fff!important;transform:translateY(-1px)}
+.logotipo-central{position:absolute;left:50%;transform:translateX(-50%);width:110px;height:110px;display:flex;align-items:center;justify-content:center}
+.logotipo-central img{width:100%;height:100%;object-fit:contain}
+@media (max-width:991.98px){.logotipo-central{display:none}}
 
-@media (min-width: 992px) {
-  .menu-izq, .menu-der { gap: clamp(16px, 2vw, 28px); } /* espacio fluido entre items */
-}
-
-.barra {
-  position: sticky; top: 0; z-index: 50;
-  background: #073352; color: #fff;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
-  height: 100px; /* altura de la barra */
-}
-
-.barra .envoltura {
-  max-width: 1120px; margin: auto; padding: 0 20px; height: 100%;
-  display: flex; align-items: center; justify-content: space-between;
-  gap: 16px; position: relative;
-}
-
-.menu-izq, .menu-der {
-  display: flex; gap: 16px; /* separación horizontal entre links */
-}
-
-.menu-izq a, .menu-der a {
-  padding: 10px 14px; border-radius: 999px; /* pastilla redondeada */
-  font-weight: 500; opacity: 0.95;
-  color: #fff; text-decoration: none;
-}
-.menu-izq a[aria-current="page"], .menu-izq a:hover, .menu-der a:hover {
-  background: rgba(255, 255, 255, 0.18); /* resalta item activo/hover */
-}
-
-.menu-izq .nav-link, .menu-der .nav-link {
-  min-width: clamp(120px, 12vw, 180px);
-  padding: clamp(12px, 1.2vw, 16px) clamp(18px, 2.2vw, 28px);
-  font-size: clamp(14px, 1vw, 16.5px);
-  border-radius: 999px; text-align: center; white-space: nowrap;
-}
-
-.menu-der .pastilla {
-  background: #fff; color: var(--teal-700) !important; font-weight: 700;
-  transition: color .3s, background .3s, transform .15s;
-}
-.menu-der .pastilla:hover, .menu-der .pastilla:focus {
-  background: var(--teal-700) !important; color: #fff !important; transform: translateY(-1px);
-}
-
-.logotipo-central {
-  position: absolute; left: 50%; transform: translateX(-50%);
-  z-index: 10; width: 110px; height: 110px; /* caja del logo central */
-  display: flex; align-items: center; justify-content: center;
-}
-.logotipo-central img { width: 100%; height: 100%; object-fit: contain; }
-
-@media (max-width: 991.98px) {
-  .logotipo-central { display: none !important; } /* oculta logo central en móvil */
-  .navbar-collapse .navbar-nav {
-    width: 100%; justify-content: center; text-align: center;
-    background: var(--teal-700); padding: 16px 16px 24px;
-    border-radius: 0 0 12px 12px;
-  }
-  .navbar-collapse .nav-item { width: 100%; }
-  .navbar-collapse .nav-link {
-    display: block; width: 100%; padding: 12px 0; margin: 6px 0;
-    border-radius: 12px; font-size: 16px;
-  }
-  .navbar-collapse .pastilla { background: #fff; color: var(--teal-700) !important; font-weight: 700; }
-  .navbar-collapse .pastilla:hover { background: rgba(255,255,255,.9); }
-}
-
-.navbar { padding: 0; }
-.navbar-toggler { border-color: rgba(255, 255, 255, 0.4); }
-.navbar-toggler-icon {
-  /* ícono hamburguesa claro */
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255,255,255,0.8%29' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-}
-.navbar-nav .nav-link { color: #fff; }
-.navbar-nav .nav-link:hover, .navbar-nav .nav-link.active {
-  background: rgba(26, 12, 215, 0.18); border-radius: 999px;
-}
-.logotipo-movil img { height: 50px; object-fit: contain; }
-
-@media (max-width: 991.98px) {
-  .container-fluid { display: flex; align-items: center; }
-  .navbar-toggler { margin-left: auto; }
-}
-
-/* Ajuste de mínimos por breakpoint para consistencia */
-@media (min-width: 1200px) and (max-width: 1400px) {
-  .menu-izq .nav-link, .menu-der .nav-link { min-width: clamp(120px, 10vw, 160px); }
-}
-@media (min-width: 992px) and (max-width: 1199.98px) {
-  .menu-izq .nav-link, .menu-der .nav-link { min-width: clamp(110px, 9.5vw, 150px); }
-}
-
-/* ===================== PORTADA CONTACTO =====================
-   Hero de la página de Contacto con imagen de fondo + overlay
-------------------------------------------------------------- */
-.portada-contacto {
-  position: relative;
-  background: url("../IMAGES/vet-contacto.jpg") center/cover no-repeat; /* Imagen de fondo */
-  min-height: 60vh;
-  padding: 40px 20px;
+/* ===================== HÉROE ===================== */
+.portada-contacto{
+  position:relative;min-height:60vh;padding:40px 20px;margin-bottom:80px;
+  display:flex;align-items:center;justify-content:center;
+  background:url("../IMAGES/vet-contacto.jpg") center/cover no-repeat;
   display: flex;
-  align-items: center;
-  margin-bottom: 80px; /* separa del contenido siguiente */
+  flex-direction: column;       /* <-- clave: pone los círculos DEBAJO del título */
+  align-items: center;          /* centra horizontal */
+  justify-content: center;      /* centra vertical */
 }
-
-.portada-contacto::before {
-  /* Overlay de color para mejorar contraste de texto */
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-color: rgba(42, 154, 153, 0.85);
-  z-index: 1;
+.portada-contacto::before{
+  content:"";position:absolute;inset:0;background:rgba(42,154,153,.85);z-index:1
 }
+.portada-contacto .envoltura{position:relative;z-index:2;display:flex;align-items:center;justify-content:center;width:100%;max-width:1200px}
 
-.portada-contacto .envoltura {
+/* Tarjeta circular “¡Hablemos!” */
+.tarjeta-portada{
+  width:clamp(260px,32vw,360px);height:clamp(260px,32vw,360px);
+  background:#ffffffd9;border-radius:50%;padding:clamp(24px,3vw,40px);
+  border:8px solid rgba(255,255,255,.35);box-shadow:var(--shadow);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center
+}
+.tarjeta-portada h1{margin:0 0 10px;font-size:clamp(32px,4.2vw,44px);font-weight:800;color:var(--teal-700);font-family:"Open Sans",sans-serif}
+.tarjeta-portada p{margin:0;color:#24485f;font-size:clamp(14px,1.4vw,16px)}
+
+/* Círculos debajo del héroe */
+.circulos-portada{
+  position:relative;z-index:2;max-width:1200px;margin:-30px auto 60px;padding:0 20px;
+  display:grid;grid-template-columns:repeat(4,minmax(140px,1fr));gap:clamp(12px,2vw,20px);
   max-width: 1200px;
-  width: 100%;
-  margin: 0 auto;
-  position: relative; 
-  z-index: 2; /* sobre el overlay */
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  margin: clamp(12px, 2vh, 28px) auto 60px; /* margen superior y centrado */
+  display: grid;
+  grid-template-columns: repeat(4, minmax(140px, 1fr));
+  gap: clamp(12px, 2vw, 20px);
+  justify-content: center;      /* centra las pistas del grid si sobra espacio */
+  justify-items: center;          /* centra cada ítem en su celda */
+}
+@media (max-width:992px){.circulos-portada{grid-template-columns:repeat(2,1fr);margin:20px auto 40px}}
+@media (max-width:480px){.circulos-portada{grid-template-columns:1fr}}
+.circulo{
+  background:#fff;
+  color:var(--teal-700);
+  border-radius:50%;
+  aspect-ratio:1/1;
+  /* centrado absoluto de su contenido */
+  display:flex;                   
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  gap:10px;                        /* separación icono <-> texto */
+  padding:18px;
+  box-shadow:var(--shadow);
+  transition:transform .2s ease, background .25s ease, color .25s ease;
+}
+.circulo:hover{transform:translateY(-3px);
+  background:var(--teal-600);
+  color:#fff;}
+.circulo i{font-size:34px;
+  line-height:1;}
+.circulo span{font-weight:800;
+  font-size:clamp(14px,1.1vw,18px);
+  line-height:1.2;
+  max-width:12ch;                 /* envuelve en 2 líneas bonitas */
+  text-wrap:balance;              /* centras y evitas cortes feos */
 }
 
-/* ===================== FORMULARIO CONTACTO =====================
-   Estilos de formulario, tarjetas informativas y botones
------------------------------------------------------------------ */
-.contacto {
-  padding: 0 20px 80px;
-  max-width: 1200px;
-  margin: 0 auto;
+/* ===================== CONTENIDO ===================== */
+.contacto{max-width:1200px;margin:0 auto;padding:0 20px 80px}
+.contacto h2{color:var(--teal-700);font-size:clamp(28px,3.2vw,36px);font-weight:800;margin-bottom:22px;font-family:"Open Sans",sans-serif}
+
+/* Inputs “píldora” con borde teal */
+.contacto .form-label{font-weight:600;color:var(--text);margin-bottom:8px}
+.contacto .form-control{
+  padding:12px 16px;border-radius:999px;border:1px solid var(--teal-200);
+  background:#fff;transition:all .25s ease
+}
+.contacto .form-control:focus{border-color:var(--teal-600);box-shadow:0 0 0 .25rem rgba(42,154,153,.25)}
+.contacto textarea.form-control{border-radius:18px}
+
+/* Botones */
+.contacto .btn{padding:12px 24px;font-weight:700;border-radius:999px}
+.contacto .btn-primary{background:var(--teal-700);border:none}
+.contacto .btn-primary:hover{background:var(--teal-600);transform:translateY(-2px)}
+.contacto .btn-outline-secondary{border-color:var(--teal-200);color:var(--teal-700)}
+.contacto .btn-outline-secondary:hover{background:var(--teal-200);border-color:var(--teal-200)}
+
+/* Tarjeta derecha + mapa */
+.contacto .card{border:none;border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
+.contacto .card-body{padding:30px}
+.contacto .card-title{color:var(--teal-700);font-weight:800;margin-bottom:18px;font-family:"Open Sans",sans-serif}
+.contacto .card p{margin-bottom:12px;display:flex;align-items:center;gap:10px;color:var(--text)}
+.contacto .card i{color:var(--teal-600);font-size:1.2rem;min-width:24px}
+.contacto .ratio{border-radius:var(--radius);overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,.1);margin-top:16px}
+
+/* Alerta de éxito */
+.contacto .alert{border-radius:var(--radius);padding:16px}
+
+/* Footer */
+.pie{background:#58AAAE}
+
+/* Gatito */
+.gatito-contacto{
+  position:fixed;right:clamp(8px,3vw,24px);bottom:clamp(8px,3vw,24px);
+  width:clamp(120px,18vw,220px);pointer-events:none;filter:drop-shadow(0 10px 24px rgba(0,0,0,.18))
 }
 
-.contacto h2 {
-  color: var(--teal-700);
-  font-size: clamp(32px, 3vw, 42px);
-  font-weight: 700;
-  margin-bottom: 30px;
-  font-family: "Open Sans", sans-serif;
+/* Ajustes responsive */
+@media (max-width:992px){
+  .portada-contacto{min-height:50vh;margin-bottom:60px}
+  .contacto .row>div:first-child{margin-bottom:40px}
 }
-
-.contacto .form-label {
-  font-weight: 600;
-  color: var(--text);
-  margin-bottom: 8px;
+@media (max-width:768px){
+  .portada-contacto{min-height:42vh}
+  .contacto{padding-bottom:60px}
+  .contacto .btn{width:100%}
+  .contacto .d-sm-inline-flex{flex-direction:column;gap:12px}
 }
-
-.contacto .form-control {
-  padding: 12px 16px;
-  border-radius: var(--radius);
-  border: 1px solid var(--teal-200);
-  transition: all 0.3s ease; /* feedback suave al enfocar */
-}
-
-.contacto .form-control:focus {
-  border-color: var(--teal-600);
-  box-shadow: 0 0 0 0.25rem rgba(42, 154, 153, 0.25);
-}
-
-.contacto .btn {
-  padding: 12px 24px;
-  font-weight: 600;
-  border-radius: 999px;
-  transition: all 0.3s ease;
-}
-
-.contacto .btn-primary {
-  background: var(--teal-700);
-  border: none;
-}
-
-.contacto .btn-primary:hover {
-  background: var(--teal-600);
-  transform: translateY(-2px);
-}
-
-.contacto .btn-outline-secondary {
-  border-color: var(--teal-200);
-  color: var(--teal-700);
-}
-
-.contacto .btn-outline-secondary:hover {
-  background: var(--teal-200);
-  border-color: var(--teal-200);
-}
-
-/* Tarjeta de información (lado derecho) */
-.contacto .card {
-  border: none;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  overflow: hidden;
-}
-
-/* Tarjeta circular decorativa (útil para mensajes de marca) */
-.tarjeta-portada {
-  width: 300px; 
-  height: 300px;
-  background-color: var(--teal-200);
-  border-radius: 50%;               /* círculo perfecto */
-  padding: 40px;
-  display: flex; flex-direction: column; justify-content: center; align-items: center;
-  text-align: center;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-  border: 8px solid rgba(255, 255, 255, 0.3); /* borde translúcido */
-  transition: all 0.4s ease;
-  overflow: hidden; 
-  position: relative; 
-}
-
-/* Interacción al pasar el cursor */
-.tarjeta-portada:hover {
-  transform: translateY(-5px) scale(1.02);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-}
-
-/* Tipografía/colores internos de la tarjeta */
-.tarjeta-portada h1 {
-  margin: 0 0 15px;
-  font-size: 28px;
-  font-weight: 800;
-  line-height: 1.2;
-  align-items: center;
-  color: var(--teal-700);
-  font-family: "Open Sans", sans-serif;
-}
-
-.tarjeta-portada p {
-  margin: 0;
-  color: var(--muted);
-  font-size: 16px;
-  line-height: 1.5;
-}
-
-/* Versión responsive de la tarjeta circular */
-@media (max-width: 768px) {
-  .tarjeta-portada {
-    width: 250px;
-    height: 250px;
-    padding: 30px;
-  }
-  .tarjeta-portada h1 { font-size: 24px; }
-  .tarjeta-portada p  { font-size: 14px; }
-}
-
-.contacto .card-body { padding: 30px; }
-
-.contacto .card-title {
-  color: var(--teal-700);
-  font-size: 1.5rem;
-  font-weight: 700;
-  margin-bottom: 20px;
-  font-family: "Open Sans", sans-serif;
-}
-
-.contacto .card p {
-  margin-bottom: 15px;
-  display: flex; align-items: center; gap: 10px;
-  color: var(--text);
-}
-
-.contacto .card i {
-  color: var(--teal-600);
-  font-size: 1.2rem;
-  min-width: 24px;
-}
-
-/* Mapa embebido (ratio Bootstrap) */
-.contacto .ratio {
-  border-radius: var(--radius);
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  margin-top: 20px;
-}
-
-/* Alerta de éxito del formulario (feedback al usuario) */
-.contacto .alert {
-  border-radius: var(--radius);
-  padding: 16px;
-  margin-top: 20px;
-}
-
-/* ===================== RESPONSIVE LAYOUT ===================== */
-@media (max-width: 992px) {
-  .portada-contacto { min-height: 50vh; margin-bottom: 60px; }
-  .contacto .row > div:first-child { margin-bottom: 40px; } /* separa columna izq. de la der. */
-}
-
-@media (max-width: 768px) {
-  .portada-contacto { min-height: 40vh; }
-  .contacto { padding-bottom: 60px; }
-  .contacto .btn { width: 100%; } /* botones de ancho completo */
-  .contacto .d-sm-inline-flex { flex-direction: column; gap: 12px; }
-}
-
-/* ===================== BARRA DE NAVEGACIÓN (variación) =====================
-   Variante con marca a la izquierda y menú a la derecha (layout alterno)
---------------------------------------------------------------------------- */
-.barra {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  background: var(--teal-700);
-  color: #fff;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
-  height: 100px;
-  display: flex;
-  align-items: center;
-}
-
-.barra .envoltura {
-  max-width: 1200px;
-  width: 100%;
-  margin: 0 auto;
-  padding: 0 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: relative;
-}
-
-/* Marca / Logo a la izquierda */
-.marca {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  z-index: 10;
-}
-
-.logotipo { width: 60px; height: 60px; }
-.logotipo img { width: 100%; height: 100%; object-fit: contain; }
-
-.marca span {
-  font-family: "Open Sans", sans-serif;
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #fff;
-}
-
-/* Menú principal a la derecha */
-.menu { display: flex; gap: 8px; }
-
-.menu a {
-  padding: 10px 18px;
-  border-radius: 999px;
-  font-weight: 500;
-  color: #fff;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  font-size: 1rem;
-}
-
-.menu a:hover, 
-.menu a[aria-current="page"] {
-  background: rgba(255, 255, 255, 0.18);
-}
-
-/* Botón destacado (pastilla blanca) */
-.menu .pastilla {
-  background: #fff;
-  color: var(--teal-700) !important;
-  font-weight: 700;
-  margin-left: 8px;
-}
-.menu .pastilla:hover {
-  background: var(--teal-600) !important;
-  color: #fff !important;
-  transform: translateY(-2px);
-}
-
-/* Menú móvil a pantalla completa */
-.navbar-toggler { border: none; padding: 8px; z-index: 20; }
-.navbar-toggler-icon {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255,255,255,0.8%29' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-  width: 1.5em; height: 1.5em;
-}
-
-@media (max-width: 991.98px) {
-  .menu {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
-    background: var(--teal-700);
-    flex-direction: column; align-items: center; justify-content: center;
-    gap: 20px; transform: translateY(-100%); transition: transform 0.3s ease;
-    z-index: 5; padding-top: 100px;
-  }
-  .menu.active { transform: translateY(0); } /* visible al abrir el hamburguesa */
-  .menu a { width: 80%; text-align: center; padding: 15px; font-size: 1.2rem; }
-  .menu .pastilla { margin-left: 0; margin-top: 20px; }
-  .marca { position: relative; z-index: 20; }
-}
-
-/* Ajuste para pantallas muy grandes */
-@media (min-width: 1600px) {
-  .barra .envoltura { max-width: 1400px; }
-}
-
-.circulos-portada {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-}
-
-.circulo {
-  flex: 1;
-  max-width: 250px; /* o un ancho adecuado */
-  aspect-ratio: 1 / 1;
-  background-color: var(--teal-200); /* puedes adaptar el color existente */
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 20px;
-  margin: 0 10px;
-  color: var(--teal-700);
-  font-weight: 600;
-  cursor: default;
-  box-shadow: var(--shadow);
-}
-
-.circulo:hover {
-  background-color: var(--teal-600);
-  color: #ffffff;
-  transform: translateY(-2px);
-  transition: background-color 0.3s, color 0.3s, transform 0.3s;
-}
-
-.circulo a {
-  text-decoration: none;
-  color: inherit;
-}
-
-.portada-contacto .envoltura {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-}
-

@@ -394,3 +394,390 @@ img{ max-width:100%; height:auto; display:block; }
 
 /* Para que los anchos se respeten mejor en tablas Bootstrap */
 .vet-table { table-layout: fixed; }
+
+/* =========================================================
+   VISTA: Listado de Pacientes (mockup)
+   --------------------------------------------------------- */
+.vet-mockup { font-family: Poppins, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+
+/* Barra superior (botones) */
+/* La barra de botones no debe cambiar el color del header */
+/* La barra de botones no debe cambiar el color del header */
+.vmk-toolbar{
+  background: transparent;   /* evita fondos parches en esa franja */
+  color: #fff;
+}
+.vmk-btn{
+  display:inline-flex; align-items:center; gap:.4rem;
+  padding:8px 14px; border-radius:999px; font-weight:600;
+  font-size:14px; line-height:1; text-decoration:none; transition:.2s;
+}
+.vmk-btn--ghost,
+.vmk-btn--outline,
+.vmk-btn--danger{ color:#fff; } /* consistencia de texto en la barra */
+.vmk-btn--ghost:hover{ background:rgba(255,255,255,.15); }
+.vmk-btn--outline:hover{ background:#fff; color:var(--teal-700); }
+.vmk-btn--danger:hover{ background:var(--teal-700); color:#fff; }
+
+/* --- HEADER / HERO del detalle: color exacto del mockup --- */
+.vmk-header{
+  /* se mantiene la imagen de fondo */
+  background: url("../IMAGES/vet_animalheart.jpeg") center/cover no-repeat;
+  position: relative;
+  color: #fff;
+}
+/* Overlay del héroe: mismo teal del mockup, más sólido */
+.vmk-header::before{
+  content: "";
+  position: absolute; inset: 0;
+  /* antes era un rgba(7,51,82,.85); reforzamos y normalizamos al token */
+  background: rgba(7, 51, 82, .92); /* #073352 al 92% */
+}
+/* Header en estilo rosa (mockup) */
+.vmk-header--pink::before{
+  /* mismo rosa que usas en ver-veterinarios (rose-300) pero con transparencia */
+  background: rgba(246, 189, 197, .88);
+}
+.vmk-header > *{ position:relative; z-index:1; }
+
+.vmk-hero{ padding: 12px 0 24px; }
+.vmk-hero-inner{
+  display:flex; align-items:center; gap:18px;
+}
+.vmk-brand{ height:58px; width:auto; object-fit:contain; }
+.vmk-title{
+  margin:0; font-weight:800; letter-spacing:.5px;
+  font-size: clamp(28px, 3.6vw, 40px);
+}
+
+/* Bienvenida + lupa */
+.vmk-welcome{
+  background:#fff; border-radius:16px; box-shadow:0 8px 24px rgba(0,0,0,.08);
+  padding:18px 22px; margin-top:-18px;
+}
+.vmk-welcome h2{
+  font-size: clamp(18px, 2.5vw, 26px); font-weight:700; color:#0d3c58; letter-spacing:.2px;
+}
+.vmk-search{ font-size:28px; color:#0d3c58; opacity:.9; }
+
+/* Tarjeta/tabla */
+.vmk-table-wrap{ padding: 28px 0 24px; }
+.vmk-table-card{
+  background:#fff; border-radius:18px; box-shadow: var(--shadow);
+  padding: 4px 8px 8px;
+}
+
+/* Encabezado de tabla (la “píldora” azul) */
+.vmk-table thead tr{
+  background: var(--teal-700); color:#fff;
+}
+.vmk-table thead th{
+  border:0; padding:14px 12px;
+  font-weight:600; font-size:14px;
+}
+.vmk-table thead th:first-child{ border-top-left-radius:14px; }
+.vmk-table thead th:last-child{ border-top-right-radius:14px; }
+
+/* Filas: separadores finos y espacios como en el mockup */
+.vmk-table tbody td{
+  padding:18px 12px; vertical-align:middle; border:0;
+  border-bottom: 4px solid #0e3d5b;   /* línea separadora */
+}
+.vmk-table tbody tr:last-child td{ border-bottom: none; }
+
+/* Avatar circular consistente con tu sistema */
+.vmk-avatar{
+  width:52px; height:52px; border-radius:50%;
+  object-fit:cover; border:2px solid var(--teal-200);
+}
+.vmk-col-name{ font-weight:600; }
+
+/* Badge para edad */
+.vmk-badge{
+  display:inline-block; padding:6px 10px; border-radius:999px;
+  background:var(--teal-200); color:var(--teal-700); font-weight:600; font-size:.9rem;
+}
+
+/* Botón “Ver más” (píldora) */
+/* Botón "Ver más" (píldora) */
+.vmk-pill{
+  display: inline-flex;              /* para alinear icono + texto */
+  align-items: center;               /* centra verticalmente respecto al ojo */
+  justify-content: center;
+  gap: .35rem;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: .9rem;
+  background: var(--teal-600);
+  color: #fff;
+  text-decoration: none;
+  transition: .2s ease;
+
+  white-space: nowrap;               /* 🔒 evita que "Ver más" se parta */
+  line-height: 1;                    /* alinea mejor icono + texto */
+}
+
+.vmk-pill .bi{ line-height: 1; flex: 0 0 auto; }  /* el ojo no se estira */
+
+.vmk-pill:hover{ background: var(--teal-700); transform: translateY(-1px); }
+
+/* Footer color como en tu sistema */
+.vmk-footer{ background:#58AAAE; padding:16px 0; margin-top:20px; }
+
+/* ===================== DETALLE DE MASCOTA (mockup) ===================== */
+.pet-detail .vmk-brand{ height:50px; width:auto; object-fit:contain; }
+.pet-card{
+  border:0; border-radius: var(--radius);
+  overflow:hidden; background:#eaf3f5;
+}
+.pet-photo-wrap{
+  background:#dbe9ec; display:grid; place-items:center; padding:14px 14px 0;
+}
+.pet-photo{
+  width:100%; max-width:270px; height:270px; object-fit:cover;
+  border-radius:16px; border:6px solid #fff; box-shadow: var(--shadow);
+}
+.pet-name{
+  margin:14px 16px 4px; font-weight:700; color:#043454; text-align:center;
+  font-size: clamp(22px, 2.4vw, 26px);
+}
+
+.pet-metrics{
+  display:grid; grid-template-columns:repeat(2,1fr);
+  gap:10px; padding:10px 14px 4px;
+}
+.pet-chip{
+  display:flex; align-items:center; gap:.5rem;
+  background:#fff; border:1px solid #cfe4e6; border-radius:12px;
+  padding:10px 12px; color:#0d3c58; box-shadow:var(--shadow);
+}
+.pet-chip i{ color: var(--teal-700); }
+
+/* Bloque del dueño */
+.pet-owner{ padding:0 14px 16px; }
+.pet-owner-title{
+  display:flex; align-items:center; justify-content:space-between;
+  color:#043454; font-weight:700; margin:6px 2px 10px;
+}
+.pet-owner-title i{ opacity:.75 }
+
+.pet-field{
+  display:flex; gap:.65rem; align-items:center;
+  background:#0d3c58; color:#fff; border-radius:10px;
+  padding:10px 12px; margin:8px 0;
+}
+.pet-field i{ font-size:1rem; }
+.pet-field small{ opacity:.8; display:block; line-height:1.1; }
+.pet-field div > div{ font-weight:600; }
+
+/* Panel derecho */
+.pet-main{ border:0; border-radius:var(--radius); }
+.pet-main-title{
+  margin:14px 18px 6px; color:#0d3c58; font-weight:800;
+  display:flex; gap:.6rem; align-items:center;
+}
+.pet-section{
+  background:#fff; border-radius:14px; margin:12px 16px; padding:14px;
+  box-shadow: var(--shadow);
+}
+.pet-section-title{
+  text-align:center; font-weight:800; color:#0d3c58; background:#f4e6e9;
+  border-radius:8px; padding:6px 10px; margin-bottom:10px;
+}
+
+/* “Cuaderno” de tratamientos */
+.pet-notepad{
+  min-height:340px; background:#fff; border-radius:12px;
+  border:2px solid #e3e9ec; box-shadow: inset 0 0 0 1px #f4f6f7;
+}
+
+/* Botón grande */
+.pet-cta{
+  background: var(--teal-600); color:#fff; border:none; border-radius:12px;
+  padding:.9rem 1.6rem; font-weight:700;
+}
+.pet-cta:hover{ background: var(--teal-700); transform: translateY(-1px); }
+
+/* Responsive pequeños ajustes */
+@media (max-width: 991.98px){
+  .pet-metrics{ grid-template-columns:1fr; }
+  .pet-photo{ height:240px; max-width:240px; }
+}
+
+/* ===== ADMIN · VER VETERINARIOS (mockup rosa) ===== */
+:root{
+  --rose-50:#fff2f5;
+  --rose-100:#ffe6ec;
+  --rose-200:#ffd6df;
+  --rose-300:#f6bdc5;   /* overlay del hero */
+  --rose-500:#e86c83;   /* botón "Ver más" */
+  --rose-600:#d5536c;
+  --ink:#1b1e22;
+}
+
+/* contenedor ancho coherente con el resto */
+.va-wrap{ max-width:1200px; margin:0 auto; padding:0 16px; }
+
+/* toolbar superior (tres botones) */
+.va-toolbar{ background:var(--rose-100); border-bottom:1px solid rgba(0,0,0,.05); }
+.va-btn{
+  display:inline-flex; align-items:center; gap:.45rem;
+  padding:10px 16px; border-radius:999px; font-weight:700;
+  text-decoration:none; transition:all .2s; font-family:Poppins, sans-serif;
+}
+.va-btn--ghost{ color:var(--ink); background:transparent; border:1px solid rgba(0,0,0,.15); }
+.va-btn--ghost:hover{ background:rgba(0,0,0,.05); }
+.va-btn--secondary{ background:#fff; color:var(--ink); border:1px solid rgba(0,0,0,.15); }
+.va-btn--secondary:hover{ background:var(--rose-50); }
+.va-btn--danger{ background:var(--rose-500); color:#fff; }
+.va-btn--danger:hover{ background:var(--rose-600); transform:translateY(-1px); }
+
+/* hero con overlay rosado + título blanco grande */
+.va-hero{
+  position:relative;
+  background:url("../IMAGES/vet_animalheart.jpeg") center/cover no-repeat;
+  min-height:200px; display:flex; align-items:center;
+}
+.va-hero::before{ content:""; position:absolute; inset:0; background:rgba(246,189,197,.85); }
+.va-hero-title{
+  position:relative; z-index:1; margin:0; color:#fff; font-weight:800;
+  letter-spacing:.3px; font-size: clamp(40px, 6vw, 64px);
+}
+
+/* tarjeta rosada que envuelve la tabla */
+.va-table-card{
+  background:var(--rose-100); border-radius:18px; padding:12px; box-shadow:0 8px 24px rgba(0,0,0,.08);
+}
+
+/* cabecera de columnas (solo desktop) */
+.va-table-head{
+  grid-template-columns: 80px 1.2fr 1fr 0.8fr 0.9fr;
+  color:#6b7280; font-weight:600; padding:8px 10px 12px; margin:4px 8px;
+}
+
+/* tabla con filas "pastilla" separadas */
+.va-table{ width:100%; border-collapse:separate; border-spacing:0 14px; }
+.va-table tr{ }
+.va-table td{
+  background:#fff; border:0; padding:16px; vertical-align:middle; color:var(--ink);
+}
+.va-table td:first-child{ border-top-left-radius:14px; border-bottom-left-radius:14px; }
+.va-table td:last-child{ border-top-right-radius:14px; border-bottom-right-radius:14px; }
+
+/* avatar redondo con borde suave rosado */
+.va-cell-avatar{ width:80px; }
+.va-avatar{
+  width:58px; height:58px; border-radius:50%; object-fit:cover;
+  border:2px solid var(--rose-200);
+}
+.va-cell-name{ font-weight:700; }
+
+/* badge para #consultas */
+.va-badge{
+  display:inline-block; padding:6px 10px; border-radius:999px;
+  background:var(--rose-200); color:#7a1f2d; font-weight:700; font-size:.9rem;
+}
+
+/* botón "Ver más" como píldora rosa */
+.va-pill{
+  display:inline-flex; align-items:center; gap:.35rem;
+  padding:8px 16px; border-radius:999px; font-weight:700; font-size:.95rem;
+  background:var(--rose-500); color:#fff; text-decoration:none; transition:.2s;
+}
+.va-pill:hover{ background:var(--rose-600); transform:translateY(-1px); }
+
+/* estado vacío */
+.va-empty{
+  text-align:center; padding:24px; background:#fff; border-radius:12px; color:#6b7280;
+}
+
+/* ===== Sticky footer para ver-veterinarios (y páginas similares) ===== */
+body.vet-mockup{
+  min-height: 100svh;           /* ocupa todo el alto de la ventana */
+  display: flex;
+  flex-direction: column;
+}
+
+body.vet-mockup > main{
+  flex: 1;                      /* empuja el footer hacia abajo */
+}
+
+/* El footer ya no necesita margen superior manual */
+.vmk-footer{
+  margin-top: auto;             /* asegura que quede abajo */
+  /* (mantiene el background y padding existentes) */
+}
+
+/* ================== Detalle Veterinario (mockup) ================== */
+.vd-wrap{
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 24px 16px 40px;
+}
+/* Foto del veterinario: limita el tamaño para no perder calidad */
+/* Foto del veterinario: tamaño más contenido */
+.vd-photo{
+  /* antes: clamp(200px, 24vw, 320px); */
+  width: clamp(160px, 18vw, 260px);
+  max-width: 100%;
+  max-height: 50vh;     /* antes: 60vh */
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: 16px;
+  box-shadow: 0 12px 28px rgba(0,0,0,.18);
+  display: block;
+  margin-inline: auto;  /* centrada */
+}
+
+/* Cuadrícula de 2x2 en desktop, 1x4 en móvil */
+.vd-grid{
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 768px){
+  .vd-grid{ grid-template-columns: 1fr 1fr; }
+}
+
+/* Tarjeta horizontal con icono a la izquierda */
+.vd-item{
+  display: grid;
+  grid-template-columns: 84px 1fr;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #f8c8cf;            /* rosa suave del mockup */
+  box-shadow: 0 4px 14px rgba(0,0,0,.08);
+}
+.vd-icon{
+  background:#ea9aa8;             /* rosa más intenso para el bloque del icono */
+  color:#fff;
+  display:flex; align-items:center; justify-content:center;
+  font-size: 1.6rem;
+}
+.vd-body{ padding: 12px 16px; }
+.vd-body small{
+  display:block;
+  font-weight:600;
+  color:#fff;
+  opacity:.9;
+  margin-bottom: 2px;
+}
+.vd-value{
+  font-weight: 800;
+  color:#fff;                      /* texto blanco como en el mockup */
+  letter-spacing:.2px;
+}
+.vd-value.text-ok{ color:#eafff7; } /* leve matiz para 'Activo' */
+.vd-value.text-off{ color:#ffeaea; }/* leve matiz para 'Inactivo' */
+
+/* Footer pegado (ya lo usas en otras páginas) */
+.vet-mockup{
+  min-height:100dvh; display:flex; flex-direction:column;
+}
+.vmk-header{ flex:0 0 auto; }
+.vmk-main{ flex:1 1 auto; }
+.vmk-footer{ flex:0 0 auto; }
+/* Opcional: centra explícitamente la foto */
+.vd-photo{ display:block; margin-inline:auto; }
+

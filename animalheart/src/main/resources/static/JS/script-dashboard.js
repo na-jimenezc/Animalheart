@@ -1,14 +1,8 @@
-// script-dashboard.js
-// ------------------------
-// Este script renderiza todos los gráficos del dashboard del administrador.
-// Utiliza los datos inyectados desde Thymeleaf al cargar la vista.
-
 document.addEventListener("DOMContentLoaded", function () {
 
     document.addEventListener("DOMContentLoaded", function () {
     const datos = document.getElementById("datosDashboard").dataset;
 
-    // Parsear arrays desde strings (porque vienen como "30,50,10,20")
     const ventasPorTratamiento = datos.ventasTratamientos.split(',').map(Number);
     const ganancias = datos.ganancias.split(',').map(Number);
     const top3Tratamientos = datos.topTratamientos.split(',').map(Number);
@@ -16,7 +10,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const totalMascotas = parseInt(datos.mascotas);
     const ventasTotales = parseFloat(datos.ventasTotales);
 
-    // Ahora puedes usar estas variables en tus gráficos:
     new Chart(document.getElementById('graficoVeterinarios'), {
         type: 'doughnut',
         data: {
@@ -28,7 +21,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Gráfico tipo donut para veterinarios activos/inactivos
     new Chart(document.getElementById('graficoVeterinarios'), {
         type: 'doughnut',
         data: {
@@ -40,7 +32,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Gráfico tipo donut para mascotas activas
     new Chart(document.getElementById('graficoAnimales'), {
         type: 'doughnut',
         data: {
@@ -52,7 +43,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Gráfico de barras: cantidad de ventas por tratamiento
     new Chart(document.getElementById('ventasPorTratamiento'), {
         type: 'bar',
         data: {
@@ -65,7 +55,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Gráfico de tipo pie: distribución de ingresos por servicio
     new Chart(document.getElementById('ventasTotales'), {
         type: 'pie',
         data: {
@@ -77,7 +66,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Gráfico de línea/área: ganancias en COP
     new Chart(document.getElementById('graficoGanancias'), {
         type: 'line',
         data: {
@@ -92,7 +80,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Gráfico de barras: Top 3 tratamientos más frecuentes
     new Chart(document.getElementById('top3Tratamientos'), {
         type: 'bar',
         data: {

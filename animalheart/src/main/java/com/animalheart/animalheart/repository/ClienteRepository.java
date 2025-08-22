@@ -39,4 +39,5 @@ public class ClienteRepository {
     public void deleteByCedula(String cedula) {
         CLIENTES.removeIf(c -> c.getCedula().equalsIgnoreCase(cedula));
     }
+    
 }

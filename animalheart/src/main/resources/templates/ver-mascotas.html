@@ -1,125 +1,109 @@
 <!DOCTYPE html>
-<!--
-  Listado de Pacientes (Mascotas) – Vista del Veterinario
-  - Controlador: GET /ver-pacientes  → retorna modelo con atributo "mascotas"
-  - Modelo: List<Mascota> con campos { id, nombre, raza, edad, fotoURL }
-  - Acciones: botón "Detalle" navega a GET /mascotas/{id}
-  - Estilos: clases "vet-*" definidas en /CSS/estilos.css (consistencia con vistas de veterinarios)
--->
 <html xmlns:th="http://www.thymeleaf.org" lang="es">
 <head>
-  <meta charset="UTF-8">
-  <!-- Responsive en móviles -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Pacientes · Animalheart</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Listado de Pacientes · Animalheart</title>
 
-  <!-- Bootstrap (layout y componentes) -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Iconos Bootstrap -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-  <!-- Fuente Poppins (coherente con el resto del sitio) -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <!-- Estilos globales del proyecto (resueltos por Thymeleaf) -->
-  <link th:href="@{/CSS/estilos.css}" rel="stylesheet">
+  <!-- Bootstrap + Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet"/>
+
+  <!-- Fuente Poppins -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+
+  <!-- Estilos del proyecto -->
+  <link th:href="@{/CSS/estilos.css}" rel="stylesheet"/>
 </head>
 
-<!-- Fondo claro para resaltar tarjetas/tabla -->
-<body class="bg-light">
-  <!-- =================== BARRA (solo logo) ===================
-       Minimal: muestra la marca centrada.
-  -->
-  <nav class="barra">
-    <div class="envoltura">
-      <img th:src="@{/IMAGES/Logo_2.png}" alt="Animalheart" class="logotipo-central">
+<body class="bg-light vet-mockup">
+  <!-- ======= BARRA SUPERIOR (botones) ======= -->
+  <header class="vmk-header">
+    <div class="vmk-toolbar container d-flex align-items-center justify-content-between gap-2">
+      <div class="d-flex align-items-center gap-2">
+        <a th:href="@{/}" class="vmk-btn vmk-btn--ghost">
+          <i class="bi bi-arrow-left me-1"></i> Regresar
+        </a>
+        <a th:href="@{/mascotas/nueva}" class="vmk-btn vmk-btn--outline">
+          Registrar Mascota
+        </a>
+      </div>
+      <a th:href="@{/login-veterinario}" class="vmk-btn vmk-btn--danger">
+        Cierra Sesión
+      </a>
     </div>
-  </nav>
 
-  <!-- =================== CONTENIDO PRINCIPAL =================== -->
-  <main class="vet-container my-5">
-    <!-- Encabezado con título y badge de conteo -->
-    <div class="d-flex justify-content-between align-items-center mb-4">
-      <h1 class="vet-page-title">
-        <i class="bi bi-heart-pulse"></i> Listado de Pacientes
-      </h1>
-      <!-- Conteo total de mascotas en el modelo -->
-      <div>
-        <span class="badge vet-age-badge" th:text="${mascotas.size()} + ' mascotas'"></span>
+    <!-- ======= HERO con imagen y título ======= -->
+    <div class="vmk-hero">
+      <div class="container vmk-hero-inner">
+        <img th:src="@{/IMAGES/Logo_2.png}" alt="Animalheart" class="vmk-brand"/>
+        <h1 class="vmk-title">
+          <i class="bi bi-heart-pulse me-2"></i>Listado de Pacientes
+        </h1>
       </div>
     </div>
+  </header>
 
-    <!-- =================== TABLA DE PACIENTES ===================
-         - Thead pintado con .vet-table-header (en estilos.css).
-         - Cada fila muestra: avatar, nombre, raza, edad, acción.
-         - Accesibilidad: usa <th>/<td> correctos y contraste adecuado en badges.
-    -->
-    <div class="card shadow-sm" style="border-radius: var(--radius);">
+  <!-- ======= Bienvenida + icono lupa ======= -->
+  <section class="container vmk-welcome d-flex align-items-center justify-content-between">
+    <h2 class="m-0">Bienvenida Dra.&nbsp;
+      <span th:text="${veterinario != null ? veterinario.nombre : 'Laura Gómez'}">Laura Gómez</span>
+    </h2>
+    <i class="bi bi-search vmk-search"></i>
+  </section>
+
+  <!-- ======= TABLA ======= -->
+  <main class="container vmk-table-wrap">
+    <div class="vmk-table-card">
       <div class="table-responsive">
-        <table class="table table-hover align-middle mb-0 vet-table">
-          <thead class="vet-table-header">
+        <table class="table mb-0 vmk-table">
+          <thead>
             <tr>
-              <th class="vet-col-avatar vet-th-left"></th>
+              <th style="width: 72px;">Foto</th>
               <th>Nombre</th>
               <th>Raza</th>
               <th>Edad</th>
-              <th class="vet-th-right">Acciones</th>
+              <th class="text-center" style="width: 130px;">Información</th>
             </tr>
           </thead>
-
           <tbody>
-            <!-- Iteración sobre la lista "mascotas" proveniente del modelo -->
-            <tr class="vet-table-row" th:each="mascota : ${mascotas}">
+            <!-- Fila de mascota -->
+            <tr th:each="mascota : ${mascotas}">
               <td>
-                <!-- Avatar de la mascota. -->
-                <img th:src="${mascota.fotoURL}" 
-                     th:alt="${mascota.nombre}" 
-                     class="vet-pet-avatar">
+                <img th:src="${mascota.fotoURL}" th:alt="${mascota.nombre}" class="vmk-avatar"/>
               </td>
-
-              <!-- Nombre destacado en negrita -->
+              <td class="vmk-col-name" th:text="${mascota.nombre}">Firulais</td>
+              <td th:text="${mascota.raza}">Criollo</td>
               <td>
-                <span class="fw-bold" th:text="${mascota.nombre}"></span>
+                <span class="vmk-badge" th:text="${mascota.edad} + ' años'">3 años</span>
               </td>
-
-              <!-- Raza -->
-              <td th:text="${mascota.raza}"></td>
-
-              <!-- Edad: badge con sufijo "años" -->
-              <td>
-                <span class="badge vet-age-badge" th:text="${mascota.edad} + ' años'"></span>
-              </td>
-
-              <!-- Acción: ver ficha/detalle de la mascota -->
-              <td>
-                <a th:href="@{'/mascotas/' + ${mascota.id}}" 
-                   class="btn vet-action-btn">
-                  <i class="bi bi-eye-fill"></i> Detalle
+              <td class="text-center">
+                <a th:href="@{'/mascotas/' + ${mascota.id}}" class="vmk-pill">
+                  <i class="bi bi-eye-fill me-1"></i> Ver más
                 </a>
               </td>
             </tr>
 
-            <!-- Estado vacío: cuando la lista está vacía -->
+            <!-- Vacío -->
             <tr th:if="${mascotas.empty}">
-              <td colspan="5" class="text-center py-4 text-muted">
-                <i class="bi bi-exclamation-circle fs-4"></i>
-                <p class="mt-2">No se encontraron mascotas registradas</p>
+              <td colspan="5" class="text-center text-muted py-4">
+                <i class="bi bi-exclamation-circle me-2"></i>
+                No se encontraron mascotas registradas
               </td>
             </tr>
           </tbody>
         </table>
-      </div> <!-- /table-responsive -->
-    </div> <!-- /card -->
+      </div>
+    </div>
   </main>
 
-  <!-- =================== FOOTER =================== -->
-  <footer class="pie mt-5 py-4">
+  <!-- ======= FOOTER ======= -->
+  <footer class="vmk-footer">
     <div class="container text-center">
-      <p class="mb-0 text-white">
-        <i class="bi bi-c-circle"></i> 2025 - Animalheart
-      </p>
+      <p class="mb-0 text-white"><i class="bi bi-c-circle"></i> 2025 - Animalheart</p>
     </div>
   </footer>
 
-  <!-- Bootstrap JS (bundle con Popper) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

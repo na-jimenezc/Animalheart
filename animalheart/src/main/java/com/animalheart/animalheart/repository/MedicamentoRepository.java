@@ -37,4 +37,5 @@ public class MedicamentoRepository {
     public void deleteByNombre(String nombre) {
         MEDICAMENTOS.removeIf(m -> m.getNombre().equalsIgnoreCase(nombre));
     }
+    
 }

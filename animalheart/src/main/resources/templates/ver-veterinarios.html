@@ -1,127 +1,98 @@
 <!DOCTYPE html>
-<!--
-  Listado de veterinarios activos (vista de administración).
-  - Controlador: GET /admin/veterinarios
-  - Modelo: atributo "veterinarios" (List<Veterinario>)
-    con campos: id, nombre, especialidad, consultas, imagen, activo.
-  - Estilos: usa utilidades "vet-*" definidas en /CSS/estilos.css
--->
 <html xmlns:th="http://www.thymeleaf.org" lang="es">
 <head>
-  <meta charset="UTF-8">
-  <!-- Responsive en móvil -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Veterinarios · Animalheart</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Veterinarios Activos · Animalheart</title>
 
-  <!-- Dependencias de UI -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- UI base -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet" />
 
-  <!-- Hoja de estilos del proyecto (resuelta por Thymeleaf) -->
-  <link th:href="@{/CSS/estilos.css}" rel="stylesheet">
+  <!-- Estilos del proyecto -->
+  <link th:href="@{/CSS/estilos.css}" rel="stylesheet" />
 </head>
-<body class="bg-light">
-  <!-- ===================== BARRA SUPERIOR =====================
-       Cabecera mínima con logotipo centrado.
-  ---------------------------------------------------------------->
-  <nav class="barra">
-    <div class="envoltura">
-      <img th:src="@{/IMAGES/Logo_2.png}" alt="Animalheart" class="logotipo-central">
-    </div>
-  </nav>
+<body class="vet-mockup">
 
-  <!-- ===================== CONTENIDO PRINCIPAL ===================== -->
-  <main class="vet-container my-5">
-    <!-- Encabezado de página: título + badge con conteo -->
-    <div class="d-flex justify-content-between align-items-center mb-4">
-      <h1 class="vet-page-title">
-        <i class="bi bi-person-hearts"></i> Veterinarios Activos
-      </h1>
-      <!-- Conteo dinámico: muestra "N veterinarios" según el tamaño de la lista -->
-      <div>
-        <span class="badge vet-age-badge" th:text="${veterinarios.size()} + ' veterinarios'"></span>
+  <!-- Barra superior (tres botones como en el mockup) -->
+  <header class="va-toolbar">
+    <div class="va-wrap d-flex justify-content-between align-items-center">
+      <div class="d-flex gap-2">
+        <a th:href="@{/}" class="va-btn va-btn--ghost"><i class="bi bi-arrow-left"></i> Regresar</a>
+        <a th:href="@{/admin/veterinarios/nuevo}" class="va-btn va-btn--secondary">
+          <i class="bi bi-person-plus-fill"></i> Registrar Vets.
+        </a>
       </div>
+      <a th:href="@{/login-admin}" class="va-btn va-btn--danger"><i class="bi bi-box-arrow-right"></i> Cerrar Sesión</a>
     </div>
+  </header>
 
-    <!-- Tarjeta contenedora de la tabla (con radios coherentes a --radius) -->
-    <div class="card shadow-sm" style="border-radius: var(--radius);">
-      <div class="table-responsive">
-        <!--
-          Tabla de datos:
-          - thead con esquinas superiores redondeadas para integrarse al card.
-          - tbody recorre la lista "veterinarios" con th:each.
-          - Cada fila muestra: avatar, nombre, especialidad, #atenciones y acción.
-        -->
-        <table class="table table-hover align-middle mb-0 vet-table">
-          <thead class="vet-table-header">
-            <tr>
-              <th class="vet-col-avatar vet-th-left"></th>
-              <th>Nombre</th>
-              <th>Especialidad</th>
-              <th>Atenciones</th>
-              <th class="vet-th-right">Acciones</th>
-            </tr>
-          </thead>
+  <!-- Hero con imagen + overlay rosado y título blanco -->
+  <section class="va-hero">
+    <div class="va-wrap">
+      <h1 class="va-hero-title">Veterinarios Activos</h1>
+    </div>
+  </section>
 
-          <tbody>
-            <!-- Iteración de la lista de veterinarios -->
-            <tr class="vet-table-row" th:each="vet : ${veterinarios}">
-              <td>
-                <!-- Calcula un seed (sin espacios) para el placeholder -->
-                <div th:with="seed=${#strings.replace((vet.nombre ?: '1'),' ','')}">
-                  <img
-                    class="vet-pet-avatar"
-                    th:alt="${vet.nombre}"
-                    th:src="${(vet.imagen != null and !#strings.isEmpty(vet.imagen))
+  <!-- Contenido principal -->
+  <main class="va-wrap my-4">
+    <!-- Tarjeta rosada que envuelve a la tabla -->
+    <div class="va-table-card shadow-sm">
+      <!-- Encabezado de tabla -->
+      <div class="va-table-head d-none d-md-grid">
+        <span>Foto</span>
+        <span>Nombre</span>
+        <span>Especialidad</span>
+        <span>Consultas</span>
+        <span class="text-end">Información</span>
+      </div>
+
+      <!-- Tabla con filas "pastilla" blancas -->
+      <table class="va-table" aria-label="Listado de veterinarios activos">
+        <tbody>
+          <tr th:each="vet : ${veterinarios}">
+            <td class="va-cell-avatar">
+              <div th:with="seed=${#strings.replace((vet.nombre ?: '1'),' ','')}">
+                <img class="va-avatar"
+                     th:alt="${vet.nombre}"
+                     th:src="${(vet.imagen != null and !#strings.isEmpty(vet.imagen))
                               ? vet.imagen
                               : 'https://picsum.photos/seed/vet-' + seed + '/96'}">
-                </div>
-              </td>
+              </div>
+            </td>
 
-              <!-- Nombre destacado -->
-              <td class="fw-bold" th:text="${vet.nombre}"></td>
+            <td class="va-cell-name" th:text="${vet.nombre}">Nombre</td>
+            <td th:text="${vet.especialidad}">Especialidad</td>
 
-              <!-- Especialidad -->
-              <td th:text="${vet.especialidad}"></td>
+            <td>
+              <span class="va-badge" th:text="${vet.consultas} + ' consultas'">0 consultas</span>
+            </td>
 
-              <!-- Atenciones/consultas con badge visual -->
-              <td>
-                <span class="badge vet-age-badge" th:text="${vet.consultas} + ' atenciones'"></span>
-              </td>
+            <td class="text-end">
+              <a class="va-pill"
+                 th:href="@{'/admin/veterinarios/' + ${vet.id}}">
+                <i class="bi bi-eye-fill"></i> Ver más
+              </a>
+            </td>
+          </tr>
 
-              <!-- Ir al detalle del veterinario.
-                   La ruta debe existir en el AdminController:
-                   GET /admin/veterinarios/{id} → retorna "detalle-veterinario" -->
-              <td>
-                <a th:href="@{'/admin/veterinarios/' + ${vet.id}}"
-                   class="btn vet-action-btn">
-                  <i class="bi bi-eye-fill"></i> Ver Detalle
-                </a>
-              </td>
-            </tr>
-
-            <!-- Estado vacío: cuando no hay veterinarios activos -->
-            <tr th:if="${veterinarios.empty}">
-              <td colspan="5" class="text-center py-4 text-muted">
-                <i class="bi bi-exclamation-circle fs-4"></i>
-                <p class="mt-2 mb-0">No hay veterinarios activos</p>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div> <!-- /table-responsive -->
-    </div> <!-- /card -->
+          <!-- Vacío -->
+          <tr th:if="${veterinarios.empty}">
+            <td class="va-empty" colspan="5">
+              <i class="bi bi-exclamation-circle"></i> No hay veterinarios activos
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </main>
 
-  <!-- ===================== PIE DE PÁGINA ===================== -->
-  <footer class="pie mt-5 py-4">
-    <div class="container text-center">
-      <p class="mb-0 text-white"><i class="bi bi-c-circle"></i> 2025 - Animalheart</p>
-    </div>
+  <!-- Footer -->
+  <footer class="vmk-footer text-center">
+    <div class="va-wrap"><p class="mb-0 text-white"><i class="bi bi-c-circle"></i> 2025 – Animalheart</p></div>
   </footer>
 
-  <!-- JS de Bootstrap (bundle con Popper) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

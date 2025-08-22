@@ -36,4 +36,5 @@ public class TratamientoRepository {
     public void save(Tratamiento tratamiento) {
         TRATAMIENTOS.add(tratamiento);
     }
+    
 }

@@ -7,6 +7,7 @@ import com.animalheart.animalheart.repository.ClienteRepository;
 
 @Service
 public class ClienteServiceImpl implements ClienteService {
+
     private final ClienteRepository repo;
     public ClienteServiceImpl(ClienteRepository repo) { this.repo = repo; }
     @Override
@@ -17,4 +18,5 @@ public class ClienteServiceImpl implements ClienteService {
     public void crear(Cliente c) { repo.save(c); }
     @Override
     public void eliminarPorCedula(String cedula) { repo.deleteByCedula(cedula); }
+    
 }
