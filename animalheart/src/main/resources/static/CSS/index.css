@@ -1,0 +1,136 @@
+/* ===================== TOKENS MÍNIMOS ===================== */
+:root{
+  --teal-700:#073352;
+  --teal-600:#2a9a99;
+  --teal-200:#bfe6e5;
+  --pink-200:#7AABBF;
+  --pink-300:#58AAAE;
+  --bg:#f7f7f8;
+  --surface:#ffffff;
+  --text:#1b1e22;
+  --muted:#5e6a72;
+  --radius:18px;
+  --shadow:0 8px 24px rgba(0,0,0,.08);
+  --servicios-bg:#fff7e6;
+  --servicios-title:#043454;
+  --corazon:#ED3A4D;
+}
+
+/* ===================== BASE ===================== */
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--text);
+  font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.45}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+
+/* ===================== NAVBAR (.barra) ===================== */
+.barra{position:sticky;top:0;z-index:50;background:#073352;color:#fff;box-shadow:0 4px 14px rgba(0,0,0,.12);height:100px}
+.barra .envoltura{max-width:1120px;margin:auto;padding:0 20px;height:100%;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;position:relative}
+.menu-izq,.menu-der{display:flex;gap:16px}
+.menu-izq a,.menu-der a{padding:10px 14px;border-radius:999px;font-weight:500;opacity:.95;color:#fff}
+.menu-izq a[aria-current="page"],.menu-izq a:hover,.menu-der a:hover{background:rgba(255,255,255,.18)}
+.menu-der .pastilla{background:#fff;color:var(--teal-700)!important;font-weight:700;
+  transition:color .3s,background .3s,transform .15s}
+.menu-der .pastilla:hover{background:var(--teal-700)!important;color:#fff!important;transform:translateY(-1px)}
+.logotipo-central{position:absolute;left:50%;transform:translateX(-50%);z-index:10;width:110px;height:110px;display:flex;align-items:center;justify-content:center}
+.logotipo-central img{width:100%;height:100%;object-fit:contain}
+.navbar{padding:0}.navbar-toggler{border-color:rgba(255,255,255,.4)}
+.navbar-toggler-icon{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255,255,255,0.8%29' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e")}
+.navbar-nav .nav-link{color:#fff}
+.navbar-nav .nav-link:hover,.navbar-nav .nav-link.active{background:rgba(26,12,215,.18);border-radius:999px}
+.logotipo-movil img{height:50px;object-fit:contain}
+@media (min-width:992px){.menu-izq,.menu-der{gap:clamp(16px,2vw,28px)}
+  .menu-izq .nav-link,.menu-der .nav-link{min-width:clamp(120px,12vw,180px);
+  padding:clamp(12px,1.2vw,16px) clamp(18px,2.2vw,28px);font-size:clamp(14px,1vw,16.5px);border-radius:999px;text-align:center;white-space:nowrap}}
+@media (max-width:991.98px){
+  .logotipo-central{display:none!important}
+  .navbar-collapse .navbar-nav{width:100%;justify-content:center;text-align:center;background:var(--teal-700);
+    padding:16px 16px 24px;border-radius:0 0 12px 12px}
+  .navbar-collapse .nav-item{width:100%}
+  .navbar-collapse .nav-link{display:block;width:100%;padding:12px 0;margin:6px 0;border-radius:12px;font-size:16px}
+  .navbar-collapse .pastilla{background:#fff;color:var(--teal-700)!important;font-weight:700}
+}
+
+/* ===================== PORTADA (HERO) ===================== */
+.portada{position:relative;background:url("../IMAGES/vet_animalheart.jpeg") center/cover no-repeat;
+  min-height:50vh;padding:40px 20px;z-index:2;display:flex;align-items:center;overflow:visible;margin-bottom:100px}
+.portada::before{content:"";position:absolute;inset:0;background:rgba(246,189,197,.8);z-index:1}
+.contenedor-portada{max-width:1200px;width:100%;margin:0 auto;display:flex;align-items:center;justify-content:space-between;
+  gap:40px;position:relative;z-index:5}
+.bloque-izquierdo{flex:1;max-width:600px;display:flex;flex-direction:column;gap:20px}
+#nombre{margin:0;color:#fff;font-weight:700;line-height:1.1;font-size:clamp(48px,6vw,98px);pointer-events:none}
+#nombre .rosa{color:var(--corazon)}
+.tarjeta-portada{width:100%;min-height:300px;padding:clamp(24px,3vw,40px);display:flex;flex-direction:column;border-radius:29px;background:#fff;box-shadow:var(--shadow)}
+.tarjeta-portada h1{margin:0 0 10px;font-size:clamp(28px,2.4vw,42px);font-weight:800;line-height:1.15;font-family:"Open Sans",sans-serif}
+.tarjeta-portada p{margin:8px 0;color:var(--muted);font-size:clamp(16px,1.3vw,20px);line-height:1.55}
+.llamada-accion{display:inline-block;margin-top:20px;width:100%;max-width:300px;background:#fff;border:2px solid var(--teal-700);
+  color:var(--teal-700);padding:16px 0;border-radius:999px;font-weight:700;font-size:clamp(16px,1.5vw,20px);
+  text-align:center;transition:all .3s ease}
+.llamada-accion:hover{background:var(--teal-700);color:#fff;transform:translateY(-2px)}
+.bloque-derecho{flex:1;display:flex;justify-content:flex-end;align-items:flex-end;position:relative}
+.perrito{width:clamp(250px,30vw,500px);height:auto;filter:drop-shadow(0 18px 32px rgba(29,31,78,.25));position:absolute;top:-200px;right:0}
+@media (max-width:992px){
+  .contenedor-portada{flex-direction:column;gap:30px}
+  .bloque-izquierdo,.bloque-derecho{max-width:100%;justify-content:center}
+  .perrito{width:clamp(200px,50vw,400px)}
+}
+@media (max-width:991.98px){.perrito{display:none}}
+
+/* ===================== CARRUSEL MISIÓN / VISIÓN ===================== */
+#destacados{padding-top:0;margin-top:80px;height:639.38px;margin-bottom:80px}
+#destacados .carousel-item{height:700px;min-height:700px;position:relative;overflow:hidden}
+#destacados .carousel-inner img{width:100%;height:100%;object-fit:cover}
+.img-overlay{position:relative;height:100%}
+.img-overlay .image-overlay{position:absolute;inset:0;background:rgba(255,255,255,.5);z-index:1}
+.img-overlay .carousel-caption{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  z-index:2;text-align:center;padding:20px;max-width:90%;width:100%;pointer-events:none}
+.img-overlay .carousel-caption h5{font-size:78px;margin-bottom:1rem;color:var(--servicios-title);font-family:"Open Sans",sans-serif;font-weight:700}
+.img-overlay .carousel-caption p{font-size:28px;line-height:1.6;color:var(--text);max-width:700px;margin:0 auto;font-family:"Open Sans",sans-serif;font-weight:700}
+#destacados .carousel-control-prev-icon,#destacados .carousel-control-next-icon{filter:invert(.8) sepia(1) saturate(5) hue-rotate(180deg);z-index:3}
+#destacados .carousel-indicators button{background-color:var(--teal-700)}
+#destacados .carousel-indicators .active{opacity:1}
+
+/* ===================== SERVICIOS ===================== */
+#servicios{background:#B8D2D4;padding-top:3rem;padding-bottom:3rem;margin-bottom:200px}
+#servicios h2{color:#18527D;text-align:center;font-family:"Open Sans",sans-serif;font-size:48px;font-weight:700;line-height:100%}
+#servicios .row{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:40px}
+.card .card-body{display:flex;flex-direction:column}
+.card .card-body .btn,.card .card-body button{margin-top:auto;width:100%;justify-content:center;background:rgba(255,255,255,.2);border:none;font-weight:600;transition:background .3s ease,transform .15s ease}
+.card .card-body button:hover{background:rgba(255,255,255,.645)}
+.card-grupo1 .card{width:429px;height:199px;flex-shrink:0;background:#043454;color:#fff}
+.card-grupo2 .card{width:429px;height:199px;flex-shrink:0;background:#58AAAE;color:#fff}
+.card-grupo1 .card .card-title,.card-grupo2 .card .card-title{color:#FFF;font-family:"Open Sans",sans-serif;font-size:32px;font-weight:700;line-height:100%}
+.card-grupo1 .card .card-text,.card-grupo2 .card .card-text,
+.card-grupo1 .card p,.card-grupo2 .card p{
+  color:#FFF;font-family:"Open Sans",sans-serif;font-size:24px;margin:40px 0;font-weight:400;letter-spacing:3.6px;line-height:100%;
+  display:flex;width:387px;height:72px;justify-content:center;flex-shrink:0}
+.card-grupo1 .card .card-body button[aria-expanded="true"]{background:var(--teal-200);color:#043454}
+.card-grupo2 .card .card-body button[aria-expanded="true"]{background:var(--pink-200);color:#043454}
+.card .collapse p{color:#fff!important}
+
+/* ===================== FIGURA DECORATIVA ===================== */
+.figura-mascotas{position:relative;width:100%;margin-bottom:-120px;z-index:5}
+.mascotas{position:relative;left:50%;transform:translateX(-50%);
+  width:clamp(300px,70vw,1400px);height:auto;margin-top:-80px;pointer-events:none}
+@media (max-width:768px){.mascotas{display:none}}
+@media (max-width:991.98px){.mascotas{width:clamp(200px,80vw,800px);bottom:-60px}}
+
+/* ===================== CLIENTES (CARRUSEL) ===================== */
+.clientes{position:relative;background:url("../IMAGES/clientes_2.jpg") center/cover no-repeat;
+  padding:32px 0;margin-top:24px;z-index:4}
+.clientes::before{content:"";position:absolute;inset:0;background:rgba(127,173,192,.8);z-index:0;pointer-events:none}
+.clientes > *{position:relative;z-index:2}
+#clientes .carousel{padding:8px 0}
+#clientes .carousel-item{transition:transform .6s ease,opacity .6s ease;min-height:320px}
+#clientes .carousel .card{border:0;border-radius:var(--radius);box-shadow:var(--shadow);max-width:800px;width:100%;background:#DBE5E7}
+#clientes .carousel-indicators [data-bs-target]{width:8px;height:8px;border-radius:999px;background:#fff;opacity:.6}
+#clientes .carousel-indicators .active{opacity:1}
+#clientes .carousel-control-prev,#clientes .carousel-control-next{width:8%;filter:drop-shadow(0 6px 18px rgba(0,0,0,.2));z-index:5}
+#clientes .carousel .card img{width:414px;height:380px;border-radius:414px;object-fit:cover}
+#clientes .carousel .card h5{font-size:32px;color:#18527D;font-family:"Open Sans";font-weight:700;letter-spacing:-.96px}
+#clientes .carousel .card p{font-size:16px;color:#18527D;text-align:center;font-family:"Open Sans",sans-serif;letter-spacing:1.6px}
+
+/* ===================== FOOTER ===================== */
+.pie{background:var(--pink-300);margin-top:22px}
+.redes a{display:inline-grid;place-items:center}

@@ -1,0 +1,163 @@
+/* ================== CABECERA ================== */
+.header-dashboard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #fddde6;
+  flex-wrap: wrap;
+}
+
+/* Logo */
+#logo {
+  width: auto;
+  height: 100px;
+  mix-blend-mode: multiply;
+  object-fit: contain;
+}
+
+/* Botones contenedor */
+.botones-dashboard {
+  display: flex;
+  flex: 1;
+  gap: 1rem;
+  justify-content: flex-end;
+}
+
+/* Botones personalizados */
+.botones-dashboard .btn {
+  flex: 1;
+  max-width: 180px;
+  padding: 0.75rem 1rem;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 8px;
+  text-decoration: none;
+  color: white;
+  border: none;
+  display: inline-block;
+  white-space: nowrap;
+  transition: background-color 0.3s ease;
+}
+
+.btn-rojo {
+  background-color: #ED3A4D !important;
+  border: 1px solid #ED3A4D !important;
+}
+.btn-rojo:hover {
+  background-color: #c52e40 !important;
+}
+
+.btn-turquesa {
+  background-color: #409E9F !important;
+  border: 1px solid #409E9F !important;
+}
+.btn-turquesa:hover {
+  background-color: #368a91 !important;
+}
+
+/* ================== CARTA BIENVENIDA ================== */
+#carta-dashboard {
+  position: relative;
+  width: 100vw;
+  min-height: 350px;
+  background: url('/IMAGES/AdminIMG.webp') no-repeat center center;
+  background-size: cover;
+  margin-bottom: 2rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-family: "Open Sans", sans-serif;
+}
+
+#carta-dashboard::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(24, 82, 125, 0.43); /* Overlay */
+  z-index: 1;
+}
+
+#carta-dashboard .titulo-dashboard,
+#carta-dashboard .subtitulo-dashboard {
+  position: relative;
+  z-index: 2;
+  color: white;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+  padding: 1rem;
+}
+
+.titulo-dashboard {
+  font-size: 2rem;
+  font-weight: bold;
+}
+.subtitulo-dashboard {
+  margin-bottom: 2rem;
+}
+
+/* ================== CONTENEDOR PRINCIPAL ================== */
+.contenedor-dashboard {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+}
+
+/* ================== FILAS DE CHARTS ================== */
+.fila-charts {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
+
+.fila-multiple {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.chart-card {
+  background-color: #ffffff;
+  border-radius: 34px;
+  box-shadow: 0 4px 24px rgba(64, 158, 159, 0.50);
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.chart-card.large {
+  width: 100%;
+  max-width: 1200px;
+}
+.chart-card.medium {
+  width: calc(50% - 1rem);
+  max-width: 684px;
+  min-width: 400px;
+}
+
+.chart-card img,
+.chart-card canvas {
+  max-width: 100%;
+  object-fit: contain;
+}
+
+/* ================== FOOTER ================== */
+.footer-dashboard {
+  padding: 1rem;
+  background: #409E9F;
+  color: #fff;
+  font-size: 0.9rem;
+  text-align: center;
+}

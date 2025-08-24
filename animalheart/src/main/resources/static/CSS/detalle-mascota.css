@@ -1,0 +1,120 @@
+/* ===================== TOKENS MÍNIMOS ===================== */
+:root{
+  --teal-700:#073352;
+  --teal-600:#2a9a99;
+  --teal-200:#bfe6e5;
+  --pink-300:#58AAAE;
+  --bg:#f7f7f8;
+  --surface:#ffffff;
+  --text:#1b1e22;
+  --muted:#5e6a72;
+  --radius:18px;
+  --shadow:0 8px 24px rgba(0,0,0,.08);
+}
+
+/* ===================== BASE ===================== */
+*{box-sizing:border-box}
+html,body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  line-height:1.45;
+}
+img{max-width:100%;display:block}
+
+/* ===================== BARRA SUPERIOR ===================== */
+.barra{
+  position:sticky; top:0; z-index:50;
+  background:#073352; color:#fff; height:100px;
+  box-shadow:0 4px 14px rgba(0,0,0,.12);
+}
+.barra .envoltura{
+  max-width:1120px; margin:auto; padding:0 20px; height:100%;
+  display:flex; align-items:center; justify-content:space-between; gap:16px; position:relative;
+}
+.menu-izq,.menu-der{display:flex; gap:16px}
+.vmk-brand{height:50px; width:auto; object-fit:contain}
+
+/* Botones pill de la barra */
+.vmk-btn{
+  display:inline-flex; align-items:center; gap:.4rem;
+  padding:8px 14px; border-radius:999px; font-weight:600; font-size:14px;
+  text-decoration:none; transition:.2s; color:#fff;
+}
+.vmk-btn--ghost:hover{ background:rgba(255,255,255,.15); }
+.vmk-btn--outline:hover{ background:#fff; color:var(--teal-700); }
+.vmk-btn--danger:hover{ background:var(--teal-700); color:#fff; }
+
+/* ===================== CONTENEDOR MAIN ===================== */
+.vet-container{ max-width:1200px; margin:0 auto; padding:0 20px; }
+
+/* ===================== TARJETA IZQUIERDA (FICHA) ===================== */
+.pet-card{ border:0; border-radius:var(--radius); overflow:hidden; background:#eaf3f5; }
+.pet-photo-wrap{ background:#dbe9ec; display:grid; place-items:center; padding:14px 14px 0; }
+.pet-photo{
+  width:100%; max-width:270px; height:270px; object-fit:cover;
+  border-radius:16px; border:6px solid #fff; box-shadow:var(--shadow);
+}
+.pet-name{
+  margin:14px 16px 4px; font-weight:700; color:#043454; text-align:center;
+  font-size: clamp(22px, 2.4vw, 26px);
+}
+.pet-metrics{
+  display:grid; grid-template-columns:repeat(2,1fr);
+  gap:10px; padding:10px 14px 4px;
+}
+.pet-chip{
+  display:flex; align-items:center; gap:.5rem;
+  background:#fff; border:1px solid #cfe4e6; border-radius:12px;
+  padding:10px 12px; color:#0d3c58; box-shadow:var(--shadow);
+}
+.pet-chip i{ color: var(--teal-700); }
+
+/* Dueño */
+.pet-owner{ padding:0 14px 16px; }
+.pet-owner-title{
+  display:flex; align-items:center; justify-content:space-between;
+  color:#043454; font-weight:700; margin:6px 2px 10px;
+}
+.pet-owner-title i{ opacity:.75 }
+.pet-field{
+  display:flex; gap:.65rem; align-items:center;
+  background:#0d3c58; color:#fff; border-radius:10px;
+  padding:10px 12px; margin:8px 0;
+}
+.pet-field small{ opacity:.8; display:block; line-height:1.1; }
+.pet-field div > div{ font-weight:600; }
+
+/* ===================== PANEL DERECHO (HISTORIAL) ===================== */
+.pet-main{ border:0; border-radius:var(--radius); }
+.pet-main-title{
+  margin:14px 18px 6px; color:#0d3c58; font-weight:800;
+  display:flex; gap:.6rem; align-items:center;
+}
+.pet-section{
+  background:#fff; border-radius:14px; margin:12px 16px; padding:14px;
+  box-shadow: var(--shadow);
+}
+.pet-section-title{
+  text-align:center; font-weight:800; color:#0d3c58;
+  background:#f4e6e9; border-radius:8px; padding:6px 10px; margin-bottom:10px;
+}
+.pet-notepad{
+  min-height:340px; background:#fff; border-radius:12px;
+  border:2px solid #e3e9ec; box-shadow: inset 0 0 0 1px #f4f6f7;
+}
+.pet-cta{
+  background: var(--teal-600); color:#fff; border:none; border-radius:12px;
+  padding:.9rem 1.6rem; font-weight:700;
+}
+.pet-cta:hover{ background: var(--teal-700); transform: translateY(-1px); }
+
+/* Responsive */
+@media (max-width: 991.98px){
+  .pet-metrics{ grid-template-columns:1fr; }
+  .pet-photo{ height:240px; max-width:240px; }
+}
+
+/* ===================== FOOTER ===================== */
+.pie{ background: var(--pink-300); }

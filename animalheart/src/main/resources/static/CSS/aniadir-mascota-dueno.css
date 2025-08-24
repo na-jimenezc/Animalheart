@@ -1,0 +1,219 @@
+/* ===================== BASE MÍNIMA PARA ESTA VISTA ===================== */
+/* Traído de tu hoja global solo lo necesario para que esta pantalla sea autónoma:
+   - Reset básico y tipografía Poppins
+   - Fondo claro y color de texto por defecto
+   (Evita dependencias a variables/tokens globales no usados en esta vista) */
+
+* { box-sizing: border-box; }
+html, body {
+  margin: 0;
+  font-family: Poppins, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; /* de estilos globales */
+  line-height: 1.45;
+  background: #f7f7f8; /* tono de fondo suave */
+  color: #1b1e22;      /* color de texto principal */
+}
+img { max-width: 100%; display: block; }
+
+/* ===================== ESTILOS ESPECÍFICOS DE ESTA VISTA ===================== */
+/* (Extraídos del <style> inline de aniadir-mascota-dueno.html) */
+
+.form-container {
+  max-width: 1000px;
+  margin: 2rem auto;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+.form-header {
+  background: linear-gradient(135deg, #4e73df 0%, #224abe 100%);
+  color: white;
+  padding: 2rem;
+  text-align: center;
+}
+
+.form-header h1 {
+  margin: 0;
+  font-weight: 600;
+  font-size: 2rem;
+}
+
+.form-body {
+  padding: 2rem;
+}
+
+.form-section {
+  margin-bottom: 2.5rem;
+}
+
+.form-section-title {
+  color: #4e73df;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #e3e6f0;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.form-field {
+  margin-bottom: 1.5rem;
+}
+
+.form-label {
+  font-weight: 500;
+  color: #5a5c69;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #d1d3e2;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #4e73df;
+  box-shadow: 0 0 0 3px rgba(78, 115, 223, 0.1);
+}
+
+.form-select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #d1d3e2;
+  border-radius: 8px;
+  font-size: 1rem;
+  background: white;
+}
+
+.required::after {
+  content: " *";
+  color: #e74a3b;
+}
+
+.btn-container {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #4e73df 0%, #224abe 100%);
+  border: none;
+  padding: 12px 30px;
+  color: white;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(78, 115, 223, 0.4);
+}
+
+.btn-secondary {
+  background: #858796;
+  border: none;
+  padding: 12px 30px;
+  color: white;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background: #6c6e7e;
+  transform: translateY(-2px);
+}
+
+.client-card {
+  background: #f8f9fa;
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-left: 4px solid #4e73df;
+}
+
+.client-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.client-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #4e73df;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+}
+
+.client-details h4 {
+  margin: 0;
+  color: #4e73df;
+  font-size: 1rem;
+}
+
+.client-details p {
+  margin: 0;
+  color: #858796;
+  font-size: 0.9rem;
+}
+
+.photo-preview {
+  width: 200px;
+  height: 200px;
+  border-radius: 10px;
+  object-fit: cover;
+  border: 3px solid #e3e6f0;
+  display: none;
+}
+
+.photo-placeholder {
+  width: 200px;
+  height: 200px;
+  border-radius: 10px;
+  background: #f8f9fa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #858796;
+  border: 2px dashed #d1d3e2;
+  margin-bottom: 1rem;
+}
+
+.photo-container {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+  .form-body {
+    padding: 1.5rem;
+  }
+  .btn-container {
+    flex-direction: column;
+  }
+}

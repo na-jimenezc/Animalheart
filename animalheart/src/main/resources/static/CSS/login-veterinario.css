@@ -1,0 +1,112 @@
+/* ====== Tokens mínimos que esta vista utiliza ====== */
+:root{
+  --vet-oscuro:#458b8d;
+  --vet-principal:#409e9f;
+  --vet-claro:#b8d2d4;
+  --vet-acento:#5aaaae;
+  --blanco:#ffffff;
+  --radio:14px;
+}
+
+/* ====== Base y layout centrado ====== */
+*{box-sizing:border-box}
+html,body{
+  margin:0;
+  min-height:100vh;
+  font-family:'Poppins',sans-serif;
+}
+body{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:20px; /* respiro en móviles */
+}
+
+/* ====== Tarjeta del login ====== */
+.tarjeta-login{
+  background:var(--blanco);
+  border-radius:var(--radio);
+  box-shadow:0 8px 24px rgba(0,0,0,.15);
+  padding:2.5rem;
+  width:100%;
+  max-width:440px;
+  transition:all .3s ease;
+}
+.tarjeta-login:hover{ transform:translateY(-6px); }
+
+/* ====== Encabezados y microcopy ====== */
+.encabezado-pagina{ text-align:center; margin-bottom:1.5rem; }
+.nombre-sistema{ font-weight:700; font-size:1.4rem; margin-bottom:.5rem; }
+.subtitulo-sistema{ font-size:.9rem; font-weight:400; }
+
+.encabezado-login{ text-align:center; margin-bottom:2rem; }
+.icono-login{
+  width:60px; height:60px; border-radius:50%;
+  display:inline-flex; align-items:center; justify-content:center;
+  margin-bottom:1rem; font-size:1.8rem;
+}
+.encabezado-login h3{ font-weight:600; margin-bottom:.5rem; }
+.encabezado-login p{ font-size:.95rem; margin:0; }
+
+/* ====== Campos / labels / inputs ====== */
+.campo-formulario{ margin-bottom:1.5rem; }
+.etiqueta{ display:block; font-weight:500; margin-bottom:.75rem; font-size:.95rem; }
+.control{
+  width:100%;
+  border-radius:var(--radio);
+  padding:.85rem 1.25rem;
+  border:1px solid;
+  transition:all .3s ease;
+}
+
+/* Grupo con botón “ver clave” */
+.grupo-entrada{ position:relative; }
+.grupo-entrada .control{ padding-right:3rem; }
+.boton-ver-clave{
+  position:absolute; right:15px; top:50%; transform:translateY(-50%);
+  background:transparent; border:none; font-size:1.2rem; cursor:pointer; transition:color .2s;
+}
+
+/* ====== CTA y enlace ====== */
+.boton-enviar{
+  width:100%; border:none; padding:.85rem; border-radius:var(--radio);
+  font-weight:500; letter-spacing:.5px; text-transform:uppercase; font-size:.9rem;
+}
+.enlace-recuperar{
+  display:inline-block; margin-top:1.5rem; text-decoration:none; font-size:.9rem; font-weight:500;
+}
+
+/* ====== Tema Veterinario (activado por <body class="veterinario">) ====== */
+body.veterinario{
+  background:linear-gradient(135deg, var(--vet-principal), var(--vet-oscuro));
+  color:#333;
+}
+body.veterinario .nombre-sistema,
+body.veterinario .encabezado-login h3{ color:var(--vet-oscuro); }
+
+body.veterinario .icono-login{
+  background:linear-gradient(135deg, var(--vet-oscuro), var(--vet-principal));
+  color:var(--blanco);
+}
+body.veterinario .subtitulo-sistema,
+body.veterinario .encabezado-login p{ color:var(--vet-acento); }
+
+body.veterinario .control{ border-color:var(--vet-claro); }
+body.veterinario .control:focus{
+  border-color:var(--vet-acento);
+  box-shadow:0 0 0 .25rem rgba(90,170,174,.25);
+}
+
+body.veterinario .boton-ver-clave{ color:var(--vet-acento); }
+
+body.veterinario .boton-enviar{
+  background:var(--vet-oscuro);
+  color:var(--blanco);
+}
+body.veterinario .boton-enviar:hover{ background:var(--vet-principal); }
+
+body.veterinario .enlace-recuperar{ color:var(--vet-acento); }
+body.veterinario .enlace-recuperar:hover{
+  color:var(--vet-oscuro);
+  text-decoration:underline;
+}

@@ -1,0 +1,77 @@
+/* ====== Tokens mínimos que esta vista sí usa ====== */
+:root{
+  --teal-700:#073352;
+  --teal-600:#2a9a99;
+  --teal-200:#bfe6e5;
+  --pink-300:#58AAAE;
+  --bg:#f7f7f8;
+  --surface:#ffffff;
+  --text:#1b1e22;
+  --muted:#5e6a72;
+  --radius:18px;
+  --shadow:0 8px 24px rgba(0,0,0,.08);
+}
+
+/* ====== Base ====== */
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--text);
+  font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.45}
+img{max-width:100%;display:block}
+
+/* ====== Sticky footer layout en esta maqueta ====== */
+body.vet-mockup{min-height:100svh;display:flex;flex-direction:column}
+body.vet-mockup>main{flex:1}
+.vmk-footer{margin-top:auto}
+
+/* ====== Header/Hero (con overlay) ====== */
+.vmk-header{background:url("../IMAGES/vet_animalheart.jpeg") center/cover no-repeat;position:relative;color:#fff}
+.vmk-header::before{content:"";position:absolute;inset:0;background:rgba(7,51,82,.92)}
+.vmk-header>*{position:relative;z-index:1}
+
+/* Barra superior de botones (píldoras) */
+.vmk-toolbar{background:transparent;color:#fff}
+.vmk-btn{display:inline-flex;align-items:center;gap:.4rem;padding:8px 14px;border-radius:999px;
+  font-weight:600;font-size:14px;line-height:1;text-decoration:none;transition:.2s;color:#fff}
+.vmk-btn--ghost:hover{background:rgba(255,255,255,.15)}
+.vmk-btn--outline:hover{background:#fff;color:var(--teal-700)}
+.vmk-btn--danger:hover{background:var(--teal-700);color:#fff}
+
+/* Hero: logo + título */
+.vmk-hero{padding:12px 0 24px}
+.vmk-hero-inner{display:flex;align-items:center;gap:18px}
+.vmk-brand{height:58px;width:auto;object-fit:contain}
+.vmk-title{margin:0;font-weight:800;letter-spacing:.5px;font-size:clamp(28px,3.6vw,40px)}
+
+/* Bienvenida + icono de búsqueda */
+.vmk-welcome{background:#fff;border-radius:16px;box-shadow:var(--shadow);padding:18px 22px;margin-top:-18px}
+.vmk-welcome h2{font-size:clamp(18px,2.5vw,26px);font-weight:700;color:#0d3c58;letter-spacing:.2px}
+.vmk-search{font-size:28px;color:#0d3c58;opacity:.9}
+
+/* ====== Tabla de pacientes ====== */
+.vmk-table-wrap{padding:28px 0 24px}
+.vmk-table-card{background:#fff;border-radius:18px;box-shadow:var(--shadow);padding:4px 8px 8px}
+
+.vmk-table thead tr{background:var(--teal-700);color:#fff}
+.vmk-table thead th{border:0;padding:14px 12px;font-weight:600;font-size:14px}
+.vmk-table thead th:first-child{border-top-left-radius:14px}
+.vmk-table thead th:last-child{border-top-right-radius:14px}
+
+.vmk-table tbody td{padding:18px 12px;vertical-align:middle;border:0;border-bottom:4px solid #0e3d5b}
+.vmk-table tbody tr:last-child td{border-bottom:none}
+
+/* Avatar y chips */
+.vmk-avatar{width:52px;height:52px;border-radius:50%;object-fit:cover;border:2px solid var(--teal-200)}
+.vmk-col-name{font-weight:600}
+.vmk-badge{display:inline-block;padding:6px 10px;border-radius:999px;background:var(--teal-200);color:var(--teal-700);font-weight:600;font-size:.9rem}
+
+/* Botón “Ver más” tipo píldora */
+.vmk-pill{
+  display:inline-flex;align-items:center;justify-content:center;gap:.35rem;
+  padding:6px 14px;border-radius:999px;font-weight:600;font-size:.9rem;
+  background:var(--teal-600);color:#fff;text-decoration:none;transition:.2s ease;white-space:nowrap;line-height:1
+}
+.vmk-pill .bi{line-height:1;flex:0 0 auto}
+.vmk-pill:hover{background:var(--teal-700);transform:translateY(-1px)}
+
+/* ====== Footer ====== */
+.vmk-footer{background:var(--pink-300);padding:16px 0;color:#fff}
