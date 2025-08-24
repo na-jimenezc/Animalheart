@@ -1,0 +1,238 @@
+:root {
+  /* ================= TOKENS DE COLOR / RADIUS =================
+     - Dos paletas: una para Administrador y otra para Veterinario.
+     - --radio controla el redondeado de inputs/botones/tarjeta.
+  -------------------------------------------------------------- */
+  /*Colores para el administrador*/
+  --admin-oscuro: #073352;
+  --admin-principal: #18527d;
+  --admin-claro: #41637a;
+  --admin-acento: #7fadc0;
+
+  /*Colores para el veterinario*/
+  --vet-oscuro: #458b8d;
+  --vet-principal: #409e9f;
+  --vet-claro: #b8d2d4;
+  --vet-acento: #5aaaae;
+
+  /*Colores generales*/
+  --blanco: #ffffff;
+  --radio: 14px;
+}
+
+/* ================ LAYOUT BASE ================
+   - Centra vertical/horizontalmente la tarjeta.
+   - Tipografía unificada (Poppins).
+------------------------------------------------ */
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 20px;  /* separa del borde en pantallas pequeñas */
+}
+
+/* ---------- Tarjeta contenedora del login (ambos perfiles) ---------- */
+.tarjeta-login {
+  background: var(--blanco);
+  border-radius: var(--radio);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  padding: 2.5rem;
+  width: 100%;
+  max-width: 440px;
+  transition: all 0.3s ease;   /* sutil animación al hover */
+}
+.tarjeta-login:hover {
+  transform: translateY(-6px);
+}
+
+/* ---------- Encabezados y microcopy superiores ---------- */
+.encabezado-pagina {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+.nombre-sistema {
+  font-weight: 700;
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+}
+.subtitulo-sistema {
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+.encabezado-login {            /* Título y subtítulo del formulario */
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.icono-login {                 /* Badge redondo con icono */
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+}
+.encabezado-login h3 {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+.encabezado-login p {
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+/* ---------- Campos, labels e inputs ---------- */
+.campo-formulario {
+  margin-bottom: 1.5rem;
+}
+.etiqueta {
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+  font-size: 0.95rem;
+  display: block;      /* asegura salto de línea respecto al input */
+}
+.control {
+  /* Estilo base del input */
+  border-radius: var(--radio);
+  padding: 0.85rem 1.25rem;
+  border: 1px solid;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+/* Grupo con botón “ver clave” dentro del input */
+.grupo-entrada { position: relative; }
+.grupo-entrada .control { padding-right: 3rem; } /* deja espacio para el icono */
+
+.boton-ver-clave {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+/* ---------- Botón principal y enlace auxiliar ---------- */
+.boton-enviar {
+  border: none;
+  padding: 0.85rem;
+  border-radius: var(--radio);
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  width: 100%;
+}
+.enlace-recuperar {
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  display: inline-block;
+  margin-top: 1.5rem;
+}
+
+/* =========================================================
+   ================ TEMAS POR PERFIL (SKINS) ================
+   Se alternan agregando la clase en <body>:
+   - <body class="admin">        (colores azul noche)
+   - <body class="veterinario">  (colores teal)
+   ========================================================= */
+
+/* ===================== Administrador ===================== */
+body.admin {
+  background: linear-gradient(135deg, var(--admin-principal), var(--admin-oscuro));
+  color: #f8f9fa;  /* texto de alto contraste sobre el gradiente */
+}
+body.admin .tarjeta-login {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+body.admin .nombre-sistema,
+body.admin .encabezado-login h3 {
+  color: var(--admin-oscuro); /* títulos en tono más oscuro */
+}
+body.admin .icono-login {
+  background: linear-gradient(135deg, var(--admin-oscuro), var(--admin-principal));
+  color: var(--blanco);
+}
+body.admin .subtitulo-sistema,
+body.admin .encabezado-login p {
+  color: var(--admin-claro);  /* microcopy en tono medio */
+}
+body.admin .control {
+  border-color: var(--admin-acento);
+  background-color: rgba(255, 255, 255, 0.9); /* legible sobre fondo oscuro */
+}
+/* Este selector apunta a .etiqueta *dentro* de .control (input) */
+body.admin .control .etiqueta{
+  color: #555; 
+}
+body.admin .control:focus {
+  border-color: var(--admin-principal);
+  box-shadow: 0 0 0 0.25rem rgba(127, 173, 192, 0.25);
+  background-color: white;
+}
+body.admin .boton-ver-clave { color: var(--admin-claro); }
+body.admin .boton-enviar {
+  background: linear-gradient(to right, var(--admin-oscuro), var(--admin-principal));
+  color: var(--blanco);
+}
+body.admin .boton-enviar:hover {
+  background: linear-gradient(to right, var(--admin-principal), var(--admin-claro));
+}
+body.admin .enlace-recuperar { color: var(--admin-claro); }
+body.admin .enlace-recuperar:hover {
+  color: var(--admin-principal);
+  text-decoration: underline;
+}
+/* Regla efectiva para el color de labels del admin */
+body.admin .campo-formulario .etiqueta {
+  color: #333; 
+}
+
+
+/* ===================== Veterinario ===================== */
+body.veterinario {
+  background: linear-gradient(135deg, var(--vet-principal), var(--vet-oscuro));
+  color: #333;
+}
+body.veterinario .nombre-sistema,
+body.veterinario .encabezado-login h3 {
+  color: var(--vet-oscuro);
+}
+body.veterinario .icono-login {
+  background: linear-gradient(135deg, var(--vet-oscuro), var(--vet-principal));
+  color: var(--blanco);
+}
+body.veterinario .subtitulo-sistema,
+body.veterinario .encabezado-login p {
+  color: var(--vet-acento);
+}
+body.veterinario .control {
+  border-color: var(--vet-claro);
+}
+body.veterinario .control:focus {
+  border-color: var(--vet-acento);
+  box-shadow: 0 0 0 0.25rem rgba(90, 170, 174, 0.25);
+}
+body.veterinario .boton-ver-clave { color: var(--vet-acento); }
+body.veterinario .boton-enviar {
+  background: var(--vet-oscuro);
+  color: var(--blanco);
+}
+body.veterinario .boton-enviar:hover {
+  background: var(--vet-principal);
+}
+body.veterinario .enlace-recuperar { color: var(--vet-acento); }
+body.veterinario .enlace-recuperar:hover {
+  color: var(--vet-oscuro);
+  text-decoration: underline;
+}
