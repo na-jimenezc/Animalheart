@@ -1,0 +1,163 @@
+/* ===================== TOKENS / PALETA ===================== */
+:root{
+  --teal-700:#073352;   /* barra superior */
+  --teal-600:#2a9a99;   /* acentos */
+  --teal-200:#cfe9e8;   /* detalles suaves */
+  --bg:#f3f6f7;
+  --surface:#ffffff;
+  --text:#17303f;
+  --muted:#5e6a72;
+  --radius:18px;
+  --shadow:0 10px 28px rgba(0,0,0,.10);
+}
+
+/* Base */
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--text);font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.45}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+
+/* ===================== NAV (mockup) ===================== */
+.barra{
+  position:sticky;top:0;z-index:1000;
+  height:100px;background:var(--teal-700);color:#fff;
+  box-shadow:0 4px 14px rgba(0,0,0,.12);
+  display:flex;align-items:center;
+}
+.barra .envoltura{
+  max-width:1200px;margin:0 auto;width:100%;padding:0 20px;
+  display:flex;align-items:center;justify-content:space-between;position:relative;
+}
+.menu-izq,.menu-der{display:flex;gap:14px}
+.menu-izq a,.menu-der a{
+  padding:10px 16px;border-radius:999px;font-weight:600;opacity:.95;color:#fff
+}
+.menu-izq a:hover,.menu-der a:hover,
+.menu-izq a[aria-current="page"]{background:rgba(255,255,255,.18)}
+.menu-der .pastilla{
+  background:#fff;color:var(--teal-700)!important;font-weight:800;
+  transition:color .25s, background .25s, transform .15s;
+}
+.menu-der .pastilla:hover{background:var(--teal-600)!important;color:#fff!important;transform:translateY(-1px)}
+.logotipo-central{position:absolute;left:50%;transform:translateX(-50%);width:110px;height:110px;display:flex;align-items:center;justify-content:center}
+.logotipo-central img{width:100%;height:100%;object-fit:contain}
+@media (max-width:991.98px){.logotipo-central{display:none}}
+
+/* ===================== HÉROE ===================== */
+.portada-contacto{
+  position:relative;min-height:60vh;padding:40px 20px;margin-bottom:80px;
+  display:flex;align-items:center;justify-content:center;
+  background:url("../IMAGES/vet-contacto.jpg") center/cover no-repeat;
+  display: flex;
+  flex-direction: column;       /* <-- clave: pone los círculos DEBAJO del título */
+  align-items: center;          /* centra horizontal */
+  justify-content: center;      /* centra vertical */
+}
+.portada-contacto::before{
+  content:"";position:absolute;inset:0;background:rgba(42,154,153,.85);z-index:1
+}
+.portada-contacto .envoltura{position:relative;z-index:2;display:flex;align-items:center;justify-content:center;width:100%;max-width:1200px}
+
+/* Tarjeta circular “¡Hablemos!” */
+.tarjeta-portada{
+  width:clamp(260px,32vw,360px);height:clamp(260px,32vw,360px);
+  background:#ffffffd9;border-radius:50%;padding:clamp(24px,3vw,40px);
+  border:8px solid rgba(255,255,255,.35);box-shadow:var(--shadow);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center
+}
+.tarjeta-portada h1{margin:0 0 10px;font-size:clamp(32px,4.2vw,44px);font-weight:800;color:var(--teal-700);font-family:"Open Sans",sans-serif}
+.tarjeta-portada p{margin:0;color:#24485f;font-size:clamp(14px,1.4vw,16px)}
+
+/* Círculos debajo del héroe */
+.circulos-portada{
+  position:relative;z-index:2;max-width:1200px;margin:-30px auto 60px;padding:0 20px;
+  display:grid;grid-template-columns:repeat(4,minmax(140px,1fr));gap:clamp(12px,2vw,20px);
+  max-width: 1200px;
+  margin: clamp(12px, 2vh, 28px) auto 60px; /* margen superior y centrado */
+  display: grid;
+  grid-template-columns: repeat(4, minmax(140px, 1fr));
+  gap: clamp(12px, 2vw, 20px);
+  justify-content: center;      /* centra las pistas del grid si sobra espacio */
+  justify-items: center;          /* centra cada ítem en su celda */
+}
+@media (max-width:992px){.circulos-portada{grid-template-columns:repeat(2,1fr);margin:20px auto 40px}}
+@media (max-width:480px){.circulos-portada{grid-template-columns:1fr}}
+.circulo{
+  background:#fff;
+  color:var(--teal-700);
+  border-radius:50%;
+  aspect-ratio:1/1;
+  /* centrado absoluto de su contenido */
+  display:flex;                   
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  gap:10px;                        /* separación icono <-> texto */
+  padding:18px;
+  box-shadow:var(--shadow);
+  transition:transform .2s ease, background .25s ease, color .25s ease;
+}
+.circulo:hover{transform:translateY(-3px);
+  background:var(--teal-600);
+  color:#fff;}
+.circulo i{font-size:34px;
+  line-height:1;}
+.circulo span{font-weight:800;
+  font-size:clamp(14px,1.1vw,18px);
+  line-height:1.2;
+  max-width:12ch;                 /* envuelve en 2 líneas bonitas */
+  text-wrap:balance;              /* centras y evitas cortes feos */
+}
+
+/* ===================== CONTENIDO ===================== */
+.contacto{max-width:1200px;margin:0 auto;padding:0 20px 80px}
+.contacto h2{color:var(--teal-700);font-size:clamp(28px,3.2vw,36px);font-weight:800;margin-bottom:22px;font-family:"Open Sans",sans-serif}
+
+/* Inputs “píldora” con borde teal */
+.contacto .form-label{font-weight:600;color:var(--text);margin-bottom:8px}
+.contacto .form-control{
+  padding:12px 16px;border-radius:999px;border:1px solid var(--teal-200);
+  background:#fff;transition:all .25s ease
+}
+.contacto .form-control:focus{border-color:var(--teal-600);box-shadow:0 0 0 .25rem rgba(42,154,153,.25)}
+.contacto textarea.form-control{border-radius:18px}
+
+/* Botones */
+.contacto .btn{padding:12px 24px;font-weight:700;border-radius:999px}
+.contacto .btn-primary{background:var(--teal-700);border:none}
+.contacto .btn-primary:hover{background:var(--teal-600);transform:translateY(-2px)}
+.contacto .btn-outline-secondary{border-color:var(--teal-200);color:var(--teal-700)}
+.contacto .btn-outline-secondary:hover{background:var(--teal-200);border-color:var(--teal-200)}
+
+/* Tarjeta derecha + mapa */
+.contacto .card{border:none;border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
+.contacto .card-body{padding:30px}
+.contacto .card-title{color:var(--teal-700);font-weight:800;margin-bottom:18px;font-family:"Open Sans",sans-serif}
+.contacto .card p{margin-bottom:12px;display:flex;align-items:center;gap:10px;color:var(--text)}
+.contacto .card i{color:var(--teal-600);font-size:1.2rem;min-width:24px}
+.contacto .ratio{border-radius:var(--radius);overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,.1);margin-top:16px}
+
+/* Alerta de éxito */
+.contacto .alert{border-radius:var(--radius);padding:16px}
+
+/* Footer */
+.pie{background:#58AAAE}
+
+/* Gatito */
+.gatito-contacto{
+  position:fixed;right:clamp(8px,3vw,24px);bottom:clamp(8px,3vw,24px);
+  width:clamp(120px,18vw,220px);pointer-events:none;filter:drop-shadow(0 10px 24px rgba(0,0,0,.18))
+}
+
+/* Ajustes responsive */
+@media (max-width:992px){
+  .portada-contacto{min-height:50vh;margin-bottom:60px}
+  .contacto .row>div:first-child{margin-bottom:40px}
+}
+@media (max-width:768px){
+  .portada-contacto{min-height:42vh}
+  .contacto{padding-bottom:60px}
+  .contacto .btn{width:100%}
+  .contacto .d-sm-inline-flex{flex-direction:column;gap:12px}
+}
