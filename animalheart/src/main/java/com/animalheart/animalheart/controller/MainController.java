@@ -8,7 +8,6 @@ public class MainController {
 
     @GetMapping("/")
     public String index() {
-        // Simplemente delega en la plantilla "index".
         return "index";
     }
 }

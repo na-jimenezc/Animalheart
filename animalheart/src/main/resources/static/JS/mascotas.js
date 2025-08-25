@@ -20,3 +20,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+document.addEventListener('DOMContentLoaded', ()=>{
+  document.querySelectorAll('.js-confirm').forEach(btn=>{
+    btn.addEventListener('click', (e)=>{
+      const msg = btn.dataset.confirm || '¿Seguro?';
+      if(!confirm(msg)) e.preventDefault();
+    });
+  });
+});
+

@@ -25,11 +25,9 @@ public class Cliente {
     private String correo;
     private String celular;
 
-    //UN CLIENTE PUEDE TENER MUCHAS MASCOTAS
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Mascota> mascotas = new ArrayList<>();
 
-    //UN VETERINARIO PUEDE TENER MUCHOS CLIENTES
     @ManyToMany(mappedBy = "clientes", fetch = FetchType.LAZY)
     private List<Veterinario> veterinarios = new ArrayList<>();
 

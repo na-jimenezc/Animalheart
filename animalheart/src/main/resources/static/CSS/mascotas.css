@@ -75,3 +75,57 @@ body.vet-mockup>main{flex:1}
 
 /* ====== Footer ====== */
 .vmk-footer{background:var(--pink-300);padding:16px 0;color:#fff}
+
+/* === Acciones en la celda: separación vertical y estética consistente === */
+.vmk-table td.text-center{
+  /* apila los controles y céntralos */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* espacio entre cada control (link o form) */
+.vmk-table td.text-center > a.vmk-pill,
+.vmk-table td.text-center > form{
+  margin-block: 6px;           /* 6px arriba y abajo */
+}
+
+/* quita márgenes por defecto del form para que el gap funcione perfecto */
+.vmk-table td.text-center > form{ margin: 0; }
+
+/* botón Eliminar con look definido y mismo ancho visual que las píldoras */
+.vmk-table td.text-center .btn-outline-danger{
+  border-width: 2px;
+  border-radius: 12px;          /* esquinas redondeadas como en la imagen */
+  padding: 6px 14px;
+  font-weight: 700;
+  line-height: 1;
+  background: #fff;
+  color: #d32f2f;
+  border-color: #d32f2f;
+}
+
+/* --- FIX: la celda "Información" debe seguir siendo table-cell --- */
+.vmk-table td.text-center{
+  display: table-cell !important;   /* vuelve al layout de tabla */
+  text-align: center;               /* mantiene centrado el contenido */
+  vertical-align: middle;
+}
+
+/* Apilar y espaciar los controles sin flex en el <td> */
+.vmk-table td.text-center > a.vmk-pill,
+.vmk-table td.text-center > form{
+  display: block;                   /* cada control ocupa su propia línea */
+  margin: 6px auto;                 /* separación vertical + centrado */
+}
+
+/* por si algún form trae márgenes del navegador */
+.vmk-table td.text-center > form{ margin: 6px auto; }
+
+/* Asegurar la línea divisoria uniforme en todas las celdas */
+.vmk-table tbody td{
+  border-bottom: 4px solid #0e3d5b; /* mismo color que ya usabas */
+}
+.vmk-table tbody tr:last-child td{
+  border-bottom: none;
+}

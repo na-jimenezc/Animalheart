@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <title>Editar Cliente</title>
+  <link rel="stylesheet" th:href="@{/css/clientes.css}">
+  <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.0/css/bootstrap.min.css}">
+  <link rel="stylesheet" th:href="@{/webjars/bootstrap-icons/1.10.5/font/bootstrap-icons.css}">
+</head>
+<body class="theme-vet">
+<main class="container py-4">
+  <h1 class="mb-3"><i class="bi bi-pencil-square me-2"></i> Editar Cliente</h1>
+
+  <form th:action="@{|/clientes/${cliente.id}/editar|}" method="post" class="card p-3">
+    <!-- CSRF condicional (no rompe si no usas Security) -->
+    <th:block th:with="token=${#request.getAttribute('_csrf')}" th:if="${token != null}">
+      <input type="hidden" th:name="${token.parameterName}" th:value="${token.token}"/>
+    </th:block>
+
+    <div class="row g-3">
+      <div class="col-md-6">
+        <label class="form-label">Cédula</label>
+        <input class="form-control" name="cedula" required th:value="${cliente.cedula}">
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">Nombres</label>
+        <input class="form-control" name="nombres" required th:value="${cliente.nombres}">
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">Correo (opcional)</label>
+        <input class="form-control" type="email" name="correo" th:value="${cliente.correo}">
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">Teléfono (opcional)</label>
+        <input class="form-control" name="telefono" th:value="${cliente.telefono}">
+      </div>
+    </div>
+
+    <div class="mt-4 d-flex gap-2 justify-content-center">
+      <button type="submit" class="btn btn-primary">
+        <i class="bi bi-check2"></i>
+      </button>
+      <a th:href="@{/clientes}" class="btn btn-outline-secondary">Cancelar</a>
+    </div>
+  </form>
+</main>
+</body>
+</html>

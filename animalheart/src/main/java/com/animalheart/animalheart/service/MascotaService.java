@@ -11,4 +11,12 @@ public interface MascotaService {
     List<Mascota> obtenerMascotasPorVeterinario(Long id);
     Mascota guardarMascota(Mascota mascota);
     void eliminarMascota(Long id);
+    void eliminarMascotaHard(Long id);
+    Mascota actualizarMascota(Long id,
+                          String nombre,
+                          String tipo,
+                          String raza,
+                          String enfermedad,
+                          String fotoURL);
+
 }

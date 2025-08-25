@@ -1,4 +1,4 @@
-package com.animalheart.animalheart; // Paquete raíz de la aplicación. 
+package com.animalheart.animalheart;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

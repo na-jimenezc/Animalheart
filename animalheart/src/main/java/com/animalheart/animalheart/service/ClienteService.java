@@ -16,6 +16,11 @@ public interface ClienteService {
      Cliente guardarCliente(Cliente cliente);
     boolean existeClientePorCedula(String cedula);
     Cliente guardarClienteConVeterinario(Cliente cliente, Veterinario veterinario);
+    void eliminarClienteHard(Long id);
+    Cliente actualizarCliente(Long id,
+                          String cedula,
+                          String nombres,
+                          String correo,
+                          String telefono);
 
-    
 }

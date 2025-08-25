@@ -74,4 +74,27 @@ public class ClienteServiceImpl implements ClienteService {
         return clienteGuardado;
     }
     
+    @Override
+    @org.springframework.transaction.annotation.Transactional
+    public void eliminarClienteHard(Long id) {
+        repo.deleteById(id);
+    }
+
+    @Override
+    @org.springframework.transaction.annotation.Transactional
+    public Cliente actualizarCliente(Long id,
+                                    String cedula,
+                                    String nombres,
+                                    String correo,
+                                    String celular) {
+        Cliente existente = repo.findById(id).orElseThrow();
+
+        if (cedula   != null && !cedula.isBlank())   existente.setCedula(cedula.trim());
+        if (nombres  != null && !nombres.isBlank())  existente.setNombre(nombres.trim());
+        if (correo   != null)                         existente.setCorreo(correo.trim());
+        if (celular != null)                         existente.setCelular(celular.trim());
+
+        return repo.save(existente);
+    }
+
 }

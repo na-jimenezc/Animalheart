@@ -112,8 +112,6 @@ public class ClienteController {
         return mostrarFormularioConError(model, session);
     
     }
-
-    
    }
 
     private String mostrarFormularioConError(Model model, HttpSession session) {
@@ -121,6 +119,37 @@ public class ClienteController {
         model.addAttribute("cliente", new Cliente());
         model.addAttribute("veterinario", veterinario);
         return "aniadir-duenio";
+    }
+
+    @org.springframework.web.bind.annotation.PostMapping("/{id}/eliminar-hard")
+    public String eliminarClienteHard(@org.springframework.web.bind.annotation.PathVariable Long id,
+                                  org.springframework.web.servlet.mvc.support.RedirectAttributes ra) {
+    try {
+        clienteService.eliminarClienteHard(id);
+        ra.addFlashAttribute("success", "Cliente eliminado permanentemente.");
+    } catch (org.springframework.dao.DataIntegrityViolationException ex) {
+        ra.addFlashAttribute("error", "No se puede eliminar: tiene datos relacionados.");
+    }
+    return "redirect:/clientes";
+    }
+
+    @org.springframework.web.bind.annotation.GetMapping("/{id}/editar")
+    public String editarClienteForm(@org.springframework.web.bind.annotation.PathVariable Long id,
+                                    org.springframework.ui.Model model) {
+        model.addAttribute("cliente", clienteService.obtenerClientePorId(id));
+        return "editar-cliente";
+    }
+
+    @org.springframework.web.bind.annotation.PostMapping("/{id}/editar")
+    public String editarClienteSubmit(@org.springframework.web.bind.annotation.PathVariable Long id,
+                                    @org.springframework.web.bind.annotation.RequestParam String cedula,
+                                    @org.springframework.web.bind.annotation.RequestParam String nombres,
+                                    @org.springframework.web.bind.annotation.RequestParam(required=false) String correo,
+                                    @org.springframework.web.bind.annotation.RequestParam(required=false) String telefono,
+                                    org.springframework.web.servlet.mvc.support.RedirectAttributes ra) {
+        clienteService.actualizarCliente(id, cedula, nombres, correo, telefono);
+        ra.addFlashAttribute("success", "Cliente actualizado correctamente.");
+        return "redirect:/clientes";
     }
 
 }

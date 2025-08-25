@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import jakarta.servlet.http.HttpSession;
 import java.util.List;
 import com.animalheart.animalheart.service.VeterinarioService;
@@ -126,4 +128,32 @@ public class MascotaController {
         return "aniadir-mascota-dueno";
     }
 
+    @PostMapping("/{id}/eliminar-hard")
+    public String eliminarMascotaHard(@PathVariable Long id,
+                                    RedirectAttributes ra,
+                                    HttpSession session) {
+        mascotaService.eliminarMascotaHard(id);
+        ra.addFlashAttribute("success", "Mascota eliminada permanentemente.");
+        return "redirect:/mascotas";
+    }
+
+    @GetMapping("/{id}/editar")
+    public String editarMascotaForm(@PathVariable Long id, Model model) {
+    Mascota mascota = mascotaService.obtenerMascotaPorId(id);
+    model.addAttribute("mascota", mascota);
+    return "editar-mascota";
+    }
+
+    @PostMapping("/{id}/editar")
+    public String editarMascotaSubmit(@PathVariable Long id,
+                                  @RequestParam String nombre,
+                                  @RequestParam String tipo,
+                                  @RequestParam String raza,
+                                  @RequestParam(required=false) String enfermedad,
+                                  @RequestParam(required=false, name="fotoURL") String fotoURL,
+                                  RedirectAttributes ra) {
+    mascotaService.actualizarMascota(id, nombre, tipo, raza, enfermedad, fotoURL);
+    ra.addFlashAttribute("success", "Mascota actualizada correctamente.");
+    return "redirect:/mascotas";
+    }
 }

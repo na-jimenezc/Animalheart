@@ -2,6 +2,9 @@ package com.animalheart.animalheart.service;
 
 import com.animalheart.animalheart.model.Mascota;
 import com.animalheart.animalheart.repository.MascotaRepository;
+
+import jakarta.transaction.Transactional;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -50,4 +53,30 @@ public class MascotaServiceImpl implements MascotaService {
     public void eliminarMascota(Long id) {
         mascotaRepository.deleteById(id);
     }
+
+    @Override
+    @Transactional
+    public void eliminarMascotaHard(Long id) {
+        mascotaRepository.deleteById(id);
+    }
+
+    @Override
+    @Transactional
+    public Mascota actualizarMascota(Long id,
+                                    String nombre,
+                                    String tipo,
+                                    String raza,
+                                    String enfermedad,
+                                    String fotoURL) {
+        Mascota existente = mascotaRepository.findById(id).orElseThrow();
+
+        if (nombre != null && !nombre.isBlank()) existente.setNombre(nombre);
+        if (tipo != null && !tipo.isBlank()) existente.setTipo(tipo);
+        if (raza != null && !raza.isBlank()) existente.setRaza(raza);
+        if (enfermedad != null) existente.setEnfermedad(enfermedad);
+        if (fotoURL != null)    existente.setFotoURL(fotoURL);
+
+        return mascotaRepository.save(existente);
+    }
+
 }
