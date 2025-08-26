@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mis Mascotas · Animalheart</title>
+
+  <!-- UI base -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Estilos específicos del dashboard de cliente -->
+  <link th:href="@{/CSS/dashboard-cliente.css}" rel="stylesheet" />
+</head>
+<body class="client-dashboard">
+
+  <!-- Barra superior -->
+  <header class="client-toolbar">
+    <div class="client-wrap d-flex justify-content-between align-items-center">
+      <div class="d-flex gap-2">
+        <a th:href="@{/}" class="client-btn"><i class="bi bi-arrow-left"></i> Inicio</a>
+      </div>
+      <div class="d-flex align-items-center">
+        <span class="welcome-user">Hola, <span th:text="${cliente.nombre}"></span></span>
+        <a th:href="@{/clientes/logout}" class="client-btn"><i class="bi bi-box-arrow-right"></i> Cerrar Sesión</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero section -->
+  <section class="client-hero">
+    <div class="client-wrap">
+      <h1 class="client-hero-title">Mis Mascotas 🐾</h1>
+      <p class="lead">Aquí encuentras toda la información de tus compañeros peludos</p>
+    </div>
+  </section>
+
+  <!-- Contenido principal -->
+  <main class="client-wrap my-5">
+    
+    <!-- Contador de mascotas -->
+    <div class="row mb-4">
+      <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center">
+          <h2 class="h4">Tus compañeros</h2>
+          <span class="pet-badge" th:text="${mascotas.size()} + ' mascota(s)'"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lista de mascotas -->
+    <div th:if="${mascotas.empty}" class="empty-pets">
+      <i class="bi bi-inbox"></i>
+      <h3>No tienes mascotas registradas</h3>
+      <p>Ponte en contacto con tu veterinario para registrar a tus compañeros peludos</p>
+    </div>
+
+    <div class="row" th:unless="${mascotas.empty}">
+      <div class="col-md-6 col-lg-4 mb-4" th:each="mascota : ${mascotas}">
+        <a th:href="@{'/clientes/mascotas/' + ${mascota.id}}" class="text-decoration-none text-dark">
+        <div class="pet-card">
+          <div class="text-center mb-3">
+            <img th:if="${mascota.fotoURL != null and !mascota.fotoURL.isEmpty()}" 
+                 th:src="${mascota.fotoURL}" 
+                 th:alt="${mascota.nombre}" 
+                 class="pet-avatar">
+            <img th:unless="${mascota.fotoURL != null and !mascota.fotoURL.isEmpty()}" 
+                 th:src="'https://api.dicebear.com/7.x/bottts/svg?seed=' + ${mascota.nombre}" 
+                 th:alt="${mascota.nombre}" 
+                 class="pet-avatar">
+          </div>
+          
+          <h3 class="pet-name" th:text="${mascota.nombre}"></h3>
+          <div class="pet-type" th:text="${mascota.tipo} + ' • ' + ${mascota.edad} + ' años'"></div>
+          
+          <div class="pet-info">
+            <strong>Raza:</strong> <span th:text="${mascota.raza}"></span>
+          </div>
+          
+          <div class="pet-info">
+            <strong>Peso:</strong> <span th:text="${mascota.peso}"></span> kg
+          </div>
+            <div class="pet-info">
+                <strong>Enfermedad:</strong> <span th:text="${mascota.enfermedad != null && !mascota.enfermedad.isEmpty() ? mascota.enfermedad : 'Ninguna'}"></span>
+        </div>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="client-toolbar text-center mt-5">
+    <div class="client-wrap">
+      <p class="mb-0 text-white"><i class="bi bi-c-circle"></i> 2025 – Animalheart</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

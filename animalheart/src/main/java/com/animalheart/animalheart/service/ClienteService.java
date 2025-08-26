@@ -3,6 +3,7 @@ package com.animalheart.animalheart.service;
 import java.util.List;
 
 import com.animalheart.animalheart.model.Cliente;
+import com.animalheart.animalheart.model.Mascota;
 import com.animalheart.animalheart.model.Veterinario;
 
 public interface ClienteService {
@@ -22,5 +23,6 @@ public interface ClienteService {
                           String nombres,
                           String correo,
                           String telefono);
+    List<Mascota> obtenerMascotasPorClienteId(Long clienteId);
 
 }

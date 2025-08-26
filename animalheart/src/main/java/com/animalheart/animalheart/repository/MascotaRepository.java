@@ -28,5 +28,6 @@ public interface MascotaRepository extends JpaRepository<Mascota, Long> {
            "LEFT JOIN t.veterinario tv " +
            "WHERE v.id = :veterinarioId OR tv.id = :veterinarioId")
     List<Mascota> findByVeterinarioIdIncluyendoTratamientos(@Param("veterinarioId") Long veterinarioId);
-
+    @Query("SELECT m FROM Mascota m WHERE m.cliente.id = :clienteId")
+       List<Mascota> findByClienteId(@Param("clienteId") Long clienteId);
 }

@@ -13,6 +13,7 @@ import java.util.List;
 public class MascotaServiceImpl implements MascotaService {
 
     private final MascotaRepository mascotaRepository;
+    
 
     public MascotaServiceImpl(MascotaRepository mascotaRepository) {
         this.mascotaRepository = mascotaRepository;
@@ -78,5 +79,12 @@ public class MascotaServiceImpl implements MascotaService {
 
         return mascotaRepository.save(existente);
     }
+    @Override
+public List<Mascota> obtenerMascotasPorClienteId(Long clienteId) {
+    List<Mascota> mascotas = mascotaRepository.findByClienteId(clienteId);
+    System.out.println("Mascotas encontradas: " + mascotas.size());
+    return mascotas;
+}
+
 
 }

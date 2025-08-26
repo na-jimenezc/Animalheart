@@ -1,95 +1,131 @@
-/* ====== Tema Cliente (vista de login-cliente) ====== */
+/* ================= TOKENS / RADIO ================= */
+:root{
+  --cliente-oscuro: #d5536c;
+  --cliente-principal: #e86c83;
+  --cliente-claro: #f6bdc5;
+  --cliente-acento: #ffd6df;
 
-/* Estilo general */
-body.cliente {
-  background: linear-gradient(to bottom right, #F6BDC5, #CF6271);
-  font-family: 'Poppins', sans-serif;
-  color: #F6BDC5;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  margin: 0;
+  --blanco: #ffffff;
+  --radio: 14px;
 }
 
-/* Tarjeta del formulario */
-.tarjeta-login {
-  background-color: white;
-  border-radius: 20px;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-  padding: 3rem;
-  width: 100%;
-  max-width: 400px;
-  text-align: center;
+/* ================= LAYOUT BASE ================= */
+*{box-sizing:border-box}
+html,body{
+  margin:0;
+  min-height:100vh;
+  font-family:'Poppins',sans-serif;
+}
+body{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
 }
 
-/* Encabezado principal */
-.encabezado-pagina .nombre-sistema {
-  font-size: 2rem;
+/* ================= TARJETA DEL LOGIN ================= */
+.tarjeta-login{
+  background:var(--blanco);
+  border-radius:var(--radio);
+  box-shadow:0 8px 24px rgba(0,0,0,.15);
+  padding:2.5rem;
+  width:100%;
+  max-width:440px;
+  transition:all .3s ease;
+}
+.tarjeta-login:hover{ transform:translateY(-6px); }
+
+/* ================= ENCABEZADOS Y MICROCOPY ================= */
+.encabezado-pagina{ text-align:center; margin-bottom:1.5rem; }
+.nombre-sistema{ font-weight:700; font-size:1.4rem; margin-bottom:.5rem; }
+.subtitulo-sistema{ font-size:.9rem; font-weight:400; }
+
+.encabezado-login{ text-align:center; margin-bottom:2rem; }
+.icono-login{
+  width:60px; height:60px; border-radius:50%;
+  display:inline-flex; align-items:center; justify-content:center;
+  margin-bottom:1rem; font-size:1.8rem;
+}
+.encabezado-login h3{ font-weight:600; margin-bottom:.5rem; }
+.encabezado-login p{ font-size:.95rem; margin:0; }
+
+/* ================= CAMPOS / LABELS / INPUTS ================= */
+.campo-formulario{ margin-bottom:1.5rem; }
+.etiqueta{ display:block; font-weight:500; margin-bottom:.75rem; font-size:.95rem; }
+.control{
+  width:100%;
+  border-radius:var(--radio);
+  padding:.85rem 1.25rem;
+  border:1px solid;
+  transition:all .3s ease;
+}
+
+/* ================= CTA y enlace auxiliar ================= */
+.boton-enviar{
+  width:100%; border:none; padding:.85rem; border-radius:var(--radio);
+  font-weight:500; letter-spacing:.5px; text-transform:uppercase; font-size:.9rem;
+}
+.enlace-recuperar{
+  display:inline-block; margin-top:1.5rem; text-decoration:none; font-size:.9rem; font-weight:500;
+}
+
+/* Información de prueba */
+.info-prueba {
+  background: #fff3cd;
+  border: 1px solid #ffeaa7;
+  border-radius: var(--radio);
+  padding: 15px;
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.info-prueba h6 {
+  color: #856404;
+  margin-bottom: 10px;
   font-weight: 600;
 }
-.encabezado-pagina .subtitulo-sistema {
-  font-size: 1rem;
-  margin-bottom: 1.5rem;
+
+.info-prueba ul {
+  margin: 0;
+  padding-left: 20px;
 }
 
-/* Icono circular */
-.icono-login {
-  font-size: 3rem;
-  background-color: #F6BDC5;
-  color: white;
-  border-radius: 50%;
-  width: 70px;
-  height: 70px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 1rem auto;
+.info-prueba li {
+  margin-bottom: 5px;
 }
 
-/* Encabezado del formulario */
-.encabezado-login h3 { margin-bottom: 0.3rem; }
-.encabezado-login p  { font-size: 0.9rem; color: #F6BDC5; }
+/* ===================== TEMA CLIENTE ===================== */
+body.cliente{
+  background:linear-gradient(135deg, var(--cliente-principal), var(--cliente-oscuro));
+  color:#f8f9fa;
+}
+body.cliente .tarjeta-login{ border:1px solid rgba(255,255,255,.1); }
+body.cliente .nombre-sistema,
+body.cliente .encabezado-login h3{ color:var(--cliente-oscuro); }
+body.cliente .icono-login{
+  background:linear-gradient(135deg, var(--cliente-oscuro), var(--cliente-principal));
+  color:var(--blanco);
+}
+body.cliente .subtitulo-sistema,
+body.cliente .encabezado-login p{ color:var(--cliente-claro); }
+body.cliente .control{
+  border-color:var(--cliente-acento);
+  background-color:rgba(255,255,255,.9);
+}
+body.cliente .control:focus{
+  border-color:var(--cliente-principal);
+  box-shadow:0 0 0 .25rem rgba(255,214,223,.25);
+  background-color:#fff;
+}
+body.cliente .boton-enviar{
+  background:linear-gradient(to right, var(--cliente-oscuro), var(--cliente-principal));
+  color:var(--blanco);
+}
+body.cliente .boton-enviar:hover{
+  background:linear-gradient(to right, var(--cliente-principal), var(--cliente-claro));
+}
+body.cliente .enlace-recuperar{ color:var(--cliente-claro); }
+body.cliente .enlace-recuperar:hover{ color:var(--cliente-principal); text-decoration:underline; }
 
-/* Campos del formulario */
-.campo-formulario {
-  text-align: left;
-  margin-bottom: 1rem;
-}
-.etiqueta {
-  display: block;
-  font-weight: 500;
-  margin-bottom: 0.5rem;
-  color: #F6BDC5;
-}
-.control {
-  width: 100%;
-  padding: 0.6rem 1rem;
-  border: 1px solid #F6BDC5;
-  border-radius: 10px;
-  font-size: 1rem;
-  outline: none;
-}
-
-/* Botón de enviar */
-.boton-enviar {
-  width: 100%;
-  padding: 0.75rem;
-  background-color: #F6BDC5;
-  border: none;
-  border-radius: 10px;
-  color: white;
-  font-weight: bold;
-  font-size: 1rem;
-  transition: background-color 0.3s ease;
-  margin-top: 1rem;
-}
-.boton-enviar:hover { background-color: #d99da9; }
-
-/* Enlace de recuperación */
-.enlace-recuperar {
-  color: #F6BDC5;
-  text-decoration: none;
-  font-size: 0.9rem;
-}
-.enlace-recuperar:hover { text-decoration: underline; }
+/* Color efectivo de labels dentro de la tarjeta */
+body.cliente .campo-formulario .etiqueta{ color:#333; }

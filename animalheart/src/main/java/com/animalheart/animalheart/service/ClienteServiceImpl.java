@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.animalheart.animalheart.model.Cliente;
+import com.animalheart.animalheart.model.Mascota;
 import com.animalheart.animalheart.model.Veterinario;
 import com.animalheart.animalheart.repository.ClienteRepository;
 
@@ -17,6 +18,9 @@ public class ClienteServiceImpl implements ClienteService {
 
     @Autowired
     private VeterinarioService veterinarioService;
+    @Autowired
+    private ClienteRepository clienteRepo;
+
 
     private final ClienteRepository repo;
     public ClienteServiceImpl(ClienteRepository repo) { this.repo = repo; }
@@ -31,8 +35,9 @@ public class ClienteServiceImpl implements ClienteService {
 
     @Override
     public Cliente obtenerClientePorId(Long id) {
-        return repo.findById(id).orElse(null);
+        return clienteRepo.findById(id).orElse(null);
     }
+
 
     @Override
     public List<Cliente> obtenerClientesPorVeterinario(Long idVet) {
@@ -96,5 +101,17 @@ public class ClienteServiceImpl implements ClienteService {
 
         return repo.save(existente);
     }
+    @Override
+    public List<Mascota> obtenerMascotasPorClienteId(Long clienteId) {
+    Cliente cliente = repo.findById(clienteId).orElse(null);
+    if (cliente != null) {
+        return cliente.getMascotas();
+    }
+    return List.of();
+    }
+
+
+
+    
 
 }

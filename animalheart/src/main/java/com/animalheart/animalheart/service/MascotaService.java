@@ -18,5 +18,6 @@ public interface MascotaService {
                           String raza,
                           String enfermedad,
                           String fotoURL);
+    List<Mascota> obtenerMascotasPorClienteId(Long clienteId);  // Cambiar "Clienteld" por "ClienteId"
 
 }

@@ -1,12 +1,15 @@
 package com.animalheart.animalheart.controller;
 
 import com.animalheart.animalheart.model.Cliente;
+import com.animalheart.animalheart.model.Mascota;
 import com.animalheart.animalheart.model.Veterinario;
 import com.animalheart.animalheart.repository.ClienteRepository;
 import com.animalheart.animalheart.service.ClienteService;
 import com.animalheart.animalheart.service.VeterinarioService;
+import com.animalheart.animalheart.service.MascotaService;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,29 +30,60 @@ public class ClienteController {
     VeterinarioService veterinarioService;
 
     private static final String VET_AUTH = "VET_AUTH";
+    private static final String CLIENTE_AUTH = "CLIENTE_AUTH";
 
     @Autowired
     ClienteRepository clienteRepo;
 
+    @Autowired
+    MascotaService mascotaService;
+    
+
     @GetMapping("/login-cliente")
     public String mostrarFormularioLogin() {
-        return "login-cliente"; 
+        return "login-cliente"; // Esto debe devolver el nombre exacto del template
     }
-    @PostMapping("/login-cliente")
-    public String procesarLogin(@RequestParam("correo") String correo, Model model) {
-        Cliente clienteEncontrado = clienteRepo.findAll()
-                .stream()
-                .filter(c -> c.getCorreo().equalsIgnoreCase(correo))
-                .findFirst()
-                .orElse(null);
+   @PostMapping("/login-cliente")
+public String procesarLogin(@RequestParam("correo") String correo, HttpSession session, Model model) {
+    Cliente clienteEncontrado = clienteRepo.findAll()
+            .stream()
+            .filter(c -> c.getCorreo().equalsIgnoreCase(correo))
+            .findFirst()
+            .orElse(null);
 
-        if (clienteEncontrado == null) {
-            model.addAttribute("error", "Correo no registrado. Intenta nuevamente.");
-            return "login-cliente";
+    if (clienteEncontrado == null) {
+        model.addAttribute("error", "Correo no registrado. Intenta nuevamente.");
+        return "login-cliente";
+    }
+    
+    session.setAttribute("CLIENTE_AUTH", clienteEncontrado);
+    
+    return "redirect:/clientes/dashboard"; // Redirigir correctamente
+}
+    @GetMapping("/dashboard")
+    public String mostrarDashboardCliente(Model model, HttpSession session) {
+        Cliente clienteEnSesion = (Cliente) session.getAttribute("CLIENTE_AUTH");
+
+        if (clienteEnSesion == null) {
+            return "redirect:/clientes/login-cliente?error=Necesita iniciar sesión";
         }
 
-        model.addAttribute("cliente", clienteEncontrado);
-        return "dashboard-cliente"; 
+        // Refrescamos el cliente desde la BD
+        Cliente clienteActualizado = clienteService.obtenerClientePorId(clienteEnSesion.getId());
+
+        List<Mascota> mascotas = mascotaService.obtenerMascotasPorClienteId(clienteActualizado.getId());
+
+        model.addAttribute("mascotas", mascotas);
+        model.addAttribute("cliente", clienteActualizado);
+
+        return "dashboard-cliente";
+    }
+
+    @GetMapping("/logout")
+    public String logoutCliente(HttpSession session) {
+        session.removeAttribute(CLIENTE_AUTH);
+        session.invalidate();
+        return "redirect:/clientes/login-cliente";
     }
 
     @GetMapping("/nuevo")
@@ -63,6 +97,25 @@ public class ClienteController {
         model.addAttribute("veterinario", veterinario);
         return "aniadir-duenio"; 
     }
+    @GetMapping("/mascotas/{id}")
+    public String verDetalleMascotaCliente(@PathVariable Long id, Model model, HttpSession session) {
+        Cliente cliente = (Cliente) session.getAttribute("CLIENTE_AUTH");
+        if (cliente == null) {
+            return "redirect:/clientes/login-cliente";
+        }
+
+        Mascota mascota = mascotaService.obtenerMascotaPorId(id);
+        
+        if (mascota == null || mascota.getCliente() == null || 
+            !mascota.getCliente().getId().equals(cliente.getId())) {
+            return "redirect:/clientes/dashboard";
+        }
+
+        model.addAttribute("mascota", mascota);
+        model.addAttribute("cliente", cliente);
+        return "detalle-mascota-cliente";
+    }
+
 
    @PostMapping("/nuevo")
    public String procesarNuevoClienteModel(
@@ -151,5 +204,6 @@ public class ClienteController {
         ra.addFlashAttribute("success", "Cliente actualizado correctamente.");
         return "redirect:/clientes";
     }
+    
 
 }
