@@ -49,48 +49,47 @@
       </div>
     </div>
 
-    <!-- Lista de mascotas -->
-    <div th:if="${mascotas.empty}" class="empty-pets">
-      <i class="bi bi-inbox"></i>
-      <h3>No tienes mascotas registradas</h3>
-      <p>Ponte en contacto con tu veterinario para registrar a tus compañeros peludos</p>
-    </div>
+   <!-- Lista de mascotas -->
+<div th:if="${mascotas.empty}" class="empty-pets">
+  <i class="bi bi-inbox"></i>
+  <h3>No tienes mascotas registradas</h3>
+  <p>Ponte en contacto con tu veterinario para registrar a tus compañeros peludos</p>
+</div>
 
-    <div class="row" th:unless="${mascotas.empty}">
-      <div class="col-md-6 col-lg-4 mb-4" th:each="mascota : ${mascotas}">
-        <a th:href="@{'/clientes/mascotas/' + ${mascota.id}}" class="text-decoration-none text-dark">
-        <div class="pet-card">
-          <div class="text-center mb-3">
-            <img th:if="${mascota.fotoURL != null and !mascota.fotoURL.isEmpty()}" 
-                 th:src="${mascota.fotoURL}" 
-                 th:alt="${mascota.nombre}" 
-                 class="pet-avatar">
-            <img th:unless="${mascota.fotoURL != null and !mascota.fotoURL.isEmpty()}" 
-                 th:src="'https://api.dicebear.com/7.x/bottts/svg?seed=' + ${mascota.nombre}" 
-                 th:alt="${mascota.nombre}" 
-                 class="pet-avatar">
-          </div>
-          
-          <h3 class="pet-name" th:text="${mascota.nombre}"></h3>
-          <div class="pet-type" th:text="${mascota.tipo} + ' • ' + ${mascota.edad} + ' años'"></div>
-          
-          <div class="pet-info">
-            <strong>Raza:</strong> <span th:text="${mascota.raza}"></span>
-          </div>
-          
-          <div class="pet-info">
-            <strong>Peso:</strong> <span th:text="${mascota.peso}"></span> kg
-          </div>
-            <div class="pet-info">
-                <strong>Enfermedad:</strong> <span th:text="${mascota.enfermedad != null && !mascota.enfermedad.isEmpty() ? mascota.enfermedad : 'Ninguna'}"></span>
+<div class="row g-4" th:unless="${mascotas.empty}">
+  <div class="col-12 col-sm-6 col-lg-4" th:each="mascota : ${mascotas}">
+    <a th:href="@{'/clientes/mascotas/' + ${mascota.id}}" class="pet-card-link">
+      <div class="pet-card h-100">
+        <div class="text-center mb-3">
+          <img th:if="${mascota.fotoURL != null and !mascota.fotoURL.isEmpty()}"
+               th:src="${mascota.fotoURL}" th:alt="${mascota.nombre}" class="pet-avatar">
+          <img th:unless="${mascota.fotoURL != null and !mascota.fotoURL.isEmpty()}"
+               th:src="'https://api.dicebear.com/7.x/bottts/svg?seed=' + ${mascota.nombre}"
+               th:alt="${mascota.nombre}" class="pet-avatar">
         </div>
-        </a>
-      </div>
-    </div>
-  </main>
+
+         <div class="pet-card-body">
+        <h3 class="pet-name" th:text="${mascota.nombre}"></h3>
+        <div class="pet-type" th:text="${mascota.tipo} + ' • ' + ${mascota.edad} + ' años'"></div>
+
+        <div class="pet-info">
+          <strong>Raza:</strong> <span th:text="${mascota.raza}"></span>
+        </div>
+        <div class="pet-info">
+          <strong>Peso:</strong> <span th:text="${mascota.peso}"></span> kg
+        </div>
+        <div class="pet-info">
+          <strong>Enfermedad:</strong>
+          <span th:text="${mascota.enfermedad != null && !mascota.enfermedad.isEmpty() ? mascota.enfermedad : 'Ninguna'}"></span>
+        </div>
+        </div>
+      </div> 
+    </a>
+  </div>
+</div>
 
   <!-- Footer -->
-  <footer class="client-toolbar text-center mt-5">
+  <footer class="client-toolbar text-center mt-5 client-footer">
     <div class="client-wrap">
       <p class="mb-0 text-white"><i class="bi bi-c-circle"></i> 2025 – Animalheart</p>
     </div>

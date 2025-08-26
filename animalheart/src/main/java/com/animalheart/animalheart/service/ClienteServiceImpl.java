@@ -12,6 +12,12 @@ import com.animalheart.animalheart.model.Veterinario;
 import com.animalheart.animalheart.repository.ClienteRepository;
 
 import org.springframework.transaction.annotation.Transactional;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+
+import com.animalheart.animalheart.repository.MascotaRepository;
+import com.animalheart.animalheart.repository.TratamientoRepository;
+
 
 @Service
 public class ClienteServiceImpl implements ClienteService {
@@ -20,6 +26,13 @@ public class ClienteServiceImpl implements ClienteService {
     private VeterinarioService veterinarioService;
     @Autowired
     private ClienteRepository clienteRepo;
+    @PersistenceContext
+    private EntityManager em;
+    @Autowired
+    private MascotaRepository mascotaRepository;
+    @Autowired
+    private TratamientoRepository tratamientoRepository;
+
 
 
     private final ClienteRepository repo;
@@ -80,10 +93,21 @@ public class ClienteServiceImpl implements ClienteService {
     }
     
     @Override
-    @org.springframework.transaction.annotation.Transactional
+    @Transactional
     public void eliminarClienteHard(Long id) {
-        repo.deleteById(id);
+    if (id == null || !repo.existsById(id)) return;
+
+    tratamientoRepository.deleteByClienteId(id);
+
+    mascotaRepository.deleteByClienteId(id);
+
+    em.createNativeQuery("DELETE FROM VETERINARIO_CLIENTE WHERE CLIENTE_ID = :id")
+      .setParameter("id", id)
+      .executeUpdate();
+
+    repo.deleteById(id);
     }
+
 
     @Override
     @org.springframework.transaction.annotation.Transactional
@@ -109,9 +133,5 @@ public class ClienteServiceImpl implements ClienteService {
     }
     return List.of();
     }
-
-
-
-    
 
 }

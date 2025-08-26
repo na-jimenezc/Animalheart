@@ -817,3 +817,11 @@ Caused by: org.h2.mvstore.MVStoreException: The file is locked: C:/Users/delux/D
 	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:81)
 	at org.h2.mvstore.MVStore.<init>(MVStore.java:286)
 	... 54 more
+2025-08-26 05:41:11.915320-05:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "SELECT * FROM CLIENTE MASCOTA [*]MASCOTA"
+Syntax error in SQL statement "SELECT * FROM CLIENTE MASCOTA [*]MASCOTA"; SQL statement:
+SELECT * FROM CLIENTE MASCOTA MASCOTA [42000-232]
+2025-08-26 08:34:08.727656-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "TRATAMIENTO_MEDICAMENTO" no encontrada
+Table "TRATAMIENTO_MEDICAMENTO" not found; SQL statement:
+DELETE FROM TRATAMIENTO_MEDICAMENTO WHERE TRATAMIENTO_ID IN (   SELECT T.ID FROM TRATAMIENTO T   WHERE T.MASCOTA_ID IN (SELECT M.ID FROM MASCOTA M WHERE M.CLIENTE_ID = ?) ) [42102-232]

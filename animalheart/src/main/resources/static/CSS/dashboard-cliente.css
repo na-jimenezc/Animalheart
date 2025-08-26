@@ -23,7 +23,7 @@ a{color:inherit;text-decoration:none}
 /* ===================== CONTENEDOR ANCHO ===================== */
 .client-wrap{ max-width:1200px; margin:0 auto; padding:0 16px; }
 
-/* ===================== TOOLBAR (botones superiores) ===================== */
+/* ===================== TOOLBAR  ===================== */
 .client-toolbar{ 
   background: var(--rose-600); 
   border-bottom: 1px solid rgba(0,0,0,.05); 
@@ -56,7 +56,7 @@ a{color:inherit;text-decoration:none}
   margin-right: 15px;
 }
 
-/* ===================== HERO (overlay rosado) ===================== */
+/* ===================== HERO ===================== */
 .client-hero{
   position:relative;
   background: url("https://images.unsplash.com/photo-1543852786-1cf6624b9987?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80") center/cover no-repeat;
@@ -152,6 +152,44 @@ a{color:inherit;text-decoration:none}
   font-size: 4rem;
   color: #ccc;
   margin-bottom: 20px;
+}
+ 
+
+/* ===================== FOOTER ===================== */
+.client-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--rose-600);
+  padding: 15px 0;
+
+ }
+ 
+/* ===================== DISTRIBUCION TARJETAS ===================== */
+.pet-card-link { display: block; }
+
+.pet-card{
+  background: white;
+  border-radius: 20px;
+  padding: 25px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  transition: transform .3s ease, box-shadow .3s ease;
+  overflow: hidden;        
+  height: 100%;              
+}
+
+.pet-name, .pet-type, .pet-info {
+  word-wrap: break-word;
+  overflow-wrap: anywhere;
+}
+
+.row.g-4 { --bs-gutter-x: 1.5rem; --bs-gutter-y: 1.5rem; }
+
+.pets-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
 }
 
 /* ===================== LAYOUT RESPONSIVE ===================== */

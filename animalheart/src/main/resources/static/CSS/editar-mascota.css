@@ -169,3 +169,81 @@ form.card .mt-4{
 @media (prefers-reduced-motion: reduce){
   *{transition-duration:.01ms !important; animation-duration:.01ms !important;}
 }
+
+/* ====== Acciones del formulario ====== */
+.form-actions{
+  display:flex !important;
+  justify-content:center;
+  align-items:flex-start;
+  gap:1.2rem !important;
+  margin-top:.5rem;
+}
+
+/* Contenedor del FAB + etiqueta */
+.action-primary{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:.45rem;
+  min-width:84px; /* evita saltos en móvil */
+}
+
+/* FAB rosado con brillo suave (reemplaza el .btn.btn-primary circular anterior) */
+.btn-fab{
+  --size:72px;
+  width:var(--size);
+  height:var(--size);
+  border:0;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  color:#701a2b;
+  background:
+    radial-gradient(60% 70% at 40% 30%, #ffe6eb 0 60%, transparent 61%),
+    radial-gradient(75% 85% at 60% 70%, #f8c1cc 0 70%, transparent 71%),
+    linear-gradient(180deg, #f7b9c5 0%, #ef9cb0 100%);
+  box-shadow:
+    0 12px 24px rgba(240,169,182,.40),
+    inset 0 -8px 12px rgba(0,0,0,.08),
+    inset 0  2px  6px rgba(255,255,255,.45);
+  transition: transform .12s ease, box-shadow .2s ease, filter .2s ease;
+}
+.btn-fab i{ font-size:30px; line-height:1; }
+.btn-fab:hover{ transform:translateY(-2px); filter:saturate(1.05); }
+.btn-fab:active{
+  transform:translateY(0);
+  box-shadow:
+    0 8px 16px rgba(240,169,182,.35),
+    inset 0 -3px 8px rgba(0,0,0,.10),
+    inset 0  1px  4px rgba(255,255,255,.5);
+}
+
+/* Etiqueta bajo el FAB */
+.btn-caption{
+  font-weight:800;
+  color:#7a2236;
+  text-shadow:0 1px 0 rgba(255,255,255,.6);
+  letter-spacing:.2px;
+}
+
+/* Botón cancelar coherente con tu paleta */
+.btn.btn-outline-secondary{
+  border:2px solid var(--navy-800);
+  color:var(--navy-800);
+  border-radius:999px;
+  font-weight:700;
+  padding:.62rem 1.15rem;
+  background:#fff;
+  transition: background .15s ease, color .15s ease, transform .12s ease;
+}
+.btn.btn-outline-secondary:hover{
+  background:var(--navy-800); color:#fff; transform:translateY(-1px);
+}
+.btn.btn-outline-secondary:active{ transform:translateY(0); }
+
+/* Accesible: foco visible */
+.btn-fab:focus-visible,
+.btn.btn-outline-secondary:focus-visible{
+  outline:4px solid rgba(240,169,182,.45);
+  outline-offset:3px;
+}

@@ -6,16 +6,20 @@ import com.animalheart.animalheart.model.Veterinario;
 import com.animalheart.animalheart.repository.ClienteRepository;
 import com.animalheart.animalheart.service.ClienteService;
 import com.animalheart.animalheart.service.VeterinarioService;
+
+import io.micrometer.common.util.StringUtils;
+
 import com.animalheart.animalheart.service.MascotaService;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.transaction.annotation.Transactional;
 import jakarta.servlet.http.HttpSession;
 
@@ -175,15 +179,20 @@ public String procesarLogin(@RequestParam("correo") String correo, HttpSession s
     }
 
     @org.springframework.web.bind.annotation.PostMapping("/{id}/eliminar-hard")
-    public String eliminarClienteHard(@org.springframework.web.bind.annotation.PathVariable Long id,
-                                  org.springframework.web.servlet.mvc.support.RedirectAttributes ra) {
-    try {
-        clienteService.eliminarClienteHard(id);
-        ra.addFlashAttribute("success", "Cliente eliminado permanentemente.");
-    } catch (org.springframework.dao.DataIntegrityViolationException ex) {
-        ra.addFlashAttribute("error", "No se puede eliminar: tiene datos relacionados.");
-    }
-    return "redirect:/clientes";
+    @Transactional
+    public String eliminarClienteHard(@PathVariable Long id,
+                                    @RequestParam(value = "cedula", required = false) String cedula, // opcional, se ignora
+                                    RedirectAttributes ra) {
+        try {
+            // 👈 Tu servicio espera Long, así que pasamos el id
+            clienteService.eliminarClienteHard(id);
+
+            ra.addFlashAttribute("success", "Cliente eliminado correctamente.");
+        } catch (Exception ex) {
+            ra.addFlashAttribute("error", "No se pudo eliminar al cliente: " + ex.getMessage());
+        }
+        // Redirección como ya la tenías
+        return "redirect:/mascotas";
     }
 
     @org.springframework.web.bind.annotation.GetMapping("/{id}/editar")
@@ -205,5 +214,9 @@ public String procesarLogin(@RequestParam("correo") String correo, HttpSession s
         return "redirect:/clientes";
     }
     
+    @GetMapping
+    public String clientesHome() {
+    return "redirect:/mascotas";
+    }
 
 }

@@ -1,9 +1,9 @@
 /* ======= BASE ======= */
 :root {
-  --teal-700: #d5536c;
   --teal-600: #e86c83;
   --teal-200: #ffd6df;
   --pink-300: #e86c83;
+  --rose-600: #d5536c;
   --bg: #f7f7f8;
   --surface: #ffffff;
   --text: #1b1e22;
@@ -27,7 +27,7 @@ img { max-width: 100%; display: block; }
 
 /* ======= BARRA CLIENTE ======= */
 .client-toolbar {
-  background-color: var(--teal-700);
+  background-color: var(--rose-600);
   color: #fff;
   padding: 1rem 0;
 }
@@ -101,7 +101,7 @@ img { max-width: 100%; display: block; }
   box-shadow: var(--shadow);
 }
 .pet-chip i {
-  color: var(--teal-700);
+  color: var(--rose-600);
 }
 
 /* ======= INFO CLIENTE ======= */
@@ -177,11 +177,17 @@ img { max-width: 100%; display: block; }
   text-align: center;
   padding: 1rem 0;
   color: #fff;
-  position: absolute;
-  bottom: 0;
-  left: 0;
   width: 100%;
 }
+.client-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--rose-600);
+  padding: 15px 0;
+
+ }
 
 /* ======= RESPONSIVE ======= */
 @media (max-width: 991.98px) {

@@ -43,14 +43,20 @@
         </div>
       </div>
 
-      <div class="mt-4 d-flex gap-2">
-        <button type="submit" class="btn btn-primary">
-          <i class="bi bi-check2 me-1"></i> Guardar cambios
+      <div class="mt-4 form-actions">
+      <!-- Botón principal como “FAB” con etiqueta debajo -->
+      <div class="action-primary">
+        <button type="submit" class="btn btn-fab" aria-label="Guardar cambios">
+          <i class="bi bi-check2"></i>
         </button>
-        <a href="/mascotas" class="btn btn-outline-secondary">
-          <i class="bi bi-arrow-left"></i> Cancelar
-        </a>
+        <span class="btn-caption">Guardar cambios</span>
       </div>
+
+      <!-- Botón cancelar en pastilla -->
+      <a href="/mascotas" class="btn btn-outline-secondary">
+        <i class="bi bi-arrow-left"></i> Cancelar
+      </a>
+    </div>
     </form>
   </main>
 
