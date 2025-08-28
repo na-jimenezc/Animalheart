@@ -40,7 +40,7 @@ public class MascotaController {
         veterinario = veterinarioService.obtenerVeterinarioPorId(veterinario.getId());
         session.setAttribute(VET_AUTH, veterinario); 
 
-        List<Mascota> mascotas = mascotaService.obtenerMascotasPorVeterinario(veterinario.getId());
+        List<Mascota> mascotas = mascotaService.obtenerTodasMascotas();
         model.addAttribute("mascotas", mascotas);
         model.addAttribute("veterinario", veterinario);
         
