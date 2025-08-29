@@ -65,6 +65,20 @@
               <i class="bi bi-clipboard-heart"></i>
               <span><strong>Peso</strong> <span th:text="${mascota.peso}">25.4</span> kg</span>
             </div>
+
+            <div class="pet-chip">
+              <i class="bi bi-clipboard2-pulse"></i>
+              <span><strong>Estado</strong> 
+                <span th:text="${mascota.estado == 'Enfermo' ? 'Enfermo' : 'Sano'}"></span>
+              </span>
+            </div>
+
+            <div class="pet-chip">
+              <i class="bi bi-toggle-on"></i>
+              <span><strong>Activo</strong> 
+                <span th:text="${mascota.activo ? 'Activo' : 'Inactivo'}"></span>
+              </span>
+            </div>
           </div>
 
           <!-- Información del Dueño -->

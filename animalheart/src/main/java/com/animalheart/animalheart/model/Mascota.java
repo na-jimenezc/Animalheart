@@ -25,6 +25,8 @@ public class Mascota {
     private String enfermedad;
     private Double peso;
     private String fotoURL;
+    private String estado; 
+    private Boolean activo;
 
     //UNA MASCOTA PERTENECE A UN CLIENTE
     @ManyToOne(fetch = FetchType.LAZY)
@@ -38,7 +40,7 @@ public class Mascota {
     public Mascota() {}
 
      public Mascota(Long id, String nombre, String raza, Integer edad,
-                   String tipo, String enfermedad, Double peso, String fotoURL) {
+                   String tipo, String enfermedad, Double peso, String fotoURL, String estado, Boolean activo) {
         this.id = id;
         this.nombre = nombre;
         this.raza = raza;
@@ -47,10 +49,12 @@ public class Mascota {
         this.enfermedad = enfermedad;
         this.peso = peso;
         this.fotoURL = fotoURL;
+        this.estado = estado;
+        this.activo = activo;
     }
 
     public Mascota(String nombre, String raza, Integer edad,
-                   String tipo, String enfermedad, Double peso, String fotoURL) {
+                   String tipo, String enfermedad, Double peso, String fotoURL, String estado, Boolean activo) {
         this.nombre = nombre;
         this.raza = raza;
         this.edad = edad;
@@ -58,6 +62,8 @@ public class Mascota {
         this.enfermedad = enfermedad;
         this.peso = peso;
         this.fotoURL = fotoURL;
+        this.estado = estado;
+        this.activo = activo;
     }
 
      public Long getId() {
@@ -139,4 +145,18 @@ public class Mascota {
     public void setTratamientos(List<Tratamiento> tratamientos) {
         this.tratamientos = tratamientos;
     }
+
+    public String getEstado() {
+        return estado;
+    }
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+    public Boolean getActivo() {
+        return activo;
+    }
+    public void setActivo(Boolean activo) {
+        this.activo = activo;
+    }
+
 }

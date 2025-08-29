@@ -19,5 +19,6 @@ public interface MascotaService {
                           String enfermedad,
                           String fotoURL);
     List<Mascota> obtenerMascotasPorClienteId(Long clienteId);  // Cambiar "Clienteld" por "ClienteId"
+    void desactivarMascota(Long id);
 
 }

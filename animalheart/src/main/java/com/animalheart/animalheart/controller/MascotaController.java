@@ -128,12 +128,21 @@ public class MascotaController {
         return "aniadir-mascota-dueno";
     }
 
-    @PostMapping("/{id}/eliminar-hard")
+    /*@PostMapping("/{id}/eliminar-hard")
     public String eliminarMascotaHard(@PathVariable Long id,
                                     RedirectAttributes ra,
                                     HttpSession session) {
         mascotaService.eliminarMascotaHard(id);
         ra.addFlashAttribute("success", "Mascota eliminada permanentemente.");
+        return "redirect:/mascotas";
+    }*/
+
+    @PostMapping("/{id}/desactivar")
+    public String desactivarMascota(@PathVariable Long id,
+                                    RedirectAttributes ra,
+                                    HttpSession session) {
+        mascotaService.desactivarMascota(id);
+        ra.addFlashAttribute("success", "Mascota desactivada permanentemente.");
         return "redirect:/mascotas";
     }
 

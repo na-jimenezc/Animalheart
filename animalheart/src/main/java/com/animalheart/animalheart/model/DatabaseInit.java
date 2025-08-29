@@ -73,19 +73,19 @@ public class DatabaseInit implements ApplicationRunner {
         veterinarioRepository.saveAll(Arrays.asList(vet1, vet2, vet3));
 
         //Mascotas y hacer asociaciones con clientes
-        Mascota mascota1 = new Mascota("Firulais", "Criollo", 3, "Perro", "Ninguna", 25.4, "/IMAGES/firulais.jpg");
+        Mascota mascota1 = new Mascota("Firulais", "Criollo", 3, "Perro", "Ninguna", 25.4, "/IMAGES/firulais.jpg", "Sano", true);
         mascota1.setCliente(cliente1);
         
-        Mascota mascota2 = new Mascota("Roberto", "Persa", 2, "Gato", "Ninguna", 4.8, "/IMAGES/roberto.jpeg");
+        Mascota mascota2 = new Mascota("Roberto", "Persa", 2, "Gato", "Ninguna", 4.8, "/IMAGES/roberto.jpeg", "Sano", true);
         mascota2.setCliente(cliente2);
         
-        Mascota mascota3 = new Mascota("Rocky", "Criollo", 5, "Perro", "Patita torcida", 30.2, "/IMAGES/rocky.jpeg");
+        Mascota mascota3 = new Mascota("Rocky", "Criollo", 5, "Perro", "Patita torcida", 30.2, "/IMAGES/rocky.jpeg", "Enfermo", false);
         mascota3.setCliente(cliente3);
         
-        Mascota mascota4 = new Mascota("Luna", "Siamés", 4, "Gato", "Problemas digestivos", 3.5, "/IMAGES/luna.jpeg");
+        Mascota mascota4 = new Mascota("Luna", "Siamés", 4, "Gato", "Problemas digestivos", 3.5, "/IMAGES/luna.jpeg", "Enfermo", true);
         mascota4.setCliente(cliente4);
         
-        Mascota mascota5 = new Mascota("Max", "Labrador", 2, "Perro", "Alergias", 28.0, "/IMAGES/max.jpeg");
+        Mascota mascota5 = new Mascota("Max", "Labrador", 2, "Perro", "Alergias", 28.0, "/IMAGES/max.jpeg", "Sano", false);
         mascota5.setCliente(cliente5);
         
         mascotaRepository.saveAll(Arrays.asList(mascota1, mascota2, mascota3, mascota4, mascota5));

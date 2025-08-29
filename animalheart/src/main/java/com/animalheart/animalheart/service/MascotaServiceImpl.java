@@ -80,11 +80,19 @@ public class MascotaServiceImpl implements MascotaService {
         return mascotaRepository.save(existente);
     }
     @Override
-public List<Mascota> obtenerMascotasPorClienteId(Long clienteId) {
-    List<Mascota> mascotas = mascotaRepository.findByClienteId(clienteId);
-    System.out.println("Mascotas encontradas: " + mascotas.size());
-    return mascotas;
-}
+    public List<Mascota> obtenerMascotasPorClienteId(Long clienteId) {
+        List<Mascota> mascotas = mascotaRepository.findByClienteId(clienteId);
+        System.out.println("Mascotas encontradas: " + mascotas.size());
+        return mascotas;
+    }
+
+    @Override
+    @Transactional
+    public void desactivarMascota(Long id) {
+        Mascota mascota = mascotaRepository.findById(id).orElseThrow();
+        mascota.setActivo(false);
+        mascotaRepository.save(mascota);
+    }
 
 
 }
