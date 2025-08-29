@@ -217,3 +217,35 @@ img { max-width: 100%; display: block; }
     flex-direction: column;
   }
 }
+
+/* ===== Topbar (igual a la de aniadir-duenio) ===== */
+.topbar{
+  background:#fff;
+  box-shadow:0 2px 10px rgba(0,0,0,.08);
+}
+.topbar__inner{
+  max-width:1200px; margin:0 auto;
+  display:flex; justify-content:space-between; align-items:center;
+  padding:1rem;
+}
+.topbar__left, .topbar__right{ display:flex; align-items:center; gap:1rem; }
+
+/* Botón píldora "Regresar" */
+.link-pill{
+  display:inline-flex; align-items:center; gap:.35rem;
+  padding:.5rem .9rem; border-radius:999px;
+  font-weight:600; text-decoration:none;
+  color:#fff; background:linear-gradient(135deg,#4e73df,#224abe);
+  box-shadow:0 6px 18px rgba(34,74,190,.28);
+  transition:transform .18s ease, box-shadow .18s ease;
+}
+.link-pill:hover{ transform:translateY(-1px); box-shadow:0 8px 22px rgba(34,74,190,.35); }
+
+/* "Cerrar Sesión" */
+.link-danger{ color:#e74a3b; font-weight:700; text-decoration:none; }
+.link-danger:hover{ text-decoration:underline; }
+
+@media (max-width: 576px){
+  .topbar__inner{ padding:.75rem; }
+  .link-pill{ padding:.45rem .8rem; }
+}

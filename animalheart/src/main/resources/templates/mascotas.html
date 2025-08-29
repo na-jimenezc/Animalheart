@@ -13,7 +13,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
 
   <!-- Estilos específicos de la vista Mascotas -->
-  <link th:href="@{/CSS/mascotas.css}" rel="stylesheet">
+  <link th:href="@{/css/mascotas.css}" rel="stylesheet">
 
 </head>
 
@@ -24,6 +24,9 @@
       <div class="d-flex align-items-center gap-2">
         <a th:href="@{/}" class="vmk-btn vmk-btn--ghost">
           <i class="bi bi-arrow-left me-1"></i> Regresar
+        </a>
+        <a th:href="@{/clientes/nuevo}" class="vmk-btn cta-dueno">
+          <i class="bi bi-person-plus me-1"></i> Agregar dueño
         </a>
         <a th:href="@{/mascotas/nueva}" class="vmk-btn vmk-btn--outline">
           <i class="bi bi-plus-circle me-1"></i> Registrar Mascota
@@ -179,6 +182,6 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <!-- Script específico de la vista Mascotas -->
-  <script th:src="@{/JS/mascotas.js}"></script>
+  <script th:src="@{/js/mascotas.js}"></script>
 </body>
 </html>

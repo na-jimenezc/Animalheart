@@ -7,13 +7,10 @@ import com.animalheart.animalheart.repository.ClienteRepository;
 import com.animalheart.animalheart.service.ClienteService;
 import com.animalheart.animalheart.service.VeterinarioService;
 
-import io.micrometer.common.util.StringUtils;
-
 import com.animalheart.animalheart.service.MascotaService;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

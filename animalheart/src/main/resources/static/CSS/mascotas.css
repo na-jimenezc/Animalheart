@@ -77,55 +77,112 @@ body.vet-mockup>main{flex:1}
 .vmk-footer{background:var(--pink-300);padding:16px 0;color:#fff}
 
 /* === Acciones en la celda: separación vertical y estética consistente === */
-.vmk-table td.text-center{
-  /* apila los controles y céntralos */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/* espacio entre cada control (link o form) */
+.vmk-table td.text-center{ display: table-cell !important; text-align: center; vertical-align: middle; }
 .vmk-table td.text-center > a.vmk-pill,
-.vmk-table td.text-center > form{
-  margin-block: 6px;           /* 6px arriba y abajo */
-}
-
-/* quita márgenes por defecto del form para que el gap funcione perfecto */
-.vmk-table td.text-center > form{ margin: 0; }
-
-/* botón Eliminar con look definido y mismo ancho visual que las píldoras */
-.vmk-table td.text-center .btn-outline-danger{
-  border-width: 2px;
-  border-radius: 12px;          /* esquinas redondeadas como en la imagen */
-  padding: 6px 14px;
-  font-weight: 700;
-  line-height: 1;
-  background: #fff;
-  color: #d32f2f;
-  border-color: #d32f2f;
-}
-
-/* --- FIX: la celda "Información" debe seguir siendo table-cell --- */
-.vmk-table td.text-center{
-  display: table-cell !important;   /* vuelve al layout de tabla */
-  text-align: center;               /* mantiene centrado el contenido */
-  vertical-align: middle;
-}
-
-/* Apilar y espaciar los controles sin flex en el <td> */
-.vmk-table td.text-center > a.vmk-pill,
-.vmk-table td.text-center > form{
-  display: block;                   /* cada control ocupa su propia línea */
-  margin: 6px auto;                 /* separación vertical + centrado */
-}
-
-/* por si algún form trae márgenes del navegador */
+.vmk-table td.text-center > form{ display: block; margin: 6px auto; }
 .vmk-table td.text-center > form{ margin: 6px auto; }
-
-/* Asegurar la línea divisoria uniforme en todas las celdas */
-.vmk-table tbody td{
-  border-bottom: 4px solid #0e3d5b; /* mismo color que ya usabas */
+.vmk-table td.text-center .btn-outline-danger{
+  border-width: 2px; border-radius: 12px; padding: 6px 14px;
+  font-weight: 700; line-height: 1; background: #fff;
+  color: #d32f2f; border-color: #d32f2f;
 }
-.vmk-table tbody tr:last-child td{
-  border-bottom: none;
+.vmk-table tbody td{ border-bottom: 4px solid #0e3d5b; }
+.vmk-table tbody tr:last-child td{ border-bottom: none; }
+
+/* ====== Highlight del botón "Registrar Mascota" ====== */
+.cta-registrar {
+  position: relative; isolation: isolate;
+  background: linear-gradient(135deg,#2fd4d2,#0f5d86);
+  color: #fff !important;
+  box-shadow: 0 10px 24px rgba(15,93,134,.35);
+  border-radius: 999px;
+  transform: translateZ(0);
+}
+.cta-registrar::before, .cta-registrar::after{
+  content:""; position:absolute; inset:-6px; border-radius:inherit; z-index:-1;
+}
+.cta-registrar::before{
+  background: radial-gradient(60% 60% at 50% 50%, rgba(47,212,210,.35), transparent 60%);
+  filter: blur(10px); opacity:.9;
+}
+.cta-registrar::after{
+  border: 2px solid rgba(47,212,210,.55);
+  animation: ring 1.8s ease-out infinite;
+}
+@keyframes ring{
+  from{transform:scale(.95); opacity:.9}
+  to{transform:scale(1.15); opacity:0}
+}
+
+/* Coach-mark */
+.coachmark {
+  position: absolute; top: 110%; left: 0; translate: 0 8px;
+  background:#0f5d86; color:#fff; border-radius:12px; padding:.6rem .8rem;
+  font-weight:600; font-size:.9rem; box-shadow:0 10px 24px rgba(0,0,0,.18);
+  white-space:nowrap;
+}
+.coachmark::after{
+  content:""; position:absolute; top:-8px; left:18px;
+  border:8px solid transparent; border-bottom-color:#0f5d86;
+}
+.coachmark [data-close]{
+  margin-left:.6rem; background:transparent; border:0; color:#fff;
+  font-size:1rem; cursor:pointer; opacity:.85;
+}
+
+/* FAB móvil */
+.fab-registrar{
+  position: fixed; right: 18px; bottom: 18px; z-index: 50;
+  display: inline-flex; align-items:center; justify-content:center;
+  width:58px; height:58px; border-radius:999px;
+  background: linear-gradient(135deg,#2fd4d2,#0f5d86); color:#fff;
+  box-shadow: 0 12px 28px rgba(15,93,134,.45);
+  text-decoration:none; font-size:1.35rem;
+}
+.fab-registrar:focus-visible{ outline:3px solid #2fd4d2; outline-offset:3px; }
+@media (min-width: 992px){ .fab-registrar{ display:none; } }
+@media (prefers-reduced-motion: reduce){ .cta-registrar::after{ animation: none; } }
+
+/* ===== Botón "Agregar dueño" (junto a Registrar Mascota) ===== */
+.cta-dueno{
+  position: relative; isolation: isolate;
+  background: linear-gradient(135deg,#34d399,#0ea5a4); /* verdoso para distinguir */
+  color:#fff !important;
+  box-shadow: 0 10px 24px rgba(14,165,164,.35);
+  border-radius: 999px;
+  transform: translateZ(0);
+}
+.cta-dueno::before, .cta-dueno::after{
+  content:""; position:absolute; inset:-6px; border-radius:inherit; z-index:-1;
+}
+.cta-dueno::before{
+  background: radial-gradient(60% 60% at 50% 50%, rgba(52,211,153,.35), transparent 60%);
+  filter: blur(10px); opacity:.9;
+}
+.cta-dueno::after{
+  border: 2px solid rgba(52,211,153,.55);
+  animation: ring-dueno 1.8s ease-out infinite;
+}
+@keyframes ring-dueno{
+  from{ transform:scale(.95); opacity:.9 }
+  to{ transform:scale(1.15); opacity:0 }
+}
+@media (prefers-reduced-motion: reduce){
+  .cta-dueno::after{ animation: none; }
+}
+
+/* --- Fix contraste en "Registrar Mascota" --- */
+
+/* Evita que .vmk-btn--outline lo pinte de blanco al hacer hover */
+.vmk-btn--outline.cta-registrar,
+.vmk-btn--outline.cta-registrar:hover,
+.vmk-btn--ghost.cta-registrar:hover{
+  background: linear-gradient(135deg,#2fd4d2,#0f5d86);
+  color:#fff !important;
+  border-color: transparent;
+}
+
+/* Pequeño realce del texto sobre el glow */
+.cta-registrar{
+  text-shadow: 0 1px 0 rgba(0,0,0,.25);
 }
