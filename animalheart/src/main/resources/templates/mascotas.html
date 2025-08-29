@@ -159,7 +159,43 @@
       </div>
     </div>
 
-    <!-- Estadísticas -->
+    <!--Para ajustar la paginación-->
+    <div th:if="${totalPages > 1}" class="mt-4 d-flex justify-content-center">
+      <nav>
+        <ul class="pagination">
+
+          <!-- Botón anterior -->
+          <li class="page-item" th:classappend="${currentPage == 0} ? 'disabled'">
+            <a class="page-link"
+               th:href="@{|/mascotas?page=${currentPage - 1}&size=${pageSize}|}">
+              Anterior
+            </a>
+          </li>
+
+          <!-- Números de página -->
+          <li class="page-item"
+              th:each="i : ${#numbers.sequence(0, totalPages-1)}"
+              th:classappend="${i == currentPage} ? 'active'">
+            <a class="page-link"
+               th:href="@{|/mascotas?page=${i}&size=${pageSize}|}"
+               th:text="${i + 1}">
+              1
+            </a>
+          </li>
+
+          <!-- Botón siguiente -->
+          <li class="page-item" th:classappend="${currentPage == totalPages-1} ? 'disabled'">
+            <a class="page-link"
+               th:href="@{|/mascotas?page=${currentPage + 1}&size=${pageSize}|}">
+              Siguiente
+            </a>
+          </li>
+
+        </ul>
+      </nav>
+    </div>
+
+    <!-- Estadísticas : CONSIDERÉ QUITARLA PORQUE NO APORTA MUCHA INFORMACIÓN, SOLO OCUPA ESPACIO
     <div th:if="${mascotas != null and not mascotas.empty}" class="mt-4">
       <div class="row">
         <div class="col-md-4">
@@ -188,7 +224,7 @@
         </div>
       </div>
     </div>
-  </main>
+  </main>-->
 
   <!-- ======= FOOTER ======= -->
   <footer class="vmk-footer">

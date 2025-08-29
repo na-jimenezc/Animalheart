@@ -65,7 +65,6 @@ public class DatabaseInit implements ApplicationRunner {
 
         clienteRepository.saveAll(Arrays.asList(cliente1, cliente2, cliente3, cliente4, cliente5));
 
-
         //Mascotas y hacer asociaciones con clientes
         Mascota mascota1 = new Mascota("Firulais", "Criollo", 3, "Perro", "Ninguna", 25.4, "/IMAGES/firulais.jpg", "Sano", true);
         mascota1.setCliente(cliente1);
@@ -135,7 +134,9 @@ public class DatabaseInit implements ApplicationRunner {
             "Carlos", "Lucía", "Mateo", "Ana", "Diego", "Laura", "Andrés", "Paula", "Felipe", "Valentina",
             "Sebastián", "Camila", "Juan", "Daniela", "Santiago", "Isabella", "Tomás", "Gabriela",
             "Martín", "Mariana", "Samuel", "Sara", "David", "Juana", "Nicolás", "Antonia",
-            "Emilio", "Adriana", "Cristian", "Manuela", "Pablo", "Juliana", "Ángel", "Sofía"
+            "Emilio", "Adriana", "Cristian", "Manuela", "Pablo", "Juliana", "Ángel", "Sofía",
+            "Ricardo", "Elena", "Hugo", "Natalia", "Mauricio", "Clara", "Esteban", "Rosa",
+            "Alejandro", "Inés", "Fernando", "Victoria", "Eduardo", "Lorena"
         );
 
         List<String> apellidos = Arrays.asList(
@@ -147,7 +148,14 @@ public class DatabaseInit implements ApplicationRunner {
         List<String> nombresMascotas = Arrays.asList(
             "Firulais", "Luna", "Max", "Rocky", "Bella", "Simba", "Nala", "Coco", "Tommy", "Kira",
             "Toby", "Bruno", "Milo", "Daisy", "Lucky", "Bobby", "Sasha", "Rex", "Chispa", "Zeus",
-            "Pelusa", "Misha", "Galleta", "Toby", "Canela", "Oreo", "Bigotes", "Sol", "Estrella", "Milo"
+            "Pelusa", "Misha", "Galleta", "Canela", "Oreo", "Bigotes", "Sol", "Estrella", "Princesa", "Chiqui",
+            "Doki", "Rocco", "Apolo", "Thor", "Athena", "Chocolate", "Copito", "Manchas", "Duque", "Titán",
+            "Bolt", "Fiona", "Kiara", "Chiquita", "Maya", "Loki", "Hércules", "Juno", "Sombra", "Trueno",
+            "Perla", "Nube", "Tigresa", "Bandido", "Negrito", "Colita", "Luz", "Rayito", "Pecas", "Tiza",
+            "Bambi", "Canuto", "Gaspar", "Mota", "Canelita", "Miel", "Copérnico", "Pluto", "Lola", "Greta",
+            "Golfo", "Tana", "Chanel", "India", "Mapache", "Balto", "Arwen", "Sam", "Rambo", "Lila",
+            "Nina", "Brisa", "Sultán", "Greñas", "Cookie", "Peluchín", "Bandera", "Pirata", "Yaco", "Floki",
+            "Leia", "Nieve", "Rubí", "Osa", "Tango", "Cira", "Roco", "Beto", "Cielito", "Zafiro"
         );
 
         List<String> razasPerros = Arrays.asList(
@@ -195,8 +203,13 @@ public class DatabaseInit implements ApplicationRunner {
                 ? razasPerros.get(random.nextInt(razasPerros.size())) 
                 : razasGatos.get(random.nextInt(razasGatos.size()));
 
+            String fotoUrl = esPerro 
+                ? "/IMAGES/defaultPerro.jpg"
+                : "/IMAGES/defaultGato.png";
+
             String enfermedad = enfermedades.get(random.nextInt(enfermedades.size()));
-            Double peso = 2.0 + (30.0 * random.nextDouble()); //Se pone el peso entre 2 y 32 kg
+            Double peso = 2.0 + (30.0 * random.nextDouble());
+            peso = Math.round(peso * 10.0) / 10.0; //Se pone el peso entre 2 y 32 kg y se redondea a un decimal
             String estado = random.nextBoolean() ? "Sano" : "Enfermo";
             Boolean activo = random.nextBoolean();
 
@@ -208,7 +221,7 @@ public class DatabaseInit implements ApplicationRunner {
                 tipo,
                 enfermedad,
                 peso,
-                "/IMAGES/" + nombreMascota.toLowerCase() + ".jpg",
+                fotoUrl,
                 estado,
                 activo
             );

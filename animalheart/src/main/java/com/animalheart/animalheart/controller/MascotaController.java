@@ -6,11 +6,13 @@ import com.animalheart.animalheart.model.Veterinario;
 import com.animalheart.animalheart.service.MascotaService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import org.springframework.data.domain.Page;
 import jakarta.servlet.http.HttpSession;
 import java.util.List;
 import com.animalheart.animalheart.service.VeterinarioService;
@@ -30,20 +32,33 @@ public class MascotaController {
 
     private static final String VET_AUTH = "VET_AUTH";
 
+    /*Actualización para paginar a la cantidad de clientes y mascotas que tenemos*/
     @GetMapping
-    public String listarMascotas(Model model, HttpSession session) {
+    public String listarMascotas(
+            Model model,
+            HttpSession session,
+            @RequestParam(defaultValue = "0") int page,   //Esto es para la página actual
+            @RequestParam(defaultValue = "5") int size    //Esto es para la cantidad de elementos por página
+    ) {
         Veterinario veterinario = (Veterinario) session.getAttribute(VET_AUTH);
         if (veterinario == null) {
             return "redirect:/login-veterinario?error=Necesita iniciar sesión";
         }
-        
-        veterinario = veterinarioService.obtenerVeterinarioPorId(veterinario.getId());
-        session.setAttribute(VET_AUTH, veterinario); 
 
-        List<Mascota> mascotas = mascotaService.obtenerTodasMascotas();
-        model.addAttribute("mascotas", mascotas);
+        veterinario = veterinarioService.obtenerVeterinarioPorId(veterinario.getId());
+        session.setAttribute(VET_AUTH, veterinario);
+
+        /*Se actualizó el MascotaService para obtener las mascotas en forma de paginación */
+        Page<Mascota> pageMascotas = mascotaService.obtenerMascotasPaginadas(PageRequest.of(page, size));
+
+        model.addAttribute("mascotas", pageMascotas.getContent());
+        model.addAttribute("currentPage", pageMascotas.getNumber());
+        model.addAttribute("totalPages", pageMascotas.getTotalPages());
+        model.addAttribute("totalElements", pageMascotas.getTotalElements());
+        model.addAttribute("pageSize", size);
+
         model.addAttribute("veterinario", veterinario);
-        
+
         return "mascotas"; 
     }
 
@@ -123,7 +138,7 @@ public class MascotaController {
     private String mostrarFormularioConError(Model model, HttpSession session) {
         Veterinario veterinario = (Veterinario) session.getAttribute(VET_AUTH);
         List<Cliente> clientes = clienteService.obtenerTodos();
-        
+
         model.addAttribute("mascota", new Mascota());
         model.addAttribute("clientes", clientes);
         model.addAttribute("veterinario", veterinario);

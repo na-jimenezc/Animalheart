@@ -5,6 +5,8 @@ import com.animalheart.animalheart.repository.MascotaRepository;
 
 import jakarta.transaction.Transactional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -105,6 +107,11 @@ public class MascotaServiceImpl implements MascotaService {
         Mascota mascota = mascotaRepository.findById(id).orElseThrow();
         mascota.setActivo(false);
         mascotaRepository.save(mascota);
+    }
+
+    /*Para los temas de paginación */
+    public Page<Mascota> obtenerMascotasPaginadas(Pageable pageable) {
+        return mascotaRepository.findAll(pageable);
     }
 
 

@@ -3,6 +3,8 @@ package com.animalheart.animalheart.service;
 import java.util.List;
 
 import com.animalheart.animalheart.model.Mascota;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface MascotaService {
     List<Mascota> obtenerTodasMascotas();
@@ -21,5 +23,7 @@ public interface MascotaService {
     List<Mascota> obtenerMascotasPorClienteId(Long clienteId);  // Cambiar "Clienteld" por "ClienteId"
     void desactivarMascota(Long id);
     public Mascota registrarMascota(Mascota mascota);
+
+    public Page<Mascota> obtenerMascotasPaginadas(Pageable pageable);
 
 }
