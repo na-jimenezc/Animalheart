@@ -105,7 +105,7 @@ public class MascotaController {
             }
             
             mascota.setCliente(cliente);
-            mascotaService.guardarMascota(mascota);
+            mascotaService.registrarMascota(mascota);
 
             model.asMap().clear();
             

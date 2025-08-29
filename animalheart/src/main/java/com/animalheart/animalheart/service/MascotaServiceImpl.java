@@ -49,6 +49,23 @@ public class MascotaServiceImpl implements MascotaService {
     public Mascota guardarMascota(Mascota mascota) {
         return mascotaRepository.save(mascota);
     }
+
+    //Método alterno al save porque puede totear vainas si nos metemos con el otro
+    @Override
+    public Mascota registrarMascota(Mascota mascota) {
+        if (mascota.getEnfermedad() == null || 
+            mascota.getEnfermedad().trim().isEmpty() || 
+            mascota.getEnfermedad().equalsIgnoreCase("Ninguna")) {
+            
+            mascota.setEstado("Sano");
+        } else {
+            mascota.setEstado("Enfermo");
+        }
+
+        mascota.setActivo(true);
+
+        return mascotaRepository.save(mascota);
+    }
     
     @Override
     public void eliminarMascota(Long id) {
