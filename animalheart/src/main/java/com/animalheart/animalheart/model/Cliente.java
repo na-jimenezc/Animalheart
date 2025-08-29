@@ -7,7 +7,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.CascadeType;
 import java.util.List;
@@ -28,8 +27,6 @@ public class Cliente {
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Mascota> mascotas = new ArrayList<>();
 
-    @ManyToMany(mappedBy = "clientes", fetch = FetchType.LAZY)
-    private List<Veterinario> veterinarios = new ArrayList<>();
 
     public Cliente() {}
     public Cliente(String cedula, String nombre, String correo, String celular) {
@@ -93,14 +90,6 @@ public class Cliente {
 
         public void setMascotas(List<Mascota> mascotas) {
         this.mascotas = mascotas;
-        }
-
-        public List<Veterinario> getVeterinarios() {
-        return veterinarios;
-        }
-
-        public void setVeterinarios(List<Veterinario> veterinarios) {
-        this.veterinarios = veterinarios;
         }
 
 }

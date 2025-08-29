@@ -29,12 +29,8 @@ public class MascotaServiceImpl implements MascotaService {
         return mascotaRepository.findById(id).orElse(null);
     }
 
-    @Override
-    public List<Mascota> obtenerMascotasPorVeterinario(Long veterinarioId) {
-        return mascotaRepository.findByVeterinarioId(veterinarioId);
-    }
 
-    @Override
+    /*@Override YA NO ES NECESARIO VERIFICAR ESTE ACCESO
     public boolean verificarAccesoVeterinario(Long mascotaId, Long veterinarioId) {
         Mascota mascota = mascotaRepository.findById(mascotaId).orElse(null);
         if (mascota == null || mascota.getCliente() == null) {
@@ -43,7 +39,7 @@ public class MascotaServiceImpl implements MascotaService {
         
         return mascota.getCliente().getVeterinarios().stream()
                 .anyMatch(v -> v.getId().equals(veterinarioId));
-    }
+    }*/
 
     @Override
     public Mascota guardarMascota(Mascota mascota) {

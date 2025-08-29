@@ -134,10 +134,11 @@
                     <input type="hidden" th:name="${token.parameterName}" th:value="${token.token}" />
                   </th:block>
 
-                  <button type="submit" class="btn btn-sm btn-outline-danger js-confirm"
-                          data-confirm="¿Desactivar a [[${mascota.nombre}]]?">
-                    <i class="bi bi-trash"></i> Desactivar
-                  </button>
+                  <button type="submit" 
+                        class="btn btn-sm btn-outline-danger js-confirm"
+                        th:attr="data-confirm='¿Desactivar a ' + ${mascota.nombre} + '?'">
+                  <i class="bi bi-trash"></i> Desactivar
+                </button>
                 </form>
               </td>
             </tr>

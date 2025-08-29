@@ -9,7 +9,6 @@ import com.animalheart.animalheart.service.VeterinarioService;
 
 import com.animalheart.animalheart.service.MascotaService;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -144,17 +143,6 @@ public String procesarLogin(@RequestParam("correo") String correo, HttpSession s
         }
         
         Cliente clienteGuardado = clienteService.guardarCliente(cliente);
-        
-        if (clienteGuardado.getVeterinarios() == null) {
-            clienteGuardado.setVeterinarios(new ArrayList<>());
-        }
-        if (veterinarioManaged.getClientes() == null) {
-            veterinarioManaged.setClientes(new ArrayList<>());
-        }
-        
-        //RELACIÓN BIDIRECCIONAL (30 MINUTOS EN ESTA VAINA)
-        clienteGuardado.getVeterinarios().add(veterinarioManaged);
-        veterinarioManaged.getClientes().add(clienteGuardado);
         
         clienteService.guardarCliente(clienteGuardado);
         veterinarioService.guardarVeterinario(veterinarioManaged);

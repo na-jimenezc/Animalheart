@@ -3,12 +3,10 @@ package com.animalheart.animalheart.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.animalheart.animalheart.model.Cliente;
 import com.animalheart.animalheart.model.Mascota;
-import com.animalheart.animalheart.model.Veterinario;
 import com.animalheart.animalheart.repository.ClienteRepository;
 
 import org.springframework.transaction.annotation.Transactional;
@@ -22,8 +20,6 @@ import com.animalheart.animalheart.repository.TratamientoRepository;
 @Service
 public class ClienteServiceImpl implements ClienteService {
 
-    @Autowired
-    private VeterinarioService veterinarioService;
     @Autowired
     private ClienteRepository clienteRepo;
     @PersistenceContext
@@ -51,12 +47,6 @@ public class ClienteServiceImpl implements ClienteService {
         return clienteRepo.findById(id).orElse(null);
     }
 
-
-    @Override
-    public List<Cliente> obtenerClientesPorVeterinario(Long idVet) {
-        return repo.findByVeterinarios_Id(idVet);
-    }
-
     @Override
     public Cliente guardarCliente(Cliente cliente) {
         return repo.save(cliente);
@@ -67,30 +57,6 @@ public class ClienteServiceImpl implements ClienteService {
         return repo.findByCedula(cedula) != null;
     }
 
-    @Override
-    @Transactional
-    public Cliente guardarClienteConVeterinario(Cliente cliente, Veterinario veterinario) {
-
-        Cliente clienteGuardado = repo.save(cliente);
-        
-
-        if (clienteGuardado.getVeterinarios() == null) {
-            clienteGuardado.setVeterinarios(new ArrayList<>());
-        }
-        clienteGuardado.getVeterinarios().add(veterinario);
-        
-
-        if (veterinario.getClientes() == null) {
-            veterinario.setClientes(new ArrayList<>());
-        }
-        veterinario.getClientes().add(clienteGuardado);
-        
-
-        repo.save(clienteGuardado);
-        veterinarioService.guardarVeterinario(veterinario);
-        
-        return clienteGuardado;
-    }
     
     @Override
     @Transactional

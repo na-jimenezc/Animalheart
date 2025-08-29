@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.animalheart.animalheart.model.Cliente;
 import com.animalheart.animalheart.model.Mascota;
-import com.animalheart.animalheart.model.Veterinario;
 
 public interface ClienteService {
 
@@ -13,10 +12,9 @@ public interface ClienteService {
     void crear(Cliente c);
     void eliminarPorCedula(String cedula);
     Cliente obtenerClientePorId(Long id);
-    List<Cliente> obtenerClientesPorVeterinario(Long idVet);
+    //List<Cliente> obtenerClientesPorVeterinario(Long idVet);
      Cliente guardarCliente(Cliente cliente);
     boolean existeClientePorCedula(String cedula);
-    Cliente guardarClienteConVeterinario(Cliente cliente, Veterinario veterinario);
     void eliminarClienteHard(Long id);
     Cliente actualizarCliente(Long id,
                           String cedula,

@@ -6,8 +6,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.OneToMany;
@@ -37,15 +35,6 @@ public class Veterinario {
     @OneToMany(mappedBy = "veterinario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Tratamiento> tratamientos = new ArrayList<>();
 
-    //UN VETERINARIO PUEDE TENER MUCHOS CLIENTES
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(
-        name = "veterinario_cliente",
-        joinColumns = @JoinColumn(name = "veterinario_id"),
-        inverseJoinColumns = @JoinColumn(name = "cliente_id")
-    )
-    private List<Cliente> clientes = new ArrayList<>();
-
     public Veterinario() {}
 
     public Veterinario(String nombre, String especialidad,
@@ -71,16 +60,6 @@ public class Veterinario {
         this.imagen = imagen;
         this.activo = activo;
         this.consultas = consultas;
-    }
-
-    public void agregarCliente(Cliente cliente) {
-        clientes.add(cliente);
-        cliente.getVeterinarios().add(this);
-    }
-
-    public void removerCliente(Cliente cliente) {
-        clientes.remove(cliente);
-        cliente.getVeterinarios().remove(this);
     }
 
     //Data dando problemas c:
@@ -164,11 +143,4 @@ public class Veterinario {
         this.tratamientos = tratamientos;
     }
 
-    public List<Cliente> getClientes() {
-        return clientes;
-    }
-
-    public void setClientes(List<Cliente> clientes) {
-        this.clientes = clientes;
-}
 }

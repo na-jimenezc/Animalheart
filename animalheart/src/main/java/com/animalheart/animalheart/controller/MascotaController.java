@@ -59,10 +59,12 @@ public class MascotaController {
             return "redirect:/mascotas?error=Mascota no encontrada";
         }
         
-        boolean tieneAcceso = mascotaService.verificarAccesoVeterinario(mascota.getId(), veterinario.getId());
+        //No sirve para nada esta línea, lo ideal es que cualquier mascota pueda ser vista por cualquier veterinario 
+        //y atendida
+        /*boolean tieneAcceso = mascotaService.verificarAccesoVeterinario(mascota.getId(), veterinario.getId());
         if (!tieneAcceso) {
             return "redirect:/mascotas?error=No tiene acceso a esta mascota";
-        }
+        }*/
         
         model.addAttribute("mascota", mascota);
         model.addAttribute("veterinario", veterinario);
@@ -76,7 +78,8 @@ public class MascotaController {
                 return "redirect:/login-veterinario";
             }
             
-            List<Cliente> clientes = clienteService.obtenerClientesPorVeterinario(veterinario.getId());
+            //Mostrar todos los clientes, no solo los del veterinario
+            List<Cliente> clientes = clienteService.obtenerTodos();
             
             model.addAttribute("mascota", new Mascota());
             model.addAttribute("clientes", clientes);
@@ -119,7 +122,7 @@ public class MascotaController {
 
     private String mostrarFormularioConError(Model model, HttpSession session) {
         Veterinario veterinario = (Veterinario) session.getAttribute(VET_AUTH);
-        List<Cliente> clientes = clienteService.obtenerClientesPorVeterinario(veterinario.getId());
+        List<Cliente> clientes = clienteService.obtenerTodos();
         
         model.addAttribute("mascota", new Mascota());
         model.addAttribute("clientes", clientes);
