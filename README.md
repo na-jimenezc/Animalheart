@@ -1,5 +1,9 @@
 # AnimalHeart 🐾
 
+<div align="center">
+  <img src="LogoAnimalHeart.png" alt="AnimalHeart Logo" width="200"/>
+</div>
+
 Aplicativo web desarrollado para la gestión digital de una clínica veterinaria, permitiendo el control de pacientes, tratamientos y personal médico.
 
 ## 🚀 Características
