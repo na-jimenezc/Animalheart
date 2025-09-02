@@ -30,6 +30,9 @@ Aplicativo web desarrollado para la gestión digital de una clínica veterinaria
 ![#cba4ab](https://via.placeholder.com/15/cba4ab/000000?text=+) `#cba4ab` 
 ![#dbeb87](https://via.placeholder.com/15/dbeb87/000000?text=+) `#dbeb87`  
 ![#161717](https://via.placeholder.com/15/161717/000000?text=+) `#161717`
+<div align="center">
+  <img src="paletacolores.jpg" alt="Paleta de colores" width="200"/>
+</div>
 
 ## ⚙️ Roles de Usuario
 - **Cliente**: Consulta estado de sus mascotas e historial de tratamientos.
