@@ -31,7 +31,7 @@ Aplicativo web desarrollado para la gestión digital de una clínica veterinaria
 ![#dbeb87](https://via.placeholder.com/15/dbeb87/000000?text=+) `#dbeb87`  
 ![#161717](https://via.placeholder.com/15/161717/000000?text=+) `#161717`
 <div align="center">
-  <img src="paletacolores.jpg" alt="Paleta de colores" width="200"/>
+  <img src="paletacolores.jpg" alt="Paleta de colores" width="1000"/>
 </div>
 
 ## ⚙️ Roles de Usuario
