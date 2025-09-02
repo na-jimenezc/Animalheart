@@ -22,14 +22,14 @@ Aplicativo web desarrollado para la gestión digital de una clínica veterinaria
 
 ## 🎨 Paleta de Colores
 
-![#858b8d](https://via.placeholder.com/15/858b8d/000000?text=+) `#858b8d` (Gris neutro)  
-![#405e9f](https://via.placeholder.com/15/405e9f/000000?text=+) `#405e9f` (Azul principal)  
-![#458b8d](https://via.placeholder.com/15/458b8d/000000?text=+) `#458b8d` (Verde azulado)  
-![#18527d](https://via.placeholder.com/15/18527d/000000?text=+) `#18527d` (Azul oscuro)  
-![#fb6d65](https://via.placeholder.com/15/fb6d65/000000?text=+) `#fb6d65` (Coral - acentos)  
-![#cba4ab](https://via.placeholder.com/15/cba4ab/000000?text=+) `#cba4ab` (Rosa suave)  
-![#dbeb87](https://via.placeholder.com/15/dbeb87/000000?text=+) `#dbeb87` (Amarillo verdoso)  
-![#161717](https://via.placeholder.com/15/161717/000000?text=+) `#161717` (Casi negro)
+![#858b8d](https://via.placeholder.com/15/858b8d/000000?text=+) `#858b8d` 
+![#405e9f](https://via.placeholder.com/15/405e9f/000000?text=+) `#405e9f` 
+![#458b8d](https://via.placeholder.com/15/458b8d/000000?text=+) `#458b8d`  
+![#18527d](https://via.placeholder.com/15/18527d/000000?text=+) `#18527d`  
+![#fb6d65](https://via.placeholder.com/15/fb6d65/000000?text=+) `#fb6d65`   
+![#cba4ab](https://via.placeholder.com/15/cba4ab/000000?text=+) `#cba4ab` 
+![#dbeb87](https://via.placeholder.com/15/dbeb87/000000?text=+) `#dbeb87`  
+![#161717](https://via.placeholder.com/15/161717/000000?text=+) `#161717`
 
 ## ⚙️ Roles de Usuario
 - **Cliente**: Consulta estado de sus mascotas e historial de tratamientos.
