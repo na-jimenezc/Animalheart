@@ -1,249 +1,293 @@
-/* ====== EDITAR MASCOTA (solo CSS, sin tocar tu HTML) =======================
-   Se apoya en la estructura actual:
-   - <main class="container">…</main>
-   - <form class="card p-3"> con .row.g-3, .form-label y .form-control
-   ======================================================================= */
-
-/* Paleta / tokens (mockup) */
-:root{
-  --navy-900:#0d3b59;
-  --navy-800:#124a70;
-  --navy-700:#15587f;
-  --teal-600:#2a9a99;
-  --teal-200:#cfe9e8;
-  --rose-200:#f8d7dd;
-  --rose-400:#f2a7b2;
-  --bg:#e8f2f1;
-  --text:#0f1923;
-  --radius:18px;
-  --shadow:0 12px 30px rgba(7,51,82,.15);
+/* ====== Variables de color consistentes ====== */
+:root {
+  --teal-700: #073352;
+  --teal-600: #2a9a99;
+  --teal-200: #bfe6e5;
+  --pink-300: #58AAAE;
+  --bg: #f7f7f8;
+  --surface: #ffffff;
+  --text: #1b1e22;
+  --muted: #5e6a72;
+  --radius: 18px;
+  --shadow: 0 8px 24px rgba(0,0,0,.08);
 }
 
-/* Fondo de la página con “aire” verde-azulado */
-body.theme-vet{
-  margin:0;
-  background:
-    radial-gradient(1200px 500px at 50% -10%, #eaf7f6 0, transparent 60%),
-    radial-gradient(900px 400px at 100% 10%, #eaf7f6 0, transparent 60%),
-    var(--bg);
-  color:var(--text);
-  font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+/* ====== Estilos generales ====== */
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+  line-height: 1.45;
+  margin: 0;
+  min-height: 100vh;
 }
 
-/* Contenedor */
-.container{ max-width:980px; }
-
-/* Título principal */
-h1{
-  font-weight:800;
-  text-align:center;
-  color:var(--navy-900);
-  letter-spacing:.3px;
-  margin:.25rem 0 1rem;
+/* ====== Header con imagen de fondo ====== */
+.vmk-header {
+  background: url("../IMAGES/vet_animalheart.jpeg") center/cover no-repeat;
+  position: relative;
+  color: #fff;
+  margin-bottom: 2rem;
 }
 
-/* Tarjeta del formulario con gradiente claro y sombra */
-form.card{
-  border:0;
-  border-radius:calc(var(--radius) + 6px);
-  background:linear-gradient(180deg,#f2fbfb 0%, #ffffff 60%);
-  box-shadow:var(--shadow);
-  padding:24px !important;
-
-  /* Layout 2 columnas: foto izquierda + contenido */
-  display:grid;
-  grid-template-columns: 260px 1fr;
-  grid-auto-rows:auto;
-  gap: 18px 24px;
-  position:relative;
+.vmk-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(7, 51, 82, 0.92);
 }
 
-/* “Marco” grande para la foto (solo decorativo, no exige HTML) */
-form.card::before{
-  content:"";
-  grid-column:1;
-  grid-row:1 / span 6;          /* ocupa varias filas */
-  width:100%; height:100%;
-  min-height:260px;
-  border:2px solid var(--teal-200);
-  border-radius:12px;
-  background:#fff;
-  box-shadow: inset 0 0 0 2px rgba(13,59,89,.04);
+.vmk-header > * {
+  position: relative;
+  z-index: 1;
 }
 
-/* La fila de campos vive en la segunda columna */
-form.card > .row{
-  grid-column:2;
+/* Barra de herramientas */
+.vmk-toolbar {
+  padding: 18px 0;
+  min-height: 80px;
 }
 
-/* Ajuste de separación de .row.g-3 (Bootstrap friendly) */
-form.card .row.g-3{ --bs-gutter-x:24px; --bs-gutter-y:18px; }
-
-/* Etiquetas tipo “placa” azul (como mockup) */
-.form-label{
-  display:inline-flex; align-items:center; gap:.5rem;
-  min-height:40px; margin:0 0 8px 0; padding:.35rem .9rem;
-  border-radius:12px;
-  background:linear-gradient(180deg, var(--navy-900), var(--navy-800));
-  color:#fff;
-  font-weight:700;
-  letter-spacing:.2px;
-  box-shadow:inset 0 -2px 0 rgba(255,255,255,.12);
+.vmk-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1;
+  text-decoration: none;
+  transition: 0.2s;
+  color: #fff;
 }
 
-/* Campos en “píldora” */
-.form-control{
-  border:2px solid var(--teal-200);
-  border-radius:999px;
-  background:#fff;
-  padding:.65rem 1.1rem;
-  font-weight:600;
-  color:var(--navy-900);
-  box-shadow:0 2px 0 rgba(18,74,112,.05);
-}
-.form-control:focus{
-  outline:3px solid rgba(42,154,153,.35);
-  outline-offset:2px;
-  border-color:var(--teal-600);
-  box-shadow:0 0 0 4px rgba(42,154,153,.15);
+.vmk-btn--ghost:hover {
+  background: rgba(255, 255, 255, 0.15);
 }
 
-/* Zona de acciones (guardar/cancelar) centrada bajo el formulario */
-form.card .mt-4{
-  grid-column:1 / -1;           /* ocupa ancho completo */
-  display:flex !important;
-  justify-content:center;
-  align-items:center;
-  gap:.9rem !important;
-  margin-top:.5rem;
+.vmk-btn--outline {
+  background: transparent;
+  border: 2px solid #fff;
 }
 
-/* Botón redondo rosado tipo “disquete” */
-.btn.btn-primary{
-  --size:64px;
-  background:radial-gradient(70% 80% at 40% 30%, #ffdbe2 0, #f5b8c3 60%, #f0a9b6 100%);
-  border:0;
-  width:var(--size); height:var(--size);
-  border-radius:50%;
-  display:grid; place-items:center;
-  color:#7a2236; font-weight:800; padding:0;
-  box-shadow:0 10px 18px rgba(240,169,182,.4), inset 0 -6px 10px rgba(0,0,0,.06);
-  transition:transform .12s ease, box-shadow .12s ease;
-}
-.btn.btn-primary i{ font-size:28px; margin:0 !important; }
-.btn.btn-primary:hover{ transform:translateY(-2px); }
-.btn.btn-primary:active{
-  transform:translateY(0);
-  box-shadow:0 6px 12px rgba(240,169,182,.35), inset 0 -2px 6px rgba(0,0,0,.08);
+.vmk-btn--outline:hover {
+  background: #fff;
+  color: var(--teal-700);
 }
 
-/* Botón “Cancelar” en pastilla azul */
-.btn.btn-outline-secondary{
-  border:2px solid var(--navy-800);
-  color:var(--navy-800);
-  border-radius:999px;
-  font-weight:700;
-  padding:.6rem 1.1rem;
-  background:#fff;
+/* Hero section */
+.vmk-hero {
+  padding: 12px 0 24px;
 }
-.btn.btn-outline-secondary:hover{ background:var(--navy-800); color:#fff; }
 
-/* Responsivo: en móvil, el placeholder de foto sube arriba */
-@media (max-width: 768px){
-  form.card{
+.vmk-hero-inner {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  justify-content: center;
+}
+
+.vmk-title {
+  margin: 0;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  font-size: clamp(28px, 3.6vw, 40px);
+}
+
+/* ====== FORMULARIO ACTUALIZADO ====== */
+.form-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.form-header {
+  background: linear-gradient(135deg, var(--teal-700) 0%, var(--teal-600) 100%);
+  color: white;
+  padding: 2rem;
+  text-align: center;
+}
+
+.form-header h1 {
+  margin: 0;
+  font-weight: 700;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.form-body {
+  padding: 2.5rem;
+}
+
+.form-section {
+  margin-bottom: 2.5rem;
+}
+
+.form-section-title {
+  color: var(--teal-700);
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--teal-200);
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.form-field {
+  margin-bottom: 1.5rem;
+}
+
+.form-label {
+  font-weight: 600;
+  color: var(--teal-700);
+  margin-bottom: 0.75rem;
+  display: block;
+  font-size: 0.95rem;
+}
+
+.form-input, .form-select {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  border: 2px solid var(--teal-200);
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background: #f9f9fa;
+  font-family: 'Poppins', sans-serif;
+}
+
+.form-input:focus, .form-select:focus {
+  outline: none;
+  border-color: var(--teal-600);
+  box-shadow: 0 0 0 3px rgba(42, 154, 153, 0.15);
+  background: #fff;
+}
+
+.required::after {
+  content: " *";
+  color: #e74a3b;
+}
+
+.btn-container {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2.5rem;
+}
+
+/* Botones con el estilo consistente */
+.btn-primary {
+  background: linear-gradient(135deg, var(--teal-600) 0%, var(--teal-700) 100%);
+  border: none;
+  padding: 12px 32px;
+  color: white;
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 4px 12px rgba(7, 51, 82, 0.25);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(7, 51, 82, 0.35);
+}
+
+.btn-secondary {
+  background: #fff;
+  border: 2px solid var(--teal-600);
+  padding: 10px 30px;
+  color: var(--teal-600);
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-secondary:hover {
+  background: var(--teal-600);
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* Estilos para la sección de foto */
+.photo-container {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.photo-preview {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--teal-200);
+  display: none;
+  margin: 0 auto;
+}
+
+.photo-placeholder {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: #f8f9fa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  border: 2px dashed var(--teal-200);
+  margin: 0 auto;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.photo-placeholder:hover {
+  border-color: var(--teal-600);
+  background: var(--teal-200);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .form-grid {
     grid-template-columns: 1fr;
-    gap:16px;
   }
-  form.card::before{
-    grid-column:1; grid-row:1;
-    min-height:220px;
+
+  .form-body {
+    padding: 1.5rem;
   }
-  form.card > .row{ grid-column:1; }
+
+  .btn-container {
+    flex-direction: column;
+  }
 }
 
-/* Accesibilidad mínima */
-:where(a,button,input,select,textarea):focus-visible{
-  outline:3px solid rgba(42,154,153,.55);
-  outline-offset:2px;
-}
-@media (prefers-reduced-motion: reduce){
-  *{transition-duration:.01ms !important; animation-duration:.01ms !important;}
-}
-
-/* ====== Acciones del formulario ====== */
-.form-actions{
-  display:flex !important;
-  justify-content:center;
-  align-items:flex-start;
-  gap:1.2rem !important;
-  margin-top:.5rem;
-}
-
-/* Contenedor del FAB + etiqueta */
-.action-primary{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:.45rem;
-  min-width:84px; /* evita saltos en móvil */
-}
-
-/* FAB rosado con brillo suave (reemplaza el .btn.btn-primary circular anterior) */
-.btn-fab{
-  --size:72px;
-  width:var(--size);
-  height:var(--size);
-  border:0;
-  border-radius:50%;
-  display:grid;
-  place-items:center;
-  color:#701a2b;
-  background:
-    radial-gradient(60% 70% at 40% 30%, #ffe6eb 0 60%, transparent 61%),
-    radial-gradient(75% 85% at 60% 70%, #f8c1cc 0 70%, transparent 71%),
-    linear-gradient(180deg, #f7b9c5 0%, #ef9cb0 100%);
-  box-shadow:
-    0 12px 24px rgba(240,169,182,.40),
-    inset 0 -8px 12px rgba(0,0,0,.08),
-    inset 0  2px  6px rgba(255,255,255,.45);
-  transition: transform .12s ease, box-shadow .2s ease, filter .2s ease;
-}
-.btn-fab i{ font-size:30px; line-height:1; }
-.btn-fab:hover{ transform:translateY(-2px); filter:saturate(1.05); }
-.btn-fab:active{
-  transform:translateY(0);
-  box-shadow:
-    0 8px 16px rgba(240,169,182,.35),
-    inset 0 -3px 8px rgba(0,0,0,.10),
-    inset 0  1px  4px rgba(255,255,255,.5);
-}
-
-/* Etiqueta bajo el FAB */
-.btn-caption{
-  font-weight:800;
-  color:#7a2236;
-  text-shadow:0 1px 0 rgba(255,255,255,.6);
-  letter-spacing:.2px;
-}
-
-/* Botón cancelar coherente con tu paleta */
-.btn.btn-outline-secondary{
-  border:2px solid var(--navy-800);
-  color:var(--navy-800);
-  border-radius:999px;
-  font-weight:700;
-  padding:.62rem 1.15rem;
-  background:#fff;
-  transition: background .15s ease, color .15s ease, transform .12s ease;
-}
-.btn.btn-outline-secondary:hover{
-  background:var(--navy-800); color:#fff; transform:translateY(-1px);
-}
-.btn.btn-outline-secondary:active{ transform:translateY(0); }
-
-/* Accesible: foco visible */
-.btn-fab:focus-visible,
-.btn.btn-outline-secondary:focus-visible{
-  outline:4px solid rgba(240,169,182,.45);
-  outline-offset:3px;
+/* Estilo para mensajes de error */
+.error-message {
+  color: #e74a3b;
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
 }

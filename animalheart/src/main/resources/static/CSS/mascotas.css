@@ -186,3 +186,639 @@ body.vet-mockup>main{flex:1}
 .cta-registrar{
   text-shadow: 0 1px 0 rgba(0,0,0,.25);
 }
+
+/* ====== BARRA SUPERIOR MÁS GRANDE ====== */
+.vmk-toolbar {
+  padding: 18px 0; /* Aumentamos el padding vertical */
+  min-height: 80px; /* Establecemos una altura mínima mayor */
+}
+
+/* ====== PAGINACIÓN MEJORADA ====== */
+.pagination {
+  margin: 20px 0;
+}
+
+.page-link {
+  color: var(--teal-700);
+  border: 2px solid var(--teal-200);
+  border-radius: 8px;
+  margin: 0 4px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.page-link:hover {
+  background-color: var(--teal-700);
+  color: white;
+  border-color: var(--teal-700);
+}
+
+.page-item.active .page-link {
+  background-color: var(--teal-700);
+  border-color: var(--teal-700);
+  color: white;
+}
+
+.page-item.disabled .page-link {
+  color: #6c757d;
+  border-color: #dee2e6;
+}
+
+/* ====== ENCABEZADO DE TABLA ESTILIZADO ====== */
+.vmk-table thead tr {
+  background: var(--teal-700) !important; /* Mismo color que el navbar */
+}
+
+.vmk-table thead th {
+  border: 0;
+  padding: 16px 12px;
+  font-weight: 600;
+  font-size: 16px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.vmk-table thead th:first-child {
+  border-top-left-radius: 14px;
+  border-bottom-left-radius: 14px;
+}
+
+.vmk-table thead th:last-child {
+  border-top-right-radius: 14px;
+  border-bottom-right-radius: 14px;
+}
+
+/* Aseguramos que el texto sea blanco */
+.vmk-table thead th {
+  color: teal !important;
+}
+
+/* Mejoramos el espaciado general de la tabla */
+.vmk-table tbody td {
+  padding: 16px 12px;
+  vertical-align: middle;
+}
+
+/* Ajustamos el tamaño de los badges para mejor visualización */
+.vmk-table .badge {
+  font-size: 0.85em;
+  padding: 0.5em 0.75em;
+}
+
+/* Centrado general para todas las celdas de la tabla */
+.vmk-table th, 
+.vmk-table td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* Ajuste específico para la columna de nombre */
+.vmk-col-name {
+  text-align: center !important;
+}
+
+/* Ajuste para los badges */
+.vmk-table .badge,
+.vmk-badge {
+  display: inline-block;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Ajuste para la imagen de avatar */
+.vmk-avatar {
+  margin: 0 auto;
+  display: block;
+}
+
+/* Ajuste para los botones en celda de acciones */
+.vmk-table td.text-center {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.vmk-table td.text-center > a.vmk-pill,
+.vmk-table td.text-center > form {
+  display: inline-block;
+  margin: 4px 2px;
+  vertical-align: middle;
+}
+
+/* Asegurar que todos los elementos en celdas estén centrados */
+.vmk-table tbody td > * {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+/* Ajuste específico para formularios en celdas */
+.vmk-table td.text-center form {
+  display: inline-block;
+}
+
+/* Asegurar que los encabezados estén centrados */
+.vmk-table thead th {
+  text-align: center;
+}
+
+/* ====== BOTONES TABLA ====== */
+
+/* Contenedor para botones de acciones - AHORA CON ANCHO FIJO */
+.vmk-table .actions-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  width: 130px; /* Ancho fijo basado en el botón más ancho */
+  margin: 0 auto;
+}
+
+/* Estilo uniforme para todos los botones de acción - MISMO ANCHO */
+.vmk-table .action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  line-height: 1;
+  width: 100%; /* Ocupa todo el ancho del contenedor */
+  text-align: center;
+  box-sizing: border-box;
+  min-height: 32px; /* Altura mínima uniforme */
+}
+
+/* Botón Ver más */
+.vmk-pill {
+  background: var(--teal-600);
+  color: #fff;
+}
+
+.vmk-pill:hover {
+  background: var(--teal-700);
+  transform: translateY(-1px);
+}
+
+/* Botón Editar */
+.btn-edit {
+  background: var(--teal-200);
+  color: var(--teal-700);
+  border: 2px solid var(--teal-200);
+}
+
+.btn-edit:hover {
+  background: var(--teal-700);
+  color: #fff;
+  border-color: var(--teal-700);
+}
+
+/* Botón Desactivar - ya tiene el ancho correcto */
+.btn-outline-danger {
+  border: 2px solid #d32f2f;
+  color: #d32f2f;
+  background: #fff;
+  width: 100%; /* Forzar que ocupe todo el ancho */
+}
+
+.btn-outline-danger:hover {
+  background: #d32f2f;
+  color: #fff;
+}
+
+/* Ajuste para formulario */
+.vmk-table td.text-center form {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* Asegurar que todos los botones tengan el mismo tamaño */
+.vmk-table .action-btn,
+.vmk-table .btn-outline-danger {
+  min-width: 110px; /* Ancho mínimo basado en el botón Desactivar */
+}
+
+
+
+
+
+
+/* ====== FORMULARIO DE EDICIÓN DE CLIENTE ====== */
+
+/* ====== ESTILO DE TABLA AL ESTILO VETERINARIOS (CON AZUL) ====== */
+.vmk-table-card {
+  background: var(--teal-200); /* Cambiado a azul en lugar de rosa */
+  border-radius: 18px;
+  padding: 12px;
+  box-shadow: var(--shadow);
+  margin-bottom: 24px;
+}
+
+.va-table-head {
+  display: grid;
+  grid-template-columns: 80px 1.2fr 1fr 0.8fr 0.8fr 1fr 0.8fr 1.2fr;
+  color: var(--teal-700); /* Texto azul oscuro */
+  font-weight: 600;
+  padding: 8px 10px 12px;
+  margin: 4px 8px;
+  background-color: var(--teal-100); /* Fondo azul muy claro */
+  border-radius: 10px;
+}
+
+.va-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 14px;
+}
+
+.va-table td {
+  background: #fff;
+  border: 0;
+  padding: 16px;
+  vertical-align: middle;
+  color: var(--text);
+  text-align: center; /* Aseguramos que todo esté centrado */
+}
+
+.va-table td:first-child {
+  border-top-left-radius: 14px;
+  border-bottom-left-radius: 14px;
+}
+
+.va-table td:last-child {
+  border-top-right-radius: 14px;
+  border-bottom-right-radius: 14px;
+}
+
+/* Avatar */
+.va-avatar {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--teal-300);
+  margin: 0 auto;
+  display: block;
+}
+
+.va-cell-name {
+  font-weight: 700;
+  text-align: center;
+}
+
+/* Badge */
+.va-badge {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: var(--teal-200);
+  color: var(--teal-700);
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+/* Botones */
+.va-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  background: var(--teal-600);
+  color: #fff;
+  text-decoration: none;
+  transition: 0.2s;
+  min-width: 100px;
+}
+
+.va-pill:hover {
+  background: var(--teal-700);
+  transform: translateY(-1px);
+}
+
+/* Estado vacío */
+.va-empty {
+  text-align: center;
+  padding: 24px;
+  background: #fff;
+  border-radius: 12px;
+  color: var(--muted);
+}
+
+/* Ocultar encabezado de la tabla en móvil */
+@media (max-width: 767px) {
+  .va-table-head {
+    display: none;
+  }
+  
+  .va-table {
+    display: block;
+    width: 100%;
+  }
+  
+  .va-table tbody {
+    display: block;
+    width: 100%;
+  }
+  
+  .va-table tr {
+    display: block;
+    margin-bottom: 14px;
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  
+  .va-table td {
+    display: block;
+    text-align: center;
+    border-radius: 0;
+    padding: 12px;
+  }
+  
+  .va-table td:first-child {
+    border-top-left-radius: 14px;
+    border-top-right-radius: 14px;
+  }
+  
+  .va-table td:last-child {
+    border-bottom-left-radius: 14px;
+    border-bottom-right-radius: 14px;
+  }
+  
+  /* Etiquetas para móvil */
+  .va-table td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: var(--muted);
+    display: block;
+    margin-bottom: 4px;
+  }
+}
+
+/* Ajustes para los botones de acciones en la nueva tabla */
+.va-table .actions-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  width: 130px;
+  margin: 0 auto;
+}
+
+.va-table .action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  line-height: 1;
+  width: 100%;
+  text-align: center;
+  box-sizing: border-box;
+  min-height: 32px;
+}
+
+/* Botón Editar */
+.va-table .btn-edit {
+  background: var(--teal-200);
+  color: var(--teal-700);
+  border: 2px solid var(--teal-200);
+}
+
+.va-table .btn-edit:hover {
+  background: var(--teal-700);
+  color: #fff;
+  border-color: var(--teal-700);
+}
+
+/* Botón Desactivar */
+.va-table .btn-outline-danger {
+  border: 2px solid #d32f2f;
+  color: #d32f2f;
+  background: #fff;
+  width: 100%;
+}
+
+.va-table .btn-outline-danger:hover {
+  background: #d32f2f;
+  color: #fff;
+}
+
+/* Ajuste para formulario */
+.va-table td.text-center form {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* Añadir variable de color azul claro si no existe */
+:root {
+  --teal-100: #d9f2f1;
+  --teal-300: #8dd6d5;
+}
+
+/* ====== ESTRUCTURA UNIFICADA DE TABLA ====== */
+.table-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.table-header {
+  display: grid;
+  grid-template-columns: 80px 1.2fr 1fr 0.8fr 0.8fr 1fr 0.8fr 1.2fr;
+  background-color: var(--teal-100);
+  color: var(--teal-700);
+  font-weight: 600;
+  padding: 12px 8px;
+  border-radius: 10px;
+  margin-bottom: 8px;
+}
+
+.header-cell {
+  padding: 8px 12px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.table-body {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.table-row {
+  display: grid;
+  grid-template-columns: 80px 1.2fr 1fr 0.8fr 0.8fr 1fr 0.8fr 1.2fr;
+  background: #fff;
+  border-radius: 14px;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.table-cell {
+  padding: 16px 12px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.table-cell:first-child {
+  border-top-left-radius: 14px;
+  border-bottom-left-radius: 14px;
+}
+
+.table-cell:last-child {
+  border-top-right-radius: 14px;
+  border-bottom-right-radius: 14px;
+}
+
+.table-empty {
+  text-align: center;
+  padding: 40px 20px;
+  background: #fff;
+  border-radius: 12px;
+  color: var(--muted);
+}
+
+/* ====== BOTONES CON TAMAÑO Y FORMA CONSISTENTE ====== */
+.actions-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  width: 100%;
+  max-width: 150px;
+  margin: 0 auto;
+}
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  line-height: 1;
+  width: 100%;
+  min-width: 120px;
+  text-align: center;
+  box-sizing: border-box;
+  border: 2px solid transparent;
+}
+
+/* Botón Ver más */
+.btn-view {
+  background: var(--teal-600);
+  color: #fff;
+}
+
+.btn-view:hover {
+  background: var(--teal-700);
+  transform: translateY(-1px);
+}
+
+/* Botón Editar */
+.btn-edit {
+  background: var(--teal-200);
+  color: var(--teal-700);
+  border-color: var(--teal-200);
+}
+
+.btn-edit:hover {
+  background: var(--teal-700);
+  color: #fff;
+  border-color: var(--teal-700);
+}
+
+/* Botón Desactivar */
+.btn-deactivate {
+  background: #fff;
+  color: #d32f2f;
+  border-color: #d32f2f;
+}
+
+.btn-deactivate:hover {
+  background: #d32f2f;
+  color: #fff;
+}
+
+/* Ajuste para formulario */
+.actions-container form {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* Responsividad para móviles */
+@media (max-width: 767px) {
+  .table-header {
+    display: none;
+  }
+  
+  .table-row {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    gap: 12px;
+  }
+  
+  .table-cell {
+    width: 100%;
+    padding: 12px;
+    text-align: center;
+    border-radius: 0;
+  }
+  
+  .table-cell:first-child {
+    border-top-left-radius: 14px;
+    border-top-right-radius: 14px;
+  }
+  
+  .table-cell:last-child {
+    border-bottom-left-radius: 14px;
+    border-bottom-right-radius: 14px;
+  }
+  
+  .table-cell::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: var(--muted);
+    display: block;
+    margin-bottom: 4px;
+    font-size: 0.9rem;
+  }
+  
+  .actions-container {
+    max-width: 100%;
+  }
+  
+  .action-btn {
+    min-width: 140px;
+  }
+}

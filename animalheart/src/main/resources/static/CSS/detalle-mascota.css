@@ -20,8 +20,25 @@ html,body{
   color:var(--text);
   font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
   line-height:1.45;
+  height: 100%; /* Necesario para el sticky footer */
 }
 img{max-width:100%;display:block}
+
+/* ===================== LAYOUT STICKY FOOTER ===================== */
+body.pet-detail {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.vet-container {
+  flex: 1 0 auto;
+}
+
+.pie {
+  flex-shrink: 0;
+  margin-top: auto; /* Empuja el footer hacia abajo */
+}
 
 /* ===================== BARRA SUPERIOR ===================== */
 .barra{
@@ -47,7 +64,12 @@ img{max-width:100%;display:block}
 .vmk-btn--danger:hover{ background:var(--teal-700); color:#fff; }
 
 /* ===================== CONTENEDOR MAIN ===================== */
-.vet-container{ max-width:1200px; margin:0 auto; padding:0 20px; }
+.vet-container{ 
+  max-width:1200px; 
+  margin:0 auto; 
+  padding:0 20px;
+  width: 100%;
+}
 
 /* ===================== TARJETA IZQUIERDA (FICHA) ===================== */
 .pet-card{ border:0; border-radius:var(--radius); overflow:hidden; background:#eaf3f5; }
@@ -110,11 +132,82 @@ img{max-width:100%;display:block}
 }
 .pet-cta:hover{ background: var(--teal-700); transform: translateY(-1px); }
 
+/* ===================== BOTONES MEJORADOS ===================== */
+.btn-app {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  line-height: 1;
+  min-width: 120px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.btn-primary {
+  background: var(--teal-600);
+  color: #fff;
+  border: 2px solid var(--teal-600);
+}
+
+.btn-primary:hover {
+  background: var(--teal-700);
+  border-color: var(--teal-700);
+  transform: translateY(-1px);
+}
+
+.btn-outline-danger {
+  background: transparent;
+  color: #d32f2f;
+  border: 2px solid #d32f2f;
+}
+
+.btn-outline-danger:hover {
+  background: #d32f2f;
+  color: #fff;
+}
+
+/* ===================== MEJORAS DE ESPACIADO ===================== */
+.pet-main {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.pet-section:last-of-type {
+  margin-bottom: 24px;
+}
+
+.text-center.mt-4 {
+  margin-top: 2rem !important;
+  padding-bottom: 1rem;
+}
+
 /* Responsive */
 @media (max-width: 991.98px){
   .pet-metrics{ grid-template-columns:1fr; }
   .pet-photo{ height:240px; max-width:240px; }
+  
+  .d-flex.flex-wrap {
+    justify-content: center;
+  }
+  
+  .btn-app {
+    min-width: 140px;
+    margin-bottom: 8px;
+  }
 }
 
 /* ===================== FOOTER ===================== */
-.pie{ background: var(--pink-300); }
+.pie{ 
+  background: var(--pink-300); 
+  padding: 16px 0;
+  width: 100%;
+}

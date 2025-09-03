@@ -1,14 +1,13 @@
-<!--
-  dashboard-admin.html
-  --------------------
-  Página principal para el administrador del sistema.
-  Muestra estadísticas visuales del sistema usando Chart.js y datos Thymeleaf.
--->
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Dashboard Admin - AnimalHeart</title>
+
+    <!-- Fuente Open Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
 
     <!-- CSS de Bootstrap y hoja de estilos personalizada del dashboard -->
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
@@ -20,18 +19,15 @@
 </head>
 <body>
 
-
-
 <!-- Encabezado con logo y botones de acción -->
 <header class="header-dashboard">
-    <img id = "logo" th:src="@{/IMAGES/Logo_2.PNG}" alt="Logo AnimalHeart">
+    <img id="logo" th:src="@{/IMAGES/Logo_2.PNG}" alt="Logo AnimalHeart">
     <div class="botones-dashboard">
         <a th:href="@{/}" class="btn btn-turquesa">Regresar</a>
         <a th:href="@{/admin/veterinarios}" class="btn btn-rojo">Ver Veterinarios</a>
         <form th:action="@{/admin/logout}" method="post" style="display:inline;">
-    <button type="submit" class="btn btn-rojo">Cerrar Sesión</button>
-</form>
-
+            <button type="submit" class="btn btn-rojo">Cerrar Sesión</button>
+        </form>
     </div>
 </header>
 
@@ -46,45 +42,44 @@
     <!-- Fila 1 -->
     <div class="fila-charts">
         <div class="chart-card medium">
-                <img th:src="@{/IMAGES/Veterinarios-pie.png}" alt="Bar chart Veterinarios">
+            <img th:src="@{/IMAGES/Veterinarios-pie.png}" alt="Bar chart Veterinarios">
         </div>
         <div class="chart-card medium">
-                            <img th:src="@{/IMAGES/Mascotas-pie.png}" alt="Pie chart Mascotas">
+            <img th:src="@{/IMAGES/Mascotas-pie.png}" alt="Pie chart Mascotas">
         </div>
     </div>
 
     <!-- Fila 2 -->
     <div class="fila-charts">
         <div class="chart-card large">
-                 <img th:src="@{/IMAGES/Ventas-mes-barra.png}" alt="Pie chart Mascotas">
+            <img th:src="@{/IMAGES/Ventas-mes-barra.png}" alt="Pie chart Mascotas">
         </div>
     </div>
 
     <!-- Fila 3 -->
     <div class="fila-charts">
         <div class="chart-card medium">
-                  <img th:src="@{/IMAGES/Ganancias-chart.png}" alt="Pie chart Mascotas">
+            <img th:src="@{/IMAGES/Ganancias-chart.png}" alt="Pie chart Mascotas">
         </div>
         <div class="chart-card medium">
-                            <img th:src="@{/IMAGES/Pie-Ventastotales.png}" alt="Pie chart Mascotas">
+            <img th:src="@{/IMAGES/Pie-Ventastotales.png}" alt="Pie chart Mascotas">
         </div>
     </div>
 
     <!-- Fila 4 -->
     <div class="fila-charts">
         <div class="chart-card large">
-                         <img th:src="@{/IMAGES/TOP3-Barra.png}" alt="Pie chart Mascotas">
+            <img th:src="@{/IMAGES/TOP3-Barra.png}" alt="Pie chart Mascotas">
         </div>
     </div>
 </main>
-
 
 <!-- Pie de página del dashboard -->
 <footer class="footer-dashboard text-center">
     © 2025 - Animalheart
 </footer>
 
-<!-- Contenedor con métricas (datos transferidos desde el controlador, idealmente pero podemos hacer los charts luego) -->
+<!-- Contenedor con métricas -->
 <div id="datosDashboard"
      th:attr="data-veterinarios=${totalVeterinarios},
               data-mascotas=${totalMascotas},
@@ -93,7 +88,6 @@
               data-ganancias=${ganancias},
               data-top-tratamientos=${top3Tratamientos}"
      style="display:none;"></div>
-
 
     <!-- Script JS que inicializa los gráficos -->
     <script th:src="@{/js/dashboard-admin.js}"></script>

@@ -1,115 +1,303 @@
-/* ====== Tokens ====== */
-:root{
---bg:#f7f7f8;
---surface:#ffffff;
---ink:#1b1e22;
---muted:#6b7280;
---border:#e5e7eb;
-
-/* Tema “vet” (teal) */
---primary-700:#0f766e;
---primary-600:#0ea5a4;
---primary-500:#14b8a6;
---primary-100:#ccfbf1;
-
---radius:14px;
---shadow:0 10px 24px rgba(0,0,0,.10);
+/* ====== Variables de color consistentes ====== */
+:root {
+  --teal-700: #073352;
+  --teal-600: #2a9a99;
+  --teal-200: #bfe6e5;
+  --pink-300: #58AAAE;
+  --bg: #f7f7f8;
+  --surface: #ffffff;
+  --text: #1b1e22;
+  --muted: #5e6a72;
+  --radius: 18px;
+  --shadow: 0 8px 24px rgba(0,0,0,.08);
 }
 
-/* ====== Reset mínimo ====== */
-*{box-sizing:border-box}
-html,body{margin:0;padding:0}
-img{max-width:100%;display:block}
-button,input,select,textarea{font:inherit;color:inherit}
-
-/* ====== Tipografía / body ====== */
-body{
-background:var(--bg);
-color:var(--ink);
-font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-line-height:1.45;
+/* ====== Estilos generales ====== */
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+  line-height: 1.45;
+  margin: 0;
+  min-height: 100vh;
 }
 
-/* ====== Utilidades (sustituyen Bootstrap que quitamos) ====== */
-.container{max-width:840px;margin-inline:auto;padding-inline:16px}
-.py-4{padding-block:2rem}
-.mb-3{margin-bottom:1rem}
-.me-2{margin-right:.5rem}
-
-/* ====== Encabezado ====== */
-h1{font-size:clamp(1.35rem,2.2vw,1.85rem);margin:0 0 .75rem}
-h1 i{vertical-align:-1px;}
-
-/* ====== Tarjeta / formulario ====== */
-form{
-background:var(--surface);
-border:1px solid var(--border);
-border-radius:var(--radius);
-padding:1.25rem;
-box-shadow:var(--shadow);
+/* ====== Header con imagen de fondo ====== */
+.vmk-header {
+  background: url("../IMAGES/vet_animalheart.jpeg") center/cover no-repeat;
+  position: relative;
+  color: #fff;
+  margin-bottom: 2rem;
 }
 
-/* Etiquetas */
-.form-label{
-display:block;
-font-weight:600;
-color:var(--muted);
-margin-bottom:.35rem;
+.vmk-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(7, 51, 82, 0.92);
 }
 
-/* Inputs */
-.form-control{
-width:100%;
-appearance:none;
-background:#fff;
-color:var(--ink);
-border:1px solid var(--border);
-border-radius:10px;
-padding:.65rem .8rem;
-outline:0;
-transition:border-color .15s ease, box-shadow .15s ease, background .15s ease;
+.vmk-header > * {
+  position: relative;
+  z-index: 1;
 }
 
-/* Focus accesible */
-:where(input,button,select,textarea).form-control:focus{
-border-color:var(--primary-500);
-box-shadow:0 0 0 4px color-mix(in srgb, var(--primary-100) 65%, transparent);
+/* Barra de herramientas */
+.vmk-toolbar {
+  padding: 18px 0;
+  min-height: 80px;
 }
 
-/* Validación nativa (HTML5) */
-.form-control:required:invalid
-.form-control:required:invalid:focus{
-box-shadow:0 0 0 4px color-mix(in srgb, #fecaca 60%, transparent);
+.vmk-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1;
+  text-decoration: none;
+  transition: 0.2s;
+  color: #fff;
 }
 
-/* Botones */
-.btn{
-display:inline-flex;align-items:center;justify-content:center;
-gap:.5rem; padding:.7rem 1.05rem;
-border:0; border-radius:999px; cursor:pointer;
-font-weight:700; text-decoration:none; transition:transform .12s ease, box-shadow .2s ease, background .15s ease;
-}
-.btn:focus-visible{outline:3px solid color-mix(in srgb, var(--primary-100) 70%, transparent);outline-offset:2px}
-
-/* Primario */
-.btn-primary{
-background:linear-gradient(135deg,var(--primary-600),var(--primary-700));
-color:#fff;
-box-shadow:0 8px 18px rgba(20, 184, 166, .25);
-}
-.btn-primary:hover{transform:translateY(-2px)}
-.btn-primary:active{transform:translateY(0) scale(.98)}
-
-/* ====== Layout en pantallas pequeñas ====== */
-@media (max-width: 640px){
-form{padding:1rem}
+.vmk-btn--ghost:hover {
+  background: rgba(255, 255, 255, 0.15);
 }
 
-/* ====== Tema (si conservas body.theme-vet) ====== */
-.theme-vet{--primary-700:#0f766e;--primary-600:#0ea5a4;--primary-500:#14b8a6;--primary-100:#ccfbf1}
+.vmk-btn--outline {
+  background: transparent;
+  border: 2px solid #fff;
+}
 
-/* ====== Accesibilidad extra ====== */
-:where(a,button,input,select,textarea):focus-visible{
-outline:3px solid color-mix(in srgb, var(--primary-100) 65%, transparent);
-outline-offset:2px;
+.vmk-btn--outline:hover {
+  background: #fff;
+  color: var(--teal-700);
+}
+
+/* Hero section */
+.vmk-hero {
+  padding: 12px 0 24px;
+}
+
+.vmk-hero-inner {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  justify-content: center;
+}
+
+.vmk-title {
+  margin: 0;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  font-size: clamp(28px, 3.6vw, 40px);
+}
+
+/* ====== FORMULARIO ACTUALIZADO ====== */
+.form-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.form-header {
+  background: linear-gradient(135deg, var(--teal-700) 0%, var(--teal-600) 100%);
+  color: white;
+  padding: 2rem;
+  text-align: center;
+}
+
+.form-header h1 {
+  margin: 0;
+  font-weight: 700;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.form-body {
+  padding: 2.5rem;
+}
+
+.form-section {
+  margin-bottom: 2.5rem;
+}
+
+.form-section-title {
+  color: var(--teal-700);
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--teal-200);
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.form-field {
+  margin-bottom: 1.5rem;
+}
+
+.form-label {
+  font-weight: 600;
+  color: var(--teal-700);
+  margin-bottom: 0.75rem;
+  display: block;
+  font-size: 0.95rem;
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  border: 2px solid var(--teal-200);
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background: #f9f9fa;
+  font-family: 'Poppins', sans-serif;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--teal-600);
+  box-shadow: 0 0 0 3px rgba(42, 154, 153, 0.15);
+  background: #fff;
+}
+
+.required::after {
+  content: " *";
+  color: #e74a3b;
+}
+
+.btn-container {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2.5rem;
+}
+
+/* Botones con el estilo consistente */
+.btn-primary {
+  background: linear-gradient(135deg, var(--teal-600) 0%, var(--teal-700) 100%);
+  border: none;
+  padding: 12px 32px;
+  color: white;
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 4px 12px rgba(7, 51, 82, 0.25);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(7, 51, 82, 0.35);
+}
+
+.btn-secondary {
+  background: #fff;
+  border: 2px solid var(--teal-600);
+  padding: 10px 30px;
+  color: var(--teal-600);
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-secondary:hover {
+  background: var(--teal-600);
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-body {
+    padding: 1.5rem;
+  }
+
+  .btn-container {
+    flex-direction: column;
+  }
+}
+
+/* Estilo para mensajes de error */
+.error-message {
+  color: #e74a3b;
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+/* ====== Corrección específica para alineación de campos ====== */
+.form-grid {
+  align-items: start; /* Alinea todos los elementos al inicio */
+}
+
+.phone-input {
+  display: flex;
+  align-items: stretch; /* Asegura que todos los elementos tengan la misma altura */
+}
+
+.phone-prefix {
+  display: flex;
+  align-items: center;
+  padding: 0.9rem 1rem;
+  background: var(--teal-200);
+  border: 2px solid var(--teal-200);
+  border-right: none;
+  border-radius: 12px 0 0 12px;
+  color: var(--teal-700);
+  font-weight: 600;
+  height: auto; /* Asegura que ocupe toda la altura */
+}
+
+.phone-number {
+  flex: 1;
+  border-radius: 0 12px 12px 0;
+  border-left: none;
+  height: auto; /* Asegura que ocupe toda la altura */
+}
+
+/* Asegurar que todos los inputs tengan la misma altura */
+.form-input, .phone-number {
+  min-height: 48px; /* Altura mínima consistente */
+}
+
+/* Ajuste específico para el campo de teléfono */
+.form-field:has(.phone-input) {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Asegurar que las etiquetas estén alineadas */
+.form-label {
+  margin-bottom: 0.75rem;
 }

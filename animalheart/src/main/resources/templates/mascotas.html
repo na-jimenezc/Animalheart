@@ -75,95 +75,89 @@
   <!-- ======= TABLA ======= -->
   <main class="container vmk-table-wrap">
     <div class="vmk-table-card">
-      <div class="table-responsive">
-        <table class="table mb-0 vmk-table">
-          <thead>
-            <tr>
-              <th style="width: 72px;">Foto</th>
-              <th>Nombre</th>
-              <th>Raza</th>
-              <th>Edad</th>
-              <th>Tipo</th>
-              <th>Estado de Salud</th>
-              <th>Activo</th>
-              <th class="text-center" style="width: 130px;">Información</th>
-            </tr>
-          </thead>
-          <tbody>
-            <!-- Fila de mascota -->
-            <tr th:each="mascota : ${mascotas}">
-              <td>
-                <img th:src="${mascota.fotoURL}" 
-                     th:alt="${mascota.nombre}" 
-                     class="vmk-avatar"
-                     onerror="this.src='/IMAGES/default-pet.jpg'"/>
-              </td>
-              <td class="vmk-col-name" th:text="${mascota.nombre}">Firulais</td>
-                <td th:text="${mascota.raza}">Criollo</td>
-              <td>
-                <span class="vmk-badge" th:text="${mascota.edad} + ' años'">3 años</span>
-              </td>
+      <!-- Tabla con estructura unificada para mejor alineación -->
+      <div class="table-container">
+        <!-- Encabezados de tabla -->
+        <div class="table-header">
+          <div class="header-cell">Foto</div>
+          <div class="header-cell">Nombre</div>
+          <div class="header-cell">Raza</div>
+          <div class="header-cell">Edad</div>
+          <div class="header-cell">Tipo</div>
+          <div class="header-cell">Estado de Salud</div>
+          <div class="header-cell">Activo</div>
+          <div class="header-cell text-center">Información</div>
+        </div>
 
-              <td>
-                <span class="badge bg-secondary" th:text="${mascota.tipo}">Perro</span>
-              </td>
-
-              
-              <!-- Añadido: el tema de la mascota está enferma, sana y si se ha "eliminado" o no -->
-              <td>
-                <span class="badge bg-secondary" 
-                      th:text="${mascota.estado == 'Enfermo' ? 'Enfermo' : 'Sano'}">
-                </span>
-              </td>
-
-              <td>
-                <span class="badge bg-secondary" 
-                      th:text="${mascota.activo ? 'Activo' : 'Inactivo'}">
-                </span>
-              </td>
-
-              <td class="text-center">
-                <a th:href="@{'/mascotas/' + ${mascota.id}}" class="vmk-pill">
-                  <i class="bi bi-eye-fill me-1"></i> Ver más
+        <!-- Filas de mascotas -->
+        <div class="table-body">
+          <!-- Fila de mascota -->
+          <div class="table-row" th:each="mascota : ${mascotas}">
+            <div class="table-cell" data-label="Foto">
+              <img th:src="${mascota.fotoURL}" 
+                   th:alt="${mascota.nombre}" 
+                   class="va-avatar"
+                   onerror="this.src='/IMAGES/default-pet.jpg'"/>
+            </div>
+            <div class="table-cell va-cell-name" data-label="Nombre" th:text="${mascota.nombre}">Firulais</div>
+            <div class="table-cell" data-label="Raza" th:text="${mascota.raza}">Criollo</div>
+            <div class="table-cell" data-label="Edad">
+              <span class="va-badge" th:text="${mascota.edad} + ' años'">3 años</span>
+            </div>
+            <div class="table-cell" data-label="Tipo">
+              <span class="badge bg-secondary" th:text="${mascota.tipo}">Perro</span>
+            </div>
+            <div class="table-cell" data-label="Estado de Salud">
+              <span class="badge" 
+                    th:classappend="${mascota.estado == 'Enfermo'} ? 'bg-warning' : 'bg-success'"
+                    th:text="${mascota.estado == 'Enfermo' ? 'Enfermo' : 'Sano'}">
+              </span>
+            </div>
+            <div class="table-cell" data-label="Activo">
+              <span class="badge" 
+                    th:classappend="${mascota.activo} ? 'bg-success' : 'bg-danger'"
+                    th:text="${mascota.activo ? 'Activo' : 'Inactivo'}">
+              </span>
+            </div>
+            <div class="table-cell text-center" data-label="Información">
+              <div class="actions-container">
+                <a th:href="@{'/mascotas/' + ${mascota.id}}" class="action-btn btn-view">
+                  <i class="bi bi-eye-fill"></i> Ver más
                 </a>
-                <a th:href="@{|/mascotas/${mascota.id}/editar|}" class="vmk-pill me-1">
+                <a th:href="@{|/mascotas/${mascota.id}/editar|}" class="action-btn btn-edit">
                   <i class="bi bi-pencil"></i> Editar
                 </a>
-                <form th:action="@{|/mascotas/${mascota.id}/desactivar|}" method="post" class="d-inline">
+                <form th:action="@{|/mascotas/${mascota.id}/desactivar|}" method="post">
                   <th:block th:with="token=${#request.getAttribute('_csrf')}" th:if="${token != null}">
                     <input type="hidden" th:name="${token.parameterName}" th:value="${token.token}" />
                   </th:block>
-
                   <button type="submit" 
-                        class="btn btn-sm btn-outline-danger js-confirm"
-                        th:attr="data-confirm='¿Desactivar a ' + ${mascota.nombre} + '?'">
-                  <i class="bi bi-trash"></i> Desactivar
-                </button>
+                          class="action-btn btn-deactivate js-confirm"
+                          th:attr="data-confirm='¿Desactivar a ' + ${mascota.nombre} + '?'">
+                    <i class="bi bi-trash"></i> Desactivar
+                  </button>
                 </form>
-              </td>
-            </tr>
+              </div>
+            </div>
+          </div>
 
-            <!-- Vacío -->
-            <tr th:if="${mascotas == null or mascotas.empty}">
-              <td colspan="6" class="text-center text-muted py-5">
-                <i class="bi bi-inbox display-4 d-block mb-2"></i>
-                <h5>No se encontraron mascotas registradas</h5>
-                <p class="small">Las mascotas asignadas a usted aparecerán aquí</p>
-                <a th:href="@{/mascotas/nueva}" class="btn btn-primary mt-2">
-                  <i class="bi bi-plus-circle me-1"></i> Registrar primera mascota
-                </a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+          <!-- Vacío -->
+          <div class="table-empty" th:if="${mascotas == null or mascotas.empty}">
+            <i class="bi bi-inbox display-4 d-block mb-2"></i>
+            <h5>No se encontraron mascotas registradas</h5>
+            <p class="small">Las mascotas asignadas a usted aparecerán aquí</p>
+            <a th:href="@{/mascotas/nueva}" class="btn btn-primary mt-2">
+              <i class="bi bi-plus-circle me-1"></i> Registrar primera mascota
+            </a>
+          </div>
+        </div>
       </div>
     </div>
 
-    <!--Para ajustar la paginación-->
+    <!-- Para ajustar la paginación -->
     <div th:if="${totalPages > 1}" class="mt-4 d-flex justify-content-center">
       <nav>
         <ul class="pagination">
-
           <!-- Botón anterior -->
           <li class="page-item" th:classappend="${currentPage == 0} ? 'disabled'">
             <a class="page-link"
@@ -190,41 +184,10 @@
               Siguiente
             </a>
           </li>
-
         </ul>
       </nav>
     </div>
-
-    <!-- Estadísticas : CONSIDERÉ QUITARLA PORQUE NO APORTA MUCHA INFORMACIÓN, SOLO OCUPA ESPACIO
-    <div th:if="${mascotas != null and not mascotas.empty}" class="mt-4">
-      <div class="row">
-        <div class="col-md-4">
-          <div class="card text-center">
-            <div class="card-body">
-              <h5 class="card-title" th:text="${mascotas.size()}">0</h5>
-              <p class="card-text">Mascotas totales</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card text-center">
-            <div class="card-body">
-              <h5 class="card-title" th:text="${mascotas.?[tipo == 'Perro'].size()}">0</h5>
-              <p class="card-text">Perros</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card text-center">
-            <div class="card-body">
-              <h5 class="card-title" th:text="${mascotas.?[tipo == 'Gato'].size()}">0</h5>
-              <p class="card-text">Gatos</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </main>-->
+  </main>
 
   <!-- ======= FOOTER ======= -->
   <footer class="vmk-footer">
