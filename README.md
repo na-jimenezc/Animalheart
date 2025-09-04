@@ -38,3 +38,13 @@ Aplicativo web desarrollado para la gestión digital de una clínica veterinaria
 - **Cliente**: Consulta estado de sus mascotas e historial de tratamientos.
 - **Veterinario**: Registra tratamientos y mascotas. Administra la información de la mascota, es decir, sus tratamientos y sus diagnósticos.
 - **Administrador**: Gestiona el personal médico, visualiza las métricas y superviza operaciones.
+
+## Diagramas de relación
+
+<div align="center">
+  <img src="diagrama1-web.jpg" alt="Diagrana 1" width="1000"/>
+</div>
+
+<div align="center">
+  <img src="diagrama2-web.jpg" alt="Diagrama 2" width="1000"/>
+</div>
