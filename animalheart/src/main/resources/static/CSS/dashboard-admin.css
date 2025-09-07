@@ -191,3 +191,12 @@
     margin-bottom: 0.5rem;
   }
 }
+
+/* ===== Header fijo en Dashboard Admin ===== */
+.header-dashboard{
+  position: sticky;   /* se queda pegado al llegar al top */
+  top: 0;
+  z-index: 2000;      /* por encima del contenido */
+  box-shadow: 0 1px 0 rgba(7, 51, 82, .10); /* separación sutil */
+  backdrop-filter: saturate(120%) blur(4px); /* opcional, mejora lectura */
+}

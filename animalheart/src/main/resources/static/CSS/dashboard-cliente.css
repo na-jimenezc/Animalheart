@@ -207,3 +207,49 @@ a{color:inherit;text-decoration:none}
     height: 80px;
   }
 }
+
+/* ===== Header fijo en Dashboard Cliente ===== */
+.client-toolbar{
+  position: sticky;   /* se “pega” cuando llega al top */
+  top: 0;
+  z-index: 2000;      /* por encima del contenido */
+  box-shadow: 0 1px 0 rgba(0,0,0,.08); /* separación sutil */
+  backdrop-filter: saturate(120%) blur(4px); /* mejora la lectura sobre el hero */
+}
+
+/* Si algún overlay del hero llegara a solaparse, deja pasar clics del header */
+.client-hero::before{ pointer-events: none; }
+
+/* Altura del footer de cliente */
+:root{
+  --client-footer-h: 64px; /* ajusta si tu footer es más alto/bajo */
+}
+
+/* El footer ya no es fijo; no necesitamos reserva abajo */
+html, body { min-height: 100%; }
+
+/* Footer fijo sin solapar contenido */
+.client-footer{
+   position: static;                /* vuelve al flujo normal */
+   display: flex; align-items: center; justify-content: center;
+   min-height: var(--client-footer-h);
+   background: var(--rose-600);
+   padding: 12px 0;                 /* padding cómodo */
+   box-shadow: 0 -1px 0 rgba(0,0,0,.06);
+}
+
+/* ===== Footer full-bleed (a sangre a los bordes) ===== */
+.client-footer{
+  /* ya lo tienes estático y centrado; añadimos: */
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  box-sizing: border-box;   /* evita “brincos” por padding */
+  /* mantiene tu estilo actual */
+  display: flex; align-items: center; justify-content: center;
+  min-height: var(--client-footer-h);
+  background: var(--rose-600);
+  padding: 12px 0;
+  box-shadow: 0 -1px 0 rgba(0,0,0,.06);
+}
+

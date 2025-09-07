@@ -248,9 +248,9 @@ body.vet-mockup>main{flex:1}
   border-bottom-right-radius: 14px;
 }
 
-/* Aseguramos que el texto sea blanco */
+/* Aseguramos que el texto de la tabla sea oscuro, sin afectar el header */
 .vmk-table thead th {
-  color: teal !important;
+  color: #fff; /* blanco, igual que antes */
 }
 
 /* Mejoramos el espaciado general de la tabla */
@@ -821,4 +821,199 @@ body.vet-mockup>main{flex:1}
   .action-btn {
     min-width: 140px;
   }
+}
+
+/* ====== Header fijo completo (barra + hero + título) ====== */
+
+/* Header fijo: que quede por encima de la página */
+.vmk-header{
+  position: sticky;
+  top: 0;
+  z-index: 3000;           /* sube la capa del header */
+}
+
+/* El overlay visual NO debe capturar clics */
+.vmk-header::before{
+  pointer-events: none;     /* deja pasar los clics a los enlaces/botones */
+}
+
+/* Por si algún estilo heredado desactiva eventos en hijos */
+.vmk-toolbar,
+.vmk-toolbar *{
+  pointer-events: auto;
+}
+
+/* La barra vuelve a flujo normal; conservamos su estilo visual */
+.vmk-toolbar{
+  position: static;                 /* quitar fixed */
+  background: transparent;          /* el overlay del header ya da el color */
+  backdrop-filter: none;            /* no hace falta al estar dentro del hero */
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+/* Sutileza: cuando el header esté pegado, una ligera sombra ayuda a separar del contenido */
+@supports(selector(:has(*))){
+  .vmk-header:has(.vmk-toolbar){ box-shadow: 0 1px 0 rgba(255,255,255,.06); }
+}
+
+/* --- Fix: asegurar que los botones del header sean blancos --- */
+.vmk-toolbar a,
+.vmk-toolbar .vmk-btn {
+  color: #fff !important;
+}
+
+.vmk-toolbar a:hover,
+.vmk-toolbar .vmk-btn:hover {
+  color: #fff !important;
+  opacity: 0.9;
+}
+
+/* --- Fix definitivo: botones de header siempre blancos --- */
+.vmk-toolbar .vmk-btn,
+.vmk-toolbar .vmk-btn--ghost,
+.vmk-toolbar .vmk-btn--outline {
+  color: #fff !important;
+}
+
+.vmk-toolbar .vmk-btn:hover,
+.vmk-toolbar .vmk-btn--ghost:hover,
+.vmk-toolbar .vmk-btn--outline:hover {
+  color: #fff !important;
+  opacity: 0.9;
+}
+
+/* --- Header: forzar color blanco también en reposo (link/visited) --- */
+.vmk-toolbar .vmk-btn,
+.vmk-toolbar .vmk-btn:link,
+.vmk-toolbar .vmk-btn:visited,
+.vmk-toolbar a,
+.vmk-toolbar a:link,
+.vmk-toolbar a:visited{
+  color:#fff !important;
+  opacity:1 !important;          /* por si alguna regla baja la opacidad */
+  -webkit-text-fill-color:#fff;  /* Safari iOS */
+}
+
+/* Asegurar el blanco en íconos bootstrap y cualquier svg dentro del header */
+.vmk-toolbar .bi,
+.vmk-toolbar svg{
+  color:#fff !important;
+  fill:#fff !important;
+  stroke:#fff !important;
+  opacity:1 !important;
+}
+
+/* Variantes que podían sobreescribir el color en reposo */
+.vmk-toolbar .vmk-btn--ghost,
+.vmk-toolbar .vmk-btn--outline{
+  color:#fff !important;
+}
+
+/* Mantener feedback en hover sin cambiar el color */
+.vmk-toolbar .vmk-btn:hover,
+.vmk-toolbar .vmk-btn--ghost:hover,
+.vmk-toolbar .vmk-btn--outline:hover{
+  color:#fff !important;
+  opacity:.9;
+}
+
+/* === FIX FINAL: texto del header siempre blanco (gana a cualquier override) === */
+.vmk-header .vmk-toolbar,
+.vmk-header .vmk-toolbar a,
+.vmk-header .vmk-toolbar a:link,
+.vmk-header .vmk-toolbar a:visited,
+.vmk-header .vmk-toolbar .vmk-btn,
+.vmk-header .vmk-toolbar .vmk-btn--ghost,
+.vmk-header .vmk-toolbar .vmk-btn--outline,
+.vmk-header .vmk-toolbar .vmk-btn--danger,
+.vmk-header .vmk-toolbar .bi,
+.vmk-header .vmk-toolbar svg,
+.vmk-header .vmk-toolbar span {
+  color: #fff !important;
+  -webkit-text-fill-color: #fff; /* iOS/Safari */
+  opacity: 1 !important;
+}
+
+/* Mantener feedback en hover sin cambiar el color */
+.vmk-header .vmk-toolbar a:hover,
+.vmk-header .vmk-toolbar .vmk-btn:hover { opacity: .9; }
+
+/* ====== Botón especial para "Cerrar Sesión" ====== */
+.cta-logout {
+  position: relative;
+  isolation: isolate;
+  background: linear-gradient(135deg, #ef4444, #b91c1c); /* Rojo degradado */
+  color: #fff !important;
+  box-shadow: 0 10px 24px rgba(185,28,28,.35);
+  border-radius: 999px;
+  transform: translateZ(0);
+}
+
+.cta-logout::before,
+.cta-logout::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: inherit;
+  z-index: -1;
+}
+
+.cta-logout::before {
+  background: radial-gradient(60% 60% at 50% 50%, rgba(239,68,68,.35), transparent 60%);
+  filter: blur(10px);
+  opacity: .9;
+}
+
+.cta-logout::after {
+  border: 2px solid rgba(239,68,68,.55);
+  animation: ring-logout 1.8s ease-out infinite;
+}
+
+@keyframes ring-logout {
+  from { transform: scale(.95); opacity: .9; }
+  to   { transform: scale(1.15); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta-logout::after { animation: none; }
+}
+
+/* ====== Botón especial para "Regresar" ====== */
+.cta-back {
+  position: relative;
+  isolation: isolate;
+  background: linear-gradient(135deg, #3b82f6, #1e40af); /* Azul degradado */
+  color: #fff !important;
+  box-shadow: 0 10px 24px rgba(30,64,175,.35);
+  border-radius: 999px;
+  transform: translateZ(0);
+}
+
+.cta-back::before,
+.cta-back::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: inherit;
+  z-index: -1;
+}
+
+.cta-back::before {
+  background: radial-gradient(60% 60% at 50% 50%, rgba(59,130,246,.35), transparent 60%);
+  filter: blur(10px);
+  opacity: .9;
+}
+
+.cta-back::after {
+  border: 2px solid rgba(59,130,246,.55);
+  animation: ring-back 1.8s ease-out infinite;
+}
+
+@keyframes ring-back {
+  from { transform: scale(.95); opacity: .9; }
+  to   { transform: scale(1.15); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta-back::after { animation: none; }
 }
