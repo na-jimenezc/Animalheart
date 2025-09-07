@@ -4,10 +4,9 @@ import com.animalheart.animalheart.model.Cliente;
 import com.animalheart.animalheart.model.Mascota;
 import com.animalheart.animalheart.model.Veterinario;
 import com.animalheart.animalheart.repository.ClienteRepository;
-import com.animalheart.animalheart.service.ClienteService;
-import com.animalheart.animalheart.service.VeterinarioService;
-
-import com.animalheart.animalheart.service.MascotaService;
+import com.animalheart.animalheart.service.serviceInterface.ClienteService;
+import com.animalheart.animalheart.service.serviceInterface.MascotaService;
+import com.animalheart.animalheart.service.serviceInterface.VeterinarioService;
 
 import java.util.List;
 
@@ -129,8 +128,8 @@ public String procesarLogin(@RequestParam("correo") String correo, HttpSession s
     }
     
     try {
-        // Recargar el veterinario desde la base de datos para tener una entidad managed
-        Veterinario veterinarioManaged = veterinarioService.obtenerVeterinarioPorId(veterinario.getId());
+        //Recargar el veterinario desde la base de datos para tener una entidad managed
+        //Veterinario veterinarioManaged = veterinarioService.obtenerVeterinarioPorId(veterinario.getId());
         
         if (cliente.getCedula() == null || cliente.getCedula().trim().isEmpty()) {
             model.addAttribute("error", "La cédula es requerida");
@@ -142,14 +141,14 @@ public String procesarLogin(@RequestParam("correo") String correo, HttpSession s
             return mostrarFormularioConError(model, session);
         }
         
-        Cliente clienteGuardado = clienteService.guardarCliente(cliente);
+        clienteService.guardarCliente(cliente); 
         
-        clienteService.guardarCliente(clienteGuardado);
-        veterinarioService.guardarVeterinario(veterinarioManaged);
+        //veterinarioService.guardarVeterinario(veterinarioManaged);
         
         return "redirect:/mascotas/nueva?success=Cliente registrado correctamente";
         
     } catch (Exception e) {
+        e.printStackTrace();
         model.addAttribute("error", "Error al registrar el cliente: " + e.getMessage());
         return mostrarFormularioConError(model, session);
     
@@ -169,7 +168,7 @@ public String procesarLogin(@RequestParam("correo") String correo, HttpSession s
                                     @RequestParam(value = "cedula", required = false) String cedula, // opcional, se ignora
                                     RedirectAttributes ra) {
         try {
-            // 👈 Tu servicio espera Long, así que pasamos el id
+           
             clienteService.eliminarClienteHard(id);
 
             ra.addFlashAttribute("success", "Cliente eliminado correctamente.");

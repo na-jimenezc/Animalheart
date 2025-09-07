@@ -2,9 +2,12 @@ package com.animalheart.animalheart.controller;
 
 import com.animalheart.animalheart.model.Administrador;
 import com.animalheart.animalheart.model.Veterinario;
-import com.animalheart.animalheart.service.AdministradorService;
-import com.animalheart.animalheart.service.VeterinarioService;
+import com.animalheart.animalheart.service.serviceInterface.AdministradorService;
+import com.animalheart.animalheart.service.serviceInterface.VeterinarioService;
+
 import jakarta.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -14,8 +17,12 @@ public class AdministradorController {
 
     private static final String ADMIN_AUTH = "ADMIN_AUTH";
 
-    private final VeterinarioService veterinarioService;
-    private final AdministradorService administradorService;
+    @Autowired
+    VeterinarioService veterinarioService;
+
+    @Autowired
+    AdministradorService administradorService;
+
 
     public AdministradorController(VeterinarioService veterinarioService,
                                    AdministradorService administradorService) {

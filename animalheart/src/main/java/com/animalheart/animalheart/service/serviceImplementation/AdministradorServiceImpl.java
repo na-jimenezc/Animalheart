@@ -1,8 +1,9 @@
-package com.animalheart.animalheart.service;
+package com.animalheart.animalheart.service.serviceImplementation;
 
 import org.springframework.stereotype.Service;
 import com.animalheart.animalheart.model.Administrador;
 import com.animalheart.animalheart.repository.AdministradorRepository;
+import com.animalheart.animalheart.service.serviceInterface.AdministradorService;
 
 @Service
 public class AdministradorServiceImpl implements AdministradorService {

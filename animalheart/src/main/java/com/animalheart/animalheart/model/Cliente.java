@@ -27,7 +27,6 @@ public class Cliente {
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Mascota> mascotas = new ArrayList<>();
 
-
     public Cliente() {}
     public Cliente(String cedula, String nombre, String correo, String celular) {
         this.cedula = cedula;

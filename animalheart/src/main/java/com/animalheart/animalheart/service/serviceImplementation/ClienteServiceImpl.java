@@ -1,4 +1,4 @@
-package com.animalheart.animalheart.service;
+package com.animalheart.animalheart.service.serviceImplementation;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +15,7 @@ import jakarta.persistence.PersistenceContext;
 
 import com.animalheart.animalheart.repository.MascotaRepository;
 import com.animalheart.animalheart.repository.TratamientoRepository;
+import com.animalheart.animalheart.service.serviceInterface.ClienteService;
 
 
 @Service
