@@ -1,4 +1,3 @@
-<!-- templates/detalle-veterinario.html -->
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="es">
 <head>
@@ -15,9 +14,7 @@
 
 <body class="vet-mockup"><!-- importante para el footer pegado -->
 
-  <!-- HEADER -->
 <header class="vmk-header vmk-header--pink">
-  <!-- barra de botones (píldoras) -->
   <div class="vmk-toolbar container d-flex gap-2 py-2">
     <a class="vmk-btn vmk-btn--ghost" th:href="@{/admin/veterinarios}">
       <i class="bi bi-arrow-left-short"></i> Regresar
@@ -30,7 +27,6 @@
     </a>
   </div>
 
-  <!-- héroe con logo + título como en el mockup -->
   <div class="vmk-hero">
     <div class="container vmk-hero-inner">
       <img class="vmk-brand" th:src="@{/IMAGES/Logo_2.PNG}" alt="Animalheart">
@@ -39,12 +35,9 @@
   </div>
 </header>
 
-
-  <!-- CONTENIDO -->
   <main class="vmk-main">
     <div class="vd-wrap">
 
-      <!-- Foto centrada -->
       <div class="text-center mb-4" th:with="seed=${#strings.replace((veterinario.nombre?:'1'),' ','')}">
         <img
           class="vd-photo"
@@ -54,9 +47,7 @@
                    : 'https://picsum.photos/seed/vet-' + seed + '/600/720'}">
       </div>
 
-      <!-- Tarjetas 2x2 -->
       <div class="vd-grid">
-        <!-- Estado -->
         <div class="vd-item">
           <div class="vd-icon"><i class="bi bi-badge-hd"></i></div>
           <div class="vd-body">
@@ -67,7 +58,6 @@
           </div>
         </div>
 
-        <!-- ID -->
         <div class="vd-item">
           <div class="vd-icon"><i class="bi bi-fingerprint"></i></div>
           <div class="vd-body">
@@ -76,7 +66,6 @@
           </div>
         </div>
 
-        <!-- Nombres -->
         <div class="vd-item">
           <div class="vd-icon"><i class="bi bi-person-badge"></i></div>
           <div class="vd-body">
@@ -85,7 +74,6 @@
           </div>
         </div>
 
-        <!-- Consultas -->
         <div class="vd-item">
           <div class="vd-icon"><i class="bi bi-hourglass-split"></i></div>
           <div class="vd-body">
@@ -98,7 +86,6 @@
     </div>
   </main>
 
-  <!-- FOOTER pegado al fondo -->
   <footer class="vmk-footer">
     <div class="container text-center">© 2025 – Animalheart</div>
   </footer>

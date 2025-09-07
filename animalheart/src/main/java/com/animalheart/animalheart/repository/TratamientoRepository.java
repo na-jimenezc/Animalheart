@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 public interface TratamientoRepository extends JpaRepository<Tratamiento, Long> {
     
-    // Borra todos los tratamientos de las mascotas de un cliente (JPQL, sin nombres de columnas)
     @Modifying
     @Transactional
     @Query("DELETE FROM Tratamiento t WHERE t.mascota.cliente.id = :clienteId")

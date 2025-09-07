@@ -5,19 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Registrar Nuevo Dueño - Animalheart</title>
 
-  <!-- Bootstrap + Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 
-  <!-- Fuente Poppins -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- Estilos específicos de esta vista -->
   <link th:href="@{/css/aniadir-duenio.css}" rel="stylesheet">
 </head>
 
 <body class="bg-light">
-  <!-- ======= BARRA SUPERIOR (como en la página anterior) ======= -->
   <header class="vmk-header">
     <div class="vmk-toolbar container d-flex align-items-center justify-content-between gap-2">
       <div class="d-flex align-items-center gap-2">
@@ -30,7 +26,6 @@
       </a>
     </div>
 
-    <!-- ======= HERO con título ======= -->
     <div class="vmk-hero">
       <div class="container vmk-hero-inner">
         <h1 class="vmk-title">
@@ -40,40 +35,34 @@
     </div>
   </header>
 
-  <!-- ======= FORMULARIO ======= -->
   <main class="container mb-5">
     <div class="form-container">
       <div class="form-body">
         <form th:action="@{/clientes/nuevo}" th:object="${cliente}" method="post">
-          <!-- Sección: Información Personal -->
           <div class="form-section">
             <h2 class="form-section-title">
               <i class="bi bi-person-badge"></i>Información Personal
             </h2>
             
             <div class="form-grid">
-              <!-- Cédula -->
               <div class="form-field">
                 <label class="form-label required">Cédula</label>
                 <input type="text" th:field="*{cedula}" class="form-input" required 
                        placeholder="Número de cédula"/>
               </div>
 
-              <!-- Nombre -->
               <div class="form-field">
                 <label class="form-label required">Nombres Completos</label>
                 <input type="text" name="nombre" class="form-input" required 
                        placeholder="Nombres y apellidos"/>
               </div>
 
-              <!-- Correo -->
               <div class="form-field">
                 <label class="form-label required">Correo Electrónico</label>
                 <input type="email" th:field="*{correo}" class="form-input" required 
                        placeholder="ejemplo@correo.com"/>
               </div>
 
-              <!-- Celular -->
               <div class="form-field">
                 <label class="form-label required">Celular</label>
                 <div class="phone-input">
@@ -85,7 +74,6 @@
             </div>
           </div>
 
-          <!-- Botones de Acción -->
           <div class="btn-container">
             <a th:href="@{/mascotas}" class="btn-secondary">
               <i class="bi bi-x-circle me-2"></i>Cancelar

@@ -5,19 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Añadir Mascota - Animalheart</title>
 
-  <!-- Bootstrap + Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 
-  <!-- Fuente Poppins -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- Estilos específicos de esta vista -->
   <link th:href="@{/css/aniadir-mascota-dueno.css}" rel="stylesheet">
 </head>
 
 <body class="bg-light">
-  <!-- ======= BARRA SUPERIOR ======= -->
   <header class="vmk-header">
     <div class="vmk-toolbar container d-flex align-items-center justify-content-between gap-2">
       <div class="d-flex align-items-center gap-2">
@@ -30,7 +26,6 @@
       </a>
     </div>
 
-    <!-- ======= HERO con título ======= -->
     <div class="vmk-hero">
       <div class="container vmk-hero-inner">
         <h1 class="vmk-title">
@@ -40,12 +35,10 @@
     </div>
   </header>
 
-  <!-- ======= FORMULARIO ======= -->
   <main class="container mb-5">
     <div class="form-container">
       <div class="form-body">
         <form th:action="@{/mascotas/nueva}" th:object="${mascota}" method="post">
-          <!-- Sección: Foto de la Mascota -->
           <div class="form-section">
             <h2 class="form-section-title">
               <i class="bi bi-camera"></i>Foto de la Mascota
@@ -66,28 +59,24 @@
             </div>
           </div>
 
-          <!-- Sección: Información de la Mascota -->
           <div class="form-section">
             <h2 class="form-section-title">
               <i class="bi bi-info-circle"></i>Información de la Mascota
             </h2>
             
             <div class="form-grid">
-              <!-- Nombre -->
               <div class="form-field">
                 <label class="form-label required">Nombre de la Mascota</label>
                 <input type="text" name="nombre" class="form-input" required 
                        placeholder="Ej: Firulais" />
               </div>
 
-              <!-- Edad -->
               <div class="form-field">
                 <label class="form-label required">Edad (años)</label>
                 <input type="number" th:field="*{edad}" class="form-input" min="0" max="30" required 
                        placeholder="Ej: 3" />
               </div>
 
-              <!-- Tipo -->
               <div class="form-field">
                 <label class="form-label required">Tipo de Animal</label>
                 <select th:field="*{tipo}" class="form-select" required>
@@ -97,21 +86,18 @@
                 </select>
               </div>
 
-              <!-- Raza -->
               <div class="form-field">
                 <label class="form-label required">Raza</label>
                 <input type="text" th:field="*{raza}" class="form-input" 
                        placeholder="Ej: Criollo, Labrador, etc." required />
               </div>
 
-              <!-- Peso -->
               <div class="form-field">
                 <label class="form-label">Peso (kg)</label>
                 <input type="number" step="0.1" th:field="*{peso}" class="form-input" 
                        placeholder="Ej: 5.2" min="0" />
               </div>
 
-              <!-- Enfermedad -->
               <div class="form-field">
                 <label class="form-label">Enfermedad/Diagnóstico</label>
                 <input type="text" th:field="*{enfermedad}" class="form-input" 
@@ -120,13 +106,11 @@
             </div>
           </div>
 
-          <!-- Sección: Dueño de la Mascota -->
           <div class="form-section">
             <h2 class="form-section-title">
               <i class="bi bi-person"></i>Información del Dueño
             </h2>
             
-            <!-- Selector de Cliente -->
             <div class="form-field">
               <label class="form-label required">Seleccionar Cliente</label>
               <select name="clienteId" class="form-select" required id="clienteSelect">
@@ -142,14 +126,12 @@
               </select>
             </div>
 
-            <!-- Acción rápida: registrar un nuevo cliente -->
             <div class="inline-actions">
               <a th:href="@{/clientes/nuevo}" class="btn-inline">
                 <i class="bi bi-person-plus me-2"></i> Registrar nuevo cliente
               </a>
             </div>
 
-            <!-- Información del cliente seleccionado -->
             <div id="clientInfo" style="display: none;">
               <div class="client-card">
                 <div class="client-info">
@@ -165,7 +147,6 @@
             </div>
           </div>
 
-          <!-- Botones de Acción -->
           <div class="btn-container">
             <a th:href="@{/mascotas}" class="btn-secondary">
               <i class="bi bi-x-circle me-2"></i>Cancelar

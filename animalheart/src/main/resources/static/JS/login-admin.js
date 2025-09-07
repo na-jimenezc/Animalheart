@@ -1,12 +1,10 @@
 // login-admin.js — Lógica específica del login de Administrador
 
-// Compatible con el atributo inline: onclick="togglePassword()"
 function togglePassword() {
-  // En inline handlers, "this" referencia al botón clicado
   const boton = this || document.querySelector('.boton-ver-clave');
   if (!boton) return;
 
-  const input = boton.previousElementSibling;   // <input type="password"> está justo antes
+  const input = boton.previousElementSibling;
   const icono = boton.querySelector('i');
 
   if (!input) return;
@@ -26,14 +24,11 @@ function togglePassword() {
   }
 }
 
-// Progressive enhancement: si alguien quita el onclick inline, seguimos funcionando
 document.addEventListener('DOMContentLoaded', () => {
-  // Adjunta el toggle a todos los botones "ver clave"
   document.querySelectorAll('.boton-ver-clave').forEach(btn => {
     btn.addEventListener('click', togglePassword);
   });
 
-  // Validación rápida del correo: debe contener "@"
   const form = document.querySelector('form');
   if (form) {
     form.addEventListener('submit', (e) => {

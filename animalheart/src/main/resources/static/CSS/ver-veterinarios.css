@@ -14,7 +14,7 @@
 html,body{
   margin:0;
   font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-  background:#f7f7f8; /* mismo fondo de tu sistema */
+  background:#f7f7f8;
   color:#1b1e22;
 }
 img{max-width:100%;display:block}
@@ -107,7 +107,7 @@ body.vet-mockup{
 body.vet-mockup > main{ flex:1; }
 .vmk-footer{
   background:#58AAAE; padding:16px 0;
-  margin-top:auto; /* asegura que quede abajo */
+  margin-top:auto;
 }
 
 
@@ -127,7 +127,7 @@ body.vet-mockup > main{ flex:1; }
 html,body{
   margin:0;
   font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-  background:#f7f7f8; /* mismo fondo de tu sistema */
+  background:#f7f7f8;
   color:#1b1e22;
 }
 img{max-width:100%;display:block}
@@ -140,15 +140,15 @@ a{color:inherit;text-decoration:none}
 .va-toolbar{ 
   background:var(--rose-100); 
   border-bottom:1px solid rgba(0,0,0,.05); 
-  padding: 1.2rem 0; /* Aumentado el padding vertical */
+  padding: 1.2rem 0;
 }
 .va-btn{
   display:inline-flex; align-items:center; gap:.45rem;
-  padding:12px 20px; /* Botones más grandes */
+  padding:12px 20px;
   border-radius:999px; font-weight:700;
   text-decoration:none; transition:all .2s;
   font-family:Poppins, sans-serif;
-  font-size: 1.05rem; /* Texto ligeramente más grande */
+  font-size: 1.05rem;
 }
 .va-btn--ghost{ color:var(--ink); background:transparent; border:1px solid rgba(0,0,0,.15); }
 .va-btn--ghost:hover{ background:rgba(0,0,0,.05); }
@@ -161,7 +161,7 @@ a{color:inherit;text-decoration:none}
 .va-hero{
   position:relative;
   background:url("../IMAGES/vet_animalheart.jpeg") center/cover no-repeat;
-  min-height:220px; /* Ligeramente más alto */
+  min-height:220px;
   display:flex; 
   align-items:center;
 }
@@ -178,71 +178,71 @@ a{color:inherit;text-decoration:none}
 .va-table-card{
   background:var(--rose-100); 
   border-radius:18px; 
-  padding:20px; /* Más padding interno */
+  padding:20px;
   box-shadow:0 8px 24px rgba(0,0,0,.08);
-  margin: 2rem 0; /* Más espacio alrededor */
+  margin: 2rem 0;
 }
 
 /* Encabezado de columnas (solo desktop) */
 .va-table-head{
-  grid-template-columns:100px 1.5fr 1.2fr 1fr 1.2fr; /* Columnas más amplias */
+  grid-template-columns:100px 1.5fr 1.2fr 1fr 1.2fr;
   color:#6b7280; font-weight:600; 
-  padding:12px 16px; /* Más padding */
-  margin:8px 12px; /* Más margen */
-  font-size: 1.1rem; /* Texto más grande */
+  padding:12px 16px;
+  margin:8px 12px;
+  font-size: 1.1rem;
 }
 
 /* Tabla y celdas redondeadas separadas */
 .va-table{ 
   width:100%; 
   border-collapse:separate; 
-  border-spacing:0 16px; /* Más separación entre filas */
+  border-spacing:0 16px;
 }
 .va-table td{
   background:#fff; border:0; 
-  padding:20px 16px; /* Celdas más altas */
+  padding:20px 16px;
   vertical-align:middle; 
   color:var(--ink);
-  font-size: 1.05rem; /* Texto ligeramente más grande */
+  font-size: 1.05rem;
 }
 .va-table td:first-child{ border-top-left-radius:14px; border-bottom-left-radius:14px; }
 .va-table td:last-child{ border-top-right-radius:14px; border-bottom-right-radius:14px; }
 
 /* Avatar + nombre */
-.va-cell-avatar{ width:100px; /* Más ancho para el avatar */ }
+.va-cell-avatar{ width:100px;}
 .va-avatar{
-  width:70px; height:70px; /* Avatar más grande */
+  width:70px; height:70px;
   border-radius:50%; object-fit:cover;
-  border:3px solid var(--rose-200); /* Borde más grueso */
+  border:3px solid var(--rose-200);
 }
 .va-cell-name{ 
-  font-weight:800; /* Texto más grueso */
-  font-size: 1.15rem; /* Texto más grande */
+  font-weight:800;
+  font-size: 1.15rem;
 }
 
 /* Badge de consultas */
 .va-badge{
   display:inline-block; 
-  padding:8px 14px; /* Badge más grande */
+  padding:8px 14px;
   border-radius:999px;
   background:var(--rose-200); color:#7a1f2d; 
-  font-weight:700; font-size:1rem; /* Texto más grande */
+  font-weight:700; font-size:1rem;
 }
 
 /* Botón "Ver más" (píldora) */
 .va-pill{
   display:inline-flex; align-items:center; gap:.35rem;
-  padding:10px 20px; /* Píldora más grande */
-  border-radius:999px; font-weight:700; font-size:1rem; /* Texto más grande */
+  padding:10px 20px;
+  border-radius:999px; font-weight:700; font-size:1rem;
   background:var(--rose-500); color:#fff; text-decoration:none; transition:.2s;
 }
 .va-pill:hover{ background:var(--rose-600); transform:translateY(-1px); }
 
 /* Estado vacío */
 .va-empty{
-  text-align:center; padding:32px; /* Más padding */
+  text-align:center; padding:32px;
   background:#fff; border-radius:12px; color:#6b7280;
-  font-size: 1.1rem; /* Texto más grande */
+  font-size: 1.1rem;
 }
 
 /* ===================== FOOTER PEGAJOSO (sticky) ===================== */
@@ -251,8 +251,8 @@ body.vet-mockup{
 }
 body.vet-mockup > main{ flex:1; }
 .vmk-footer{
-  background:#58AAAE; padding:20px 0; /* Footer más alto */
-  margin-top:auto; /* asegura que quede abajo */
+  background:#58AAAE; padding:20px 0;
+  margin-top:auto;/
 }
 
 /* Ajustes responsivos */

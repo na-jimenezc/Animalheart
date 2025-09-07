@@ -146,7 +146,7 @@ body.vet-mockup>main{flex:1}
 /* ===== Botón "Agregar dueño" (junto a Registrar Mascota) ===== */
 .cta-dueno{
   position: relative; isolation: isolate;
-  background: linear-gradient(135deg,#34d399,#0ea5a4); /* verdoso para distinguir */
+  background: linear-gradient(135deg,#34d399,#0ea5a4);
   color:#fff !important;
   box-shadow: 0 10px 24px rgba(14,165,164,.35);
   border-radius: 999px;
@@ -189,8 +189,8 @@ body.vet-mockup>main{flex:1}
 
 /* ====== BARRA SUPERIOR MÁS GRANDE ====== */
 .vmk-toolbar {
-  padding: 18px 0; /* Aumentamos el padding vertical */
-  min-height: 80px; /* Establecemos una altura mínima mayor */
+  padding: 18px 0;
+  min-height: 80px;
 }
 
 /* ====== PAGINACIÓN MEJORADA ====== */
@@ -226,7 +226,7 @@ body.vet-mockup>main{flex:1}
 
 /* ====== ENCABEZADO DE TABLA ESTILIZADO ====== */
 .vmk-table thead tr {
-  background: var(--teal-700) !important; /* Mismo color que el navbar */
+  background: var(--teal-700) !important;
 }
 
 .vmk-table thead th {
@@ -250,7 +250,7 @@ body.vet-mockup>main{flex:1}
 
 /* Aseguramos que el texto de la tabla sea oscuro, sin afectar el header */
 .vmk-table thead th {
-  color: #fff; /* blanco, igual que antes */
+  color: #fff;
 }
 
 /* Mejoramos el espaciado general de la tabla */
@@ -330,7 +330,7 @@ body.vet-mockup>main{flex:1}
   flex-direction: column;
   gap: 8px;
   align-items: center;
-  width: 130px; /* Ancho fijo basado en el botón más ancho */
+  width: 130px;
   margin: 0 auto;
 }
 
@@ -348,10 +348,10 @@ body.vet-mockup>main{flex:1}
   transition: all 0.2s ease;
   white-space: nowrap;
   line-height: 1;
-  width: 100%; /* Ocupa todo el ancho del contenedor */
+  width: 100%;
   text-align: center;
   box-sizing: border-box;
-  min-height: 32px; /* Altura mínima uniforme */
+  min-height: 32px;
 }
 
 /* Botón Ver más */
@@ -383,7 +383,7 @@ body.vet-mockup>main{flex:1}
   border: 2px solid #d32f2f;
   color: #d32f2f;
   background: #fff;
-  width: 100%; /* Forzar que ocupe todo el ancho */
+  width: 100%;
 }
 
 .btn-outline-danger:hover {
@@ -401,7 +401,7 @@ body.vet-mockup>main{flex:1}
 /* Asegurar que todos los botones tengan el mismo tamaño */
 .vmk-table .action-btn,
 .vmk-table .btn-outline-danger {
-  min-width: 110px; /* Ancho mínimo basado en el botón Desactivar */
+  min-width: 110px;
 }
 
 
@@ -413,7 +413,7 @@ body.vet-mockup>main{flex:1}
 
 /* ====== ESTILO DE TABLA AL ESTILO VETERINARIOS (CON AZUL) ====== */
 .vmk-table-card {
-  background: var(--teal-200); /* Cambiado a azul en lugar de rosa */
+  background: var(--teal-200);
   border-radius: 18px;
   padding: 12px;
   box-shadow: var(--shadow);
@@ -423,11 +423,11 @@ body.vet-mockup>main{flex:1}
 .va-table-head {
   display: grid;
   grid-template-columns: 80px 1.2fr 1fr 0.8fr 0.8fr 1fr 0.8fr 1.2fr;
-  color: var(--teal-700); /* Texto azul oscuro */
+  color: var(--teal-700);
   font-weight: 600;
   padding: 8px 10px 12px;
   margin: 4px 8px;
-  background-color: var(--teal-100); /* Fondo azul muy claro */
+  background-color: var(--teal-100);
   border-radius: 10px;
 }
 
@@ -443,7 +443,7 @@ body.vet-mockup>main{flex:1}
   padding: 16px;
   vertical-align: middle;
   color: var(--text);
-  text-align: center; /* Aseguramos que todo esté centrado */
+  text-align: center;
 }
 
 .va-table td:first-child {
@@ -829,12 +829,12 @@ body.vet-mockup>main{flex:1}
 .vmk-header{
   position: sticky;
   top: 0;
-  z-index: 3000;           /* sube la capa del header */
+  z-index: 3000;
 }
 
 /* El overlay visual NO debe capturar clics */
 .vmk-header::before{
-  pointer-events: none;     /* deja pasar los clics a los enlaces/botones */
+  pointer-events: none;
 }
 
 /* Por si algún estilo heredado desactiva eventos en hijos */
@@ -845,9 +845,9 @@ body.vet-mockup>main{flex:1}
 
 /* La barra vuelve a flujo normal; conservamos su estilo visual */
 .vmk-toolbar{
-  position: static;                 /* quitar fixed */
-  background: transparent;          /* el overlay del header ya da el color */
-  backdrop-filter: none;            /* no hace falta al estar dentro del hero */
+  position: static;
+  background: transparent;
+  backdrop-filter: none;
   border-bottom: 1px solid rgba(255,255,255,.08);
 }
 
@@ -890,8 +890,8 @@ body.vet-mockup>main{flex:1}
 .vmk-toolbar a:link,
 .vmk-toolbar a:visited{
   color:#fff !important;
-  opacity:1 !important;          /* por si alguna regla baja la opacidad */
-  -webkit-text-fill-color:#fff;  /* Safari iOS */
+  opacity:1 !important;
+  -webkit-text-fill-color:#fff;
 }
 
 /* Asegurar el blanco en íconos bootstrap y cualquier svg dentro del header */
@@ -930,7 +930,7 @@ body.vet-mockup>main{flex:1}
 .vmk-header .vmk-toolbar svg,
 .vmk-header .vmk-toolbar span {
   color: #fff !important;
-  -webkit-text-fill-color: #fff; /* iOS/Safari */
+  -webkit-text-fill-color: #fff;
   opacity: 1 !important;
 }
 
@@ -942,7 +942,7 @@ body.vet-mockup>main{flex:1}
 .cta-logout {
   position: relative;
   isolation: isolate;
-  background: linear-gradient(135deg, #ef4444, #b91c1c); /* Rojo degradado */
+  background: linear-gradient(135deg, #ef4444, #b91c1c);
   color: #fff !important;
   box-shadow: 0 10px 24px rgba(185,28,28,.35);
   border-radius: 999px;
@@ -982,7 +982,7 @@ body.vet-mockup>main{flex:1}
 .cta-back {
   position: relative;
   isolation: isolate;
-  background: linear-gradient(135deg, #3b82f6, #1e40af); /* Azul degradado */
+  background: linear-gradient(135deg, #3b82f6, #1e40af);
   color: #fff !important;
   box-shadow: 0 10px 24px rgba(30,64,175,.35);
   border-radius: 999px;

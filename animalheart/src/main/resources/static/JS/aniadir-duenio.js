@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const form = document.querySelector('form');
   if (!form) return;
 
-  // Validación del formulario al enviar
   form.addEventListener('submit', function (e) {
     const requiredFields = this.querySelectorAll('[required]');
     let isValid = true;
@@ -18,7 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Validación específica para celular (solo números)
     const celularField = this.querySelector('[th\\:field="*{celular}"]');
     if (celularField && celularField.value && !/^\d+$/.test(celularField.value)) {
       isValid = false;
@@ -32,7 +30,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Formateo automático del celular (solo dígitos)
   const celularInput = form.querySelector('[th\\:field="*{celular}"]');
   if (celularInput) {
     celularInput.addEventListener('input', function () {

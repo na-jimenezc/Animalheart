@@ -37,10 +37,10 @@ body.vet-mockup{
 }
 .vmk-header::before{
   content:""; position:absolute; inset:0;
-  background:rgba(7,51,82,.92); /* overlay teal base */
+  background:rgba(7,51,82,.92);
 }
 .vmk-header--pink::before{
-  background: rgba(246,189,197,.88); /* overlay rosado */
+  background: rgba(246,189,197,.88);
 }
 .vmk-header > *{ position:relative; z-index:1; }
 
@@ -102,11 +102,11 @@ body.vet-mockup{
   grid-template-columns: 84px 1fr;
   border-radius: 14px;
   overflow: hidden;
-  background: #f8c8cf;      /* rosa suave */
+  background: #f8c8cf;
   box-shadow: 0 4px 14px rgba(0,0,0,.08);
 }
 .vd-icon{
-  background:#ea9aa8;       /* bloque del icono */
+  background:#ea9aa8;
   color:#fff; display:flex; align-items:center; justify-content:center;
   font-size: 1.6rem;
 }
@@ -117,8 +117,8 @@ body.vet-mockup{
 .vd-value{
   font-weight:800; color:#fff; letter-spacing:.2px;
 }
-.vd-value.text-ok{ color:#eafff7; }   /* 'Activo' */
-.vd-value.text-off{ color:#ffeaea; }  /* 'Inactivo' */
+.vd-value.text-ok{ color:#eafff7; }
+.vd-value.text-off{ color:#ffeaea; }
 
 /* ===================== FOOTER ===================== */
 .vmk-footer{ background:#58AAAE; padding:16px 0; color:#fff; }

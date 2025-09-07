@@ -1,45 +1,26 @@
 <!DOCTYPE html>
-<!--
-  Página principal de Animalheart.
-  - Usa Bootstrap 5, Bootstrap Icons y Poppins (Google Fonts).
-  - Plantillas Thymeleaf: rutas y recursos con th:href / th:src.
-  - Contiene: Navbar, Portada (hero), Carrusel (Misión/Visión),
-    Servicios (grid con collapse), Testimonios (carrusel) y Footer.
--->
 <html xmlns:th="http://www.thymeleaf.org" lang="es">
 <head>
   <meta charset="utf-8" />
-  <!-- Responsive y bloqueo de zoom para UI móvil controlada -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Animalheart · Clínica Veterinaria</title>
 
-  <!-- Preconexión a orígenes de fuentes: acelera primeras descargas -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <!-- Tipografía Poppins en varios pesos -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Bootstrap 5 (CSS) -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
-  <!-- Iconos (Bootstrap Icons) -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 
-  <!-- Estilos específicos de la HOME -->
   <link th:href="@{/css/index.css}" rel="stylesheet">
 </head>
 <body>
 
-  <!-- =================== HEADER / NAVBAR ===================
-       - Barra sticky con hamburguesa en móvil.
-       - Logo centrado visible solo en >= lg.
-       - Menús a izquierda (Inicio/Contacto) y derecha (roles).
-  -->
 <header class="barra navbar navbar-expand-lg">
   <div class="envoltura container-fluid align-items-center">
 
-    <!-- Logo compacto + botón hamburguesa (solo móvil) -->
     <div class="d-flex align-items-center w-100 d-lg-none">
       <div class="logotipo-movil">
         <img th:src="@{/IMAGES/Logo_2.PNG}" alt="Logo AnimalHeart" style="height:50px; object-fit:contain;">
@@ -51,27 +32,21 @@
       </button>
     </div>
 
-    <!-- Logotipo centrado (oculto en móvil, visible en escritorio) -->
     <div class="logotipo-central d-none d-lg-flex">
       <img th:src="@{/IMAGES/Logo_2.PNG}" alt="Logo AnimalHeart">
     </div>
 
-    <!-- Contenedor colapsable del menú -->
     <div class="collapse navbar-collapse justify-content-between" id="barraContenido">
 
-      <!-- Menú izquierdo: navegación interna y ruta de contacto -->
       <ul class="navbar-nav menu-izq me-auto">
         <li class="nav-item">
-          <!-- Ancla a sección #inicio (marcada por JS para activo) -->
           <a class="nav-link" href="#inicio" aria-current="page">Inicio</a>
         </li>
         <li class="nav-item">
-          <!-- Doble atributo: href absoluto + th:href para funcionar como estático o Thymeleaf -->
           <a class="nav-link" href="/contacto" th:href="@{/contacto}">Contacto</a>
         </li>
       </ul>
 
-      <!-- Menú derecho: accesos a login de roles -->
       <ul class="navbar-nav menu-der ms-auto">
         <li class="nav-item">
           <a class="nav-link pastilla"
@@ -94,15 +69,9 @@
   </div>
 </header>
 
-
-  <!-- =================== PORTADA (HERO) ===================
-       - Título grande con branding + tarjeta de mensaje.
-       - Imagen decorativa (perrito) a la derecha.
-  -->
   <section id="inicio" class="portada">
   <div class="contenedor-portada">
 
-    <!-- Bloque descriptivo / CTA -->
     <div class="bloque-izquierdo">
       <h1 id="nombre">
         <span class="rosa">A</span>nimal<span class="rosa">H</span>eart
@@ -112,26 +81,19 @@
         <h1>Clínica Veterinaria con <span class="corazon" aria-hidden="true">❤</span></h1>
         <p>Especializados en el cuidado de tu mascota.</p>
         <p>Con dedicación, confianza y cariño.</p>
-        <!-- Enlace interno a la sección Servicios -->
         <a href="#servicios" class="llamada-accion">Nuestros servicios</a>
       </article>
     </div>
     
-    <!-- Imagen decorativa del hero -->
     <div class="bloque-derecho">
       <img class="perrito" alt="Perrito asomando" th:src="@{/IMAGES/perrito_2.png}"/>
     </div>
   </div>
 </section>
 
-    <!-- =================== CARRUSEL MISIÓN / VISIÓN ===================
-         - Dos slides con overlay para mejorar legibilidad del texto.
-         - Controles accesibles con labels "Anterior"/"Siguiente".
-    -->
   <section id="destacados">
   <div class="container-fluid">
     <div id="carouselExampleCaptions" class="carousel slide">
-      <!-- Indicadores de página del carrusel -->
       <div class="carousel-indicators">
         <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
         <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -139,7 +101,6 @@
       
       <div class="carousel-inner">
 
-        <!-- Slide 1: Misión -->
         <div class="carousel-item active">
           <div class="img-overlay">
             <img th:src="@{/IMAGES/vet_mision.jpg}" class="d-block w-100" alt="Destacado 1">
@@ -151,7 +112,6 @@
             </div>
           </div>
 
-        <!-- Slide 2: Visión -->
         <div class="carousel-item">
           <div class="img-overlay">
             <img th:src="@{/IMAGES/vet_vision.jpg}" class="d-block w-100" alt="Destacado 2">
@@ -163,7 +123,6 @@
           </div>
         </div>
 
-      <!-- Controles del carrusel -->
       <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Anterior</span>
@@ -176,23 +135,17 @@
   </div>
 </section>
 
-  <!-- =================== SERVICIOS ===================
-       - Grid responsivo de 3x2 con tarjetas.
-       - Cada tarjeta tiene un botón que despliega detalle con collapse.
-  -->
   <section id="servicios" class="py-5">
     <div class="container">
       <h2 class="text-center mb-4">Nuestros Servicios</h2>
       <div class="row g-4">
 
-        <!-- Consulta General -->
         <div class="col-md-4 card-grupo1">
           <div class="card shadow-sm h-100">
             <div class="card-body">
               <h5 class="card-title">Consulta General</h5>
               <p class="card-text">Cuidamos su salud desde el primer día.</p>
 
-              <!-- Botón que abre el detalle (collapse) -->
               <button class="btn btn-sm btn-primary" data-bs-toggle="collapse" data-bs-target="#desc1">Ver más</button>
               <div id="desc1" class="collapse mt-2">
                 <p class="small text-muted">
@@ -204,7 +157,6 @@
           </div>
         </div>
 
-        <!-- Urgencias 24/7 -->
         <div class="col-md-4 card-grupo2">
           <div class="card shadow-sm h-100">
             <div class="card-body">
@@ -221,7 +173,6 @@
           </div>
         </div>
 
-        <!-- Vacunación -->
         <div class="col-md-4 card-grupo1">
           <div class="card shadow-sm h-100">
             <div class="card-body">
@@ -238,7 +189,6 @@
           </div>
         </div>
 
-        <!-- Farmacia -->
         <div class="col-md-4 card-grupo2">
           <div class="card shadow-sm h-100">
             <div class="card-body">
@@ -255,7 +205,6 @@
           </div>
         </div>
 
-        <!-- Hospitalización -->
         <div class="col-md-4 card-grupo1">
           <div class="card shadow-sm h-100">
             <div class="card-body">
@@ -272,7 +221,6 @@
           </div>
         </div>
 
-        <!-- Cirugía -->
         <div class="col-md-4 card-grupo2">
           <div class="card shadow-sm h-100">
             <div class="card-body">
@@ -292,31 +240,23 @@
     </div>
   </section>
 
-  <!-- =================== FIGURA DECORATIVA =================== -->
    <div class="figura-mascotas" aria-hidden="true">
     <img class="mascotas" alt="Mascotas asomadas" th:src="@{/IMAGES/Mascotas_asomadas.png}"/>
   </div>
 
-<!-- =================== TESTIMONIOS (CARRUSEL) ===================
-     - Tres tarjetas con imagen circular, rating y texto.
-     - data-bs-interval controla duración de cada slide.
--->
 <section id="clientes" class="clientes py-5">
   <div class="container">
     <h2 class="text-center mb-4">¡Escúchalo de ellos mismos!</h2>
 
     <div id="carouselClientes" class="carousel slide" data-bs-ride="carousel">
-      <!-- Indicadores -->
       <div class="carousel-indicators">
         <button type="button" data-bs-target="#carouselClientes" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Testimonio 1"></button>
         <button type="button" data-bs-target="#carouselClientes" data-bs-slide-to="1" aria-label="Testimonio 2"></button>
         <button type="button" data-bs-target="#carouselClientes" data-bs-slide-to="2" aria-label="Testimonio 3"></button>
       </div>
 
-      <!-- Slides -->
       <div class="carousel-inner">
 
-        <!-- Slide 1 -->
         <div class="carousel-item active" data-bs-interval="6000">
           <div class="d-flex justify-content-center">
             <div class="card shadow-sm border-0 p-4">
@@ -331,7 +271,6 @@
           </div>
         </div>
 
-        <!-- Slide 2 -->
         <div class="carousel-item" data-bs-interval="6000">
           <div class="d-flex justify-content-center">
             <div class="card shadow-sm border-0 p-4">
@@ -346,7 +285,6 @@
           </div>
         </div>
 
-        <!-- Slide 3 -->
         <div class="carousel-item" data-bs-interval="6000">
           <div class="d-flex justify-content-center">
             <div class="card shadow-sm border-0 p-4">
@@ -363,7 +301,6 @@
         
       </div>
 
-      <!-- Controles -->
       <button class="carousel-control-prev" type="button" data-bs-target="#carouselClientes" data-bs-slide="prev" aria-label="Anterior">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       </button>
@@ -374,22 +311,15 @@
   </div>
 </section>
 
-
-  <!-- =================== FOOTER ===================
-       - Info de marca, enlaces rápidos y datos de contacto.
-       - Íconos sociales como imágenes locales (static/IMAGES).
-  -->
   <footer class="pie text-light pt-5 pb-3">
     <div class="container">
       <div class="row gy-4">
 
-        <!-- Descripción + Redes -->
         <div class="col-md-4">
           <h4 class="fw-bold mb-3">❤ Animalheart</h4>
           <p class="small text-white">Cuidamos de tus mascotas con amor, profesionalismo y una sonrisa.</p>
 
           <div class="d-flex gap-2 mt-3 align-items-center redes">
-            <!-- Enlaces externos -->
             <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
               <img th:src="@{/IMAGES/facebook.png}" alt="Facebook" class="rounded-circle" style="width:36px; height:36px; object-fit:cover;">
             </a>
@@ -405,7 +335,6 @@
           </div>
         </div>
 
-        <!-- Enlaces a servicios (anclas a #servicios) -->
         <div class="col-md-2">
           <h6 class="fw-bold">Servicios</h6>
           <ul class="list-unstyled small">
@@ -418,7 +347,6 @@
           </ul>
         </div>
 
-        <!-- Enlaces de exploración rápida -->
         <div class="col-md-2">
           <h6 class="fw-bold">Explorar</h6>
           <ul class="list-unstyled small">
@@ -428,7 +356,6 @@
           </ul>
         </div>
 
-        <!-- Datos de contacto -->
         <div class="col-md-4">
           <h6 class="fw-bold">Contacto</h6>
           <p class="small mb-1"><i class="bi bi-geo-alt-fill"></i> Carrera 77#20-40, Bogotá, Colombia</p>
@@ -438,17 +365,12 @@
 
       </div>
 
-      <!-- Línea final / derechos -->
       <div class="text-center mt-4 border-top border-light pt-3 small text-muted">
         © 2025 Animalheart · Todos los derechos reservados
       </div>
     </div>
   </footer>
 
-  <!-- =================== SCRIPTS ===================
-       - index.js: marca item activo en el menú (hash) y utilidades.
-       - Bootstrap bundle con Popper incluido.
-  -->
   <script th:src="@{/js/index.js}"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>

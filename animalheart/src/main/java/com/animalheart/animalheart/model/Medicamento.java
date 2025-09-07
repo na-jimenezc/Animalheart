@@ -24,7 +24,6 @@ public class Medicamento {
     private int unidadesDisponibles;
     private int unidadesVendidas;
 
-    //UN MEDICAMENTO PUEDE ESTAR EN MUCHOS TRATAMIENTOS
     @OneToMany(mappedBy = "medicamento", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Tratamiento> tratamientos = new ArrayList<>();
 

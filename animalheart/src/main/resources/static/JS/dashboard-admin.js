@@ -1,11 +1,9 @@
 // dashboard-admin.js — Gráficas para el Dashboard de Admin (Chart.js)
 document.addEventListener('DOMContentLoaded', () => {
-  // 1) Obtener dataset transferido por Thymeleaf
   const elDatos = document.getElementById('datosDashboard');
   if (!elDatos) return;
 
   const datos = elDatos.dataset;
-  // data-ventas-tratamientos => ventasTratamientos (camelCase), etc.
   const ventasPorTratamiento = (datos.ventasTratamientos || '')
     .split(',')
     .map(x => Number(x.trim()))
@@ -23,12 +21,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const totalVeterinarios = Number.parseInt(datos.veterinarios ?? '0', 10) || 0;
   const totalMascotas     = Number.parseInt(datos.mascotas ?? '0', 10) || 0;
-  const ventasTotales     = Number.parseFloat(datos.ventasTotales ?? '0') || 0; // (no usado aquí, pero disponible)
+  const ventasTotales     = Number.parseFloat(datos.ventasTotales ?? '0') || 0;
 
-  // Pequeña utilidad: devuelve el canvas o null si no existe
   const $ = (id) => document.getElementById(id);
 
-  // 2) Crear gráficos solo si existe el canvas y Chart está disponible
   if (typeof Chart !== 'undefined') {
     const cvVet = $('graficoVeterinarios');
     if (cvVet) {

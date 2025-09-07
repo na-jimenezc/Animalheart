@@ -4,9 +4,9 @@ import com.animalheart.animalheart.model.Cliente;
 import com.animalheart.animalheart.model.Mascota;
 import com.animalheart.animalheart.model.Veterinario;
 import com.animalheart.animalheart.repository.ClienteRepository;
-import com.animalheart.animalheart.service.MascotaService;
-import com.animalheart.animalheart.service.VeterinarioService;
 import com.animalheart.animalheart.service.serviceInterface.ClienteService;
+import com.animalheart.animalheart.service.serviceInterface.MascotaService;
+import com.animalheart.animalheart.service.serviceInterface.VeterinarioService;
 
 import java.util.List;
 
@@ -22,7 +22,7 @@ import jakarta.servlet.http.HttpSession;
 @RequestMapping("/clientes")
 public class ClienteController {
 
-     @Autowired
+    @Autowired
     ClienteService clienteService;
 
     @Autowired
@@ -40,7 +40,7 @@ public class ClienteController {
 
     @GetMapping("/login-cliente")
     public String mostrarFormularioLogin() {
-        return "login-cliente"; // Esto debe devolver el nombre exacto del template
+        return "login-cliente";
     }
    @PostMapping("/login-cliente")
 public String procesarLogin(@RequestParam("correo") String correo, HttpSession session, Model model) {
@@ -57,7 +57,7 @@ public String procesarLogin(@RequestParam("correo") String correo, HttpSession s
     
     session.setAttribute("CLIENTE_AUTH", clienteEncontrado);
     
-    return "redirect:/clientes/dashboard"; // Redirigir correctamente
+    return "redirect:/clientes/dashboard";
 }
     @GetMapping("/dashboard")
     public String mostrarDashboardCliente(Model model, HttpSession session) {
@@ -67,7 +67,6 @@ public String procesarLogin(@RequestParam("correo") String correo, HttpSession s
             return "redirect:/clientes/login-cliente?error=Necesita iniciar sesión";
         }
 
-        // Refrescamos el cliente desde la BD
         Cliente clienteActualizado = clienteService.obtenerClientePorId(clienteEnSesion.getId());
 
         List<Mascota> mascotas = mascotaService.obtenerMascotasPorClienteId(clienteActualizado.getId());
@@ -128,8 +127,6 @@ public String procesarLogin(@RequestParam("correo") String correo, HttpSession s
     }
     
     try {
-        //Recargar el veterinario desde la base de datos para tener una entidad managed
-        //Veterinario veterinarioManaged = veterinarioService.obtenerVeterinarioPorId(veterinario.getId());
         
         if (cliente.getCedula() == null || cliente.getCedula().trim().isEmpty()) {
             model.addAttribute("error", "La cédula es requerida");
@@ -140,11 +137,8 @@ public String procesarLogin(@RequestParam("correo") String correo, HttpSession s
             model.addAttribute("error", "Ya existe un cliente con esta cédula");
             return mostrarFormularioConError(model, session);
         }
-        
-        clienteService.guardarCliente(cliente); 
-        
-        //veterinarioService.guardarVeterinario(veterinarioManaged);
-        
+
+        clienteService.guardarCliente(cliente);
         return "redirect:/mascotas/nueva?success=Cliente registrado correctamente";
         
     } catch (Exception e) {
@@ -165,7 +159,7 @@ public String procesarLogin(@RequestParam("correo") String correo, HttpSession s
     @org.springframework.web.bind.annotation.PostMapping("/{id}/eliminar-hard")
     @Transactional
     public String eliminarClienteHard(@PathVariable Long id,
-                                    @RequestParam(value = "cedula", required = false) String cedula, // opcional, se ignora
+                                    @RequestParam(value = "cedula", required = false) String cedula,
                                     RedirectAttributes ra) {
         try {
            
@@ -175,7 +169,6 @@ public String procesarLogin(@RequestParam("correo") String correo, HttpSession s
         } catch (Exception ex) {
             ra.addFlashAttribute("error", "No se pudo eliminar al cliente: " + ex.getMessage());
         }
-        // Redirección como ya la tenías
         return "redirect:/mascotas";
     }
 

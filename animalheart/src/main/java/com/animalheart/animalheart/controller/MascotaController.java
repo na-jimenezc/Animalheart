@@ -3,7 +3,6 @@ package com.animalheart.animalheart.controller;
 import com.animalheart.animalheart.model.Cliente;
 import com.animalheart.animalheart.model.Mascota;
 import com.animalheart.animalheart.model.Veterinario;
-import com.animalheart.animalheart.service.MascotaService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -15,7 +14,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.data.domain.Page;
 import jakarta.servlet.http.HttpSession;
 import java.util.List;
-import com.animalheart.animalheart.service.VeterinarioService;
+
+import com.animalheart.animalheart.service.serviceInterface.MascotaService;
+import com.animalheart.animalheart.service.serviceInterface.VeterinarioService;
 
 @Controller
 @RequestMapping("/mascotas")
@@ -32,13 +33,12 @@ public class MascotaController {
 
     private static final String VET_AUTH = "VET_AUTH";
 
-    /*Actualización para paginar a la cantidad de clientes y mascotas que tenemos*/
     @GetMapping
     public String listarMascotas(
             Model model,
             HttpSession session,
-            @RequestParam(defaultValue = "0") int page,   //Esto es para la página actual
-            @RequestParam(defaultValue = "5") int size    //Esto es para la cantidad de elementos por página
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "5") int size
     ) {
         Veterinario veterinario = (Veterinario) session.getAttribute(VET_AUTH);
         if (veterinario == null) {
@@ -48,7 +48,6 @@ public class MascotaController {
         veterinario = veterinarioService.obtenerVeterinarioPorId(veterinario.getId());
         session.setAttribute(VET_AUTH, veterinario);
 
-        /*Se actualizó el MascotaService para obtener las mascotas en forma de paginación */
         Page<Mascota> pageMascotas = mascotaService.obtenerMascotasPaginadas(PageRequest.of(page, size));
 
         model.addAttribute("mascotas", pageMascotas.getContent());
@@ -74,13 +73,6 @@ public class MascotaController {
             return "redirect:/mascotas?error=Mascota no encontrada";
         }
         
-        //No sirve para nada esta línea, lo ideal es que cualquier mascota pueda ser vista por cualquier veterinario 
-        //y atendida
-        /*boolean tieneAcceso = mascotaService.verificarAccesoVeterinario(mascota.getId(), veterinario.getId());
-        if (!tieneAcceso) {
-            return "redirect:/mascotas?error=No tiene acceso a esta mascota";
-        }*/
-        
         model.addAttribute("mascota", mascota);
         model.addAttribute("veterinario", veterinario);
         return "detalle-mascota";
@@ -93,7 +85,6 @@ public class MascotaController {
                 return "redirect:/login-veterinario";
             }
             
-            //Mostrar todos los clientes, no solo los del veterinario
             List<Cliente> clientes = clienteService.obtenerTodos();
             
             model.addAttribute("mascota", new Mascota());
@@ -145,15 +136,6 @@ public class MascotaController {
         
         return "aniadir-mascota-dueno";
     }
-
-    /*@PostMapping("/{id}/eliminar-hard")
-    public String eliminarMascotaHard(@PathVariable Long id,
-                                    RedirectAttributes ra,
-                                    HttpSession session) {
-        mascotaService.eliminarMascotaHard(id);
-        ra.addFlashAttribute("success", "Mascota eliminada permanentemente.");
-        return "redirect:/mascotas";
-    }*/
 
     @PostMapping("/{id}/desactivar")
     public String desactivarMascota(@PathVariable Long id,

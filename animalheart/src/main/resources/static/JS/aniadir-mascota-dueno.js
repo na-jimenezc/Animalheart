@@ -1,7 +1,6 @@
 // JS específico para "Añadir Mascota" – vista del dueño
 
 document.addEventListener('DOMContentLoaded', () => {
-  // --- Preview de imagen por URL ---
   const urlInput = document.getElementById('fotoURLInput');
   const preview = document.getElementById('fotoPreview');
   const placeholder = document.getElementById('photoPlaceholder');
@@ -23,11 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
   if (urlInput) {
     urlInput.addEventListener('input', updatePreview);
   }
-  // Inicialización si ya hay URL
   updatePreview();
 
-  // --- Mostrar información del cliente seleccionado ---
-  // El HTML usa name="clienteId" en el <select>, no th:field="*{cliente.id}"
   const clienteSelect = document.querySelector('select[name="clienteId"]');
   const clientInfo = document.getElementById('clientInfo');
   const clientName = document.getElementById('clientName');
@@ -38,7 +34,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (clienteSelect.value) {
       const text = clienteSelect.options[clienteSelect.selectedIndex]?.text || '';
-      // Formato esperado: "Nombre - C.C. 123456"
       const parts = text.split(' - C.C. ');
       if (parts.length === 2) {
         clientName.textContent = parts[0];
@@ -52,11 +47,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (clienteSelect) {
     clienteSelect.addEventListener('change', updateClientInfo);
-    // Inicializar si ya hay valor
     updateClientInfo();
   }
 
-  // --- Validación básica del formulario ---
   const form = document.querySelector('form');
   if (form) {
     form.addEventListener('submit', (e) => {

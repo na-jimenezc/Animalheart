@@ -1,65 +1,40 @@
 <!DOCTYPE html>
-<!--
-  Login de Administrador – Animalheart
-  - Usa Bootstrap 5, Bootstrap Icons y la fuente Poppins.
-  - Aplica el tema "admin" desde estilos-login.css (body.admin).
-  - Envía POST a /login-admin con campos "correo" y "clave",
-    que coinciden con los @RequestParam del AdministradorController.
--->
 <html xmlns:th="http://www.thymeleaf.org" lang="es">
 <head>
   <meta charset="utf-8">
-  <!-- Vista responsive en móviles -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Login Administrador · Animalheart</title>
 
-  <!-- CSS de Bootstrap (layout básico y componentes) -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
-  <!-- Iconos Bootstrap (para botones, etc.) -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 
-  <!-- Fuente Poppins (coherente con el resto del sitio) -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Hoja específica del login de Administrador -->
   <link th:href="@{/css/login-admin.css}" rel="stylesheet">
 </head>
 
-<!--
-  La clase "admin" activa la paleta del administrador en estilos-login.css
-  (gradientes azules, contrastes y estilos de inputs/botones).
--->
 <body class="admin">
-  <!-- Tarjeta contenedora del formulario -->
   <div class="tarjeta-login">
     
-    <!-- Encabezado de marca/sistema -->
     <div class="encabezado-pagina">
       <div class="nombre-sistema">Animalheart</div>
       <div class="subtitulo-sistema">Sistema de Administración</div>
     </div>
     
-    <!-- Encabezado del formulario (ícono, título y microcopy) -->
     <div class="encabezado-login">
       <div class="icono-login">👨‍⚕️</div>
       <h3>Panel Administrativo</h3>
       <p>Acceso exclusivo para personal autorizado</p>
     </div>
 
-    <!-- Alerta de error (se muestra si el controlador envía "error" en el modelo)
-         - Cierra con la "x" gracias a .btn-close de Bootstrap -->
     <div th:if="${error}" class="alert alert-danger alert-dismissible fade show" role="alert">
       <span th:text="${error}"></span>
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     
-    <!-- Formulario de login:
-         - correo y clave deben coincidir con @RequestParam del Controller.
-         - required en inputs asegura validación básica del navegador. -->
     <form th:action="@{/login-admin}" method="post">
       
-      <!-- Campo: correo del administrador -->
       <div class="campo-formulario">
         <label for="correo" class="etiqueta">Correo Administrativo</label>
         <input
@@ -69,10 +44,9 @@
           name="correo"
           placeholder="admin@animalheart.com"
           required
-          autocomplete="username">  <!-- Ayuda al autocompletado del navegador -->
+          autocomplete="username">
       </div>
       
-      <!-- Campo: contraseña -->
       <div class="campo-formulario">
         <label for="clave" class="etiqueta">Contraseña</label>
         <div class="grupo-entrada">
@@ -85,30 +59,22 @@
             required
             autocomplete="current-password" 
           >
-          <!-- Botón para mostrar/ocultar la contraseña. -->
           <button type="button" class="boton-ver-clave" onclick="togglePassword()">
             <i class="bi bi-eye"></i>
           </button>
         </div>
       </div>
       
-      <!-- Submit principal -->
       <button type="submit" class="boton-enviar">Acceder al Sistema</button>
       
-      <!-- Enlace de ayuda -->
       <div class="text-center">
         <a href="#" class="enlace-recuperar">¿Necesitas ayuda para acceder?</a>
       </div>
     </form>
   </div>
 
-  <!-- Lógica de interfaz del login:
-       - Marca enlace activo por hash.
-       - Alterna visibilidad de contraseña. -->
-  <!-- Lógica de interfaz del login (ESPECÍFICO) -->
   <script th:src="@{/js/login-admin.js}"></script>
 
-  <!-- Bundle de Bootstrap (incluye Popper para componentes interactivos) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

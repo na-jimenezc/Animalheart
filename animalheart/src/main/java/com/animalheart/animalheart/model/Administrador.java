@@ -24,7 +24,6 @@ public class Administrador{
     private String correo;
     private String clave;
 
-    //CREACIÓN DE TABLA INTERMEDIA PARA QUE MUCHOS VETERINARIOS PUEDAN SER GESTIONADOS POR MUCHOS ADMINISTRADORES
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
         name = "administrador_veterinario",

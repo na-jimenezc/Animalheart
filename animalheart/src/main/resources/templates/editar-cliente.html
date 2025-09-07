@@ -5,19 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Editar Cliente - Animalheart</title>
 
-  <!-- Bootstrap + Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 
-  <!-- Fuente Poppins -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- Estilos específicos de esta vista -->
   <link rel="stylesheet" th:href="@{/css/editar-cliente.css}">
 </head>
 
 <body class="bg-light">
-  <!-- ======= BARRA SUPERIOR ======= -->
   <header class="vmk-header">
     <div class="vmk-toolbar container d-flex align-items-center justify-content-between gap-2">
       <div class="d-flex align-items-center gap-2">
@@ -30,7 +26,6 @@
       </a>
     </div>
 
-    <!-- ======= HERO con título ======= -->
     <div class="vmk-hero">
       <div class="container vmk-hero-inner">
         <h1 class="vmk-title">
@@ -40,45 +35,38 @@
     </div>
   </header>
 
-  <!-- ======= FORMULARIO ======= -->
   <main class="container mb-5">
     <div class="form-container">
       <div class="form-body">
         <form th:action="@{/clientes/{id}/editar(id=${cliente.id})}" th:object="${cliente}" method="post" novalidate id="formEditarCliente">
-          <!-- CSRF (si usas Spring Security) -->
           <th:block th:with="token=${#request.getAttribute('_csrf')}" th:if="${token != null}">
             <input type="hidden" th:name="${token.parameterName}" th:value="${token.token}"/>
           </th:block>
 
-          <!-- Sección: Información del Cliente -->
           <div class="form-section">
             <h2 class="form-section-title">
               <i class="bi bi-person-badge"></i>Información del Cliente
             </h2>
             
             <div class="form-grid">
-              <!-- Cédula -->
               <div class="form-field">
                 <label class="form-label required">Cédula</label>
                 <input type="text" name="cedula" class="form-input" th:value="${cliente.cedula}" required 
                        placeholder="Número de cédula">
               </div>
 
-              <!-- Nombres Completos -->
               <div class="form-field">
                 <label class="form-label required">Nombres Completos</label>
                 <input type="text" name="nombres" class="form-input" th:value="${cliente.nombre}" required 
                        placeholder="Nombres y apellidos">
               </div>
 
-              <!-- Correo -->
               <div class="form-field">
                 <label class="form-label required">Correo Electrónico</label>
                 <input type="email" name="correo" class="form-input" th:value="${cliente.correo}" required 
                        placeholder="ejemplo@correo.com">
               </div>
 
-              <!-- Teléfono -->
               <div class="form-field">
                 <label class="form-label required">Teléfono</label>
                 <div class="phone-input">
@@ -90,7 +78,6 @@
             </div>
           </div>
 
-          <!-- Botones de Acción -->
           <div class="btn-container">
             <a th:href="@{/mascotas}" class="btn-secondary">
               <i class="bi bi-x-circle me-2"></i>Cancelar

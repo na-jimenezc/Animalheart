@@ -19,7 +19,7 @@ body{
   display:flex;
   justify-content:center;
   align-items:center;
-  padding:20px; /* respiro en móviles */
+  padding:20px;
 }
 
 /* ====== Tarjeta del login ====== */

@@ -27,11 +27,9 @@ public class Veterinario {
     private int activo;
     private int consultas;
 
-    //ADMINISTRADORES QUE GESTIONAN AL VETERINARIO
     @ManyToMany(mappedBy = "veterinarios", fetch = FetchType.LAZY)
     private List<Administrador> administradores = new ArrayList<>();
 
-    //UN VETERINARIO PUEDE HACER MUCHOS TRATAMIENTOS
     @OneToMany(mappedBy = "veterinario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Tratamiento> tratamientos = new ArrayList<>();
 
@@ -62,7 +60,6 @@ public class Veterinario {
         this.consultas = consultas;
     }
 
-    //Data dando problemas c:
     public Long getId() {
     return id;
     }

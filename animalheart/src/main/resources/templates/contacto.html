@@ -1,12 +1,10 @@
 <!DOCTYPE html>
-<!-- Contacto · Animalheart (match mockup) -->
 <html xmlns:th="http://www.thymeleaf.org" lang="es">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Contacto · Animalheart</title>
 
-  <!-- Fuentes + Bootstrap + Bootstrap Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -16,12 +14,10 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
 
-  <!-- Estilos del mockup -->
   <link th:href="@{/css/contacto.css}" rel="stylesheet" />
 </head>
 <body>
 
-  <!-- =============== NAV (píldoras + logo centrado) =============== -->
   <header class="barra" role="banner">
     <div class="envoltura">
       <nav class="menu-izq" aria-label="Principal">
@@ -42,7 +38,6 @@
     </div>
   </header>
 
-  <!-- =================== HÉROE =================== -->
   <section class="portada portada-contacto">
     <div class="envoltura">
       <div class="tarjeta-portada">
@@ -51,7 +46,6 @@
       </div>
     </div>
 
-    <!-- fila de 4 círculos con iconos -->
     <div class="circulos-portada">
       <div class="circulo">
         <i class="bi bi-headset"></i>
@@ -70,16 +64,13 @@
     </div>
   </section>
 
-  <!-- =================== CONTENIDO =================== -->
   <main class="contacto container py-5">
     <div class="row g-4">
 
-      <!-- Columna izquierda: Formulario -->
       <div class="col-lg-7">
         <h2>¡Envíanos un mensaje!</h2>
 
         <form id="form-contacto" th:action="@{/contacto}" method="post" novalidate>
-          <!-- honeypot anti-bots -->
           <input type="text" name="company" class="d-none" tabindex="-1" autocomplete="off" />
 
           <div class="row g-3">
@@ -122,14 +113,12 @@
           </div>
         </form>
 
-        <!-- Alerta de éxito opcional -->
         <div th:if="${mensajeExito}" class="alert alert-success mt-3" role="alert" aria-live="polite">
           <i class="bi bi-check-circle-fill me-2"></i>
           <span th:text="${mensajeExito}">¡Gracias! Recibimos tu mensaje y te contactaremos pronto.</span>
         </div>
       </div>
 
-      <!-- Columna derecha: Info + mapa -->
       <div class="col-lg-5">
         <div class="card">
           <div class="card-body">
@@ -156,7 +145,6 @@
     </div>
   </main>
 
-  <!-- =================== FOOTER =================== -->
   <footer class="pie text-light pt-5 pb-3">
     <div class="container">
       <div class="text-center border-top border-light pt-3 small text-muted">
@@ -165,7 +153,6 @@
     </div>
   </footer>
 
-  <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <script th:src="@{/js/contacto.js}"></script>
 </body>

@@ -2,7 +2,7 @@ package com.animalheart.animalheart.service.serviceImplementation;
 
 import com.animalheart.animalheart.model.Mascota;
 import com.animalheart.animalheart.repository.MascotaRepository;
-import com.animalheart.animalheart.service.MascotaService;
+import com.animalheart.animalheart.service.serviceInterface.MascotaService;
 
 import jakarta.transaction.Transactional;
 
@@ -32,24 +32,11 @@ public class MascotaServiceImpl implements MascotaService {
         return mascotaRepository.findById(id).orElse(null);
     }
 
-
-    /*@Override YA NO ES NECESARIO VERIFICAR ESTE ACCESO
-    public boolean verificarAccesoVeterinario(Long mascotaId, Long veterinarioId) {
-        Mascota mascota = mascotaRepository.findById(mascotaId).orElse(null);
-        if (mascota == null || mascota.getCliente() == null) {
-            return false;
-        }
-        
-        return mascota.getCliente().getVeterinarios().stream()
-                .anyMatch(v -> v.getId().equals(veterinarioId));
-    }*/
-
     @Override
     public Mascota guardarMascota(Mascota mascota) {
         return mascotaRepository.save(mascota);
     }
 
-    //Método alterno al save porque puede totear vainas si nos metemos con el otro
     @Override
     public Mascota registrarMascota(Mascota mascota) {
         if (mascota.getEnfermedad() == null || 
@@ -114,6 +101,5 @@ public class MascotaServiceImpl implements MascotaService {
     public Page<Mascota> obtenerMascotasPaginadas(Pageable pageable) {
         return mascotaRepository.findAll(pageable);
     }
-
 
 }

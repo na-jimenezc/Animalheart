@@ -18,17 +18,14 @@ public class Tratamiento {
     private LocalDate fecha;
     private int cantidadUsada;
 
-    //UN TRATAMIENTO ESTÁ ASOCIADO A UNA MASCOTA
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "mascota_id")
     private Mascota mascota;
 
-    //UN TRATAMIENTO ESTÁ ASOCIADO A UN MEDICAMENTO
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "medicamento_id")
     private Medicamento medicamento;
 
-    //UN VETERINARIO PUEDE HACER MUCHOS TRATAMIENTOS
     @ManyToOne
     @JoinColumn(name = "veterinario_id")
     private Veterinario veterinario;

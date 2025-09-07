@@ -12,7 +12,6 @@
 </head>
 
 <body class="cliente-detalle bg-light">
-  <!-- ===================== NAV CLIENTE ===================== -->
   <nav class="client-toolbar">
     <div class="client-wrap d-flex justify-content-between align-items-center">
       <a th:href="@{/clientes/dashboard}" class="client-btn"><i class="bi bi-arrow-left"></i> Volver al Dashboard</a>
@@ -21,10 +20,8 @@
     </div>
   </nav>
 
-  <!-- ===================== CONTENIDO ===================== -->
   <main class="client-wrap my-5">
     <div class="row g-4">
-      <!-- Columna izquierda -->
       <aside class="col-md-4">
         <div class="card pet-card">
           <div class="pet-photo-wrap">
@@ -39,7 +36,6 @@
             <div class="pet-chip"><strong>Peso:</strong> <span th:text="${mascota.peso} + ' kg'"></span></div>
           </div>
 
-          <!-- Información del cliente -->
           <div class="pet-owner mt-4">
             <div class="pet-owner-title">
               <span><i class="bi bi-person-vcard"></i> Tu información</span>
@@ -67,19 +63,16 @@
         </div>
       </aside>
 
-      <!-- Columna derecha -->
       <section class="col-md-8">
         <div class="card pet-main">
           <h3 class="pet-main-title"><i class="bi bi-heart-pulse"></i> Información médica</h3>
 
-          <!-- Diagnóstico -->
           <div class="pet-section">
             <strong>Diagnóstico:</strong>
             <p th:text="${mascota.enfermedad != null and !mascota.enfermedad.isEmpty() ? mascota.enfermedad : 'Sin enfermedades registradas'}"
                class="mb-0 text-muted"></p>
           </div>
 
-          <!-- Tratamientos -->
           <div class="pet-section">
             <strong>Tratamientos:</strong>
             <div th:if="${mascota.tratamientos != null and !mascota.tratamientos.isEmpty()}">

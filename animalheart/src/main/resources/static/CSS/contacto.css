@@ -65,7 +65,7 @@ img{max-width:100%;display:block}
 
   /* GRID actualizado */
   display: grid;
-  grid-template-columns: repeat(3, minmax(140px, 1fr)); /* 👈 ahora 3 columnas */
+  grid-template-columns: repeat(3, minmax(140px, 1fr));
   gap: clamp(12px, 2vw, 20px);
   justify-content: center;
   justify-items: center;

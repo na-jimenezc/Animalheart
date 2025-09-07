@@ -16,7 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-// ===== Confirmación en botones .js-confirm =====
 document.addEventListener('DOMContentLoaded', ()=>{
   document.querySelectorAll('.js-confirm').forEach(btn=>{
     btn.addEventListener('click', (e)=>{
@@ -26,7 +25,6 @@ document.addEventListener('DOMContentLoaded', ()=>{
   });
 });
 
-// ===== Highlight del botón "Registrar Mascota" =====
 (function(){
   const byText = (root, text) => {
     const walker = document.createTreeWalker(root || document, NodeFilter.SHOW_ELEMENT);
@@ -44,11 +42,9 @@ document.addEventListener('DOMContentLoaded', ()=>{
     const btn = byText(document, 'Registrar Mascota') || byText(document, 'Agregar mascota');
     if(!btn) return;
 
-    // Clase highlight
     btn.classList.add('cta-registrar');
     btn.setAttribute('aria-describedby','coach-registrar');
 
-    // Coach-mark (solo primera vez)
     const k = 'ah_seen_registrar_coach';
     if(!localStorage.getItem(k)){
       const tip = document.createElement('div');
@@ -62,7 +58,6 @@ document.addEventListener('DOMContentLoaded', ()=>{
       setTimeout(()=>{ if(document.body.contains(tip)){ tip.remove(); localStorage.setItem(k,'1'); } }, 6000);
     }
 
-    // FAB móvil
     const href = btn.getAttribute('href') || '#';
     const fab = document.createElement('a');
     fab.href = href;

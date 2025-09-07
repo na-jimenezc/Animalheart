@@ -5,20 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Listado de Pacientes · Animalheart</title>
 
-  <!-- Bootstrap + Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet"/>
 
-  <!-- Fuente Poppins -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
 
-  <!-- Estilos específicos de la vista Mascotas -->
   <link th:href="@{/css/mascotas.css}" rel="stylesheet">
 
 </head>
 
 <body class="bg-light vet-mockup">
-  <!-- ======= BARRA SUPERIOR (botones) ======= -->
   <header class="vmk-header">
     <div class="vmk-toolbar container d-flex align-items-center justify-content-between gap-2">
       <div class="d-flex align-items-center gap-2">
@@ -37,7 +33,6 @@
       </a>
     </div>
 
-    <!-- ======= HERO con imagen y título ======= -->
     <div class="vmk-hero">
       <div class="container vmk-hero-inner">
         <h1 class="vmk-title">
@@ -47,7 +42,6 @@
     </div>
   </header>
 
-  <!-- ======= Bienvenida + icono lupa ======= -->
   <section class="container vmk-welcome d-flex align-items-center justify-content-between">
     <div class="d-flex align-items-center">
       <h2 class="m-0">Bienvenid@&nbsp;</h2>
@@ -62,7 +56,6 @@
     </div>
   </section>
 
-  <!-- Mensaje de error si existe -->
   <div th:if="${param.error}" class="container mt-3">
     <div class="alert alert-warning alert-dismissible fade show" role="alert">
       <i class="bi bi-exclamation-triangle me-2"></i>
@@ -71,12 +64,9 @@
     </div>
   </div>
 
-  <!-- ======= TABLA ======= -->
   <main class="container vmk-table-wrap">
     <div class="vmk-table-card">
-      <!-- Tabla con estructura unificada para mejor alineación -->
       <div class="table-container">
-        <!-- Encabezados de tabla -->
         <div class="table-header">
           <div class="header-cell">Foto</div>
           <div class="header-cell">Nombre</div>
@@ -88,9 +78,7 @@
           <div class="header-cell text-center">Información</div>
         </div>
 
-        <!-- Filas de mascotas -->
         <div class="table-body">
-          <!-- Fila de mascota -->
           <div class="table-row" th:each="mascota : ${mascotas}">
             <div class="table-cell" data-label="Foto">
               <img th:src="${mascota.fotoURL}" 
@@ -140,7 +128,6 @@
             </div>
           </div>
 
-          <!-- Vacío -->
           <div class="table-empty" th:if="${mascotas == null or mascotas.empty}">
             <i class="bi bi-inbox display-4 d-block mb-2"></i>
             <h5>No se encontraron mascotas registradas</h5>
@@ -153,11 +140,9 @@
       </div>
     </div>
 
-    <!-- Para ajustar la paginación -->
     <div th:if="${totalPages > 1}" class="mt-4 d-flex justify-content-center">
       <nav>
         <ul class="pagination">
-          <!-- Botón anterior -->
           <li class="page-item" th:classappend="${currentPage == 0} ? 'disabled'">
             <a class="page-link"
                th:href="@{|/mascotas?page=${currentPage - 1}&size=${pageSize}|}">
@@ -165,7 +150,6 @@
             </a>
           </li>
 
-          <!-- Números de página -->
           <li class="page-item"
               th:each="i : ${#numbers.sequence(0, totalPages-1)}"
               th:classappend="${i == currentPage} ? 'active'">
@@ -176,7 +160,6 @@
             </a>
           </li>
 
-          <!-- Botón siguiente -->
           <li class="page-item" th:classappend="${currentPage == totalPages-1} ? 'disabled'">
             <a class="page-link"
                th:href="@{|/mascotas?page=${currentPage + 1}&size=${pageSize}|}">
@@ -188,7 +171,6 @@
     </div>
   </main>
 
-  <!-- ======= FOOTER ======= -->
   <footer class="vmk-footer">
     <div class="container text-center">
       <p class="mb-0 text-white">
@@ -198,7 +180,6 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- Script específico de la vista Mascotas -->
   <script th:src="@{/js/mascotas.js}"></script>
 </body>
 </html>

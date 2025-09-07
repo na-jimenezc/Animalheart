@@ -63,7 +63,7 @@
   min-height: 350px;
   background: url('/IMAGES/AdminIMG.webp') no-repeat center center;
   background-size: cover;
-  margin: 0 -2rem 2rem -2rem; /* Margen negativo para tocar los bordes */
+  margin: 0 -2rem 2rem -2rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -76,7 +76,7 @@
   content: "";
   position: absolute;
   inset: 0;
-  background-color: rgba(253, 221, 230, 0.8); /* Overlay rosado */
+  background-color: rgba(253, 221, 230, 0.8);
   z-index: 1;
 }
 
@@ -84,27 +84,27 @@
 #carta-dashboard .subtitulo-dashboard {
   position: relative;
   z-index: 2;
-  color: #073352; /* Color azul oscuro para mejor contraste con fondo rosado */
+  color: #073352;
   text-shadow: 1px 1px 4px rgba(255, 255, 255, 0.8);
   padding: 1rem;
   font-family: "Open Sans", sans-serif;
 }
 
 .titulo-dashboard {
-  font-size: 3.5rem; /* Tamaño más grande para Bienvenido Admin */
+  font-size: 3.5rem;
   font-weight: 800;
   margin-bottom: 0.5rem;
 }
 
 .subtitulo-dashboard {
-  font-size: 1.8rem; /* Tamaño más grande para el subtítulo */
+  font-size: 1.8rem;
   font-weight: 600;
   margin-bottom: 2rem;
 }
 
 /* ================== CONTENEDOR PRINCIPAL ================== */
 .contenedor-dashboard {
-  padding: 0 2rem 2rem 2rem; /* Eliminamos padding superior */
+  padding: 0 2rem 2rem 2rem;
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -194,9 +194,9 @@
 
 /* ===== Header fijo en Dashboard Admin ===== */
 .header-dashboard{
-  position: sticky;   /* se queda pegado al llegar al top */
+  position: sticky;
   top: 0;
-  z-index: 2000;      /* por encima del contenido */
-  box-shadow: 0 1px 0 rgba(7, 51, 82, .10); /* separación sutil */
-  backdrop-filter: saturate(120%) blur(4px); /* opcional, mejora lectura */
+  z-index: 2000;
+  box-shadow: 0 1px 0 rgba(7, 51, 82, .10);
+  backdrop-filter: saturate(120%) blur(4px);
 }

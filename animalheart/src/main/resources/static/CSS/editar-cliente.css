@@ -258,12 +258,12 @@ body {
 
 /* ====== Corrección específica para alineación de campos ====== */
 .form-grid {
-  align-items: start; /* Alinea todos los elementos al inicio */
+  align-items: start;
 }
 
 .phone-input {
   display: flex;
-  align-items: stretch; /* Asegura que todos los elementos tengan la misma altura */
+  align-items: stretch;
 }
 
 .phone-prefix {
@@ -276,19 +276,19 @@ body {
   border-radius: 12px 0 0 12px;
   color: var(--teal-700);
   font-weight: 600;
-  height: auto; /* Asegura que ocupe toda la altura */
+  height: auto;
 }
 
 .phone-number {
   flex: 1;
   border-radius: 0 12px 12px 0;
   border-left: none;
-  height: auto; /* Asegura que ocupe toda la altura */
+  height: auto;
 }
 
 /* Asegurar que todos los inputs tengan la misma altura */
 .form-input, .phone-number {
-  min-height: 48px; /* Altura mínima consistente */
+  min-height: 48px;
 }
 
 /* Ajuste específico para el campo de teléfono */

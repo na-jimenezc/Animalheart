@@ -28,12 +28,10 @@ public class Mascota {
     private String estado; 
     private Boolean activo;
 
-    //UNA MASCOTA PERTENECE A UN CLIENTE
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
-    //UNA MASCOTA PUEDE TENER MUCHOS TRATAMIENTOS
     @OneToMany(mappedBy = "mascota", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<Tratamiento> tratamientos = new ArrayList<>();
 

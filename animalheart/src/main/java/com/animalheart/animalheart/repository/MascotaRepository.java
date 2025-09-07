@@ -17,14 +17,12 @@ import java.util.List;
 @Repository
 public interface MascotaRepository extends JpaRepository<Mascota, Long> {
 
-    /*Obtener mascotas por veterinario
-    @Query("SELECT DISTINCT m FROM Mascota m " +
+    /*@Query("SELECT DISTINCT m FROM Mascota m " +
            "JOIN FETCH m.cliente c " +
            "JOIN FETCH c.veterinarios v " +
            "WHERE v.id = :veterinarioId")
     List<Mascota> findByVeterinarioId(@Param("veterinarioId") Long veterinarioId);*/
 
-    //Obtener mascotas de todos los veterinarios incluyendo tratamientos
     @Query("SELECT DISTINCT m FROM Mascota m " +
        "JOIN m.tratamientos t " +
        "JOIN t.veterinario v " +
@@ -34,8 +32,6 @@ public interface MascotaRepository extends JpaRepository<Mascota, Long> {
 
     @Query("SELECT m FROM Mascota m WHERE m.cliente.id = :clienteId")
        List<Mascota> findByClienteId(@Param("clienteId") Long clienteId);
-
-       // Borra todas las mascotas de un cliente (idempotente)
        @Modifying
        @Transactional
        @Query("DELETE FROM Mascota m WHERE m.cliente.id = :clienteId")
