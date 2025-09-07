@@ -110,7 +110,7 @@ img{max-width:100%;display:block}
 .card .collapse p{color:#fff!important}
 
 /* ===================== FIGURA DECORATIVA ===================== */
-.figura-mascotas{position:relative;width:100%;margin-bottom:-120px;z-index:5}
+.figura-mascotas{position:relative;width:100%;margin-bottom:-150px;z-index:5}
 .mascotas{position:relative;left:50%;transform:translateX(-50%);
   width:clamp(300px,70vw,1400px);height:auto;margin-top:-80px;pointer-events:none}
 @media (max-width:768px){.mascotas{display:none}}
@@ -130,6 +130,12 @@ img{max-width:100%;display:block}
 #clientes .carousel .card img{width:414px;height:380px;border-radius:414px;object-fit:cover}
 #clientes .carousel .card h5{font-size:32px;color:#18527D;font-family:"Open Sans";font-weight:700;letter-spacing:-.96px}
 #clientes .carousel .card p{font-size:16px;color:#18527D;text-align:center;font-family:"Open Sans",sans-serif;letter-spacing:1.6px}
+#carouselClientes .carousel-indicators {
+  bottom: -25px;
+}
+#clientes .carousel-item {
+  padding-bottom: 40px;
+}
 
 /* ===================== FOOTER ===================== */
 .pie{background:var(--pink-300);margin-top:22px}
