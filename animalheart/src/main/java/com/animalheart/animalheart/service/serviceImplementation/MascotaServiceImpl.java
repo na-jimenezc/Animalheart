@@ -2,7 +2,7 @@ package com.animalheart.animalheart.service.serviceImplementation;
 
 import com.animalheart.animalheart.model.Mascota;
 import com.animalheart.animalheart.repository.MascotaRepository;
-import com.animalheart.animalheart.service.serviceInterface.MascotaService;
+import com.animalheart.animalheart.service.MascotaService;
 
 import jakarta.transaction.Transactional;
 

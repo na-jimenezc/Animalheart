@@ -4,9 +4,9 @@ import com.animalheart.animalheart.model.Cliente;
 import com.animalheart.animalheart.model.Mascota;
 import com.animalheart.animalheart.model.Veterinario;
 import com.animalheart.animalheart.repository.ClienteRepository;
+import com.animalheart.animalheart.service.MascotaService;
+import com.animalheart.animalheart.service.VeterinarioService;
 import com.animalheart.animalheart.service.serviceInterface.ClienteService;
-import com.animalheart.animalheart.service.serviceInterface.MascotaService;
-import com.animalheart.animalheart.service.serviceInterface.VeterinarioService;
 
 import java.util.List;
 

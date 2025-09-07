@@ -1,8 +1,7 @@
 package com.animalheart.animalheart.controller;
 
 import com.animalheart.animalheart.model.Veterinario;
-import com.animalheart.animalheart.service.serviceInterface.MascotaService;
-import com.animalheart.animalheart.service.serviceInterface.VeterinarioService;
+import com.animalheart.animalheart.service.VeterinarioService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,7 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
+import com.animalheart.animalheart.service.MascotaService;
 import jakarta.servlet.http.HttpSession;
 
 @Controller

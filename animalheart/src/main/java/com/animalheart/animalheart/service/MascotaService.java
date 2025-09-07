@@ -1,4 +1,4 @@
-package com.animalheart.animalheart.service.serviceInterface;
+package com.animalheart.animalheart.service;
 
 import java.util.List;
 

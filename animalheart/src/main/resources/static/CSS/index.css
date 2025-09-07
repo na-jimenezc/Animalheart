@@ -23,33 +23,120 @@ html,body{margin:0;background:var(--bg);color:var(--text);
 a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block}
 
-/* ===================== NAVBAR (.barra) ===================== */
-.barra{position:sticky;top:0;z-index:50;background:#073352;color:#fff;box-shadow:0 4px 14px rgba(0,0,0,.12);height:100px}
-.barra .envoltura{max-width:1120px;margin:auto;padding:0 20px;height:100%;
-  display:flex;align-items:center;justify-content:space-between;gap:16px;position:relative}
-.menu-izq,.menu-der{display:flex;gap:16px}
-.menu-izq a,.menu-der a{padding:10px 14px;border-radius:999px;font-weight:500;opacity:.95;color:#fff}
-.menu-izq a[aria-current="page"],.menu-izq a:hover,.menu-der a:hover{background:rgba(255,255,255,.18)}
-.menu-der .pastilla{background:#fff;color:var(--teal-700)!important;font-weight:700;
-  transition:color .3s,background .3s,transform .15s}
-.menu-der .pastilla:hover{background:var(--teal-700)!important;color:#fff!important;transform:translateY(-1px)}
-.logotipo-central{position:absolute;left:50%;transform:translateX(-50%);z-index:10;width:110px;height:110px;display:flex;align-items:center;justify-content:center}
-.logotipo-central img{width:100%;height:100%;object-fit:contain}
-.navbar{padding:0}.navbar-toggler{border-color:rgba(255,255,255,.4)}
-.navbar-toggler-icon{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255,255,255,0.8%29' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e")}
-.navbar-nav .nav-link{color:#fff}
-.navbar-nav .nav-link:hover,.navbar-nav .nav-link.active{background:rgba(26,12,215,.18);border-radius:999px}
-.logotipo-movil img{height:50px;object-fit:contain}
-@media (min-width:992px){.menu-izq,.menu-der{gap:clamp(16px,2vw,28px)}
-  .menu-izq .nav-link,.menu-der .nav-link{min-width:clamp(120px,12vw,180px);
-  padding:clamp(12px,1.2vw,16px) clamp(18px,2.2vw,28px);font-size:clamp(14px,1vw,16.5px);border-radius:999px;text-align:center;white-space:nowrap}}
-@media (max-width:991.98px){
-  .logotipo-central{display:none!important}
-  .navbar-collapse .navbar-nav{width:100%;justify-content:center;text-align:center;background:var(--teal-700);
-    padding:16px 16px 24px;border-radius:0 0 12px 12px}
-  .navbar-collapse .nav-item{width:100%}
-  .navbar-collapse .nav-link{display:block;width:100%;padding:12px 0;margin:6px 0;border-radius:12px;font-size:16px}
-  .navbar-collapse .pastilla{background:#fff;color:var(--teal-700)!important;font-weight:700}
+/* ==================== NAV (barra principal) ==================== */
+.barra {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  height: 100px;
+  background: #073352; 
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(0,0,0,.12);
+  display: flex;
+  align-items: center;
+}
+
+/* Contenedor interno */
+.barra .envoltura {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; 
+  position: relative;
+}
+
+/*Menús*/
+.menu-izq,
+.menu-der {
+  display: flex;
+  gap: 16px;
+}
+
+/*Links comunes*/
+.menu-izq a,
+.menu-der a {
+  padding: 10px 16px;
+  border-radius: 999px;
+  font-weight: 600;
+  opacity: .95;
+  color: #fff;
+  text-decoration: none;
+}
+
+/*Hover / activo*/
+.menu-izq a:hover,
+.menu-der a:hover,
+.menu-izq a[aria-current="page"] {
+  background: rgba(255,255,255,.18);
+}
+
+/*Pastillas (botones destacados)*/
+.menu-der .pastilla {
+  background: #fff;
+  color: var(--teal-700) !important;
+  font-weight: 800;
+  transition: color .25s, background .25s, transform .15s;
+}
+.menu-der .pastilla:hover {
+  background: var(--teal-700) !important;
+  color: #fff !important;
+  transform: translateY(-1px);
+}
+
+/*Logo centrado*/
+.logotipo-central {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 110px;
+  height: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.logotipo-central img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/*Responsive ajustes*/
+@media (max-width: 991.98px) {
+  .logotipo-central {
+    display: none !important;
+  }
+  .navbar-collapse .navbar-nav {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    background: var(--teal-700);
+    padding: 16px 16px 24px;
+    border-radius: 0 0 12px 12px;
+  }
+  .navbar-collapse .nav-item {
+    width: 100%;
+  }
+  .navbar-collapse .nav-link {
+    display: block;
+    width: 100%;
+    padding: 12px 0;
+    margin: 6px 0;
+    border-radius: 12px;
+    font-size: 16px;
+  }
+  .navbar-collapse .pastilla {
+    background: #fff;
+    color: var(--teal-700) !important;
+    font-weight: 700;
+  }
+}
+
+
+.menu-der {
+  margin-left: auto; /*se empuja al borde derecho*/
 }
 
 /* ===================== PORTADA (HERO) ===================== */

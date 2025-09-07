@@ -3,6 +3,7 @@ package com.animalheart.animalheart.controller;
 import com.animalheart.animalheart.model.Cliente;
 import com.animalheart.animalheart.model.Mascota;
 import com.animalheart.animalheart.model.Veterinario;
+import com.animalheart.animalheart.service.MascotaService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -14,9 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.data.domain.Page;
 import jakarta.servlet.http.HttpSession;
 import java.util.List;
-
-import com.animalheart.animalheart.service.serviceInterface.MascotaService;
-import com.animalheart.animalheart.service.serviceInterface.VeterinarioService;
+import com.animalheart.animalheart.service.VeterinarioService;
 
 @Controller
 @RequestMapping("/mascotas")
