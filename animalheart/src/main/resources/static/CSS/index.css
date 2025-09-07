@@ -69,7 +69,7 @@ img{max-width:100%;display:block}
   text-align:center;transition:all .3s ease}
 .llamada-accion:hover{background:var(--teal-700);color:#fff;transform:translateY(-2px)}
 .bloque-derecho{flex:1;display:flex;justify-content:flex-end;align-items:flex-end;position:relative}
-.perrito{width:clamp(250px,30vw,500px);height:auto;filter:drop-shadow(0 18px 32px rgba(29,31,78,.25));position:absolute;top:-200px;right:0}
+.perrito{width:clamp(250px,30vw,500px);height:auto;filter:drop-shadow(0 18px 32px rgba(29,31,78,.25));position:absolute;top:-272px;right:0}
 @media (max-width:992px){
   .contenedor-portada{flex-direction:column;gap:30px}
   .bloque-izquierdo,.bloque-derecho{max-width:100%;justify-content:center}
