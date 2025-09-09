@@ -179,22 +179,147 @@ img{max-width:100%;display:block}
 #destacados .carousel-indicators .active{opacity:1}
 
 /* ===================== SERVICIOS ===================== */
-#servicios{background:#B8D2D4;padding-top:3rem;padding-bottom:3rem;margin-bottom:200px}
-#servicios h2{color:#18527D;text-align:center;font-family:"Open Sans",sans-serif;font-size:48px;font-weight:700;line-height:100%}
-#servicios .row{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:40px}
-.card .card-body{display:flex;flex-direction:column}
-.card .card-body .btn,.card .card-body button{margin-top:auto;width:100%;justify-content:center;background:rgba(255,255,255,.2);border:none;font-weight:600;transition:background .3s ease,transform .15s ease}
-.card .card-body button:hover{background:rgba(255,255,255,.645)}
-.card-grupo1 .card{width:429px;height:199px;flex-shrink:0;background:#043454;color:#fff}
-.card-grupo2 .card{width:429px;height:199px;flex-shrink:0;background:#58AAAE;color:#fff}
-.card-grupo1 .card .card-title,.card-grupo2 .card .card-title{color:#FFF;font-family:"Open Sans",sans-serif;font-size:32px;font-weight:700;line-height:100%}
-.card-grupo1 .card .card-text,.card-grupo2 .card .card-text,
-.card-grupo1 .card p,.card-grupo2 .card p{
-  color:#FFF;font-family:"Open Sans",sans-serif;font-size:24px;margin:40px 0;font-weight:400;letter-spacing:3.6px;line-height:100%;
-  display:flex;width:387px;height:72px;justify-content:center;flex-shrink:0}
-.card-grupo1 .card .card-body button[aria-expanded="true"]{background:var(--teal-200);color:#043454}
-.card-grupo2 .card .card-body button[aria-expanded="true"]{background:var(--pink-200);color:#043454}
-.card .collapse p{color:#fff!important}
+#servicios {
+  background: #B8D2D4;
+  padding-top: 3rem;
+  padding-bottom: 6rem; /* Aumentado el espacio inferior */
+  margin-bottom: 200px;
+  position: relative;
+}
+
+#servicios h2 {
+  color: #18527D;
+  text-align: center;
+  font-family: "Open Sans", sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 100%;
+  margin-bottom: 2.5rem !important;
+}
+
+#servicios .row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 40px;
+}
+
+.card .card-body {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+}
+
+.card .card-body .btn, .card .card-body button {
+  margin-top: auto;
+  width: 100%;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  font-weight: 600;
+  transition: background .3s ease, transform .15s ease;
+  padding: 0.5rem 1rem;
+}
+
+.card .card-body button:hover {
+  background: rgba(255, 255, 255, 0.645);
+}
+
+.card-grupo1 .card {
+  width: 429px;
+  height: auto; /* Cambiado a auto para permitir expansión */
+  flex-shrink: 0;
+  background: #043454;
+  color: #fff;
+  transition: height 0.3s ease;
+  min-height: 199px;
+}
+
+.card-grupo2 .card {
+  width: 429px;
+  height: auto; /* Cambiado a auto para permitir expansión */
+  flex-shrink: 0;
+  background: #58AAAE;
+  color: #fff;
+  transition: height 0.3s ease;
+  min-height: 199px;
+}
+
+.card-grupo1 .card .card-title, .card-grupo2 .card .card-title {
+  color: #FFF;
+  font-family: "Open Sans", sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 100%;
+  margin-bottom: 1rem;
+}
+
+.card-grupo1 .card .card-text, .card-grupo2 .card .card-text,
+.card-grupo1 .card p, .card-grupo2 .card p {
+  color: #FFF;
+  font-family: "Open Sans", sans-serif;
+  font-size: 24px;
+  margin: 0 0 1rem 0; /* Ajustado el margen */
+  font-weight: 400;
+  letter-spacing: 3.6px;
+  line-height: 100%;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.card-grupo1 .card .card-body button[aria-expanded="true"] {
+  background: var(--teal-200);
+  color: #043454;
+}
+
+.card-grupo2 .card .card-body button[aria-expanded="true"] {
+  background: var(--pink-200);
+  color: #043454;
+}
+
+.card .collapse p {
+  color: #fff !important;
+  margin-top: 0.5rem;
+}
+
+/* Estilos para las imágenes de servicios */
+.servicio-descripcion {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.servicio-imagen {
+  width: 100%;
+  max-width: 280px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin: 0 auto 1rem auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Ajustes responsivos para las imágenes */
+@media (max-width: 768px) {
+  .servicio-imagen {
+    max-width: 220px;
+    height: 130px;
+  }
+}
+
+/* Transición suave para la expansión de tarjetas */
+.collapsing {
+  transition: height 0.3s ease;
+}
+
+/* Asegurar que las tarjetas expandidas no sean demasiado altas */
+.card {
+  overflow: hidden;
+}
+
+
 
 /* ===================== FIGURA DECORATIVA ===================== */
 .figura-mascotas{position:relative;width:100%;margin-bottom:-150px;z-index:5}

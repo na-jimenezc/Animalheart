@@ -41,11 +41,11 @@
 }
 
 .btn-rojo {
-  background-color: #ED3A4D !important;
-  border: 1px solid #ED3A4D !important;
+  background-color: #409E9F !important;
+  border: 1px solid #368a91 !important;
 }
 .btn-rojo:hover {
-  background-color: #c52e40 !important;
+  background-color: #368a91 !important;
 }
 
 .btn-turquesa {
@@ -76,7 +76,7 @@
   content: "";
   position: absolute;
   inset: 0;
-  background-color: rgba(253, 221, 230, 0.8);
+  background-color: rgba(191, 54, 93, 0.8);
   z-index: 1;
 }
 
@@ -131,7 +131,8 @@
 .chart-card {
   background-color: #ffffff;
   border-radius: 34px;
-  box-shadow: 0 4px 24px rgba(64, 158, 159, 0.50);
+  box-shadow: 0 4px 24px rgba(159, 64, 80, 0.197);
+  margin-top: 20px;
   padding: 20px;
   display: flex;
   align-items: center;
@@ -160,7 +161,7 @@
 /* ================== FOOTER ================== */
 .footer-dashboard {
   padding: 1rem;
-  background: #409E9F;
+  background: #d5536c;
   color: #fff;
   font-size: 0.9rem;
   text-align: center;
@@ -199,4 +200,381 @@
   z-index: 2000;
   box-shadow: 0 1px 0 rgba(7, 51, 82, .10);
   backdrop-filter: saturate(120%) blur(4px);
+}
+
+/* ====== HEADER ESTILO MASCOTAS CON COLORES ORIGINALES ====== */
+
+/* Header con overlay rosa claro (como el original) pero con estructura de mascotas */
+.vmk-header {
+    background: url("../IMAGES/admin-img.jpeg") center/cover no-repeat;
+  position: relative;
+  color: #fff;
+}
+
+.vmk-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(183, 58, 74, 0.638); /* Rosa claro del dashboard */
+}
+
+.vmk-header > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Barra de herramientas */
+.vmk-toolbar {
+  background: transparent;
+  color: #fff;
+  padding: 18px 0;
+  min-height: 80px;
+}
+
+/* Botones */
+.vmk-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1;
+  text-decoration: none;
+  transition: 0.2s;
+  color: #fff;
+}
+
+/* Hero section */
+.vmk-hero {
+  padding: 12px 0 24px;
+}
+
+.vmk-hero-inner {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.vmk-title {
+  margin: 0;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  font-size: clamp(28px, 3.6vw, 40px);
+}
+
+/* Botones con gradientes (estilo mascotas) */
+.cta-back {
+  position: relative;
+  isolation: isolate;
+  background: linear-gradient(135deg, #e86c83, #d03453);
+  color: #fff !important;
+  border-radius: 999px;
+  transform: translateZ(0);
+}
+
+.cta-dueno {
+  position: relative;
+  isolation: isolate;
+  background: linear-gradient(135deg, #e86c83, #d03453);
+  color: #fff !important;
+  border-radius: 999px;
+  transform: translateZ(0);
+}
+
+.cta-logout {
+  position: relative;
+  isolation: isolate;
+  background: linear-gradient(135deg, #368a91, #0ea5a4);
+  color: #fff !important;
+  border-radius: 999px;
+  transform: translateZ(0);
+}
+
+/* Asegurar que los botones sean blancos en el header */
+.vmk-toolbar a,
+.vmk-toolbar .vmk-btn {
+  color: #fff !important;
+}
+
+.vmk-toolbar a:hover,
+.vmk-toolbar .vmk-btn:hover {
+  color: #fff !important;
+  opacity: 0.9;
+}
+
+/* Mantener estilos originales del dashboard */
+.header-dashboard {
+  display: none; /* Ocultamos el header original */
+}
+
+#carta-dashboard {
+  margin-top: 0; /* Ajustamos el margen superior */
+}
+
+/* ===================== TOKENS ===================== */
+:root {
+  --rose-50: #fff2f5;
+  --rose-100: #ffe6ec;
+  --rose-200: #ffd6df;
+  --rose-300: #f6bdc5;
+  --rose-500: #e86c83;
+  --rose-600: #d5536c;
+  --ink: #1b1e22;
+}
+
+/* ===================== BASE ===================== */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  font-family: Poppins, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: #f7f7f8;
+  color: #1b1e22;
+  min-height: 100vh;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ===================== TOKENS ===================== */
+:root {
+  --rose-50: #fff2f5;
+  --rose-100: #ffe6ec;
+  --rose-200: #ffd6df;
+  --rose-300: #f6bdc5;
+  --rose-500: #e86c83;
+  --rose-600: #d5536c;
+  --ink: #1b1e22;
+}
+
+/* ===================== BASE ===================== */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  font-family: Poppins, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: #f7f7f8;
+  color: #1b1e22;
+  min-height: 100vh;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ====== HEADER ESTILO UNIFICADO ====== */
+.vmk-header {
+  background: url("../IMAGES/vet_animalheart.jpeg") center/cover no-repeat;
+  position: relative;
+  color: #fff;
+}
+
+.vmk-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(183, 58, 74, 0.638);
+}
+
+.vmk-header > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Barra de herramientas */
+.vmk-toolbar {
+  background: transparent;
+  color: #fff;
+  padding: 18px 0;
+  min-height: 80px;
+}
+
+/* Botones */
+.vmk-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1;
+  text-decoration: none;
+  transition: 0.2s;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+/* Hero section */
+.vmk-hero {
+  padding: 12px 0 24px;
+}
+
+.vmk-hero-inner {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.vmk-title {
+  margin: 0;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  font-size: clamp(28px, 3.6vw, 40px);
+}
+
+/* Botones con gradientes */
+.cta-back {
+  position: relative;
+  isolation: isolate;
+  background: linear-gradient(135deg, #e86c83, #d03453);
+  color: #fff !important;
+  border-radius: 999px;
+  transform: translateZ(0);
+}
+
+.cta-dueno {
+  position: relative;
+  isolation: isolate;
+  background: linear-gradient(135deg, #e86c83, #d03453);
+  color: #fff !important;
+  border-radius: 999px;
+  transform: translateZ(0);
+}
+
+.cta-logout {
+  position: relative;
+  isolation: isolate;
+  background: linear-gradient(135deg, #368a91, #0ea5a4);
+  color: #fff !important;
+  border-radius: 999px;
+  transform: translateZ(0);
+}
+
+/* Asegurar que los botones sean blancos en el header */
+.vmk-toolbar a,
+.vmk-toolbar .vmk-btn {
+  color: #fff !important;
+}
+
+.vmk-toolbar a:hover,
+.vmk-toolbar .vmk-btn:hover {
+  color: #fff !important;
+  opacity: 0.9;
+}
+
+/* ================== CONTENEDOR PRINCIPAL ================== */
+.contenedor-dashboard {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+}
+
+/* ================== FILAS DE CHARTS ================== */
+.fila-charts {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
+
+.fila-multiple {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.chart-card {
+  background-color: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  margin-top: 20px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.chart-card.large {
+  width: 100%;
+  max-width: 1200px;
+}
+
+.chart-card.medium {
+  width: calc(50% - 1rem);
+  max-width: 684px;
+  min-width: 400px;
+}
+
+.chart-card img,
+.chart-card canvas {
+  max-width: 100%;
+  object-fit: contain;
+}
+
+/* ================== FOOTER ================== */
+.footer-dashboard {
+  padding: 1rem;
+  background: #d5536c;
+  color: #fff;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+/* ================== RESPONSIVE ================== */
+@media (max-width: 768px) {
+  .chart-card.medium {
+    width: 100%;
+    min-width: unset;
+  }
+  
+  .contenedor-dashboard {
+    padding: 1rem;
+  }
+  
+  .vmk-toolbar {
+    flex-direction: column;
+    gap: 12px;
+  }
+}
+
+/* Ocultar elementos antiguos */
+.header-dashboard {
+  display: none;
+}
+
+#carta-dashboard {
+  display: none;
+}
+
+.botones-dashboard {
+  display: none;
 }

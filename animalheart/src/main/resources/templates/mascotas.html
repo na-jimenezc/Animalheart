@@ -108,9 +108,10 @@
             </div>
             <div class="table-cell text-center" data-label="Información">
               <div class="actions-container">
-                <a th:href="@{'/mascotas/' + ${mascota.id}}" class="action-btn btn-view">
+                <a th:href="@{'/tu-mascota/' + ${mascota.id}}" class="action-btn btn-view">
                   <i class="bi bi-eye-fill"></i> Ver más
                 </a>
+
                 <a th:href="@{|/mascotas/${mascota.id}/editar|}" class="action-btn btn-edit">
                   <i class="bi bi-pencil"></i> Editar
                 </a>

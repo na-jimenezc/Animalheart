@@ -121,4 +121,109 @@ body.vet-mockup{
 .vd-value.text-off{ color:#ffeaea; }
 
 /* ===================== FOOTER ===================== */
-.vmk-footer{ background:#58AAAE; padding:16px 0; color:#fff; }
+.vmk-footer{   background:#d5536c; padding:20px 0; color:#fff; }
+
+/* ====== HEADER ESTILO MASCOTAS CON COLORES ORIGINALES ====== */
+
+/* Header con overlay rosa (como el original) pero con estructura de mascotas */
+.vmk-header {
+    background: url("../IMAGES/admin-img.jpeg") center/cover no-repeat;
+  position: relative;
+  color: #fff;
+}
+
+.vmk-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(183, 58, 74, 0.638); /* Rosa del detalle */
+}
+
+.vmk-header > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Barra de herramientas */
+.vmk-toolbar {
+  background: transparent;
+  color: #fff;
+  padding: 18px 0;
+  min-height: 80px;
+}
+
+/* Botones */
+.vmk-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1;
+  text-decoration: none;
+  transition: 0.2s;
+  color: #fff;
+}
+
+/* Hero section */
+.vmk-hero {
+  padding: 12px 0 24px;
+}
+
+.vmk-hero-inner {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.vmk-title {
+  margin: 0;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  font-size: clamp(28px, 3.6vw, 40px);
+}
+
+/* Botones con gradientes (estilo mascotas) */
+.cta-back {
+  position: relative;
+  isolation: isolate;
+  background: linear-gradient(135deg, #e86c83, #d03453);
+  color: #fff !important;
+
+  border-radius: 999px;
+  transform: translateZ(0);
+}
+
+.cta-dueno {
+  position: relative;
+  isolation: isolate;
+  background: linear-gradient(135deg, #e86c83, #d03453);
+  color: #fff !important;
+
+  border-radius: 999px;
+  transform: translateZ(0);
+}
+
+.cta-logout {
+  position: relative;
+  isolation: isolate;
+  background: linear-gradient(135deg, #368a91, #0ea5a4);
+  color: #fff !important;
+
+  border-radius: 999px;
+  transform: translateZ(0);
+}
+
+/* Asegurar que los botones sean blancos en el header */
+.vmk-toolbar a,
+.vmk-toolbar .vmk-btn {
+  color: #fff !important;
+}
+
+.vmk-toolbar a:hover,
+.vmk-toolbar .vmk-btn:hover {
+  color: #fff !important;
+  opacity: 0.9;
+}

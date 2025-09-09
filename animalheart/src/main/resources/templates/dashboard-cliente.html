@@ -51,7 +51,7 @@
 
 <div class="row g-4" th:unless="${mascotas.empty}">
   <div class="col-12 col-sm-6 col-lg-4" th:each="mascota : ${mascotas}">
-    <a th:href="@{'/clientes/mascotas/' + ${mascota.id}}" class="pet-card-link">
+    <a th:href="@{'/tu-mascota/' + ${mascota.id}}" class="pet-card-link">
       <div class="pet-card h-100">
         <div class="text-center mb-3">
           <img th:if="${mascota.fotoURL != null and !mascota.fotoURL.isEmpty()}"

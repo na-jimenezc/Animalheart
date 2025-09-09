@@ -147,7 +147,8 @@
               <p class="card-text">Cuidamos su salud desde el primer día.</p>
 
               <button class="btn btn-sm btn-primary" data-bs-toggle="collapse" data-bs-target="#desc1">Ver más</button>
-              <div id="desc1" class="collapse mt-2">
+              <div id="desc1" class="collapse mt-2 servicio-descripcion">
+                <img class="servicio-imagen" th:src="@{/IMAGES/servicio-consulta.webp}" alt="Consulta General">
                 <p class="small text-muted">
                   Nuestro equipo escucha cada latido y cada suspiro de tu mascota.  
                   ¡Aquí las colitas se mueven y los ronroneos florecen!
@@ -163,7 +164,8 @@
               <h5 class="card-title">Urgencias 24/7</h5>
               <p class="card-text">Porque tu mejor amigo no tiene horario, nosotros tampoco.</p>
               <button class="btn btn-sm btn-primary" data-bs-toggle="collapse" data-bs-target="#desc2">Ver más</button>
-              <div id="desc2" class="collapse mt-2">
+              <div id="desc2" class="collapse mt-2 servicio-descripcion">
+                <img class="servicio-imagen" th:src="@{/IMAGES/servicio-urgencias.webp}" alt="Urgencias 24/7">
                 <p class="small text-muted">
                   Sin importar si es de madrugada o domingo, estamos listos para saltar a la acción  
                   y devolverle la energía a tu peludo.
@@ -179,7 +181,8 @@
               <h5 class="card-title">Vacunación</h5>
               <p class="card-text">Una picadita de amor y protección.</p>
               <button class="btn btn-sm btn-primary" data-bs-toggle="collapse" data-bs-target="#desc3">Ver más</button>
-              <div id="desc3" class="collapse mt-2">
+              <div id="desc3" class="collapse mt-2 servicio-descripcion">
+                <img class="servicio-imagen" th:src="@{/IMAGES/servicio-vacunacion.jpeg}" alt="Vacunación">
                 <p class="small text-muted">
                   Cada vacuna es un escudo invisible que envuelve a tu amigo peludo  
                   para que pueda explorar el mundo sin preocupaciones.
@@ -195,7 +198,8 @@
               <h5 class="card-title">Farmacia</h5>
               <p class="card-text">Medicinas y suplementos siempre al alcance.</p>
               <button class="btn btn-sm btn-primary" data-bs-toggle="collapse" data-bs-target="#desc4">Ver más</button>
-              <div id="desc4" class="collapse mt-2">
+              <div id="desc4" class="collapse mt-2 servicio-descripcion">
+                <img class="servicio-imagen" th:src="@{/IMAGES/servicio-farmacia.jpg}" alt="Farmacia">
                 <p class="small text-muted">
                   Desde jarabes que curan resfriados hasta golosinas medicinales  
                   que sanan sin lágrimas: todo para que tu peludo recupere su alegría.
@@ -211,7 +215,8 @@
               <h5 class="card-title">Hospitalización</h5>
               <p class="card-text">Todo lo que necesita para sanar, en un solo lugar.</p>
               <button class="btn btn-sm btn-primary" data-bs-toggle="collapse" data-bs-target="#desc5">Ver más</button>
-              <div id="desc5" class="collapse mt-2">
+              <div id="desc5" class="collapse mt-2 servicio-descripcion">
+                <img class="servicio-imagen" th:src="@{/IMAGES/servicio-hospitalizacion.jpg}" alt="Hospitalización">
                 <p class="small text-muted">
                   Habitaciones cómodas, atención constante y cariño sin medida  
                   para que tu compañero se recupere rodeado de cuidado y calor.
@@ -227,7 +232,8 @@
               <h5 class="card-title">Cirugía</h5>
               <p class="card-text">Manos expertas, corazones dedicados.</p>
               <button class="btn btn-sm btn-primary" data-bs-toggle="collapse" data-bs-target="#desc6">Ver más</button>
-              <div id="desc6" class="collapse mt-2">
+              <div id="desc6" class="collapse mt-2 servicio-descripcion">
+                <img class="servicio-imagen" th:src="@{/IMAGES/servicio-cirugia.webp}" alt="Cirugía">
                 <p class="small text-muted">
                   Con precisión, experiencia y una pizca de amor,  
                   devolvemos la salud a quienes más te importan.
@@ -265,7 +271,7 @@
                   class="rounded-circle mx-auto mb-3"
                   style="width:180px;height:180px;object-fit:cover;">
               <div class="text-warning estrellas mb-2 text-center fs-4">★★★★★</div>
-              <p class="text-muted mb-2 text-center fs-5">“Llevé a mi gato Milo a consulta general y quedé encantada con la atención. Lo revisaron con paciencia y cariño, y además pude conseguir en la farmacia todo lo que necesitaba. ¡Muy recomendado!”</p>
+              <p class="text-muted mb-2 text-center fs-5">"Llevé a mi gato Milo a consulta general y quedé encantada con la atención. Lo revisaron con paciencia y cariño, y además pude conseguir en la farmacia todo lo que necesitaba. ¡Muy recomendado!"</p>
               <small class="text-secondary text-center d-block">12 de agosto del 2025</small>
             </div>
           </div>
@@ -279,7 +285,7 @@
                   class="rounded-circle mx-auto mb-3"
                   style="width:180px;height:180px;object-fit:cover;">
               <div class="text-warning estrellas mb-2 text-center fs-4">★★★★★</div>
-              <p class="text-muted mb-2 text-center fs-5">“Traje a Iris para su vacunación y la experiencia fue excelente. El equipo fue muy amable, la tranquilizó todo el tiempo y me dieron recomendaciones para su salud. Se nota que aman a los animales.”</p>
+              <p class="text-muted mb-2 text-center fs-5">"Traje a Iris para su vacunación y la experiencia fue excelente. El equipo fue muy amable, la tranquilizó todo el tiempo y me dieron recomendaciones para su salud. Se nota que aman a los animales."</p>
               <small class="text-secondary text-center d-block">12 de agosto del 2025</small>
             </div>
           </div>
@@ -293,7 +299,7 @@
                   class="rounded-circle mx-auto mb-3"
                   style="width:180px;height:180px;object-fit:cover;">
               <div class="text-warning estrellas mb-2 text-center fs-4">★★★★★</div>
-              <p class="text-muted mb-2 text-center fs-5">“Mi gato Tony necesitó atención de urgencias y en Animal Heart lo atendieron de inmediato. Me explicaron todo con claridad y lo dejaron hospitalizado hasta que estuvo mejor. Estoy muy agradecida por el cuidado que le dieron.”</p>
+              <p class="text-muted mb-2 text-center fs-5">"Mi gato Tony necesitó atención de urgencias y en Animal Heart lo atendieron de inmediato. Me explicaron todo con claridad y lo dejaron hospitalizado hasta que estuvo mejor. Estoy muy agradecida por el cuidado que le dieron."</p>
               <small class="text-secondary text-center d-block">12 de agosto del 2025</small>
             </div>
           </div>

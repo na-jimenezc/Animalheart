@@ -39,30 +39,18 @@ a{color:inherit;text-decoration:none}
 .va-btn--danger:hover{ background:var(--rose-600); transform:translateY(-1px); }
 
 /* ===================== HERO (overlay rosado) ===================== */
-.va-hero{
-  position:relative;
-  background:url("../IMAGES/vet_animalheart.jpeg") center/cover no-repeat;
-  min-height:200px; display:flex; align-items:center;
-}
-.va-hero::before{
-  content:""; position:absolute; inset:0;
-  background:rgba(246,189,197,.85);
-}
-.va-hero-title{
-  position:relative; z-index:1; margin:0; color:#fff; font-weight:800;
-  letter-spacing:.3px; font-size:clamp(40px,6vw,64px);
-}
+
 
 /* ===================== TABLA (tarjeta rosada + filas-pastilla) ===================== */
 .va-table-card{
   background:var(--rose-100); border-radius:18px; padding:12px;
-  box-shadow:0 8px 24px rgba(0,0,0,.08);
+  box-shadow:0 8px 24px rgba(193, 54, 54, 0.251);
 }
 
 /* Encabezado de columnas (solo desktop) */
 .va-table-head{
   grid-template-columns:80px 1.2fr 1fr .8fr .9fr;
-  color:#6b7280; font-weight:600; padding:8px 10px 12px; margin:4px 8px;
+  color:#d5536c; font-weight:600; padding:8px 10px 12px; margin:4px 8px;
 }
 
 /* Tabla y celdas redondeadas separadas */
@@ -106,7 +94,7 @@ body.vet-mockup{
 }
 body.vet-mockup > main{ flex:1; }
 .vmk-footer{
-  background:#58AAAE; padding:16px 0;
+  background:#d5536c; padding:16px 0;
   margin-top:auto;
 }
 
@@ -251,7 +239,7 @@ body.vet-mockup{
 }
 body.vet-mockup > main{ flex:1; }
 .vmk-footer{
-  background:#58AAAE; padding:20px 0;
+  background:#d5536c; padding:20px 0;
   margin-top:auto;/
 }
 
@@ -270,4 +258,126 @@ body.vet-mockup > main{ flex:1; }
   .va-table td {
     padding: 16px 12px;
   }
+}
+
+/* ====== HEADER ESTILO MASCOTAS CON COLORES ORIGINALES ====== */
+
+/* Header con overlay rosa (como el original) pero con estructura de mascotas */
+.vmk-header {
+  background: url("../IMAGES/admin-img.jpeg") center/cover no-repeat;
+  position: relative;
+  color: #fff;
+}
+
+.vmk-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(183, 58, 74, 0.638); /* Rosa similar al original */
+}
+
+.vmk-header > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Barra de herramientas */
+.vmk-toolbar {
+  background: transparent;
+  color: #fff;
+  padding: 18px 0;
+  min-height: 80px;
+}
+
+/* Botones */
+.vmk-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1;
+  text-decoration: none;
+  transition: 0.2s;
+  color: #fff;
+}
+
+/* Hero section */
+.vmk-hero {
+  padding: 12px 0 24px;
+}
+
+.vmk-hero-inner {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.vmk-title {
+  margin: 0;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  font-size: clamp(28px, 3.6vw, 40px);
+}
+
+/* Botones con gradientes (estilo mascotas) */
+.cta-back {
+  position: relative;
+  isolation: isolate;
+  background: linear-gradient(135deg, #e86c83, #d03453);
+  color: #fff !important;
+
+  border-radius: 999px;
+  transform: translateZ(0);
+}
+
+.cta-dueno {
+  position: relative;
+  isolation: isolate;
+  background: linear-gradient(135deg, #e86c83, #d03453);
+  color: #fff !important;
+
+  border-radius: 999px;
+  transform: translateZ(0);
+}
+
+.cta-logout {
+  position: relative;
+  isolation: isolate;
+  background: linear-gradient(135deg, #368a91, #0ea5a4);
+  color: #fff !important;
+  border-radius: 999px;
+  transform: translateZ(0);
+}
+
+/* Asegurar que los botones sean blancos en el header */
+.vmk-toolbar a,
+.vmk-toolbar .vmk-btn {
+  color: #fff !important;
+}
+
+.vmk-toolbar a:hover,
+.vmk-toolbar .vmk-btn:hover {
+  color: #fff !important;
+  opacity: 0.9;
+}
+
+/* Mantener estilos originales de la tabla */
+.va-table-card {
+  background: var(--rose-100);
+}
+
+.va-badge {
+  background: var(--rose-200);
+  color: #7a1f2d;
+}
+
+.va-pill {
+  background: var(--rose-500);
+}
+
+.va-pill:hover {
+  background: var(--rose-600);
 }
