@@ -1029,3 +1029,44 @@ body.vet-mockup>main{flex:1}
 @media (prefers-reduced-motion: reduce) {
   .cta-back::after { animation: none; }
 }
+
+/* ====== TIPOGRAFÍA + ESPACIADO MÁS GRANDE (solo tabla de esta vista) ====== */
+/* Encabezados de la tabla */
+.table-header .header-cell{
+  font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+  line-height: 1.35;
+}
+
+/* Celdas con datos */
+.table-body .table-cell{
+  font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+  line-height: 1.45;
+}
+
+/* Nombre de la mascota un poco más destacado */
+.table-body .va-cell-name{
+  font-size: clamp(1.15rem, 1.8vw, 1.35rem);
+  font-weight: 700;
+}
+
+/* Badges: edad, tipo, estado, activo */
+.table-body .va-badge,
+.table-body .badge{
+  font-size: clamp(0.95rem, 1.2vw, 1.05rem);
+  padding: 0.55em 0.9em;
+}
+
+/* Avatar ligeramente mayor para acompañar el aumento de texto */
+.table-body .va-avatar{
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+}
+
+/* En móviles mantenemos legibilidad sin exagerar tamaños */
+@media (max-width: 767px){
+  .table-body .table-cell{ font-size: 1.05rem; }
+  .table-body .va-cell-name{ font-size: 1.15rem; }
+  .table-body .va-badge,
+  .table-body .badge{ font-size: 0.95rem; }
+}
