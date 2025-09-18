@@ -1,0 +1,138 @@
+/* ===================== PORTADA (HERO) ===================== */
+.portada{
+  position:relative;
+  background:url("/assets/images/vet_animalheart.jpeg") center/cover no-repeat;
+  min-height:50vh;
+  padding:40px 20px;
+  z-index:2;
+  display:flex;
+  align-items:center;
+  overflow:visible;
+  margin-bottom:100px
+}
+
+.portada::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(246,189,197,.8);
+  z-index:1
+}
+
+.contenedor-portada{
+  max-width:1200px;
+  width:100%;
+  margin:0 auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:40px;
+  position:relative;
+  z-index:5
+}
+
+.bloque-izquierdo{
+  flex:1;
+  max-width:600px;
+  display:flex;
+  flex-direction:column;
+  gap:20px
+}
+
+#nombre{
+  margin:0;
+  color:#fff;
+  font-weight:700;
+  line-height:1.1;
+  font-size:clamp(48px,6vw,98px);
+  pointer-events:none
+}
+
+#nombre .rosa{
+  color:var(--corazon)
+}
+
+.tarjeta-portada{
+  width:100%;
+  min-height:300px;
+  padding:clamp(24px,3vw,40px);
+  display:flex;
+  flex-direction:column;
+  border-radius:29px;
+  background:#fff;
+  box-shadow:var(--shadow)
+}
+
+.tarjeta-portada h1{
+  margin:0 0 10px;
+  font-size:clamp(28px,2.4vw,42px);
+  font-weight:800;
+  line-height:1.15;
+  font-family:"Open Sans",sans-serif
+}
+
+.tarjeta-portada p{
+  margin:8px 0;
+  color:var(--muted);
+  font-size:clamp(16px,1.3vw,20px);
+  line-height:1.55
+}
+
+.llamada-accion{
+  display:inline-block;
+  margin-top:20px;
+  width:100%;
+  max-width:300px;
+  background:#fff;
+  border:2px solid var(--teal-700);
+  color:var(--teal-700);
+  padding:16px 0;
+  border-radius:999px;
+  font-weight:700;
+  font-size:clamp(16px,1.5vw,20px);
+  text-align:center;
+  transition:all .3s ease
+}
+
+.llamada-accion:hover{
+  background:var(--teal-700);
+  color:#fff;
+  transform:translateY(-2px)
+}
+
+.bloque-derecho{
+  flex:1;
+  display:flex;
+  justify-content:flex-end;
+  align-items:flex-end;
+  position:relative
+}
+
+.perrito{
+  width:clamp(250px,30vw,500px);
+  height:auto;
+  filter:drop-shadow(0 18px 32px rgba(29,31,78,.25));
+  position:absolute;
+  top:-272px;
+  right:0
+}
+
+@media (max-width:992px){
+  .contenedor-portada{
+    flex-direction:column;
+    gap:30px
+  }
+  .bloque-izquierdo,.bloque-derecho{
+    max-width:100%;
+    justify-content:center
+  }
+  .perrito{
+    width:clamp(200px,50vw,400px)
+  }
+}
+
+@media (max-width:991.98px){
+  .perrito{
+    display:none
+  }
+}

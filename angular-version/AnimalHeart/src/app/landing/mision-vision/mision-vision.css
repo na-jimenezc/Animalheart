@@ -1,0 +1,77 @@
+/* ===================== CARRUSEL MISIÓN / VISIÓN ===================== */
+#destacados{
+  padding-top:0;
+  margin-top:80px;
+  height:639.38px;
+  margin-bottom:80px
+}
+
+#destacados .carousel-item{
+  height:700px;
+  min-height:700px;
+  position:relative;
+  overflow:hidden
+}
+
+#destacados .carousel-inner img{
+  width:100%;
+  height:100%;
+  object-fit:cover
+}
+
+.img-overlay{
+  position:relative;
+  height:100%
+}
+
+.img-overlay .image-overlay{
+  position:absolute;
+  inset:0;
+  background:rgba(255,255,255,.5);
+  z-index:1
+}
+
+.img-overlay .carousel-caption{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  z-index:2;
+  text-align:center;
+  padding:20px;
+  max-width:90%;
+  width:100%;
+  pointer-events:none
+}
+
+.img-overlay .carousel-caption h5{
+  font-size:78px;
+  margin-bottom:1rem;
+  color:var(--servicios-title);
+  font-family:"Open Sans",sans-serif;
+  font-weight:700
+}
+
+.img-overlay .carousel-caption p{
+  font-size:28px;
+  line-height:1.6;
+  color:var(--text);
+  max-width:700px;
+  margin:0 auto;
+  font-family:"Open Sans",sans-serif;
+  font-weight:700
+}
+
+#destacados .carousel-control-prev-icon,
+#destacados .carousel-control-next-icon{
+  filter:invert(.8) sepia(1) saturate(5) hue-rotate(180deg);
+  z-index:3
+}
+
+#destacados .carousel-indicators button{
+  background-color:var(--teal-700)
+}
+
+#destacados .carousel-indicators .active{
+  opacity:1
+}

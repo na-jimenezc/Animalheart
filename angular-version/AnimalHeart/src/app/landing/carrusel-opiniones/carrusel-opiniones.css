@@ -1,0 +1,20 @@
+/* ===================== CLIENTES (CARRUSEL) ===================== */
+.clientes{position:relative;background:url("/assets/images/clientes_2.jpg") center/cover no-repeat;
+  padding:32px 0;margin-top:24px;z-index:4}
+.clientes::before{content:"";position:absolute;inset:0;background:rgba(127,173,192,.8);z-index:0;pointer-events:none}
+.clientes > *{position:relative;z-index:2}
+#clientes .carousel{padding:8px 0}
+#clientes .carousel-item{transition:transform .6s ease,opacity .6s ease;min-height:320px}
+#clientes .carousel .card{border:0;border-radius:var(--radius);box-shadow:var(--shadow);max-width:800px;width:100%;background:#DBE5E7}
+#clientes .carousel-indicators [data-bs-target]{width:8px;height:8px;border-radius:999px;background:#fff;opacity:.6}
+#clientes .carousel-indicators .active{opacity:1}
+#clientes .carousel-control-prev,#clientes .carousel-control-next{width:8%;filter:drop-shadow(0 6px 18px rgba(0,0,0,.2));z-index:5}
+#clientes .carousel .card img{width:414px;height:380px;border-radius:414px;object-fit:cover}
+#clientes .carousel .card h5{font-size:32px;color:#18527D;font-family:"Open Sans";font-weight:700;letter-spacing:-.96px}
+#clientes .carousel .card p{font-size:16px;color:#18527D;text-align:center;font-family:"Open Sans",sans-serif;letter-spacing:1.6px}
+#carouselClientes .carousel-indicators {
+  bottom: -25px;
+}
+#clientes .carousel-item {
+  padding-bottom: 40px;
+}

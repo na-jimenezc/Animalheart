@@ -1,0 +1,41 @@
+<header class="barra navbar navbar-expand-lg">
+  <div class="envoltura container-fluid align-items-center">
+    <div class="d-flex align-items-center w-100 d-lg-none">
+      <div class="logotipo-movil">
+        <img src="assets/images/Logo_2.PNG" alt="Logo AnimalHeart" style="height:50px; object-fit:contain;">
+      </div>
+      <button class="navbar-toggler ms-auto" type="button"
+        data-bs-toggle="collapse" data-bs-target="#barraContenido"
+        aria-controls="barraContenido" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+
+    <div class="logotipo-central d-none d-lg-flex">
+      <img src="assets/images/Logo_2.PNG" alt="Logo AnimalHeart">
+    </div>
+
+    <div class="collapse navbar-collapse justify-content-between" id="barraContenido">
+      <ul class="navbar-nav menu-izq me-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#inicio" aria-current="page">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/contacto">Contacto</a>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav menu-der ms-auto">
+        <li class="nav-item">
+          <a class="nav-link pastilla" routerLink="/login-veterinario">Veterinario</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link pastilla" routerLink="/login-admin">Administrador</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link pastilla" routerLink="/clientes/login-cliente">Cliente</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</header>

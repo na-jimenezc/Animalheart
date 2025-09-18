@@ -1,0 +1,40 @@
+<section id="clientes" class="clientes py-5">
+  <div class="container">
+    <h2 class="text-center mb-4">¡Escúchalo de ellos mismos!</h2>
+
+    <div id="carouselClientes" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselClientes" 
+                *ngFor="let testimonio of testimonios; let i = index" 
+                [attr.data-bs-slide-to]="i" 
+                [class.active]="i === 0"></button>
+      </div>
+
+      <div class="carousel-inner">
+        <div class="carousel-item" *ngFor="let testimonio of testimonios; let i = index" 
+             [class.active]="i === 0" data-bs-interval="6000">
+          <div class="d-flex justify-content-center">
+            <div class="card shadow-sm border-0 p-4">
+              <h5 class="fw-bold text-center fs-3">{{testimonio.nombre}}</h5>
+              <img [src]="'assets/images/' + testimonio.imagen" [alt]="testimonio.nombre"
+                  class="rounded-circle mx-auto mb-3"
+                  style="width:180px;height:180px;object-fit:cover;">
+              <div class="text-warning estrellas mb-2 text-center fs-4">★★★★★</div>
+              <p class="text-muted mb-2 text-center fs-5">"{{testimonio.texto}}"</p>
+              <small class="text-secondary text-center d-block">{{testimonio.fecha}}</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselClientes" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Anterior</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselClientes" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Siguiente</span>
+      </button>
+    </div>
+  </div>
+</section>

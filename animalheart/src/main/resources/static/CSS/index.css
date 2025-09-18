@@ -16,14 +16,14 @@
   --corazon:#ED3A4D;
 }
 
-/* ===================== BASE ===================== */
+/*===================== BASE =====================*/
 *{box-sizing:border-box}
 html,body{margin:0;background:var(--bg);color:var(--text);
   font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.45}
 a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block}
 
-/* ==================== NAV (barra principal) ==================== */
+/*====================NAV (barra principal)====================*/
 .barra {
   position: sticky;
   top: 0;

@@ -1,1 +1,34 @@
-/* You can add global styles to this file, and also import other style files */
+/* ===================== TOKENS MÍNIMOS ===================== */
+:root{
+  --teal-700:#073352;
+  --teal-600:#2a9a99;
+  --teal-200:#bfe6e5;
+  --pink-200:#7AABBF;
+  --pink-300:#58AAAE;
+  --bg:#f7f7f8;
+  --surface:#ffffff;
+  --text:#1b1e22;
+  --muted:#5e6a72;
+  --radius:18px;
+  --shadow:0 8px 24px rgba(0,0,0,.08);
+  --servicios-bg:#fff7e6;
+  --servicios-title:#043454;
+  --corazon:#ED3A4D;
+}
+
+/*===================== BASE =====================*/
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--text);
+  font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.45}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+
+
+
+/* ===================== FIGURA DECORATIVA ===================== */
+.figura-mascotas{position:relative;width:100%;margin-bottom:-150px;z-index:5}
+.mascotas{position:relative;left:50%;transform:translateX(-50%);
+  width:clamp(300px,70vw,1400px);height:auto;margin-top:-80px;pointer-events:none}
+@media (max-width:768px){.mascotas{display:none}}
+@media (max-width:991.98px){.mascotas{width:clamp(200px,80vw,800px);bottom:-60px}}
+

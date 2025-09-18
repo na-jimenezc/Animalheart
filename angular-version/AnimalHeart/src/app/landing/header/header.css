@@ -1,0 +1,109 @@
+/* ==================== NAV (barra principal) ==================== */
+.barra {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  height: 100px;
+  background: #073352; 
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(0,0,0,.12);
+  display: flex;
+  align-items: center;
+}
+
+.barra .envoltura {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; 
+  position: relative;
+}
+
+.menu-izq,
+.menu-der {
+  display: flex;
+  gap: 16px;
+}
+
+.menu-izq a,
+.menu-der a {
+  padding: 10px 16px;
+  border-radius: 999px;
+  font-weight: 600;
+  opacity: .95;
+  color: #fff;
+  text-decoration: none;
+}
+
+.menu-izq a:hover,
+.menu-der a:hover,
+.menu-izq a[aria-current="page"] {
+  background: rgba(255,255,255,.18);
+}
+
+.menu-der .pastilla {
+  background: #fff;
+  color: var(--teal-700) !important;
+  font-weight: 800;
+  transition: color .25s, background .25s, transform .15s;
+}
+
+.menu-der .pastilla:hover {
+  background: var(--teal-700) !important;
+  color: #fff !important;
+  transform: translateY(-1px);
+}
+
+.logotipo-central {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 110px;
+  height: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logotipo-central img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+@media (max-width: 991.98px) {
+  .logotipo-central {
+    display: none !important;
+  }
+  .navbar-collapse .navbar-nav {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    background: var(--teal-700);
+    padding: 16px 16px 24px;
+    border-radius: 0 0 12px 12px;
+  }
+  .navbar-collapse .nav-item {
+    width: 100%;
+  }
+  .navbar-collapse .nav-link {
+    display: block;
+    width: 100%;
+    padding: 12px 0;
+    margin: 6px 0;
+    border-radius: 12px;
+    font-size: 16px;
+  }
+  .navbar-collapse .pastilla {
+    background: #fff;
+    color: var(--teal-700) !important;
+    font-weight: 700;
+  }
+}
+
+.menu-der {
+  margin-left: auto;
+}
