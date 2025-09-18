@@ -26,7 +26,7 @@ img{max-width:100%;display:block}
 
 
 /* ===================== FIGURA DECORATIVA ===================== */
-.figura-mascotas{position:relative;width:100%;margin-bottom:-150px;z-index:5}
+.figura-mascotas{position:relative;width:100%;margin-bottom:-120px;z-index:5}
 .mascotas{position:relative;left:50%;transform:translateX(-50%);
   width:clamp(300px,70vw,1400px);height:auto;margin-top:-80px;pointer-events:none}
 @media (max-width:768px){.mascotas{display:none}}

@@ -12,10 +12,13 @@
               {{servicio.expandido ? 'Ver menos' : 'Ver más'}}
             </button>
             
-            <div class="mt-2 servicio-descripcion" [class.collapse]="!servicio.expandido">
+            <div class="mt-2 servicio-descripcion"
+                *ngIf="servicio.expandido"
+                [class.expanded]="servicio.expandido">
               <img class="servicio-imagen" [src]="servicio.imagen" [alt]="servicio.titulo">
               <p class="small text-muted">{{servicio.descripcionCompleta}}</p>
             </div>
+            
           </div>
         </div>
       </div>

@@ -55,7 +55,9 @@ export class TarjetasServicios {
     }
   ];
 
-  toggleServicio(index: number): void {
-    this.servicios[index].expandido = !this.servicios[index].expandido;
+    toggleServicio(index: number): void {
+    this.servicios.forEach((s, i) => {
+      s.expandido = i === index ? !s.expandido : false;
+    });
   }
 }
