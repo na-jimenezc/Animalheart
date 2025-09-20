@@ -1,0 +1,149 @@
+/* ============ TOKENS MÍNIMOS QUE USA ESTA VISTA ============ */
+:root{
+  --teal-700:#073352;
+  --teal-600:#2a9a99;
+  --teal-200:#cfe9e8;
+  --bg:#f3f6f7;
+  --surface:#ffffff;
+  --text:#17303f;
+  --radius:18px;
+  --shadow:0 10px 28px rgba(0,0,0,.10);
+}
+
+/* ============ HÉROE ============ */
+.portada-contacto{
+  position:relative;min-height:60vh;padding:40px 20px;margin-bottom:80px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  background:url("../../../assets/images/vet-contacto.jpg") center/cover no-repeat;
+}
+.portada-contacto::before{content:"";position:absolute;inset:0;background:rgba(42,154,153,.85);z-index:1}
+.portada-contacto .envoltura{position:relative;z-index:2;display:flex;align-items:center;justify-content:center;width:100%;max-width:1200px}
+
+/* Tarjeta "¡Hablemos!" */
+.tarjeta-portada{
+  width:clamp(260px,32vw,360px);height:clamp(260px,32vw,360px);
+  background:#ffffffd9;border-radius:50%;padding:clamp(24px,3vw,40px);
+  border:8px solid rgba(255,255,255,.35);box-shadow:var(--shadow);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center
+}
+.tarjeta-portada h1{margin:0 0 10px;font-size:clamp(32px,4.2vw,44px);font-weight:800;color:var(--teal-700);font-family:"Open Sans",sans-serif}
+.tarjeta-portada p{margin:0;color:#4f606b;font-size:clamp(14px,1.4vw,16px);font-weight:600;line-height:1.4;max-width:220px}
+
+/* Círculos debajo del héroe */
+.circulos-portada {
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  margin: clamp(12px, 2vh, 28px) auto 60px;
+  padding: 0 20px;
+
+  /* GRID actualizado */
+  display: grid;
+  grid-template-columns: repeat(3, minmax(140px, 1fr));
+  gap: clamp(12px, 2vw, 20px);
+  justify-content: center;
+  justify-items: center;
+}
+
+@media (max-width: 992px) {
+  .circulos-portada {
+    grid-template-columns: repeat(2, 1fr);
+    margin: 20px auto 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .circulos-portada {
+    grid-template-columns: 1fr;
+  }
+}
+
+.circulo{
+  background:#fff;color:var(--teal-700);border-radius:50%;aspect-ratio:1/1;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:10px;
+  padding:18px;box-shadow:var(--shadow);transition:transform .2s ease, background .25s ease, color .25s ease;
+}
+.circulo:hover{transform:translateY(-3px);background:var(--teal-600);color:#fff}
+.circulo i{font-size:34px;line-height:1}
+.circulo span{font-weight:800;font-size:clamp(14px,1.1vw,18px);line-height:1.2;max-width:12ch;text-wrap:balance}
+
+/* ============ CONTENIDO (form + card derecha) ============ */
+.contacto{max-width:1200px;margin:0 auto;padding:0 20px 80px}
+.contacto h2{color:var(--teal-700);font-size:clamp(28px,3.2vw,36px);font-weight:800;margin-bottom:22px;font-family:"Open Sans",sans-serif}
+
+/* Inputs tipo "píldora" - Etiquetas en negrita */
+.contacto .form-label{
+  font-weight:700; /* Negrita */
+  color:var(--text);
+  margin-bottom:8px
+}
+.contacto .form-control{
+  padding:12px 16px;border-radius:999px;border:1px solid var(--teal-200);background:#fff;transition:all .25s ease
+}
+.contacto .form-control:focus{border-color:var(--teal-600);box-shadow:0 0 0 .25rem rgba(42,154,153,.25)}
+.contacto textarea.form-control{border-radius:18px}
+
+/* Botones - Estilos específicos para evitar conflictos con Bootstrap */
+.contacto .btn {
+  padding: 12px 24px;
+  font-weight: 700;
+  border-radius: 999px;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  border: none;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Botón Enviar - Estilo primario */
+.contacto .btn.btn-primary {
+  background: var(--teal-700) !important;
+  color: white !important;
+  box-shadow: 0 4px 8px rgba(7, 51, 82, 0.2);
+}
+
+.contacto .btn.btn-primary:hover {
+  background: var(--teal-600) !important;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(7, 51, 82, 0.3);
+}
+
+.contacto .btn.btn-primary:active {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 6px rgba(7, 51, 82, 0.2);
+}
+
+/* Botón Limpiar - Estilo secundario */
+.contacto .btn.btn-outline-secondary {
+  background: transparent !important;
+  border: 2px solid var(--teal-200) !important;
+  color: var(--teal-700) !important;
+}
+
+.contacto .btn.btn-outline-secondary:hover {
+  background: var(--teal-200) !important;
+  border-color: var(--teal-200) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(35, 170, 166, 0.3);
+}
+
+/* Tarjeta derecha + mapa */
+.contacto .card{border:none;border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
+.contacto .card-body{padding:30px}
+.contacto .card-title{color:var(--teal-700);font-weight:800;margin-bottom:18px;font-family:"Open Sans",sans-serif}
+.contacto .card p{margin-bottom:12px;display:flex;align-items:center;gap:10px;color:var(--text)}
+.contacto .card i{color:var(--teal-600);font-size:1.2rem;min-width:24px}
+.contacto .ratio{border-radius:var(--radius);overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,.1);margin-top:16px}
+
+/* Alerta de éxito */
+.contacto .alert{border-radius:var(--radius);padding:16px}
+
+/* Ajustes responsive */
+@media (max-width:992px){
+  .portada-contacto{min-height:50vh;margin-bottom:60px}
+  .contacto .row>div:first-child{margin-bottom:40px}
+}
+@media (max-width:768px){
+  .portada-contacto{min-height:42vh}
+  .contacto{padding-bottom:60px}
+  .contacto .btn{width:100%}
+  .contacto .d-sm-inline-flex{flex-direction:column;gap:12px}
+}

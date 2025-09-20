@@ -1,1 +1,121 @@
-<p>contacto works!</p>
+<div class="contacto-page">
+  <section class="portada portada-contacto">
+    <div class="envoltura">
+      <div class="tarjeta-portada">
+        <h1>¡Hablemos!</h1>
+        <p>¿Dudas, citas o urgencias? Escríbenos y te respondemos pronto.</p>
+      </div>
+    </div>
+
+    <div class="circulos-portada">
+      <div class="circulo">
+        <i class="bi bi-headset"></i>
+        <span>Servicio al cliente</span>
+      </div>
+
+      <div class="circulo">
+        <i class="bi bi-capsule"></i>
+        <span>Planes de medicina</span>
+      </div>
+
+      <div class="circulo">
+        <i class="bi bi-activity"></i>
+        <span>Pacientes crónicos</span>
+      </div>
+    </div>
+  </section>
+
+  <main class="contacto container py-5">
+    <div class="row g-4">
+      <div class="col-lg-7">
+        <h2>¡Envíanos un mensaje!</h2>
+
+        <form id="form-contacto" (ngSubmit)="onSubmit()" #contactForm="ngForm" novalidate>
+          <input type="text" name="company" class="d-none" tabindex="-1" autocomplete="off" />
+
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label for="nombre" class="form-label">Nombre</label>
+              <input id="nombre" name="nombre" type="text" class="form-control" 
+                     [(ngModel)]="contactData.nombre" required minlength="2" #nombre="ngModel" />
+              <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)" class="invalid-feedback d-block">
+                Ingresa tu nombre (mín. 2 caracteres).
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <label for="email" class="form-label">Correo</label>
+              <input id="email" name="email" type="email" class="form-control" 
+                     [(ngModel)]="contactData.email" required #email="ngModel" />
+              <div *ngIf="email.invalid && (email.dirty || email.touched)" class="invalid-feedback d-block">
+                Ingresa un correo válido.
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <label for="telefono" class="form-label">Teléfono (Opcional)</label>
+              <input id="telefono" name="telefono" type="tel" class="form-control" 
+                     [(ngModel)]="contactData.telefono" pattern="[0-9+\s()-]{7,}" #telefono="ngModel" />
+              <div *ngIf="telefono.invalid && (telefono.dirty || telefono.touched)" class="invalid-feedback d-block">
+                Usa solo números y + (mín. 7 dígitos).
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <label for="asunto" class="form-label">Asunto</label>
+              <input id="asunto" name="asunto" type="text" class="form-control" 
+                     [(ngModel)]="contactData.asunto" required #asunto="ngModel" />
+              <div *ngIf="asunto.invalid && (asunto.dirty || asunto.touched)" class="invalid-feedback d-block">
+                Cuéntanos el asunto del mensaje.
+              </div>
+            </div>
+
+            <div class="col-12">
+              <label for="mensaje" class="form-label">Mensaje</label>
+              <textarea id="mensaje" name="mensaje" rows="6" class="form-control" 
+                        [(ngModel)]="contactData.mensaje" required minlength="10" #mensaje="ngModel"></textarea>
+              <div *ngIf="mensaje.invalid && (mensaje.dirty || mensaje.touched)" class="invalid-feedback d-block">
+                Escribe al menos 10 caracteres.
+              </div>
+            </div>
+
+            <div class="col-12 d-grid d-sm-inline-flex gap-2">
+              <button class="btn btn-primary" type="submit" [disabled]="contactForm.invalid">
+                <i class="bi bi-send-fill me-1"></i> Enviar
+              </button>
+              <button class="btn btn-outline-secondary" type="button" (click)="resetForm(contactForm)">Limpiar</button>
+            </div>
+          </div>
+        </form>
+
+        <div *ngIf="mensajeExito" class="alert alert-success mt-3" role="alert" aria-live="polite">
+          <i class="bi bi-check-circle-fill me-2"></i>
+          <span>{{ mensajeExito }}</span>
+        </div>
+      </div>
+
+      <div class="col-lg-5">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Información de contacto</h5>
+
+            <p><i class="bi bi-geo-alt-fill"></i> Carrera 77#20-40, Bogotá, Colombia</p>
+            <p><i class="bi bi-telephone-fill"></i> +57 320 534 4512</p>
+            <p><i class="bi bi-envelope-fill"></i> animalheart@gmail.com</p>
+            <p><i class="bi bi-clock-fill"></i> Lunes a Viernes: 8:00 am – 6:00 pm</p>
+            <p><i class="bi bi-clock-history"></i> Sábados: 9:00 am – 2:00 pm</p>
+            <p><i class="bi bi-exclamation-triangle-fill"></i> Emergencias: 24/7</p>
+
+            <div class="ratio ratio-4x3 rounded overflow-hidden mt-4">
+              <iframe
+                title="Ubicación de Animalheart"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.234569109172!2d-74.07772292401738!3d4.710533641389792!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f9a3e2e5e5b5b%3A0x1b8c6b9b9b9b9b9b!2sAnimalheart!5e0!3m2!1ses!2sco!4v1620000000000!5m2!1ses!2sco"
+                style="border:0" allowfullscreen loading="lazy"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

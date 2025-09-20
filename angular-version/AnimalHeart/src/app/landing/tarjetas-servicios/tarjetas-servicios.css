@@ -2,7 +2,7 @@
 #servicios {
   background: #B8D2D4;
   padding-top: 3rem;
-  padding-bottom: 6rem; /* Aumentado el espacio inferior */
+  padding-bottom: 6rem;
   margin-bottom: 200px;
   position: relative;
 }
@@ -17,51 +17,84 @@
   margin-bottom: 2.5rem !important;
 }
 
-#servicios .row {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-  gap: 40px;
+#servicios .container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
+#servicios .row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0 -20px;
+}
+
+#servicios .col-md-4 {
+  padding: 0 20px;
+  margin-bottom: 40px;
+  flex: 0 0 33.333333%;
+  max-width: 33.333333%;
+}
+
+/* Tarjetas con mejor espaciado */
+.card-grupo1 .card,
+.card-grupo2 .card {
+  width: 100%;
+  height: auto;
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Aseguramos que el card-body ocupe todo el espacio disponible */
 .card .card-body {
   display: flex;
   flex-direction: column;
-  padding: 1.5rem;
+  padding: 2rem;
+  flex-grow: 1; /* Ocupa todo el espacio disponible */
 }
 
+/* Contenedor de contenido que crece para empujar el botón hacia abajo */
+.card-content {
+  flex-grow: 1; /* Hace que este contenido ocupe todo el espacio disponible */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Botón siempre en la parte inferior */
 .card .card-body .btn, .card .card-body button {
-  margin-top: auto;
+  margin-top: auto; /* Empuja el botón hacia la parte inferior */
   width: 100%;
   justify-content: center;
   background: rgba(255, 255, 255, 0.2);
   border: none;
   font-weight: 600;
   transition: background .3s ease, transform .15s ease;
-  padding: 0.5rem 1rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 18px;
+  align-self: flex-end; /* Asegura que esté en la parte inferior */
 }
 
 .card .card-body button:hover {
   background: rgba(255, 255, 255, 0.645);
+  transform: translateY(-2px);
 }
 
 .card-grupo1 .card {
-  width: 429px;
-  height: auto; /* Cambiado a auto para permitir expansión */
-  flex-shrink: 0;
   background: #043454;
   color: #fff;
-  transition: height 0.3s ease;
-  min-height: 199px;
 }
 
 .card-grupo2 .card {
-  width: 429px;
-  height: auto; /* Cambiado a auto para permitir expansión */
-  flex-shrink: 0;
   background: #58AAAE;
   color: #fff;
-  transition: height 0.3s ease;
-  min-height: 199px;
 }
 
 .card-grupo1 .card .card-title, .card-grupo2 .card .card-title {
@@ -70,7 +103,7 @@
   font-size: 32px;
   font-weight: 700;
   line-height: 100%;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .card-grupo1 .card .card-text, .card-grupo2 .card .card-text,
@@ -78,29 +111,14 @@
   color: #FFF;
   font-family: "Open Sans", sans-serif;
   font-size: 24px;
-  margin: 0 0 1rem 0; /* Ajustado el margen */
+  margin: 0 0 1.5rem 0;
   font-weight: 400;
   letter-spacing: 3.6px;
-  line-height: 100%;
+  line-height: 120%;
   display: flex;
   width: 100%;
   justify-content: center;
   flex-shrink: 0;
-}
-
-.card-grupo1 .card .card-body button[aria-expanded="true"] {
-  background: var(--teal-200);
-  color: #043454;
-}
-
-.card-grupo2 .card .card-body button[aria-expanded="true"] {
-  background: var(--pink-200);
-  color: #043454;
-}
-
-.card .collapse p {
-  color: #fff !important;
-  margin-top: 0.5rem;
 }
 
 /* Estilos para las imágenes de servicios */
@@ -108,8 +126,16 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 1rem;
-  color: #fff
+  margin-top: 1.5rem;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease, opacity 0.5s ease;
+}
+
+.servicio-descripcion.expandido {
+  max-height: 500px;
+  opacity: 1;
 }
 
 .servicio-imagen {
@@ -118,47 +144,82 @@
   height: 160px;
   object-fit: cover;
   border-radius: 8px;
-  margin: 0 auto 1rem auto;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  margin: 0 auto 1.5rem auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-/* Ajustes responsivos para las imágenes */
+/* Ajustes responsivos */
+@media (max-width: 1200px) {
+  #servicios .container {
+    max-width: 1140px;
+  }
+}
+
+@media (max-width: 992px) {
+  #servicios .col-md-4 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+  
+  .card .card-body {
+    padding: 1.5rem;
+  }
+}
+
 @media (max-width: 768px) {
+  #servicios .col-md-4 {
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin-bottom: 30px;
+  }
+  
   .servicio-imagen {
     max-width: 220px;
     height: 130px;
   }
+  
+  .card .card-body {
+    padding: 1.25rem;
+  }
+  
+  .card-grupo1 .card .card-title, .card-grupo2 .card .card-title {
+    font-size: 28px;
+  }
+  
+  .card-grupo1 .card .card-text, .card-grupo2 .card .card-text {
+    font-size: 20px;
+  }
 }
 
-/* Transición suave para la expansión de tarjetas */
-.collapsing {
-  transition: height 0.3s ease;
-}
-
-/* Estado visible */
-.collapse.show {
-  height: auto;
-}
-
-/* Asegurar que las tarjetas expandidas no sean demasiado altas */
-.card {
-  overflow: hidden;
-}
-
+/* Texto en blanco para la descripción expandida */
 .servicio-descripcion p {
-  color: rgba(255, 255, 255, 0.7); 
-  transition: color 0.3s ease;
+  color: #fff !important;
+  font-size: 18px;
+  line-height: 1.6;
+  text-align: center;
+  padding: 0 1rem;
 }
 
-.servicio-descripcion.expanded p {
-  color: #fff; 
+/* ===================== FIGURA DECORATIVA ===================== */
+.figura-mascotas {
+  position: relative;
+  width: 100%;
+  margin-bottom: -150px;
+  z-index: 5;
 }
 
-.servicio-imagen {
-  filter: brightness(0.85);
-  transition: filter 0.3s ease;
+.mascotas {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  width: clamp(300px, 70vw, 1400px);
+  height: auto;
+  margin-top: -80px;
+  pointer-events: none;
 }
 
-.servicio-descripcion.expanded .servicio-imagen {
-  filter: brightness(1.1);
+@media (max-width: 768px) {
+  .mascotas {
+    display: none;
+  }
 }

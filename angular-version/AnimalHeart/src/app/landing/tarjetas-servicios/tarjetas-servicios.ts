@@ -1,16 +1,27 @@
 import { Component } from '@angular/core';
 import { Servicio } from './servicio';
 import { CommonModule } from '@angular/common';
+import { trigger, transition, style, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-tarjetas-servicios',
-  imports: [ CommonModule],
+  imports: [CommonModule],
   templateUrl: './tarjetas-servicios.html',
-  styleUrl: './tarjetas-servicios.css'
+  styleUrls: ['./tarjetas-servicios.css'],
+  animations: [
+    trigger('expandCollapse', [
+      transition(':enter', [
+        style({ height: '0', opacity: 0, overflow: 'hidden' }),
+        animate('300ms ease-in-out', style({ height: '*', opacity: 1 }))
+      ]),
+      transition(':leave', [
+        animate('300ms ease-in-out', style({ height: '0', opacity: 0, overflow: 'hidden' }))
+      ])
+    ])
+  ]
 })
-
 export class TarjetasServicios {
-   servicios: Servicio[] = [
+  servicios: Servicio[] = [
     {
       titulo: 'Consulta General',
       descripcionCorta: 'Cuidamos su salud desde el primer día.',
@@ -55,7 +66,7 @@ export class TarjetasServicios {
     }
   ];
 
-    toggleServicio(index: number): void {
+  toggleServicio(index: number): void {
     this.servicios.forEach((s, i) => {
       s.expandido = i === index ? !s.expandido : false;
     });

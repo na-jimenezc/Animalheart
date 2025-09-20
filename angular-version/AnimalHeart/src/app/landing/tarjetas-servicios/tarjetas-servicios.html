@@ -1,8 +1,11 @@
 <section id="servicios" class="py-5">
   <div class="container">
     <h2 class="text-center mb-4">Nuestros Servicios</h2>
-    <div class="row g-4">
-      <div class="col-md-4" [class.card-grupo1]="i % 2 === 0" [class.card-grupo2]="i % 2 !== 0" *ngFor="let servicio of servicios; let i = index">
+    <div class="row">
+      <div class="col-md-4" 
+           [class.card-grupo1]="i % 2 === 0" 
+           [class.card-grupo2]="i % 2 !== 0" 
+           *ngFor="let servicio of servicios; let i = index">
         <div class="card shadow-sm h-100">
           <div class="card-body">
             <h5 class="card-title">{{servicio.titulo}}</h5>
@@ -12,13 +15,10 @@
               {{servicio.expandido ? 'Ver menos' : 'Ver más'}}
             </button>
             
-            <div class="mt-2 servicio-descripcion"
-                *ngIf="servicio.expandido"
-                [class.expanded]="servicio.expandido">
+            <div class="mt-2 servicio-descripcion" [class.expandido]="servicio.expandido">
               <img class="servicio-imagen" [src]="servicio.imagen" [alt]="servicio.titulo">
-              <p class="small text-muted">{{servicio.descripcionCompleta}}</p>
+              <p class="small text-white">{{servicio.descripcionCompleta}}</p>
             </div>
-            
           </div>
         </div>
       </div>
