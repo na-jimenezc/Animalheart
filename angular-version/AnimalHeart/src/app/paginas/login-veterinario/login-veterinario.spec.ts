@@ -1,23 +1,30 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { TestBed } from '@angular/core/testing';
 import { LoginVeterinario } from './login-veterinario';
+import { By } from '@angular/platform-browser';
 
 describe('LoginVeterinario', () => {
-  let component: LoginVeterinario;
-  let fixture: ComponentFixture<LoginVeterinario>;
-
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [LoginVeterinario]
-    })
-    .compileComponents();
-
-    fixture = TestBed.createComponent(LoginVeterinario);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    await TestBed.configureTestingModule({ imports: [LoginVeterinario] }).compileComponents();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('crea el componente', () => {
+    const fixture = TestBed.createComponent(LoginVeterinario);
+    expect(fixture.componentInstance).toBeTruthy();
+  });
+
+  it('deshabilita submit cuando el formulario es inválido', () => {
+    const fixture = TestBed.createComponent(LoginVeterinario);
+    fixture.detectChanges();
+    const btn = fixture.debugElement.query(By.css('button[type="submit"]')).nativeElement as HTMLButtonElement;
+    expect(btn.disabled).toBeTrue();
+  });
+
+  it('habilita submit cuando el formulario es válido', () => {
+    const fixture = TestBed.createComponent(LoginVeterinario);
+    const comp = fixture.componentInstance;
+    comp.loginData = { correo: 'vet@demo.com', clave: 'secret6' };
+    fixture.detectChanges();
+    const btn = fixture.debugElement.query(By.css('button[type="submit"]')).nativeElement as HTMLButtonElement;
+    expect(btn.disabled).toBeFalse();
   });
 });

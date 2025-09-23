@@ -1,0 +1,40 @@
+import { Mascota } from '../models/mascota.model';
+
+export const MASCOTAS_SEED: Mascota[] = [
+  {
+    id: 'm1',
+    nombre: 'Firulais',
+    tipo: 'Perro',
+    raza: 'Labrador',
+    edad: 3,
+    enfermedad: 'Ninguna',
+    peso: 25.5,
+    fotoUrl: '/assets/images/defaultPerro.jpg',
+    activo: true,
+    clienteId: 'c1',
+  },
+  {
+    id: 'm2',
+    nombre: 'Mishu',
+    tipo: 'Gato',
+    raza: 'Persa',
+    edad: 2,
+    enfermedad: 'Ninguna',
+    peso: 4.2,
+    fotoUrl: '/assets/images/defaultGato.png',
+    activo: true,
+    clienteId: 'c2',
+  },
+  {
+    id: 'm3',
+    nombre: 'Rocky',
+    tipo: 'Perro',
+    raza: 'Pastor Alemán',
+    edad: 5,
+    enfermedad: 'Ninguna',
+    peso: 30.2,
+    fotoUrl: '/assets/images/defaultPerro.jpg',
+    activo: true,
+    clienteId: 'c3',
+  },
+];

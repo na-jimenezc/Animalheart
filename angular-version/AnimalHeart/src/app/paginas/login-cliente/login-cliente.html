@@ -1,1 +1,68 @@
-<p>login-cliente works!</p>
+<section class="envoltura">
+  <div class="tarjeta-login">
+    <!-- Encabezado superior -->
+    <div class="encabezado-pagina">
+      <div class="nombre-sistema">Animalheart</div>
+      <div class="subtitulo-sistema">Portal del Cliente</div>
+    </div>
+
+    <!-- Icono y título -->
+    <div class="encabezado-login">
+      <div class="icono-login" aria-hidden="true">💗</div>
+      <h3>Acceso Cliente</h3>
+      <p>Por favor, ingresa tus credenciales</p>
+    </div>
+
+    <!-- Mensaje de error -->
+    <div *ngIf="error" class="alert alert-danger alert-dismissible fade show" role="alert" aria-live="polite">
+      {{ error }}
+      <button type="button" class="btn-close" (click)="error=''" aria-label="Cerrar"></button>
+    </div>
+
+    <!-- Formulario -->
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
+
+      <div class="campo-formulario">
+        <label for="correo" class="etiqueta">Correo</label>
+        <input id="correo" name="correo" class="control" type="email"
+              [(ngModel)]="data.correo" #correo="ngModel"
+              required email autocomplete="username" inputmode="email" placeholder="cliente@animalheart.com"
+              [class.is-invalid]="f.submitted && correo.invalid"
+              [class.is-valid]="correo.valid && (correo.dirty || correo.touched)">
+        <div class="invalid-feedback d-block" *ngIf="correo.errors?.['required']">El correo es obligatorio.</div>
+        <div class="invalid-feedback d-block" *ngIf="correo.errors?.['email']">Formato de correo inválido.</div>
+      </div>
+
+      <!-- Contraseña -->
+      <div class="campo-formulario">
+        <label for="clave" class="etiqueta">Contraseña</label>
+
+        <div class="grupo-entrada">
+          <input id="clave" name="clave" class="control"
+                [type]="mostrar ? 'text' : 'password'"
+                [(ngModel)]="data.clave" #clave="ngModel"
+                required minlength="6" autocomplete="current-password" placeholder="••••••••"
+                [class.is-invalid]="f.submitted && clave.invalid"
+                [class.is-valid]="clave.valid && (clave.dirty || clave.touched)" />
+        </div>
+
+        <div class="invalid-feedback d-block" *ngIf="clave.errors?.['required']">La contraseña es obligatoria.</div>
+        <div class="invalid-feedback d-block" *ngIf="clave.errors?.['minlength']">Mínimo 6 caracteres.</div>
+      </div>
+
+      <!-- Honeypot simple -->
+      <input type="text" name="company" class="d-none" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+      <div class="acciones-formulario">
+        <button class="boton-enviar" type="submit" [disabled]="cargando || f.invalid">
+          {{ cargando ? 'Accediendo…' : 'ACCEDER AL SISTEMA' }}
+        </button>
+        <button class="boton-secundario" type="button" (click)="reset(f)" [disabled]="cargando">Limpiar</button>
+      </div>
+
+      <div class="text-center">
+        <a routerLink="/contacto" class="enlace-recuperar">¿Necesitas ayuda para acceder?</a>
+      </div>
+    </form>
+  </div>
+</section>

@@ -1,0 +1,159 @@
+/* === LAYOUT A PANTALLA COMPLETA === */
+:host {
+  display: block;
+  min-height: calc(100dvh - 100px);
+}
+
+.envoltura {
+  background: linear-gradient(120deg, #0b3b59, #0e4a6f);
+  min-height: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 16px;
+}
+
+/* === TARJETA === */
+.tarjeta-login {
+  width: 100%;
+  max-width: 560px;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
+  padding: 28px;
+}
+
+.encabezado-pagina {
+  text-align: center;
+  margin-bottom: 6px;
+}
+.nombre-sistema {
+  font-weight: 800;
+  font-size: clamp(22px, 2.2vw, 28px);
+  letter-spacing: 0.3px;
+  color: #0e3a53;
+}
+.subtitulo-sistema {
+  margin-top: 2px;
+  font-size: 14px;
+  color: #6b7a86;
+}
+
+.encabezado-login {
+  text-align: center;
+  margin: 12px 0 18px;
+}
+.icono-login {
+  width: 64px;
+  height: 64px;
+  line-height: 64px;
+  border-radius: 50%;
+  background: #e9f2f7;
+  margin: 0 auto 10px;
+  font-size: 32px;
+}
+.encabezado-login h3 {
+  font-weight: 800;
+  color: #0e3a53;
+  margin-bottom: 4px;
+}
+.encabezado-login p {
+  margin: 0;
+  color: #6b7a86;
+}
+
+/* === FORMULARIO === */
+.campo-formulario { margin-bottom: 18px; }
+.etiqueta {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #0e3a53;
+}
+
+.control {
+  display: block;
+  width: 100%;
+  border: 1.5px solid #d3dbe3;
+  border-radius: 12px;
+  padding: 12px 14px;
+  background: #fff;
+  outline: none;
+  transition: border-color .2s, box-shadow .2s;
+}
+.control:focus {
+  border-color: #134f73;
+  box-shadow: 0 0 0 3px rgba(19, 79, 115, 0.15);
+}
+
+.grupo-entrada {
+  position: relative;
+}
+.boton-ver-clave {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 0;
+  background: transparent;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+.boton-ver-clave:focus { outline: none; }
+
+.control.is-invalid { border-color: #dc3545; }
+.control.is-valid { border-color: #198754; }
+.invalid-feedback { font-size: 0.875rem; }
+
+/* === ACCIONES === */
+.acciones-formulario { margin-top: 10px; }
+.boton-enviar {
+  width: 100%;
+  background: #134f73;
+  color: #fff;
+  border: 0;
+  border-radius: 12px;
+  padding: 12px 16px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  transition: filter .2s, transform .02s;
+}
+.boton-enviar:hover { filter: brightness(1.05); }
+.boton-enviar:active { transform: translateY(1px); }
+.boton-enviar:disabled {
+  opacity: .6;
+  cursor: not-allowed;
+}
+
+.enlace-recuperar {
+  display: inline-block;
+  margin-top: 16px;
+  color: #0e3a53;
+  text-decoration: none;
+  opacity: .9;
+}
+.enlace-recuperar:hover { text-decoration: underline; }
+
+/* === RESPONSIVE === */
+@media (max-width: 420px) {
+  .tarjeta-login { padding: 22px; border-radius: 16px; }
+}
+
+.acciones-formulario{
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+}
+
+.boton-secundario{
+  border: 1px solid #E6E6E6;
+  background: #fff;
+  color: #2b2b2b;
+  border-radius: 12px;
+  padding: 12px 16px;
+}
+@media (max-width: 420px){
+  .acciones-formulario{ grid-template-columns: 1fr; }
+}
