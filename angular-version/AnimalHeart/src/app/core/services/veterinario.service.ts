@@ -7,10 +7,24 @@ import { VETERINARIOS_SEED } from '../data/veterinarios.seed';
 export class VeterinarioService {
   private veterinarios = VETERINARIOS_SEED;
 
-  //Función para simular el login de un veterinario
+  private veterinarioSubject = new BehaviorSubject<Veterinario | null>(null); //Acá se guarda el veterinario logeado
+  veterinario$ = this.veterinarioSubject.asObservable();
+
+  //Función para validar las credenciales del veterinario y guardar el veterinario
   validarCredenciales(usuario: string, contrasena: string): Veterinario | null {
-    return this.veterinarios.find(
+    const vet = this.veterinarios.find(
       v => v.nombreUsuario === usuario && v.contrasena === contrasena
     ) || null;
+
+    if (vet) {
+      this.veterinarioSubject.next(vet); 
+    }
+
+    return vet;
+  }
+
+  //Función del logout
+  logout(): void {
+    this.veterinarioSubject.next(null);
   }
 }
