@@ -1,0 +1,24 @@
+<div class="container my-4" *ngIf="mascota">
+  <div class="row">
+    <aside class="col-md-4">
+      <div class="card">
+        <img [src]="mascota.fotoUrl" [alt]="mascota.nombre" class="card-img-top">
+        <div class="card-body">
+          <h2>{{ mascota.nombre }}</h2>
+          <p><strong>Edad:</strong> {{ mascota.edad }} años</p>
+          <p><strong>Tipo:</strong> {{ mascota.tipo }}</p>
+          <p><strong>Raza:</strong> {{ mascota.raza }}</p>
+          <p><strong>Peso:</strong> {{ mascota.peso }} kg</p>
+          <p><strong>Estado:</strong> {{ mascota.enfermedad }}</p>
+        </div>
+      </div>
+    </aside>
+
+    <section class="col-md-8">
+      <h3>Historial Médico</h3>
+      <div class="alert alert-secondary">
+        :D No hay historial médico disponible (por ahora).
+      </div>
+    </section>
+  </div>
+</div>

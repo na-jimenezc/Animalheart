@@ -32,3 +32,1264 @@ img{max-width:100%;display:block}
 @media (max-width:768px){.mascotas{display:none}}
 @media (max-width:991.98px){.mascotas{width:clamp(200px,80vw,800px);bottom:-60px}}
 
+
+
+/* ===================== BASE ===================== */
+*{box-sizing:border-box}
+html,body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  line-height:1.45;
+  height: 100%;
+}
+img{max-width:100%;display:block}
+
+/* ===================== LAYOUT STICKY FOOTER ===================== */
+body.pet-detail {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.vet-container {
+  flex: 1 0 auto;
+}
+
+.pie {
+  flex-shrink: 0;
+  margin-top: auto;
+}
+
+/* ===================== BARRA SUPERIOR ===================== */
+.barra{
+  position:sticky; top:0; z-index:50;
+  background:#073352; color:#fff; height:100px;
+  box-shadow:0 4px 14px rgba(0,0,0,.12);
+}
+.barra .envoltura{
+  max-width:1120px; margin:auto; padding:0 20px; height:100%;
+  display:flex; align-items:center; justify-content:space-between; gap:16px; position:relative;
+}
+.menu-izq,.menu-der{display:flex; gap:16px}
+.vmk-brand{height:50px; width:auto; object-fit:contain}
+
+/* Botones pill de la barra */
+.vmk-btn{
+  display:inline-flex; align-items:center; gap:.4rem;
+  padding:8px 14px; border-radius:999px; font-weight:600; font-size:14px;
+  text-decoration:none; transition:.2s; color:#fff;
+}
+.vmk-btn--ghost:hover{ background:rgba(255,255,255,.15); }
+.vmk-btn--outline:hover{ background:#fff; color:var(--teal-700); }
+.vmk-btn--danger:hover{ background:var(--teal-700); color:#fff; }
+
+/* ===================== CONTENEDOR MAIN ===================== */
+.vet-container{ 
+  max-width:1200px; 
+  margin:0 auto; 
+  padding:0 20px;
+  width: 100%;
+}
+
+/* ===================== TARJETA IZQUIERDA (FICHA) ===================== */
+.pet-card{ border:0; border-radius:var(--radius); overflow:hidden; background:#eaf3f5; }
+.pet-photo-wrap{ background:#dbe9ec; display:grid; place-items:center; padding:14px 14px 0; }
+.pet-photo{
+  width:100%; max-width:270px; height:270px; object-fit:cover;
+  border-radius:16px; border:6px solid #fff; box-shadow:var(--shadow);
+}
+.pet-name{
+  margin:14px 16px 4px; font-weight:700; color:#043454; text-align:center;
+  font-size: clamp(22px, 2.4vw, 26px);
+}
+.pet-metrics{
+  display:grid; grid-template-columns:repeat(2,1fr);
+  gap:10px; padding:10px 14px 4px;
+}
+.pet-chip{
+  display:flex; align-items:center; gap:.5rem;
+  background:#fff; border:1px solid #cfe4e6; border-radius:12px;
+  padding:10px 12px; color:#0d3c58; box-shadow:var(--shadow);
+}
+.pet-chip i{ color: var(--teal-700); }
+
+/* Dueño */
+.pet-owner{ padding:0 14px 16px; }
+.pet-owner-title{
+  display:flex; align-items:center; justify-content:space-between;
+  color:#043454; font-weight:700; margin:6px 2px 10px;
+}
+.pet-owner-title i{ opacity:.75 }
+.pet-field{
+  display:flex; gap:.65rem; align-items:center;
+  background:#0d3c58; color:#fff; border-radius:10px;
+  padding:10px 12px; margin:8px 0;
+}
+.pet-field small{ opacity:.8; display:block; line-height:1.1; }
+.pet-field div > div{ font-weight:600; }
+
+/* ===================== PANEL DERECHO (HISTORIAL) ===================== */
+.pet-main{ border:0; border-radius:var(--radius); }
+.pet-main-title{
+  margin:14px 18px 6px; color:#0d3c58; font-weight:800;
+  display:flex; gap:.6rem; align-items:center;
+}
+.pet-section{
+  background:#fff; border-radius:14px; margin:12px 16px; padding:14px;
+  box-shadow: var(--shadow);
+}
+.pet-section-title{
+  text-align:center; font-weight:800; color:#0d3c58;
+  background:#f4e6e9; border-radius:8px; padding:6px 10px; margin-bottom:10px;
+}
+.pet-notepad{
+  min-height:340px; background:#fff; border-radius:12px;
+  border:2px solid #e3e9ec; box-shadow: inset 0 0 0 1px #f4f6f7;
+}
+.pet-cta{
+  background: var(--teal-600); color:#fff; border:none; border-radius:12px;
+  padding:.9rem 1.6rem; font-weight:700;
+}
+.pet-cta:hover{ background: var(--teal-700); transform: translateY(-1px); }
+
+/* ===================== BOTONES MEJORADOS ===================== */
+.btn-app {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  line-height: 1;
+  min-width: 120px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.btn-primary {
+  background: var(--teal-600);
+  color: #fff;
+  border: 2px solid var(--teal-600);
+}
+
+.btn-primary:hover {
+  background: var(--teal-700);
+  border-color: var(--teal-700);
+  transform: translateY(-1px);
+}
+
+.btn-outline-danger {
+  background: transparent;
+  color: #d32f2f;
+  border: 2px solid #d32f2f;
+}
+
+.btn-outline-danger:hover {
+  background: #d32f2f;
+  color: #fff;
+}
+
+/* ===================== MEJORAS DE ESPACIADO ===================== */
+.pet-main {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.pet-section:last-of-type {
+  margin-bottom: 24px;
+}
+
+.text-center.mt-4 {
+  margin-top: 2rem !important;
+  padding-bottom: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 991.98px){
+  .pet-metrics{ grid-template-columns:1fr; }
+  .pet-photo{ height:240px; max-width:240px; }
+  
+  .d-flex.flex-wrap {
+    justify-content: center;
+  }
+  
+  .btn-app {
+    min-width: 140px;
+    margin-bottom: 8px;
+  }
+}
+
+/* ===================== FOOTER ===================== */
+.pie{ 
+  background: var(--pink-300); 
+  padding: 16px 0;
+  width: 100%;
+}
+
+/* ====== Base ====== */
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--text);
+  font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.45}
+img{max-width:100%;display:block}
+
+/* ====== Sticky footer layout en esta maqueta ====== */
+body.vet-mockup{min-height:100svh;display:flex;flex-direction:column}
+body.vet-mockup>main{flex:1}
+.vmk-footer{margin-top:auto}
+
+/* ====== Header/Hero (con overlay) ====== */
+
+.vmk-header{background:url("/assets/images/vet_animalheart.jpeg") center/cover no-repeat;position:relative;color:#fff}
+.vmk-header::before{content:"";position:absolute;inset:0;background:rgba(7,51,82,.92)}
+.vmk-header>*{position:relative;z-index:1}
+
+/* Barra superior de botones (píldoras) */
+.vmk-toolbar{background:transparent;color:#fff}
+.vmk-btn{display:inline-flex;align-items:center;gap:.4rem;padding:8px 14px;border-radius:999px;
+  font-weight:600;font-size:14px;line-height:1;text-decoration:none;transition:.2s;color:#fff}
+.vmk-btn--ghost:hover{background:rgba(255,255,255,.15)}
+.vmk-btn--outline:hover{background:#fff;color:var(--teal-700)}
+.vmk-btn--danger:hover{background:var(--teal-700);color:#fff}
+
+/* Hero: logo + título */
+.vmk-hero{padding:12px 0 24px}
+.vmk-hero-inner{display:flex;align-items:center;gap:18px}
+.vmk-brand{height:58px;width:auto;object-fit:contain}
+.vmk-title{margin:0;font-weight:800;letter-spacing:.5px;font-size:clamp(28px,3.6vw,40px)}
+
+/* Bienvenida + icono de búsqueda */
+.vmk-welcome{background:#fff;border-radius:16px;box-shadow:var(--shadow);padding:18px 22px;margin-top:-18px}
+.vmk-welcome h2{font-size:clamp(18px,2.5vw,26px);font-weight:700;color:#0d3c58;letter-spacing:.2px}
+.vmk-welcome {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  padding: 18px 22px;
+  margin-top: 25px;
+}
+.vmk-search{font-size:28px;color:#0d3c58;opacity:.9}
+
+/* ====== Tabla de pacientes ====== */
+.vmk-table-wrap{padding:28px 0 24px}
+.vmk-table-card{background:#fff;border-radius:18px;box-shadow:var(--shadow);padding:4px 8px 8px}
+
+.vmk-table thead tr{background:var(--teal-700);color:#fff}
+.vmk-table thead th{border:0;padding:14px 12px;font-weight:600;font-size:14px}
+.vmk-table thead th:first-child{border-top-left-radius:14px}
+.vmk-table thead th:last-child{border-top-right-radius:14px}
+
+.vmk-table tbody td{padding:18px 12px;vertical-align:middle;border:0;border-bottom:4px solid #0e3d5b}
+.vmk-table tbody tr:last-child td{border-bottom:none}
+
+/* Avatar y chips */
+.vmk-avatar{width:52px;height:52px;border-radius:50%;object-fit:cover;border:2px solid var(--teal-200)}
+.vmk-col-name{font-weight:600}
+.vmk-badge{display:inline-block;padding:6px 10px;border-radius:999px;background:var(--teal-200);color:var(--teal-700);font-weight:600;font-size:.9rem}
+
+/* Botón “Ver más” tipo píldora */
+.vmk-pill{
+  display:inline-flex;align-items:center;justify-content:center;gap:.35rem;
+  padding:6px 14px;border-radius:999px;font-weight:600;font-size:.9rem;
+  background:var(--teal-600);color:#fff;text-decoration:none;transition:.2s ease;white-space:nowrap;line-height:1
+}
+.vmk-pill .bi{line-height:1;flex:0 0 auto}
+.vmk-pill:hover{background:var(--teal-700);transform:translateY(-1px)}
+
+/* ====== Footer ====== */
+.vmk-footer{background:var(--pink-300);padding:16px 0;color:#fff}
+
+/* === Acciones en la celda: separación vertical y estética consistente === */
+.vmk-table td.text-center{ display: table-cell !important; text-align: center; vertical-align: middle; }
+.vmk-table td.text-center > a.vmk-pill,
+.vmk-table td.text-center > form{ display: block; margin: 6px auto; }
+.vmk-table td.text-center > form{ margin: 6px auto; }
+.vmk-table td.text-center .btn-outline-danger{
+  border-width: 2px; border-radius: 12px; padding: 6px 14px;
+  font-weight: 700; line-height: 1; background: #fff;
+  color: #d32f2f; border-color: #d32f2f;
+}
+.vmk-table tbody td{ border-bottom: 4px solid #0e3d5b; }
+.vmk-table tbody tr:last-child td{ border-bottom: none; }
+
+/* ====== Highlight del botón "Registrar Mascota" ====== */
+.cta-registrar {
+  position: relative; isolation: isolate;
+  background: linear-gradient(135deg,#2fd4d2,#0f5d86);
+  color: #fff !important;
+  box-shadow: 0 10px 24px rgba(15,93,134,.35);
+  border-radius: 999px;
+  transform: translateZ(0);
+}
+.cta-registrar::before, .cta-registrar::after{
+  content:""; position:absolute; inset:-6px; border-radius:inherit; z-index:-1;
+}
+.cta-registrar::before{
+  background: radial-gradient(60% 60% at 50% 50%, rgba(47,212,210,.35), transparent 60%);
+  filter: blur(10px); opacity:.9;
+}
+.cta-registrar::after{
+  border: 2px solid rgba(47,212,210,.55);
+  animation: ring 1.8s ease-out infinite;
+}
+@keyframes ring{
+  from{transform:scale(.95); opacity:.9}
+  to{transform:scale(1.15); opacity:0}
+}
+
+/* Coach-mark */
+.coachmark {
+  position: absolute; top: 110%; left: 0; translate: 0 8px;
+  background:#0f5d86; color:#fff; border-radius:12px; padding:.6rem .8rem;
+  font-weight:600; font-size:.9rem; box-shadow:0 10px 24px rgba(0,0,0,.18);
+  white-space:nowrap;
+}
+.coachmark::after{
+  content:""; position:absolute; top:-8px; left:18px;
+  border:8px solid transparent; border-bottom-color:#0f5d86;
+}
+.coachmark [data-close]{
+  margin-left:.6rem; background:transparent; border:0; color:#fff;
+  font-size:1rem; cursor:pointer; opacity:.85;
+}
+
+/* FAB móvil */
+.fab-registrar{
+  position: fixed; right: 18px; bottom: 18px; z-index: 50;
+  display: inline-flex; align-items:center; justify-content:center;
+  width:58px; height:58px; border-radius:999px;
+  background: linear-gradient(135deg,#2fd4d2,#0f5d86); color:#fff;
+  box-shadow: 0 12px 28px rgba(15,93,134,.45);
+  text-decoration:none; font-size:1.35rem;
+}
+.fab-registrar:focus-visible{ outline:3px solid #2fd4d2; outline-offset:3px; }
+@media (min-width: 992px){ .fab-registrar{ display:none; } }
+@media (prefers-reduced-motion: reduce){ .cta-registrar::after{ animation: none; } }
+
+/* ===== Botón "Agregar dueño" (junto a Registrar Mascota) ===== */
+.cta-dueno{
+  position: relative; isolation: isolate;
+  background: linear-gradient(135deg,#34d399,#0ea5a4);
+  color:#fff !important;
+  box-shadow: 0 10px 24px rgba(14,165,164,.35);
+  border-radius: 999px;
+  transform: translateZ(0);
+}
+.cta-dueno::before, .cta-dueno::after{
+  content:""; position:absolute; inset:-6px; border-radius:inherit; z-index:-1;
+}
+.cta-dueno::before{
+  background: radial-gradient(60% 60% at 50% 50%, rgba(52,211,153,.35), transparent 60%);
+  filter: blur(10px); opacity:.9;
+}
+.cta-dueno::after{
+  border: 2px solid rgba(52,211,153,.55);
+  animation: ring-dueno 1.8s ease-out infinite;
+}
+@keyframes ring-dueno{
+  from{ transform:scale(.95); opacity:.9 }
+  to{ transform:scale(1.15); opacity:0 }
+}
+@media (prefers-reduced-motion: reduce){
+  .cta-dueno::after{ animation: none; }
+}
+
+/* --- Fix contraste en "Registrar Mascota" --- */
+
+/* Evita que .vmk-btn--outline lo pinte de blanco al hacer hover */
+.vmk-btn--outline.cta-registrar,
+.vmk-btn--outline.cta-registrar:hover,
+.vmk-btn--ghost.cta-registrar:hover{
+  background: linear-gradient(135deg,#2fd4d2,#0f5d86);
+  color:#fff !important;
+  border-color: transparent;
+}
+
+/* Pequeño realce del texto sobre el glow */
+.cta-registrar{
+  text-shadow: 0 1px 0 rgba(0,0,0,.25);
+}
+
+/* ====== BARRA SUPERIOR MÁS GRANDE ====== */
+.vmk-toolbar {
+  padding: 18px 0;
+  min-height: 80px;
+}
+
+/* ====== PAGINACIÓN MEJORADA ====== */
+.pagination {
+  margin: 20px 0;
+}
+
+.page-link {
+  color: var(--teal-700);
+  border: 2px solid var(--teal-200);
+  border-radius: 8px;
+  margin: 0 4px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.page-link:hover {
+  background-color: var(--teal-700);
+  color: white;
+  border-color: var(--teal-700);
+}
+
+.page-item.active .page-link {
+  background-color: var(--teal-700);
+  border-color: var(--teal-700);
+  color: white;
+}
+
+.page-item.disabled .page-link {
+  color: #6c757d;
+  border-color: #dee2e6;
+}
+
+/* ====== ENCABEZADO DE TABLA ESTILIZADO ====== */
+.vmk-table thead tr {
+  background: var(--teal-700) !important;
+}
+
+.vmk-table thead th {
+  border: 0;
+  padding: 16px 12px;
+  font-weight: 600;
+  font-size: 16px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.vmk-table thead th:first-child {
+  border-top-left-radius: 14px;
+  border-bottom-left-radius: 14px;
+}
+
+.vmk-table thead th:last-child {
+  border-top-right-radius: 14px;
+  border-bottom-right-radius: 14px;
+}
+
+/* Aseguramos que el texto de la tabla sea oscuro, sin afectar el header */
+.vmk-table thead th {
+  color: #fff;
+}
+
+/* Mejoramos el espaciado general de la tabla */
+.vmk-table tbody td {
+  padding: 16px 12px;
+  vertical-align: middle;
+}
+
+/* Ajustamos el tamaño de los badges para mejor visualización */
+.vmk-table .badge {
+  font-size: 0.85em;
+  padding: 0.5em 0.75em;
+}
+
+/* Centrado general para todas las celdas de la tabla */
+.vmk-table th, 
+.vmk-table td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* Ajuste específico para la columna de nombre */
+.vmk-col-name {
+  text-align: center !important;
+}
+
+/* Ajuste para los badges */
+.vmk-table .badge,
+.vmk-badge {
+  display: inline-block;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Ajuste para la imagen de avatar */
+.vmk-avatar {
+  margin: 0 auto;
+  display: block;
+}
+
+/* Ajuste para los botones en celda de acciones */
+.vmk-table td.text-center {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.vmk-table td.text-center > a.vmk-pill,
+.vmk-table td.text-center > form {
+  display: inline-block;
+  margin: 4px 2px;
+  vertical-align: middle;
+}
+
+/* Asegurar que todos los elementos en celdas estén centrados */
+.vmk-table tbody td > * {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+/* Ajuste específico para formularios en celdas */
+.vmk-table td.text-center form {
+  display: inline-block;
+}
+
+/* Asegurar que los encabezados estén centrados */
+.vmk-table thead th {
+  text-align: center;
+}
+
+/* ====== BOTONES TABLA ====== */
+
+/* Contenedor para botones de acciones - AHORA CON ANCHO FIJO */
+.vmk-table .actions-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  width: 130px;
+  margin: 0 auto;
+}
+
+/* Estilo uniforme para todos los botones de acción - MISMO ANCHO */
+.vmk-table .action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  line-height: 1;
+  width: 100%;
+  text-align: center;
+  box-sizing: border-box;
+  min-height: 32px;
+}
+
+/* Botón Ver más */
+.vmk-pill {
+  background: var(--teal-600);
+  color: #fff;
+}
+
+.vmk-pill:hover {
+  background: var(--teal-700);
+  transform: translateY(-1px);
+}
+
+/* Botón Editar */
+.btn-edit {
+  background: var(--teal-200);
+  color: var(--teal-700);
+  border: 2px solid var(--teal-200);
+}
+
+.btn-edit:hover {
+  background: var(--teal-700);
+  color: #fff;
+  border-color: var(--teal-700);
+}
+
+/* Botón Desactivar - ya tiene el ancho correcto */
+.btn-outline-danger {
+  border: 2px solid #d32f2f;
+  color: #d32f2f;
+  background: #fff;
+  width: 100%;
+}
+
+.btn-outline-danger:hover {
+  background: #d32f2f;
+  color: #fff;
+}
+
+/* Ajuste para formulario */
+.vmk-table td.text-center form {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* Asegurar que todos los botones tengan el mismo tamaño */
+.vmk-table .action-btn,
+.vmk-table .btn-outline-danger {
+  min-width: 110px;
+}
+
+
+
+
+
+
+/* ====== FORMULARIO DE EDICIÓN DE CLIENTE ====== */
+
+/* ====== ESTILO DE TABLA AL ESTILO VETERINARIOS (CON AZUL) ====== */
+.vmk-table-card {
+  background: var(--teal-200);
+  border-radius: 18px;
+  padding: 12px;
+  box-shadow: var(--shadow);
+  margin-bottom: 24px;
+}
+
+.va-table-head {
+  display: grid;
+  grid-template-columns: 80px 1.2fr 1fr 0.8fr 0.8fr 1fr 0.8fr 1.2fr;
+  color: var(--teal-700);
+  font-weight: 600;
+  padding: 8px 10px 12px;
+  margin: 4px 8px;
+  background-color: var(--teal-100);
+  border-radius: 10px;
+}
+
+.va-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 14px;
+}
+
+.va-table td {
+  background: #fff;
+  border: 0;
+  padding: 16px;
+  vertical-align: middle;
+  color: var(--text);
+  text-align: center;
+}
+
+.va-table td:first-child {
+  border-top-left-radius: 14px;
+  border-bottom-left-radius: 14px;
+}
+
+.va-table td:last-child {
+  border-top-right-radius: 14px;
+  border-bottom-right-radius: 14px;
+}
+
+/* Avatar */
+.va-avatar {
+  width: 150px;
+  height: 60px;
+  border-radius: 40%;
+  object-fit: cover;
+  border: 1px solid var(--teal-300);
+  margin: 0 auto;
+  display: block;
+}
+
+.va-cell-name {
+  font-weight: 700;
+  text-align: center;
+}
+
+/* Badge */
+.va-badge {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: var(--teal-200);
+  color: var(--teal-700);
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+/* Botones */
+.va-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  background: var(--teal-600);
+  color: #fff;
+  text-decoration: none;
+  transition: 0.2s;
+  min-width: 100px;
+}
+
+.va-pill:hover {
+  background: var(--teal-700);
+  transform: translateY(-1px);
+}
+
+/* Estado vacío */
+.va-empty {
+  text-align: center;
+  padding: 24px;
+  background: #fff;
+  border-radius: 12px;
+  color: var(--muted);
+}
+
+.table-header,
+.table-row {
+  grid-template-columns: 100px 1.2fr 1fr 0.8fr 0.8fr 1fr 0.8fr 1.2fr;
+}
+
+/* Ocultar encabezado de la tabla en móvil */
+@media (max-width: 767px) {
+  .va-table-head {
+    display: none;
+  }
+  
+  .va-table {
+    display: block;
+    width: 100%;
+  }
+  
+  .va-table tbody {
+    display: block;
+    width: 100%;
+  }
+  
+  .va-table tr {
+    display: block;
+    margin-bottom: 14px;
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  
+  .va-table td {
+    display: block;
+    text-align: center;
+    border-radius: 0;
+    padding: 12px;
+  }
+  
+  .va-table td:first-child {
+    border-top-left-radius: 14px;
+    border-top-right-radius: 14px;
+  }
+  
+  .va-table td:last-child {
+    border-bottom-left-radius: 14px;
+    border-bottom-right-radius: 14px;
+  }
+  
+  /* Etiquetas para móvil */
+  .va-table td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: var(--muted);
+    display: block;
+    margin-bottom: 4px;
+  }
+}
+
+/* Ajustes para los botones de acciones en la nueva tabla */
+.va-table .actions-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  width: 130px;
+  margin: 0 auto;
+}
+
+.va-table .action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  line-height: 1;
+  width: 100%;
+  text-align: center;
+  box-sizing: border-box;
+  min-height: 32px;
+}
+
+/* Botón Editar */
+.va-table .btn-edit {
+  background: var(--teal-200);
+  color: var(--teal-700);
+  border: 2px solid var(--teal-200);
+}
+
+.va-table .btn-edit:hover {
+  background: var(--teal-700);
+  color: #fff;
+  border-color: var(--teal-700);
+}
+
+/* Botón Desactivar */
+.va-table .btn-outline-danger {
+  border: 2px solid #d32f2f;
+  color: #d32f2f;
+  background: #fff;
+  width: 100%;
+}
+
+.va-table .btn-outline-danger:hover {
+  background: #d32f2f;
+  color: #fff;
+}
+
+/* Ajuste para formulario */
+.va-table td.text-center form {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* Añadir variable de color azul claro si no existe */
+:root {
+  --teal-100: #d9f2f1;
+  --teal-300: #8dd6d5;
+}
+
+/* ====== ESTRUCTURA UNIFICADA DE TABLA ====== */
+.table-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.table-header {
+  display: grid;
+  grid-template-columns: 80px 1.2fr 1fr 0.8fr 0.8fr 1fr 0.8fr 1.2fr;
+  background-color: var(--teal-100);
+  color: var(--teal-700);
+  font-weight: 600;
+  padding: 12px 8px;
+  border-radius: 10px;
+  margin-bottom: 8px;
+}
+
+.header-cell {
+  padding: 8px 12px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.table-body {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.table-row {
+  display: grid;
+  grid-template-columns: 80px 1.2fr 1fr 0.8fr 0.8fr 1fr 0.8fr 1.2fr;
+  background: #fff;
+  border-radius: 14px;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.table-cell {
+  padding: 16px 12px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.table-cell:first-child {
+  border-top-left-radius: 14px;
+  border-bottom-left-radius: 14px;
+}
+
+.table-cell:last-child {
+  border-top-right-radius: 14px;
+  border-bottom-right-radius: 14px;
+}
+
+.table-empty {
+  text-align: center;
+  padding: 40px 20px;
+  background: #fff;
+  border-radius: 12px;
+  color: var(--muted);
+}
+
+/* ====== BOTONES CON TAMAÑO Y FORMA CONSISTENTE ====== */
+.actions-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  width: 100%;
+  max-width: 150px;
+  margin: 0 auto;
+}
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  line-height: 1;
+  width: 100%;
+  min-width: 120px;
+  text-align: center;
+  box-sizing: border-box;
+  border: 2px solid transparent;
+}
+
+/* Botón Ver más */
+.btn-view {
+  background: var(--teal-600);
+  color: #fff;
+}
+
+.btn-view:hover {
+  background: var(--teal-700);
+  transform: translateY(-1px);
+}
+
+/* Botón Editar */
+.btn-edit {
+  background: var(--teal-200);
+  color: var(--teal-700);
+  border-color: var(--teal-200);
+}
+
+.btn-edit:hover {
+  background: var(--teal-700);
+  color: #fff;
+  border-color: var(--teal-700);
+}
+
+/* Botón Desactivar */
+.btn-deactivate {
+  background: #fff;
+  color: #d32f2f;
+  border-color: #d32f2f;
+}
+
+.btn-deactivate:hover {
+  background: #d32f2f;
+  color: #fff;
+}
+
+/* Ajuste para formulario */
+.actions-container form {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* Responsividad para móviles */
+@media (max-width: 767px) {
+  .table-header {
+    display: none;
+  }
+  
+  .table-row {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    gap: 12px;
+  }
+  
+  .table-cell {
+    width: 100%;
+    padding: 12px;
+    text-align: center;
+    border-radius: 0;
+  }
+  
+  .table-cell:first-child {
+    border-top-left-radius: 14px;
+    border-top-right-radius: 14px;
+  }
+  
+  .table-cell:last-child {
+    border-bottom-left-radius: 14px;
+    border-bottom-right-radius: 14px;
+  }
+  
+  .table-cell::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: var(--muted);
+    display: block;
+    margin-bottom: 4px;
+    font-size: 0.9rem;
+  }
+  
+  .actions-container {
+    max-width: 100%;
+  }
+  
+  .action-btn {
+    min-width: 140px;
+  }
+}
+
+/* ====== Header fijo completo (barra + hero + título) ====== */
+
+/* Header fijo: que quede por encima de la página */
+.vmk-header{
+  position: sticky;
+  top: 0;
+  z-index: 3000;
+}
+
+/* El overlay visual NO debe capturar clics */
+.vmk-header::before{
+  pointer-events: none;
+}
+
+/* Por si algún estilo heredado desactiva eventos en hijos */
+.vmk-toolbar,
+.vmk-toolbar *{
+  pointer-events: auto;
+}
+
+/* La barra vuelve a flujo normal; conservamos su estilo visual */
+.vmk-toolbar{
+  position: static;
+  background: transparent;
+  backdrop-filter: none;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+/* Sutileza: cuando el header esté pegado, una ligera sombra ayuda a separar del contenido */
+@supports(selector(:has(*))){
+  .vmk-header:has(.vmk-toolbar){ box-shadow: 0 1px 0 rgba(255,255,255,.06); }
+}
+
+/* --- Fix: asegurar que los botones del header sean blancos --- */
+.vmk-toolbar a,
+.vmk-toolbar .vmk-btn {
+  color: #fff !important;
+}
+
+.vmk-toolbar a:hover,
+.vmk-toolbar .vmk-btn:hover {
+  color: #fff !important;
+  opacity: 0.9;
+}
+
+/* --- Fix definitivo: botones de header siempre blancos --- */
+.vmk-toolbar .vmk-btn,
+.vmk-toolbar .vmk-btn--ghost,
+.vmk-toolbar .vmk-btn--outline {
+  color: #fff !important;
+}
+
+.vmk-toolbar .vmk-btn:hover,
+.vmk-toolbar .vmk-btn--ghost:hover,
+.vmk-toolbar .vmk-btn--outline:hover {
+  color: #fff !important;
+  opacity: 0.9;
+}
+
+/* --- Header: forzar color blanco también en reposo (link/visited) --- */
+.vmk-toolbar .vmk-btn,
+.vmk-toolbar .vmk-btn:link,
+.vmk-toolbar .vmk-btn:visited,
+.vmk-toolbar a,
+.vmk-toolbar a:link,
+.vmk-toolbar a:visited{
+  color:#fff !important;
+  opacity:1 !important;
+  -webkit-text-fill-color:#fff;
+}
+
+/* Asegurar el blanco en íconos bootstrap y cualquier svg dentro del header */
+.vmk-toolbar .bi,
+.vmk-toolbar svg{
+  color:#fff !important;
+  fill:#fff !important;
+  stroke:#fff !important;
+  opacity:1 !important;
+}
+
+/* Variantes que podían sobreescribir el color en reposo */
+.vmk-toolbar .vmk-btn--ghost,
+.vmk-toolbar .vmk-btn--outline{
+  color:#fff !important;
+}
+
+/* Mantener feedback en hover sin cambiar el color */
+.vmk-toolbar .vmk-btn:hover,
+.vmk-toolbar .vmk-btn--ghost:hover,
+.vmk-toolbar .vmk-btn--outline:hover{
+  color:#fff !important;
+  opacity:.9;
+}
+
+/* === FIX FINAL: texto del header siempre blanco (gana a cualquier override) === */
+.vmk-header .vmk-toolbar,
+.vmk-header .vmk-toolbar a,
+.vmk-header .vmk-toolbar a:link,
+.vmk-header .vmk-toolbar a:visited,
+.vmk-header .vmk-toolbar .vmk-btn,
+.vmk-header .vmk-toolbar .vmk-btn--ghost,
+.vmk-header .vmk-toolbar .vmk-btn--outline,
+.vmk-header .vmk-toolbar .vmk-btn--danger,
+.vmk-header .vmk-toolbar .bi,
+.vmk-header .vmk-toolbar svg,
+.vmk-header .vmk-toolbar span {
+  color: #fff !important;
+  -webkit-text-fill-color: #fff;
+  opacity: 1 !important;
+}
+
+/* Mantener feedback en hover sin cambiar el color */
+.vmk-header .vmk-toolbar a:hover,
+.vmk-header .vmk-toolbar .vmk-btn:hover { opacity: .9; }
+
+/* ====== Botón especial para "Cerrar Sesión" ====== */
+.cta-logout {
+  position: relative;
+  isolation: isolate;
+  background: linear-gradient(135deg, #ef4444, #b91c1c);
+  color: #fff !important;
+  box-shadow: 0 10px 24px rgba(185,28,28,.35);
+  border-radius: 999px;
+  transform: translateZ(0);
+}
+
+.cta-logout::before,
+.cta-logout::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: inherit;
+  z-index: -1;
+}
+
+.cta-logout::before {
+  background: radial-gradient(60% 60% at 50% 50%, rgba(239,68,68,.35), transparent 60%);
+  filter: blur(10px);
+  opacity: .9;
+}
+
+.cta-logout::after {
+  border: 2px solid rgba(239,68,68,.55);
+  animation: ring-logout 1.8s ease-out infinite;
+}
+
+@keyframes ring-logout {
+  from { transform: scale(.95); opacity: .9; }
+  to   { transform: scale(1.15); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta-logout::after { animation: none; }
+}
+
+/* ====== Botón especial para "Regresar" ====== */
+.cta-back {
+  position: relative;
+  isolation: isolate;
+  background: linear-gradient(135deg, #3b82f6, #1e40af);
+  color: #fff !important;
+  box-shadow: 0 10px 24px rgba(30,64,175,.35);
+  border-radius: 999px;
+  transform: translateZ(0);
+}
+
+.cta-back::before,
+.cta-back::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: inherit;
+  z-index: -1;
+}
+
+.cta-back::before {
+  background: radial-gradient(60% 60% at 50% 50%, rgba(59,130,246,.35), transparent 60%);
+  filter: blur(10px);
+  opacity: .9;
+}
+
+.cta-back::after {
+  border: 2px solid rgba(59,130,246,.55);
+  animation: ring-back 1.8s ease-out infinite;
+}
+
+@keyframes ring-back {
+  from { transform: scale(.95); opacity: .9; }
+  to   { transform: scale(1.15); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta-back::after { animation: none; }
+}
+
+/* ====== TIPOGRAFÍA + ESPACIADO MÁS GRANDE (solo tabla de esta vista) ====== */
+/* Encabezados de la tabla */
+.table-header .header-cell{
+  font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+  line-height: 1.35;
+}
+
+/* Celdas con datos */
+.table-body .table-cell{
+  font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+  line-height: 1.45;
+}
+
+/* Nombre de la mascota un poco más destacado */
+.table-body .va-cell-name{
+  font-size: clamp(1.15rem, 1.8vw, 1.35rem);
+  font-weight: 700;
+}
+
+/* Badges: edad, tipo, estado, activo */
+.table-body .va-badge,
+.table-body .badge{
+  font-size: clamp(0.95rem, 1.2vw, 1.05rem);
+  padding: 0.55em 0.9em;
+}
+
+/* Avatar ligeramente mayor para acompañar el aumento de texto */
+.table-body .va-avatar{
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+}
+
+/* En móviles mantenemos legibilidad sin exagerar tamaños */
+@media (max-width: 767px){
+  .table-body .table-cell{ font-size: 1.05rem; }
+  .table-body .va-cell-name{ font-size: 1.15rem; }
+  .table-body .va-badge,
+  .table-body .badge{ font-size: 0.95rem; }
+}

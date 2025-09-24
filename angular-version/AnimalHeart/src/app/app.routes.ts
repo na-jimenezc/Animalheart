@@ -4,6 +4,9 @@ import { Contacto } from './paginas/contacto/contacto';
 import { LoginVeterinario } from './paginas/login-veterinario/login-veterinario';
 import { LoginAdmin } from './paginas/login-admin/login-admin';
 import { LoginCliente } from './paginas/login-cliente/login-cliente';
+import { Mascotas } from './paginas/veterinario/mascotas/mascotas';
+import { MascotaDetalle } from './paginas/veterinario/mascotas/mascota-detalle/mascota-detalle';
+
 
 export const routes: Routes = [
   { path: '', component: HomeComponent }, 
@@ -11,9 +14,14 @@ export const routes: Routes = [
   { path: 'login-veterinario', component: LoginVeterinario },
   { path: 'login-admin', component: LoginAdmin },
   { path: 'clientes/login-cliente', component: LoginCliente },
-  { path: '**', redirectTo: '' },
-  { path: 'mascotas', loadComponent: () => import('./paginas/mascotas/mascotas-list.page').then(m => m.MascotasListPage) },
-  { path: 'mascotas/nuevo', loadComponent: () => import('./paginas/mascotas/mascota-form.page').then(m => m.MascotaFormPage) },
-  { path: 'mascotas/:id', loadComponent: () => import('./paginas/mascotas/mascota-detalle.page').then(m => m.MascotaDetallePage) },
-  { path: 'mascotas/:id/editar', loadComponent: () => import('./paginas/mascotas/mascota-form.page').then(m => m.MascotaFormPage) },
+
+    { path: 'mascotas/ver-mascotas', component: Mascotas },
+  { path: '', redirectTo: 'mascotas/ver-mascotas', pathMatch: 'full' },
+
+   { path: 'mascotas/detalle/:id', component: MascotaDetalle },
+
+
+
+     { path: '**', redirectTo: '' },
+
 ];
