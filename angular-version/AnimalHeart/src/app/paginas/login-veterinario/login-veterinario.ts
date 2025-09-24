@@ -2,8 +2,11 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
+import { VeterinarioService } from '../../core/services/veterinario.service';
 
-type LoginVet = { correo: string; clave: string };
+
+type LoginVet = { usuario: string; contrasena: string };
 
 @Component({
   selector: 'app-login-veterinario',
@@ -13,26 +16,40 @@ type LoginVet = { correo: string; clave: string };
   styleUrl: './login-veterinario.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
+
 export class LoginVeterinario {
-  loginData: LoginVet = { correo: '', clave: '' };
+  loginData: LoginVet = { usuario: '', contrasena: '' };
   mostrarClave = false;
   cargando = false;
   mensajeError = '';
 
-  togglePassword(): void { this.mostrarClave = !this.mostrarClave; }
+  constructor(private vetService: VeterinarioService, private router: Router) {}
+
+  togglePassword(): void {
+    this.mostrarClave = !this.mostrarClave;
+  }
 
   async onSubmit(form: NgForm) {
-    if (form.invalid) { form.control.markAllAsTouched(); return; }
+    if (form.invalid) {
+      form.control.markAllAsTouched();
+      return;
+    }
 
     this.cargando = true;
     this.mensajeError = '';
 
     try {
-      const ok = this.loginData.correo.includes('@') && this.loginData.clave.length >= 6;
-      await new Promise(r => setTimeout(r, 600));
-      if (!ok) throw new Error('Credenciales inválidas');
+      await new Promise(r => setTimeout(r, 200));
 
-      window.location.href = '/veterinario/panel';
+      const veterinario = this.vetService.validarCredenciales(
+        this.loginData.usuario,
+        this.loginData.contrasena
+      );
+
+      if (!veterinario) throw new Error('Credenciales inválidas');
+
+      //Se redirige a la página de mascotas si el login es exitoso (las credenciales son válidas)
+      this.router.navigate(['/mascotas/ver-mascotas']);
     } catch {
       this.mensajeError = 'Credenciales inválidas o servidor no disponible.';
     } finally {

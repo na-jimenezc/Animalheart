@@ -1,11 +1,11 @@
 /** Tratamiento aplicado a una mascota */
 export interface Tratamiento {
-  id?: number;
-  fecha: string;
+  id?: string;
+  fecha: Date;
   cantidadUsada: number;
 
   /** relaciones */
-  mascotaId: number;
-  medicamentoId: number;
-  veterinarioId: number;
+  mascotaId: string;
+  medicamentoId: string;
+  veterinarioId: string;
 }

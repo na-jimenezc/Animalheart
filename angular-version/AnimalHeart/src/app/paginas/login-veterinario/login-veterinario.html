@@ -19,33 +19,33 @@
     </div>
 
     <form #formLogin="ngForm" (ngSubmit)="onSubmit(formLogin)" novalidate>
-      <!-- CORREO -->
+      <!-- USUARIO -->
       <div class="campo-formulario">
-        <label for="correo" class="etiqueta">Correo</label>
-        <input id="correo" name="correo" class="control" type="email"
-              [(ngModel)]="loginData.correo" #correo="ngModel"
-              required email autocomplete="username" inputmode="email" placeholder="vet@animalheart.com"
-              [class.is-invalid]="formLogin.submitted && correo.invalid"
-              [class.is-valid]="correo.valid && (correo.dirty || correo.touched)" />
-        <div class="invalid-feedback d-block" *ngIf="correo.errors?.['required']">El correo es obligatorio.</div>
-        <div class="invalid-feedback d-block" *ngIf="correo.errors?.['email']">Formato de correo inválido.</div>
+        <label for="usuario" class="etiqueta">Usuario</label>
+        <input id="usuario" name="usuario" class="control" type="text"
+              [(ngModel)]="loginData.usuario" #usuario="ngModel"
+              required placeholder="Nombre de Usuario"
+              [class.is-invalid]="formLogin.submitted && usuario.invalid"
+              [class.is-valid]="usuario.valid && (usuario.dirty || usuario.touched)" />
+        <div class="invalid-feedback d-block" *ngIf="usuario.errors?.['required']">
+          El usuario es obligatorio.
+        </div>
       </div>
 
-      <!-- CLAVE -->
+      <!-- CONTRASEÑA -->
       <div class="campo-formulario">
-        <label for="clave" class="etiqueta">Contraseña</label>
-
+        <label for="contrasena" class="etiqueta">Contraseña</label>
         <div class="grupo-entrada">
-          <input id="clave" name="clave" class="control"
+          <input id="contrasena" name="contrasena" class="control"
                 [type]="mostrarClave ? 'text' : 'password'"
-                [(ngModel)]="loginData.clave" #clave="ngModel"
-                required minlength="6" autocomplete="current-password" placeholder="••••••••"
-                [class.is-invalid]="formLogin.submitted && clave.invalid"
-                [class.is-valid]="clave.valid && (clave.dirty || clave.touched)" />
+                [(ngModel)]="loginData.contrasena" #contrasena="ngModel"
+                required minlength="3" placeholder="••••••••"
+                [class.is-invalid]="formLogin.submitted && contrasena.invalid"
+                [class.is-valid]="contrasena.valid && (contrasena.dirty || contrasena.touched)" />
         </div>
-
-        <div class="invalid-feedback d-block" *ngIf="clave.errors?.['required']">La contraseña es obligatoria.</div>
-        <div class="invalid-feedback d-block" *ngIf="clave.errors?.['minlength']">Mínimo 6 caracteres.</div>
+        <div class="invalid-feedback d-block" *ngIf="contrasena.errors?.['required']">
+          La contraseña es obligatoria.
+        </div>
       </div>
 
       <!-- Honeypot simple (anti-bots) -->

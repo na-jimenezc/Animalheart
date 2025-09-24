@@ -42,4 +42,9 @@ export class MascotasService {
   getById(id: string) {
     return this.findById(id);
   }
+
+  //Función para desactivar una mascota
+  desactivar(id: string): void {
+    this.update(id, { activo: false });
+  }
 }

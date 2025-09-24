@@ -10,7 +10,7 @@ export const MASCOTAS_SEED: Mascota[] = [
     enfermedad: 'Ninguna',
     peso: 25.5,
     fotoUrl: '/assets/images/defaultPerro.jpg',
-    activo: true,
+    activo: false,
     clienteId: 'c1',
   },
   {

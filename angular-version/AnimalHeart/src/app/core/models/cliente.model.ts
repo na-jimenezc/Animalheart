@@ -1,6 +1,6 @@
 /** Dueño/cliente */
 export interface Cliente {
-  id?: number;
+  id?: string;
   cedula: string;
   nombre: string;
   correo: string;

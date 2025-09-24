@@ -1,23 +1,28 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import { MascotasService } from '../../../core/services/mascotas.service';
+
+
 import { Mascota } from '../../../core/models/mascota.model';
 import { ItemMascota } from './item-mascota/item-mascota';
 
+import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+
 @Component({
   selector: 'app-mascotas',
-  standalone: true,
-  imports: [CommonModule, ItemMascota],
+  imports: [ItemMascota, CommonModule],
   templateUrl: './mascotas.html',
-  styleUrls: ['./mascotas.css']
+  styleUrl: './mascotas.css'
 })
+
 export class Mascotas implements OnInit {
   mascotas: Mascota[] = [];
 
   constructor(private mascotasService: MascotasService) {}
 
   ngOnInit(): void {
-    this.mascotas = this.mascotasService.list();
+    this.mascotasService.state.subscribe(lista => {
+      this.mascotas = lista;
+    });
   }
 }

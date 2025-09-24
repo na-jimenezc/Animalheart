@@ -1,6 +1,6 @@
 /** Inventario de farmacia */
 export interface Medicamento {
-  id?: number;
+  id?: string;
   nombre: string;
   precioCompra: number;
   precioVenta: number;
