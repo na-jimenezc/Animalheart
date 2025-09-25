@@ -16,9 +16,10 @@
   <a [routerLink]="['/mascotas/detalle', mascota.id]" class="btn btn-sm btn-primary me-2">
     <i class="bi bi-eye"></i> Ver
   </a>
-  <button class="btn btn-sm btn-warning me-2">
+  <a class="btn btn-sm btn-warning me-2"
+    [routerLink]="['/mascotas/editar', mascota.id]">
     <i class="bi bi-pencil"></i> Editar
-  </button>
+  </a>
   <button 
     class="btn btn-sm btn-danger"
     (click)="desactivar()"

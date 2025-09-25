@@ -7,6 +7,7 @@ import { LoginCliente } from './paginas/login-cliente/login-cliente';
 import { Mascotas } from './paginas/veterinario/mascotas/mascotas';
 import { MascotaDetalle } from './paginas/veterinario/mascotas/mascota-detalle/mascota-detalle';
 import { AgregarMascota } from './paginas/veterinario/mascotas/agregar-mascota/agregar-mascota';
+import { EditarMascota } from './paginas/veterinario/mascotas/editar-mascota/editar-mascota';
 
 
 
@@ -16,14 +17,10 @@ export const routes: Routes = [
   { path: 'login-veterinario', component: LoginVeterinario },
   { path: 'login-admin', component: LoginAdmin },
   { path: 'clientes/login-cliente', component: LoginCliente },
-   { path: 'mascotas/agregar', component: AgregarMascota },
-    { path: 'mascotas/ver-mascotas', component: Mascotas },
+  { path: 'mascotas/agregar', component: AgregarMascota },
+  { path: 'mascotas/ver-mascotas', component: Mascotas },
   { path: '', redirectTo: 'mascotas/ver-mascotas', pathMatch: 'full' },
-
-   { path: 'mascotas/detalle/:id', component: MascotaDetalle },
-
-
-
-     { path: '**', redirectTo: '' },
-
+  { path: 'mascotas/detalle/:id', component: MascotaDetalle },
+  { path: 'mascotas/editar/:id', component: EditarMascota },
+  { path: '**', redirectTo: '' },
 ];

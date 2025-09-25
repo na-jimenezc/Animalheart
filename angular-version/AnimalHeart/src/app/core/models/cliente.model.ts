@@ -1,4 +1,5 @@
-/** Dueño/cliente */
+import type { Mascota } from './mascota.model';
+
 export interface Cliente {
   id?: string;
   cedula: string;
@@ -6,6 +7,5 @@ export interface Cliente {
   correo: string;
   celular: string;
 
-  /** relación 1-N con mascotas (ids para evitar ciclos) */
-  mascotaIds?: number[];
+  mascotas?: Mascota[];
 }

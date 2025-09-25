@@ -1,5 +1,6 @@
-// Tipos auxiliares
 export type TipoMascota = 'Perro' | 'Gato';
+
+import type { Cliente } from './cliente.model';
 
 export interface Mascota {
   id: string;
@@ -11,5 +12,6 @@ export interface Mascota {
   peso: number;
   fotoUrl?: string;
   activo: boolean;
-  clienteId: string;
+
+  cliente: Cliente;
 }

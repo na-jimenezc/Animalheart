@@ -1,0 +1,84 @@
+<form class="card shadow-sm p-4 mx-auto" style="max-width: 860px"
+      [formGroup]="form" (ngSubmit)="onSubmit()">
+
+  <h2 class="mb-3">Editar Mascota</h2>
+
+  <div class="row g-3">
+    <div class="col-md-3 text-center">
+      <img [src]="form.value.fotoUrl || (form.value.tipo === 'Gato' ? '/assets/images/defaultGato.png' : '/assets/images/defaultPerro.jpg')"
+           (error)="onImageError()"
+           alt="Foto" class="img-thumbnail mb-2" style="max-height:140px">
+      <input class="form-control" placeholder="URL de foto"
+             formControlName="fotoUrl" (change)="onFotoUrlChange()">
+    </div>
+
+    <div class="col-md-9">
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label class="form-label">Nombre</label>
+          <input class="form-control" formControlName="nombre">
+          <div class="text-danger small" *ngIf="submitted && f['nombre'].invalid">
+            Nombre requerido (mín. 2).
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label">Tipo</label>
+          <select class="form-select" formControlName="tipo" (change)="onTipoChange()">
+            <option value="" disabled>Seleccione…</option>
+            <option value="Perro">Perro</option>
+            <option value="Gato">Gato</option>
+          </select>
+          <div class="text-danger small" *ngIf="submitted && f['tipo'].invalid">
+            Tipo requerido.
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label">Raza</label>
+          <input class="form-control" formControlName="raza">
+        </div>
+
+        <div class="col-md-3">
+          <label class="form-label">Edad (años)</label>
+          <input type="number" class="form-control" formControlName="edad">
+        </div>
+
+        <div class="col-md-3">
+          <label class="form-label">Peso (kg)</label>
+          <input type="number" class="form-control" formControlName="peso" step="0.1">
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label">Enfermedad</label>
+          <input class="form-control" formControlName="enfermedad">
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label">Cliente</label>
+          <select class="form-select" formControlName="clienteId">
+            <option value="" disabled>Seleccione…</option>
+            <option *ngFor="let c of clientes" [value]="c.id">{{ c.nombre }} ({{ c.cedula }})</option>
+          </select>
+        </div>
+
+        <div class="col-12 form-check mt-2">
+          <input id="activo" type="checkbox" class="form-check-input" formControlName="activo">
+          <label for="activo" class="form-check-label">Activo</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-4 d-flex gap-2">
+    <button class="btn btn-primary" type="submit" [disabled]="cargando">
+      <i class="bi bi-save"></i> Guardar cambios
+    </button>
+    <button type="button" class="btn btn-outline-secondary" (click)="onCancel()">
+      Cancelar
+    </button>
+  </div>
+
+  <div class="text-success mt-3" *ngIf="successMessage">{{ successMessage }}</div>
+  <div class="text-danger mt-3" *ngIf="errorMessage">{{ errorMessage }}</div>
+</form>

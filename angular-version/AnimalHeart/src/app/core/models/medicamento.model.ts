@@ -1,4 +1,3 @@
-/** Inventario de farmacia */
 export interface Medicamento {
   id?: string;
   nombre: string;
@@ -6,6 +5,5 @@ export interface Medicamento {
   precioVenta: number;
   unidadesDisponibles: number;
 
-  /** campo libre que en la seed se pone como último argumento (reorden/u.m.) */
   meta?: number;
 }
