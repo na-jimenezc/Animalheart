@@ -6,6 +6,8 @@ import { LoginAdmin } from './paginas/login-admin/login-admin';
 import { LoginCliente } from './paginas/login-cliente/login-cliente';
 import { Mascotas } from './paginas/veterinario/mascotas/mascotas';
 import { MascotaDetalle } from './paginas/veterinario/mascotas/mascota-detalle/mascota-detalle';
+import { AgregarMascota } from './paginas/veterinario/mascotas/agregar-mascota/agregar-mascota';
+
 
 
 export const routes: Routes = [
@@ -14,7 +16,7 @@ export const routes: Routes = [
   { path: 'login-veterinario', component: LoginVeterinario },
   { path: 'login-admin', component: LoginAdmin },
   { path: 'clientes/login-cliente', component: LoginCliente },
-
+   { path: 'mascotas/agregar', component: AgregarMascota },
     { path: 'mascotas/ver-mascotas', component: Mascotas },
   { path: '', redirectTo: 'mascotas/ver-mascotas', pathMatch: 'full' },
 

@@ -22,11 +22,21 @@ export class MascotasService {
     return 'm' + Math.random().toString(36).slice(2, 8);
   }
 
-  create(input: Omit<Mascota, 'id'>): Mascota {
-    const nuevo: Mascota = { ...input, id: this.newId() };
-    this._state.next([nuevo, ...this._state.value]);
-    return nuevo;
-  }
+ create(input: Omit<Mascota, 'id'>): Mascota {
+  const nuevo: Mascota = { 
+    ...input, 
+    id: this.newId(),
+    activo: input.activo !== undefined ? input.activo : true
+  };
+  
+  // Obtener el array actual de mascotas
+  const mascotasActuales = this._state.value;
+  
+  // Agregar la nueva mascota al array existente (sin duplicar)
+  this._state.next([nuevo, ...mascotasActuales]);
+  
+  return nuevo;
+}
 
   update(id: string, changes: Partial<Mascota>): void {
     this._state.next(

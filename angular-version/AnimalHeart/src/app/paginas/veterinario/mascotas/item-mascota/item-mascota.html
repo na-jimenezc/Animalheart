@@ -1,30 +1,29 @@
-<tr>
-  <td>
-    <img [src]="mascota.fotoUrl" [alt]="mascota.nombre" class="img-thumbnail" style="max-width: 80px;">
-  </td>
-  <td>{{ mascota.nombre }}</td>
-  <td>{{ mascota.raza }}</td>
-  <td>{{ mascota.edad }} años</td>
-  <td>{{ mascota.tipo }}</td>
-  <td>{{ mascota.enfermedad }}</td>
-  <td>
-    <span class="badge" [ngClass]="mascota.activo ? 'bg-success' : 'bg-danger'">
-      {{ mascota.activo ? 'Sí' : 'No' }}
-    </span>
-  </td>
-  <td class="text-center">
-    <a [routerLink]="['/mascotas/detalle', mascota.id]" class="btn btn-sm btn-primary me-2">
-      <i class="bi bi-eye"></i> Ver
-    </a>
-    <button class="btn btn-sm btn-warning me-2">
-      <i class="bi bi-pencil"></i> Editar
-    </button>
-    <button 
-      class="btn btn-sm btn-danger"
-      (click)="desactivar()"
-      [disabled]="!mascota.activo"
-    >
-      <i class="bi bi-x-circle"></i> Desactivar
-    </button>
-  </td>
-</tr>
+
+<td>
+  <img [src]="mascota.fotoUrl" [alt]="mascota.nombre" class="img-thumbnail" style="max-width: 80px;">
+</td>
+<td>{{ mascota.nombre }}</td>
+<td>{{ mascota.raza }}</td>
+<td>{{ mascota.edad }} años</td>
+<td>{{ mascota.tipo }}</td>
+<td>{{ mascota.enfermedad }}</td>
+<td>
+  <span class="badge" [ngClass]="mascota.activo ? 'bg-success' : 'bg-danger'">
+    {{ mascota.activo ? 'Sí' : 'No' }}
+  </span>
+</td>
+<td class="text-center">
+  <a [routerLink]="['/mascotas/detalle', mascota.id]" class="btn btn-sm btn-primary me-2">
+    <i class="bi bi-eye"></i> Ver
+  </a>
+  <button class="btn btn-sm btn-warning me-2">
+    <i class="bi bi-pencil"></i> Editar
+  </button>
+  <button 
+    class="btn btn-sm btn-danger"
+    (click)="desactivar()"
+    [disabled]="!mascota.activo"
+  >
+    <i class="bi bi-x-circle"></i> Desactivar
+  </button>
+</td>

@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { MascotasService } from '../../../../core/services/mascotas.service';
 
 @Component({
-  selector: 'app-item-mascota',
+  selector: 'tr[app-item-mascota]',
   standalone: true,
   imports: [CommonModule, RouterModule],
   templateUrl: './item-mascota.html',
