@@ -6,7 +6,9 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { MascotasService } from '../../../../core/services/mascotas.service';
 import { ClienteService } from '../../../../core/services/cliente.service';
 import { Mascota } from '../../../../core/models/mascota.model';
+import { MascotaUpdateDTO } from '../../../../core/models/DTO/mascota-update.dto';
 import { Cliente } from '../../../../core/models/cliente.model';
+
 
 @Component({
   selector: 'app-editar-mascota',
@@ -15,6 +17,7 @@ import { Cliente } from '../../../../core/models/cliente.model';
   templateUrl: './editar-mascota.html',
   styleUrl: './editar-mascota.css',
 })
+
 export class EditarMascota implements OnInit {
   form!: FormGroup;
   clientes: Cliente[] = [];
@@ -24,7 +27,7 @@ export class EditarMascota implements OnInit {
   successMessage = '';
   errorMessage = '';
 
-  private id!: string;
+  private id!: number;
   mascotaActual?: Mascota;
 
   constructor(
@@ -34,6 +37,114 @@ export class EditarMascota implements OnInit {
     private mascotasService: MascotasService,
     private clienteService: ClienteService
   ) {}
+
+    //Se consumen los clientes y se inicializa el formulario
+    ngOnInit(): void {
+    this.clienteService.findAll().subscribe({
+      next: (data) => (this.clientes = data),
+      error: (err) => console.error('Error cargando clientes', err),
+    });
+
+    this.form = this.fb.group({
+      fotoUrl: [''],
+      nombre: ['', [Validators.required, Validators.minLength(2)]],
+      tipo: ['', Validators.required],
+      raza: [''],
+      edad: [1, [Validators.required, Validators.min(0)]],
+      enfermedad: ['Ninguna'],
+      peso: [1, [Validators.required, Validators.min(0.1), Validators.max(100)]],
+      clienteId: ['', Validators.required],
+      activo: [true],
+    });
+
+    if (!this.id) {
+      this.errorMessage = 'Id de mascota no válido.';
+      return;
+    }
+
+     this.mascotasService.getById(this.id).subscribe({
+      next: (m) => {
+        this.mascotaActual = m;
+        this.form.patchValue({
+          fotoUrl: m.fotoURL ?? '',
+          nombre: m.nombre,
+          tipo: m.tipo,
+          raza: m.raza,
+          edad: m.edad,
+          enfermedad: m.enfermedad,
+          peso: m.peso,
+          clienteId: m.cliente?.id ?? '',
+          activo: m.activo,
+        });
+      },
+      error: () => (this.errorMessage = 'No se pudo cargar la mascota.'),
+    });
+  }
+
+  get f() {
+    return this.form.controls;
+  }
+
+  onTipoChange(): void {
+    const tipo = this.form.get('tipo')?.value as 'Perro' | 'Gato' | '';
+    const fotoCtrl = this.form.get('fotoUrl');
+    if (tipo && !fotoCtrl?.value) {
+      const def =
+        tipo === 'Perro'
+          ? '/assets/images/defaultPerro.jpg'
+          : '/assets/images/defaultGato.png';
+      fotoCtrl?.setValue(def);
+    }
+  }
+
+  onFotoUrlChange(): void {}
+
+  onImageError(): void {
+    this.form.patchValue({ fotoUrl: '' });
+  }
+
+  onSubmit(): void {
+    this.submitted = true;
+    this.successMessage = '';
+    this.errorMessage = '';
+
+    if (this.form.invalid || !this.mascotaActual) {
+      this.form.markAllAsTouched();
+      return;
+    }
+    if (this.cargando) return;
+
+    this.cargando = true;
+
+    const raw = this.form.value as MascotaUpdateDTO;
+
+    if (!raw.fotoUrl && raw.tipo) {
+      raw.fotoUrl =
+        raw.tipo === 'Perro'
+          ? '/assets/images/defaultPerro.jpg'
+          : '/assets/images/defaultGato.png';
+    }
+
+    this.mascotasService.update(this.id, raw).subscribe({
+      next: () => {
+        this.successMessage = 'Mascota actualizada correctamente';
+        setTimeout(() => this.router.navigate(['/mascotas/ver-mascotas']), 1000);
+      },
+      error: (err) => {
+        this.errorMessage = 'Error al actualizar la mascota: ' + err.message;
+      },
+      complete: () => (this.cargando = false),
+    });
+  }
+
+  onCancel(): void {
+    this.router.navigate(['/mascotas/ver-mascotas']);
+  }
+
+
+
+
+  /*
 
   ngOnInit(): void {
     this.clientes = this.clienteService.obtenerTodos();
@@ -154,5 +265,5 @@ export class EditarMascota implements OnInit {
 
   onCancel(): void {
     this.router.navigate(['/mascotas/ver-mascotas']);
-  }
+  }*/
 }

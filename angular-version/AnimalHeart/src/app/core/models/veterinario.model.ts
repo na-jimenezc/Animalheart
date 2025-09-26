@@ -1,18 +1,17 @@
 import type { Administrador } from './administrador.model';
-import type { Mascota } from './mascota.model';
+import type { Tratamiento } from './tratamiento.model';
 
+//CHECK BACKEND
 export interface Veterinario {
-  id?: string;
+  id?: number;            
   nombre: string;
   especialidad: string;
-
   nombreUsuario: string;
-  contrasena?: string;
+  contrasenia: string;      
+  imagen: string;          
+  activo: number;          
+  consultas: number;      
 
-  fotoUrl: string;
-  aniosExperiencia: number;
-  consultasAtendidas: number;
-
-  administrador?: Administrador;
-  pacientes?: Mascota[];
+  administradores?: Administrador[]; 
+  tratamientos?: Tratamiento[];
 }

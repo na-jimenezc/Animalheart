@@ -4,7 +4,7 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
 import { VeterinarioService } from '../../core/services/veterinario.service';
-
+import { Veterinario } from '../../core/models/veterinario.model';
 
 type LoginVet = { usuario: string; contrasena: string };
 
@@ -25,11 +25,54 @@ export class LoginVeterinario {
 
   constructor(private vetService: VeterinarioService, private router: Router) {}
 
+  //Vaina visual para mostrar o esconder la clave
   togglePassword(): void {
     this.mostrarClave = !this.mostrarClave;
   }
 
-  async onSubmit(form: NgForm) {
+    //Para manejar el formulario
+    onSubmit(form: NgForm): void {
+    if (form.invalid) {
+      form.control.markAllAsTouched();
+      return;
+    }
+
+    this.cargando = true;
+    this.mensajeError = '';
+
+    this.vetService.login(this.loginData.usuario, this.loginData.contrasena).subscribe({
+      next: (veterinario: Veterinario | null) => {
+        if (!veterinario) {
+          this.mensajeError = 'Credenciales inválidas';
+          this.cargando = false;
+          return;
+        }
+
+        //Se guarda el veterinario logeado en el servicio
+        this.vetService.setVeterinarioLogeado(veterinario);
+
+        //Se redirige a la página de mascotas si el login es exitoso (las credenciales son válidas)
+        this.router.navigate(['/mascotas/ver-mascotas']);
+      },
+      error: (err) => {
+        console.error('Error en login', err);
+        this.mensajeError = 'Servidor no disponible. Intenta más tarde.';
+        this.cargando = false;
+      },
+      complete: () => {
+        this.cargando = false;
+      },
+    });
+  }
+
+  //Reseteo de formulario
+  resetForm(form: NgForm) {
+    form.resetForm();
+    this.mensajeError = '';
+    this.mostrarClave = false;
+  }
+
+  /*async onSubmit(form: NgForm) {
     if (form.invalid) {
       form.control.markAllAsTouched();
       return;
@@ -61,5 +104,5 @@ export class LoginVeterinario {
     form.resetForm();
     this.mensajeError = '';
     this.mostrarClave = false;
-  }
+  }*/
 }

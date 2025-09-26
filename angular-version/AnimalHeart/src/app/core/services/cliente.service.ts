@@ -1,12 +1,63 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Cliente } from '../models/cliente.model';
-import { CLIENTES_SEED } from '../data/clientes.seed';
+import { HttpClient } from '@angular/common/http';
 
 const STORAGE_KEY = 'clientesData';
 
 @Injectable({ providedIn: 'root' })
 export class ClienteService {
+
+  private apiUrl = 'http://localhost:8080/api/clientes';
+
+  constructor(private http: HttpClient) {}
+
+  //Para obtener a todos los clientes
+  getClientes(): Observable<Cliente[]> {
+    return this.http.get<Cliente[]>(this.apiUrl);
+  }
+
+  //Para obtener por id
+  getClienteById(id: number): Observable<Cliente> {
+    return this.http.get<Cliente>(`${this.apiUrl}/${id}`);
+  }
+
+  //Para obtener por cédula
+  getClienteByCedula(cedula: string): Observable<Cliente> {
+    return this.http.get<Cliente>(`${this.apiUrl}/cedula/${cedula}`);
+  }
+
+  //Para crear un nuevo cliente
+  addCliente(cliente: Cliente): Observable<Cliente> {
+    return this.http.post<Cliente>(this.apiUrl, cliente);
+  }
+
+  //Para actualizar un cliente
+  updateCliente(id: number, cliente: Cliente): Observable<Cliente> {
+    return this.http.put<Cliente>(`${this.apiUrl}/${id}`, cliente);
+  }
+
+  //Para eliminar un cliente
+  deleteCliente(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
+
+  //Revisión del login
+  loginCliente(correo: string, cedula: string): Observable<Cliente> {
+    return this.http.post<Cliente>(`${this.apiUrl}/login`, { correo, cedula });
+  }
+
+  //Para obtener las mascotas de un cliente
+  getMascotasByCliente(id: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/${id}/mascotas`);
+  }
+
+  //Método para obtener todos los clientes 
+  findAll(): Observable<Cliente[]> {
+    return this.http.get<Cliente[]>(this.apiUrl);
+  }
+
+  /*
   private readonly _clientes = new BehaviorSubject<Cliente[]>(this.loadInitialData());
   readonly clientes$ = this._clientes.asObservable();
 
@@ -52,5 +103,5 @@ export class ClienteService {
     this._clientes.next(newList);
     this.saveToStorage(newList); 
     return nuevoCliente;
-  }
+  }*/
 }

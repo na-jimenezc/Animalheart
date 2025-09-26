@@ -19,7 +19,7 @@
     </div>
 
     <form #formLogin="ngForm" (ngSubmit)="onSubmit(formLogin)" novalidate>
-      <!-- USUARIO -->
+      <!--USUARIO-->
       <div class="campo-formulario">
         <label for="usuario" class="etiqueta">Usuario</label>
         <input id="usuario" name="usuario" class="control" type="text"
@@ -32,7 +32,7 @@
         </div>
       </div>
 
-      <!-- CONTRASEÑA -->
+      <!--CONTRASEÑA-->
       <div class="campo-formulario">
         <label for="contrasena" class="etiqueta">Contraseña</label>
         <div class="grupo-entrada">
@@ -42,20 +42,25 @@
                 required minlength="3" placeholder="••••••••"
                 [class.is-invalid]="formLogin.submitted && contrasena.invalid"
                 [class.is-valid]="contrasena.valid && (contrasena.dirty || contrasena.touched)" />
+          <button type="button" class="btn btn-outline-secondary btn-sm ms-2" (click)="togglePassword()">
+            {{ mostrarClave ? 'Ocultar' : 'Mostrar' }}
+          </button>
         </div>
         <div class="invalid-feedback d-block" *ngIf="contrasena.errors?.['required']">
           La contraseña es obligatoria.
         </div>
       </div>
 
-      <!-- Honeypot simple (anti-bots) -->
+      <!--Honeypot simple (anti-bots)-->
       <input type="text" name="company" class="d-none" tabindex="-1" autocomplete="off" aria-hidden="true" />
 
       <div class="acciones-formulario">
         <button class="boton-enviar" type="submit" [disabled]="cargando || formLogin.invalid">
           {{ cargando ? 'Accediendo…' : 'ACCEDER AL SISTEMA' }}
         </button>
-        <button type="button" class="boton-secundario" (click)="resetForm(formLogin)" [disabled]="cargando">Limpiar</button>
+        <button type="button" class="boton-secundario" (click)="resetForm(formLogin)" [disabled]="cargando">
+          Limpiar
+        </button>
       </div>
 
       <div class="text-center">

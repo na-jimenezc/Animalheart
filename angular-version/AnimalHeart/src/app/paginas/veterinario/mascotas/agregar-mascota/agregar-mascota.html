@@ -11,8 +11,8 @@
           <div class="photo-placeholder" id="photoPlaceholder" *ngIf="!mascotaForm.get('fotoUrl')?.value">
             <i class="bi bi-camera me-2"></i> Imagen de la mascota
           </div>
-          <img [src]="mascotaForm.get('fotoUrl')?.value" class="photo-preview" id="fotoPreview" 
-               *ngIf="mascotaForm.get('fotoUrl')?.value"
+          <img [src]="mascotaForm.get('fotoURL')?.value" class="photo-preview" id="fotoPreview" 
+               *ngIf="mascotaForm.get('fotoURL')?.value"
                (error)="onImageError()" />
         </div>
         

@@ -11,15 +11,20 @@ import { MascotasService } from '../../../../core/services/mascotas.service';
   templateUrl: './item-mascota.html',
   styleUrls: ['./item-mascota.css']
 })
+
 export class ItemMascota {
   @Input() mascota!: Mascota;
 
   constructor(private mascotasService: MascotasService) {}
 
   desactivar(): void {
-    if (this.mascota.activo) {
-      this.mascotasService.desactivar(this.mascota.id);
+    if (this.mascota.id && this.mascota.activo) {
+      this.mascotasService.desactivar(this.mascota.id).subscribe({
+        next: () => {
+          this.mascota.activo = false; 
+        },
+        error: (err) => console.error('Error desactivando mascota', err),
+      });
     }
   }
-  
 }

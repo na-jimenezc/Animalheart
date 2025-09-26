@@ -1,4 +1,4 @@
-import { Cliente } from '../models/cliente.model';
+/*import { Cliente } from '../models/cliente.model';
 
 export const CLIENTES_SEED: Cliente[] = [
   {
@@ -23,4 +23,4 @@ export const CLIENTES_SEED: Cliente[] = [
     correo: 'mateo@gmail.com',
     celular: '3149876543',
   },
-];
+];*/

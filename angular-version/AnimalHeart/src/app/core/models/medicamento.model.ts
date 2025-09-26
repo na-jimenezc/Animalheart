@@ -1,9 +1,14 @@
+import type { Tratamiento } from './tratamiento.model';
+
+//CHECK BACKEND
 export interface Medicamento {
-  id?: string;
+  id?: number;              
   nombre: string;
   precioCompra: number;
   precioVenta: number;
   unidadesDisponibles: number;
+  unidadesVendidas: number; 
 
-  meta?: number;
+  tratamientos?: Tratamiento[];
 }
+

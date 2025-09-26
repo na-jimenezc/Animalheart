@@ -1,4 +1,4 @@
-import { Veterinario } from '../models/veterinario.model';
+/*import { Veterinario } from '../models/veterinario.model';
 
 export const VETERINARIOS_SEED: Veterinario[] = [
   {
@@ -31,4 +31,4 @@ export const VETERINARIOS_SEED: Veterinario[] = [
     aniosExperiencia: 1,
     consultasAtendidas: 120,
   },
-];
+];*/

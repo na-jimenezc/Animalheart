@@ -1,6 +1,12 @@
 
 <td>
-  <img [src]="mascota.fotoUrl" [alt]="mascota.nombre" class="img-thumbnail" style="max-width: 80px;">
+  <img 
+    [src]="mascota.fotoURL || (mascota.tipo === 'Perro' 
+            ? '/assets/images/defaultPerro.jpg' 
+            : '/assets/images/defaultGato.jpg')"
+    [alt]="mascota.nombre" 
+    class="img-thumbnail" 
+    style="max-width: 80px;">
 </td>
 <td>{{ mascota.nombre }}</td>
 <td>{{ mascota.raza }}</td>
@@ -16,8 +22,7 @@
   <a [routerLink]="['/mascotas/detalle', mascota.id]" class="btn btn-sm btn-primary me-2">
     <i class="bi bi-eye"></i> Ver
   </a>
-  <a class="btn btn-sm btn-warning me-2"
-    [routerLink]="['/mascotas/editar', mascota.id]">
+  <a class="btn btn-sm btn-warning me-2" [routerLink]="['/mascotas/editar', mascota.id]">
     <i class="bi bi-pencil"></i> Editar
   </a>
   <button 
