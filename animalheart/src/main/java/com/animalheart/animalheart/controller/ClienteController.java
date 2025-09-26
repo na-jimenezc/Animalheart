@@ -1,5 +1,19 @@
 package com.animalheart.animalheart.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import com.animalheart.animalheart.model.Cliente;
 import com.animalheart.animalheart.model.Mascota;
 import com.animalheart.animalheart.model.Veterinario;
@@ -8,14 +22,6 @@ import com.animalheart.animalheart.service.serviceInterface.ClienteService;
 import com.animalheart.animalheart.service.serviceInterface.MascotaService;
 import com.animalheart.animalheart.service.serviceInterface.VeterinarioService;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.transaction.annotation.Transactional;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -194,6 +200,12 @@ public String procesarLogin(@RequestParam("correo") String correo, HttpSession s
     @GetMapping
     public String clientesHome() {
     return "redirect:/mascotas";
+    }
+
+    private static class ResponseEntity<T> {
+
+        public ResponseEntity() {
+        }
     }
 
 }
