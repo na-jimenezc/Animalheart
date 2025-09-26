@@ -25,9 +25,9 @@ export class Mascotas implements OnInit {
   mascotas: Mascota[] = [];
   veterinario: Veterinario | null = null;
 
-  page = 1;
-  size = 5;
-  total = 0;
+  page = 1; //página actual
+  size = 5; //max de visualización
+  total = 0; //páginas totales
 
   cargando = false;
 
@@ -45,11 +45,11 @@ export class Mascotas implements OnInit {
 
   cargarMascotas(): void {
     this.cargando = true;
-    this.mascotasService.getPaginated(this.page, this.size).subscribe({
+    this.mascotasService.getPaginated(this.page - 1, this.size).subscribe({
       next: res => {
-        this.mascotas = res.data;
-        this.total = res.total;
-        this.cargando = false;
+        this.mascotas = res.content;       
+        this.total = res.totalElements;     
+        this.cargando = false;  
       },
       error: err => {
         console.error('Error cargando mascotas', err);
@@ -62,5 +62,19 @@ export class Mascotas implements OnInit {
     this.page += delta;
     if (this.page < 1) this.page = 1;
     this.cargarMascotas();
+  }
+
+  siguiente(): void {
+    if (this.page * this.size < this.total) {
+      this.page++;
+      this.cargarMascotas();
+    }
+  }
+
+  anterior(): void {
+    if (this.page > 1) {
+      this.page--;
+      this.cargarMascotas();
+    }
   }
 }

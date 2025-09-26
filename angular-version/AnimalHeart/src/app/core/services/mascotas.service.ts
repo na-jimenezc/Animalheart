@@ -5,14 +5,27 @@ import { Mascota } from '../models/mascota.model';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { MascotaCreateDTO } from '../models/DTO/mascota-create.dto';
 import { MascotaUpdateDTO } from '../models/DTO/mascota-update.dto';
+import { MascotaDTO } from '../models/DTO/mascota-dto';
 
 const STORAGE_KEY = 'mascotasData';
+
+/**
+ *Para la respuesta, un tipo de DTO
+ */
+export interface PageResponse<T> {
+  content: T[];
+  totalElements: number;
+  totalPages: number;
+  size: number;
+  number: number;
+}
 
 @Injectable({ providedIn: 'root' })
 export class MascotasService {
 
   //Dirección del backend
   private readonly API_URL = 'http://localhost:8080/api/mascotas';
+  private apiUrl = 'http://localhost:8080/api/mascotas';
 
   constructor(
     private http: HttpClient
@@ -24,12 +37,12 @@ export class MascotasService {
   }
 
   //Función para obtener las mascotas paginadas desde el backend
-  getPaginated(page: number = 0, size: number = 5): Observable<any> {
-    const params = new HttpParams()
-      .set('page', page.toString())
-      .set('size', size.toString());
-    return this.http.get<any>(`${this.API_URL}/paginadas`, { params });
+  getPaginated(page: number, size: number): Observable<PageResponse<Mascota>> {
+    return this.http.get<PageResponse<Mascota>>(
+      `${this.apiUrl}?page=${page}&size=${size}`
+    );
   }
+
 
   //Obtener mascota por ID
   getById(id: number): Observable<Mascota> {
@@ -37,11 +50,10 @@ export class MascotasService {
   }
 
   //Función para crear una mascota en el backend con el DTO para que no explote
-  create(dto: MascotaCreateDTO): Observable<Mascota> {
-    return this.http.post<Mascota>(
-      `${this.API_URL}?clienteId=${dto.clienteId}`,
-      dto
-    );
+  create(dto: MascotaCreateDTO): Observable<MascotaDTO> {
+    return this.http.post<MascotaDTO>(this.API_URL, dto, {
+      headers: { 'Content-Type': 'application/json' }
+    });
   }
 
   //Función para actualizar una mascota en el backend, SE REVISA EL fotoUrl c:

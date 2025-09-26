@@ -1,5 +1,5 @@
-
-export interface MascotaCreateDTO {
+export interface MascotaDTO {
+  id: number;
   nombre: string;
   raza: string;
   edad: number;
@@ -7,7 +7,6 @@ export interface MascotaCreateDTO {
   enfermedad: string;
   peso: number;
   fotoURL?: string;
-  estado: string;
   activo: boolean;
   clienteId: number;
 }

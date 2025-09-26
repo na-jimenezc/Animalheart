@@ -20,7 +20,6 @@ import com.animalheart.animalheart.model.Veterinario;
 import com.animalheart.animalheart.repository.ClienteRepository;
 import com.animalheart.animalheart.service.serviceInterface.ClienteService;
 import com.animalheart.animalheart.service.serviceInterface.MascotaService;
-import com.animalheart.animalheart.service.serviceInterface.VeterinarioService;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -31,8 +30,8 @@ public class ClienteController {
     @Autowired
     ClienteService clienteService;
 
-    @Autowired
-    VeterinarioService veterinarioService;
+    //@Autowired
+    //VeterinarioService veterinarioService;
 
     private static final String VET_AUTH = "VET_AUTH";
     private static final String CLIENTE_AUTH = "CLIENTE_AUTH";
@@ -202,10 +201,10 @@ public String procesarLogin(@RequestParam("correo") String correo, HttpSession s
     return "redirect:/mascotas";
     }
 
-    private static class ResponseEntity<T> {
+    /*private static class ResponseEntity<T> {
 
         public ResponseEntity() {
         }
-    }
+    }*/
 
 }

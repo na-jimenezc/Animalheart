@@ -37,7 +37,7 @@ export class AgregarMascota implements OnInit {
       raza: ['', Validators.required],
       peso: [null],
       enfermedad: [''],
-      fotoUrl: [''],
+      fotoURL: [''],
       clienteId: ['', Validators.required],
       activo: [true]
     });
@@ -81,7 +81,14 @@ export class AgregarMascota implements OnInit {
 
   onSubmit(): void {
     if (this.mascotaForm.valid) {
-      const dto: MascotaCreateDTO = this.mascotaForm.value;
+      const formValue = this.mascotaForm.value;
+
+      const dto: MascotaCreateDTO = {
+        ...formValue,
+        estado: formValue.enfermedad && formValue.enfermedad.trim() !== ''
+          ? 'Enfermo'
+          : 'Sano'
+      };
 
       this.mascotasService.create(dto).subscribe({
         next: (res) => {
