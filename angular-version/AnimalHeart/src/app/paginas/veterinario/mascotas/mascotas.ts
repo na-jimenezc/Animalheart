@@ -1,15 +1,10 @@
-
 import { MascotasService } from '../../../core/services/mascotas.service';
 import { VeterinarioService } from '../../../core/services/veterinario.service';
-
-
 import { Mascota } from '../../../core/models/mascota.model';
 import { ItemMascota } from './item-mascota/item-mascota';
 import { Veterinario } from '../../../core/models/veterinario.model';
-
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { HeaderVet } from '../../../componentes/header-vet/header-vet';
 
 @Component({
@@ -18,63 +13,78 @@ import { HeaderVet } from '../../../componentes/header-vet/header-vet';
   templateUrl: './mascotas.html',
   styleUrl: './mascotas.css'
 })
-
 export class Mascotas implements OnInit {
-
-  //Lista de mascotas  y del veterinario
+  todasLasMascotas: Mascota[] = [];
   mascotas: Mascota[] = [];
   veterinario: Veterinario | null = null;
 
-  page = 1; //página actual
-  size = 5; //max de visualización
-  total = 0; //páginas totales
-
+  page = 1;
+  size = 5;
+  totalElements = 0;
+  totalPages = 0;
   cargando = false;
 
-  //Inyección de dependencias
   constructor(
     private mascotasService: MascotasService,
-    private veterinarioService: VeterinarioService
+    private veterinarioService: VeterinarioService,
+    private changeDetector: ChangeDetectorRef
   ) {}
 
-  //Al iniciar el componente, se cargan las mascotas y se obtiene el veterinario logeado
   ngOnInit(): void {
-    this.cargarMascotas();
-    this.veterinarioService.veterinario$.subscribe(vet => this.veterinario = vet);
+    this.cargarTodasLasMascotas();
+    this.veterinarioService.veterinario$.subscribe(vet => {
+      this.veterinario = vet;
+      this.changeDetector.detectChanges(); 
+    });
   }
 
-  cargarMascotas(): void {
+  cargarTodasLasMascotas(): void {
     this.cargando = true;
-    this.mascotasService.getPaginated(this.page - 1, this.size).subscribe({
-      next: res => {
-        this.mascotas = res.content;       
-        this.total = res.totalElements;     
-        this.cargando = false;  
+    this.changeDetector.detectChanges(); 
+    
+    this.mascotasService.getAll().subscribe({
+      next: (mascotas: Mascota[]) => {
+        this.todasLasMascotas = mascotas;
+        this.totalElements = mascotas.length;
+        this.totalPages = Math.ceil(mascotas.length / this.size);
+        this.actualizarPagina();
+        this.cargando = false;
+        this.changeDetector.detectChanges(); 
+        console.log('Datos cargados y cambio detectado');
       },
       error: err => {
         console.error('Error cargando mascotas', err);
         this.cargando = false;
+        this.changeDetector.detectChanges(); 
       }
     });
+  }
+
+  actualizarPagina(): void {
+    const startIndex = (this.page - 1) * this.size;
+    const endIndex = startIndex + this.size;
+    this.mascotas = this.todasLasMascotas.slice(startIndex, endIndex);
+    this.changeDetector.detectChanges();
   }
 
   cambiarPagina(delta: number): void {
     this.page += delta;
     if (this.page < 1) this.page = 1;
-    this.cargarMascotas();
+    if (this.page > this.totalPages) this.page = this.totalPages;
+    this.actualizarPagina();
   }
 
   siguiente(): void {
-    if (this.page * this.size < this.total) {
+    if (this.page < this.totalPages) {
       this.page++;
-      this.cargarMascotas();
+      this.actualizarPagina();
     }
   }
 
   anterior(): void {
     if (this.page > 1) {
       this.page--;
-      this.cargarMascotas();
+      this.actualizarPagina();
     }
   }
 }

@@ -9,4 +9,5 @@ export interface MascotaDTO {
   fotoURL?: string;
   activo: boolean;
   clienteId: number;
+  estado: String;
 }

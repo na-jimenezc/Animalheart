@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { Mascota } from '../models/mascota.model';
 
 import { HttpClient, HttpParams } from '@angular/common/http';
@@ -8,17 +8,6 @@ import { MascotaUpdateDTO } from '../models/DTO/mascota-update.dto';
 import { MascotaDTO } from '../models/DTO/mascota-dto';
 
 const STORAGE_KEY = 'mascotasData';
-
-/**
- *Para la respuesta, un tipo de DTO
- */
-export interface PageResponse<T> {
-  content: T[];
-  totalElements: number;
-  totalPages: number;
-  size: number;
-  number: number;
-}
 
 @Injectable({ providedIn: 'root' })
 export class MascotasService {
@@ -33,13 +22,12 @@ export class MascotasService {
 
   //Función para obtener todas las mascotas desde el backend
   getAll(): Observable<Mascota[]> {
-    return this.http.get<Mascota[]>(this.API_URL);
-  }
-
-  //Función para obtener las mascotas paginadas desde el backend
-  getPaginated(page: number, size: number): Observable<PageResponse<Mascota>> {
-    return this.http.get<PageResponse<Mascota>>(
-      `${this.apiUrl}?page=${page}&size=${size}`
+    console.log('Haciendo request a:', `${this.API_URL}/todas`);
+    return this.http.get<Mascota[]>(`${this.API_URL}/todas`).pipe(
+      tap({
+        next: (data) => console.log('Respuesta del backend:', data),
+        error: (error) => console.error('Error en request:', error)
+      })
     );
   }
 

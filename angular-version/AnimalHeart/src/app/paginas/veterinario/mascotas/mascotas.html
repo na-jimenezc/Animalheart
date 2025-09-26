@@ -3,43 +3,55 @@
 <div class="container my-4">
   <h1 class="mb-3"><i class="bi bi-heart-pulse me-2"></i>Listado de Pacientes</h1>
 
-  <div class="table-responsive" *ngIf="mascotas.length > 0; else cargando">
-    <table class="table table-striped align-middle">
-      <thead>
-        <tr>
-          <th>Foto</th>
-          <th>Nombre</th>
-          <th>Raza</th>
-          <th>Edad</th>
-          <th>Tipo</th>
-          <th>Estado</th>
-          <th>Activo</th>
-          <th class="text-center">Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr app-item-mascota *ngFor="let mascota of mascotas" [mascota]="mascota"></tr>
-      </tbody>
-    </table>
+  <!-- CARGANDO -->
+  <div *ngIf="cargando" class="text-center my-4">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Cargando...</span>
+    </div>
+    <p class="mt-2">Cargando pacientes...</p>
+  </div>
 
-    <!--Para que soporte la paginación-->
+  <!-- TABLA CUANDO HAY MASCOTAS -->
+  <div *ngIf="!cargando && mascotas.length > 0">
+    <div class="table-responsive">
+      <table class="table table-striped align-middle">
+        <thead>
+          <tr>
+            <th>Foto</th>
+            <th>Nombre</th>
+            <th>Raza</th>
+            <th>Edad</th>
+            <th>Tipo</th>
+            <th>Enfermedad</th>
+            <th>Activo</th>
+            <th class="text-center">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr app-item-mascota *ngFor="let mascota of mascotas" [mascota]="mascota"></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- PAGINACIÓN -->
     <div class="d-flex justify-content-between align-items-center mt-3">
-      <button class="btn btn-outline-primary" (click)="cambiarPagina(-1)" [disabled]="page === 1">
+      <button class="btn btn-outline-primary" (click)="anterior()" [disabled]="page === 1">
         <i class="bi bi-chevron-left"></i> Anterior
       </button>
-      Página {{ page + 1 }} de {{ total }} (Total: {{ total }} mascotas)
-      <button class="btn btn-outline-primary" (click)="cambiarPagina(1)" [disabled]="page * size >= total">
+
+      <span>
+        Página {{ page }} de {{ totalPages }} 
+        (Total: {{ totalElements }} mascotas)
+      </span>
+
+      <button class="btn btn-outline-primary" (click)="siguiente()" [disabled]="page === totalPages">
         Siguiente <i class="bi bi-chevron-right"></i>
       </button>
     </div>
   </div>
 
-  <ng-template #cargando>
-    <div class="text-center my-4">
-      <div class="spinner-border text-primary" role="status">
-        <span class="visually-hidden">Cargando...</span>
-      </div>
-      <p class="mt-2">Cargando pacientes...</p>
-    </div>
-  </ng-template>
+  <!-- SIN MASCOTAS -->
+  <div *ngIf="!cargando && todasLasMascotas.length === 0" class="text-center my-4">
+    <p>No hay mascotas registradas.</p>
+  </div>
 </div>
