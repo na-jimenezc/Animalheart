@@ -5,11 +5,15 @@ import { MascotasService } from '../../../../core/services/mascotas.service';
 import { ClienteService } from '../../../../core/services/cliente.service'; 
 import { Cliente } from '../../../../core/models/cliente.model';
 import { MascotaCreateDTO } from '../../../../core/models/DTO/mascota-create.dto';
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-agregar-mascota',
+  standalone: true, 
   templateUrl: './agregar-mascota.html',
-  styleUrls: ['./agregar-mascota.css']
+  styleUrls: ['./agregar-mascota.css'],
+   imports: [CommonModule, ReactiveFormsModule]
 })
 export class AgregarMascota implements OnInit {
   mascotaForm!: FormGroup;
@@ -57,6 +61,18 @@ export class AgregarMascota implements OnInit {
 
   onFotoUrlChange(): void {
 
+  }
+
+  onTipoChange(): void {
+    const tipo = this.mascotaForm.get('tipo')?.value;
+    const fotoUrlControl = this.mascotaForm.get('fotoUrl');
+    
+    if (tipo && !fotoUrlControl?.value) {
+      const defaultImage = tipo === 'Perro' 
+        ? '/assets/images/defaultPerro.jpg'
+        : '/assets/images/defaultGato.png';
+      fotoUrlControl?.setValue(defaultImage);
+    }
   }
 
   onImageError(): void {
@@ -126,18 +142,6 @@ export class AgregarMascota implements OnInit {
     }
   }
 
-  onTipoChange(): void {
-    const tipo = this.mascotaForm.get('tipo')?.value;
-    const fotoUrlControl = this.mascotaForm.get('fotoUrl');
-    
-    // Solo asignar imagen por defecto si no hay una URL específica
-    if (tipo && !fotoUrlControl?.value) {
-      const defaultImage = tipo === 'Perro' 
-        ? '/assets/images/defaultPerro.jpg'
-        : '/assets/images/defaultGato.png';
-      fotoUrlControl?.setValue(defaultImage);
-    }
-  }
 
   onFotoUrlChange(): void {
     // La vista previa se actualiza automáticamente via binding lol

@@ -21,9 +21,12 @@ export class MascotaDetalle implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
+    const id = Number(this.route.snapshot.paramMap.get('id')); 
     if (id) {
-      this.mascota = this.mascotasService.findById(id);
+      this.mascotasService.findById(id).subscribe({
+        next: (data) => (this.mascota = data),
+        error: (err) => console.error('Error cargando mascota', err)
+      });
     }
   }
 }

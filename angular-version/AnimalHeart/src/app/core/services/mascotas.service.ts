@@ -70,6 +70,12 @@ export class MascotasService {
     return this.http.get<Mascota[]>(`${this.API_URL}/cliente/${clienteId}`);
   }
 
+  //Para encontrar por id
+  findById(id: number): Observable<Mascota> {
+    return this.http.get<Mascota>(`${this.API_URL}/${id}`);
+  }
+
+
 
   /*
   private readonly _state = new BehaviorSubject<Mascota[]>(this.loadInitialData());

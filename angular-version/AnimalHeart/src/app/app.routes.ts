@@ -20,7 +20,7 @@ export const routes: Routes = [
   //Login
   { path: 'login-veterinario', component: LoginVeterinario },
   { path: 'login-admin', component: LoginAdmin },
-  { path: 'clientes/login', component: LoginCliente },
+  { path: 'clientes/login-cliente', component: LoginCliente },
 
   /* CRUD de clientes ESTA VAINA ESTÁ PENDIENTE
   { path: 'clientes', component: ClientesList },
@@ -29,12 +29,11 @@ export const routes: Routes = [
   { path: 'clientes/detalle/:id', component: ClienteDetalle }*/
 
   //CRUD de mascotas
-  { path: 'mascotas', component: Mascotas },
+  { path: 'mascotas/ver-mascotas', component: Mascotas },
   { path: 'mascotas/agregar', component: AgregarMascota },
   { path: 'mascotas/editar/:id', component: EditarMascota },
   { path: 'mascotas/detalle/:id', component: MascotaDetalle },
 
   //Redirecciones
-  { path: '', redirectTo: 'clientes', pathMatch: 'full' },
   { path: '**', redirectTo: '' },
 ];
