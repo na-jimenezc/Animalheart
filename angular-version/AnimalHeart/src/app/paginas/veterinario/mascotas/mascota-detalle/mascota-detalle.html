@@ -1,24 +1,48 @@
-<div class="container my-4" *ngIf="mascota">
-  <div class="row">
-    <aside class="col-md-4">
-      <div class="card">
-        <img [src]="mascota.fotoURL" [alt]="mascota.nombre" class="card-img-top">
-        <div class="card-body">
-          <h2>{{ mascota.nombre }}</h2>
-          <p><strong>Edad:</strong> {{ mascota.edad }} años</p>
-          <p><strong>Tipo:</strong> {{ mascota.tipo }}</p>
-          <p><strong>Raza:</strong> {{ mascota.raza }}</p>
-          <p><strong>Peso:</strong> {{ mascota.peso }} kg</p>
-          <p><strong>Estado:</strong> {{ mascota.enfermedad }}</p>
-        </div>
-      </div>
-    </aside>
+<div class="container my-4">
 
-    <section class="col-md-8">
-      <h3>Historial Médico</h3>
-      <div class="alert alert-secondary">
-        :D No hay historial médico disponible (por ahora).
+  <!-- Loading -->
+  <ng-container *ngIf="loading; else contenido">
+    <div class="text-center">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Cargando...</span>
       </div>
-    </section>
-  </div>
+      <p>Cargando información de la mascota...</p>
+    </div>
+  </ng-container>
+
+  <!-- Contenido -->
+  <ng-template #contenido>
+    <!-- Error -->
+    <div *ngIf="error" class="alert alert-danger text-center">
+      Ocurrió un error al cargar la mascota. Intenta nuevamente.
+    </div>
+
+    <!-- Mascota -->
+    <ng-container *ngIf="mascota as m">
+      <div class="row">
+        <aside class="col-md-4">
+          <div class="card shadow-sm">
+            <img [src]="m.fotoURL || defaultImage" 
+                 [alt]="m.nombre" 
+                 class="card-img-top"
+                 (error)="onImageError($event)"
+                 style="height: 300px; object-fit: cover;">
+
+            <div class="card-body">
+              <h2 class="card-title">{{ m.nombre }}</h2>
+              <div class="pet-info">
+                <p><strong>Edad:</strong> {{ m.edad }} años</p>
+                <p><strong>Tipo:</strong> {{ m.tipo }}</p>
+                <p><strong>Raza:</strong> {{ m.raza }}</p>
+                <p><strong>Peso:</strong> {{ m.peso }} kg</p>
+                <p><strong>Estado de salud:</strong> {{ m.estado }}</p>
+                <p><strong>Enfermedades:</strong> {{ m.enfermedad }}</p>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </ng-container>
+  </ng-template>
+
 </div>
