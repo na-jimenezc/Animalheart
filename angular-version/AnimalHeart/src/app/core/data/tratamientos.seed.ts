@@ -1,4 +1,4 @@
-import { Tratamiento } from '../models/tratamiento.model';
+/*import { Tratamiento } from '../models/tratamiento.model';
 import { MASCOTAS_SEED } from './mascotas.seed';
 import { MEDICAMENTOS_SEED } from './medicamentos.seed';
 import { VETERINARIOS_SEED } from './veterinarios.seed';
@@ -41,3 +41,4 @@ export const TRATAMIENTOS_SEED: Tratamiento[] = RAW_TRATAMIENTOS.map(t => {
     veterinario,
   };
 });
+*/

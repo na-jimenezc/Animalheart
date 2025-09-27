@@ -1,14 +1,8 @@
-import type { Tratamiento } from './tratamiento.model';
-
-//CHECK BACKEND
-export interface Medicamento {
+export interface MedicamentoDTO {
   id?: number;              
   nombre: string;
   precioCompra: number;
   precioVenta: number;
   unidadesDisponibles: number;
   unidadesVendidas: number; 
-
-  tratamientos?: Tratamiento[];
 }
-

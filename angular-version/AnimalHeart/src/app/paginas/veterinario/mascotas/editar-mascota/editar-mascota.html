@@ -5,9 +5,7 @@
 
   <div class="row g-3">
     <div class="col-md-3 text-center">
-      <img [src]="form.value.fotoUrl || (form.value.tipo === 'Gato' ? '/assets/images/defaultGato.png' : '/assets/images/defaultPerro.jpg')"
-           (error)="onImageError()"
-           alt="Foto" class="img-thumbnail mb-2" style="max-height:140px">
+      <img [src]="form.value.fotoUrl || (form.value.tipo === 'Gato' ? '/assets/images/defaultGato.png' : '/assets/images/defaultPerro.jpg')">
       <input class="form-control" placeholder="URL de foto"
              formControlName="fotoUrl" (change)="onFotoUrlChange()">
     </div>

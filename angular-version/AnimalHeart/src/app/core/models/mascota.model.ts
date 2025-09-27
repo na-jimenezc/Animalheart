@@ -1,17 +1,20 @@
 export type TipoMascota = 'Perro' | 'Gato';
 
 import type { Cliente } from './cliente.model';
+import type { Tratamiento } from './tratamiento.model';
 
+//CHECK BACKEND
 export interface Mascota {
-  id: string;
+  id?: number;            
   nombre: string;
-  tipo: TipoMascota;
   raza: string;
   edad: number;
+  tipo: string;            
   enfermedad: string;
   peso: number;
-  fotoUrl?: string;
+  fotoURL?: string;       
+  estado: string;         
   activo: boolean;
-
   cliente: Cliente;
+  tratamientos?: Tratamiento[];
 }

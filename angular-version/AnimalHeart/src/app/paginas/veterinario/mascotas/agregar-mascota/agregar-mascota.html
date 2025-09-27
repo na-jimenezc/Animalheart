@@ -1,4 +1,5 @@
 
+
 <div class="form-container">
   <div class="form-body">
     <form [formGroup]="mascotaForm" (ngSubmit)="onSubmit()">
@@ -8,17 +9,17 @@
           <i class="bi bi-camera"></i>Foto de la Mascota
         </h2>
         <div class="photo-container">
-          <div class="photo-placeholder" id="photoPlaceholder" *ngIf="!mascotaForm.get('fotoUrl')?.value">
+          <div class="photo-placeholder" id="photoPlaceholder" *ngIf="!mascotaForm.get('fotoURL')?.value">
             <i class="bi bi-camera me-2"></i> Imagen de la mascota
           </div>
-          <img [src]="mascotaForm.get('fotoUrl')?.value" class="photo-preview" id="fotoPreview" 
-               *ngIf="mascotaForm.get('fotoUrl')?.value"
+          <img [src]="mascotaForm.get('fotoURL')?.value" class="photo-preview" id="fotoPreview" 
+               *ngIf="mascotaForm.get('fotoURL')?.value"
                (error)="onImageError()" />
         </div>
         
         <div class="form-field">
           <label class="form-label">URL de la Foto</label>
-          <input type="url" formControlName="fotoUrl" class="form-input" 
+          <input type="url" formControlName="fotoURL" class="form-input" 
                  placeholder="https://ejemplo.com/imagen.jpg" id="fotoURLInput"
                  (input)="onFotoUrlChange()" />
           <div class="form-text">Pega la URL de una imagen o deja vacío para usar imagen por defecto</div>

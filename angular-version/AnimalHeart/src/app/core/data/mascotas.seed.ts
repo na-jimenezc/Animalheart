@@ -1,4 +1,4 @@
-import { Mascota, TipoMascota } from '../models/mascota.model';
+/*import { Mascota, TipoMascota } from '../models/mascota.model';
 import { CLIENTES_SEED } from './clientes.seed';
 
 type RawMascota = Omit<Mascota, 'cliente'> & { clienteId: string };
@@ -52,3 +52,4 @@ export const MASCOTAS_SEED: Mascota[] = RAW_MASCOTAS.map((m) => {
   const { clienteId, ...rest } = m;
   return { ...rest, cliente };
 });
+*/

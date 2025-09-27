@@ -1,7 +1,9 @@
 import type { Mascota } from './mascota.model';
 
+
+//CHECK BACKEND
 export interface Cliente {
-  id?: string;
+  id?: number;
   cedula: string;
   nombre: string;
   correo: string;

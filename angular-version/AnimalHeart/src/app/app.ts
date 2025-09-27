@@ -4,10 +4,10 @@ import { Header } from './landing/header/header';
 import { Footer } from './landing/footer/footer';
 import { Router, NavigationEnd } from '@angular/router';
 import { CommonModule } from '@angular/common';
-
+import { HttpClientModule } from '@angular/common/http';
 @Component({
   selector: 'app-root',
-  imports: [RouterModule, Header, Footer, CommonModule],
+  imports: [RouterModule, Header, Footer, CommonModule,  HttpClientModule],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
