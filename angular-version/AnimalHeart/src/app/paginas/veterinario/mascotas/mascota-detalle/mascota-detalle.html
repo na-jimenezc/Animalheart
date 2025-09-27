@@ -2,11 +2,11 @@
 
   <!-- Loading -->
   <ng-container *ngIf="loading; else contenido">
-    <div class="text-center">
+    <div class="text-center py-5">
       <div class="spinner-border" role="status">
         <span class="visually-hidden">Cargando...</span>
       </div>
-      <p>Cargando información de la mascota...</p>
+      <p class="mt-2">Cargando información de la mascota...</p>
     </div>
   </ng-container>
 
@@ -20,8 +20,9 @@
     <!-- Mascota -->
     <ng-container *ngIf="mascota as m">
       <div class="row">
+        <!-- Información de la mascota -->
         <aside class="col-md-4">
-          <div class="card shadow-sm">
+          <div class="card shadow-sm mb-4">
             <img [src]="m.fotoURL || defaultImage" 
                  [alt]="m.nombre" 
                  class="card-img-top"
@@ -29,18 +30,103 @@
                  style="height: 300px; object-fit: cover;">
 
             <div class="card-body">
-              <h2 class="card-title">{{ m.nombre }}</h2>
+              <h2 class="card-title text-primary">{{ m.nombre }}</h2>
               <div class="pet-info">
                 <p><strong>Edad:</strong> {{ m.edad }} años</p>
                 <p><strong>Tipo:</strong> {{ m.tipo }}</p>
                 <p><strong>Raza:</strong> {{ m.raza }}</p>
                 <p><strong>Peso:</strong> {{ m.peso }} kg</p>
-                <p><strong>Estado de salud:</strong> {{ m.estado }}</p>
+                <p><strong>Estado de salud:</strong> 
+                  <span class="badge" [ngClass]="{
+                    'bg-success': m.estado === 'Sano',
+                    'bg-warning': m.estado === 'En tratamiento',
+                    'bg-danger': m.estado === 'Enfermo'
+                  }">{{ m.estado }}</span>
+                </p>
                 <p><strong>Enfermedades:</strong> {{ m.enfermedad }}</p>
               </div>
             </div>
           </div>
         </aside>
+
+        <!-- Historial médico y tratamientos -->
+        <section class="col-md-8">
+          <!-- Historial médico -->
+          <div class="card shadow-sm mb-4">
+            <div class="card-header bg-light">
+              <h3 class="card-title mb-0">Historial Médico</h3>
+            </div>
+            <div class="card-body">
+              <div class="alert alert-info">
+                Información general del historial médico de {{ m.nombre }}.
+              </div>
+            </div>
+          </div>
+
+          <!-- Tratamientos -->
+          <div class="card shadow-sm">
+            <div class="card-header bg-light d-flex justify-content-between align-items-center">
+              <h3 class="card-title mb-0">Tratamientos Recibidos</h3>
+              <span class="badge bg-primary">{{ tratamientos.length }}</span>
+            </div>
+            <div class="card-body">
+              
+              <!-- Loading tratamientos -->
+              <div *ngIf="loadingTratamientos" class="text-center py-3">
+                <div class="spinner-border spinner-border-sm" role="status">
+                  <span class="visually-hidden">Cargando tratamientos...</span>
+                </div>
+                <p class="mt-2 small">Cargando tratamientos...</p>
+              </div>
+
+              <!-- Lista de tratamientos -->
+              <div *ngIf="!loadingTratamientos">
+                <div *ngIf="tratamientos.length === 0" class="alert alert-warning">
+                  <i class="bi bi-info-circle"></i> No hay tratamientos registrados para esta mascota.
+                </div>
+
+                <div *ngIf="tratamientos.length > 0" class="table-responsive">
+                  <table class="table table-hover">
+                    <thead class="table-light">
+                      <tr>
+                        <th>Fecha</th>
+                        <th>Medicamento</th>
+                        <th>Cantidad</th>
+                        <th>Veterinario</th>
+                        <th>Especialidad</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let tratamiento of tratamientos">
+                        <td>
+                          <strong>{{ formatearFecha(tratamiento.fecha) }}</strong>
+                        </td>
+                        <td>
+                          <span class="fw-bold text-primary">{{ tratamiento.medicamento.nombre }}</span>
+                          <br>
+                          <small class="text-muted">
+                            Precio: ${{ tratamiento.medicamento.precioVenta | number }}
+                          </small>
+                        </td>
+                        <td>
+                          <span class="badge bg-secondary">{{ tratamiento.cantidadUsada }} unidades</span>
+                        </td>
+                        <td>
+                          {{ tratamiento.veterinario.nombre }}
+                          <br>
+                          <small class="text-muted">{{ tratamiento.veterinario.nombreUsuario }}</small>
+                        </td>
+                        <td>
+                          <span class="badge bg-info">{{ tratamiento.veterinario.especialidad }}</span>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
     </ng-container>
   </ng-template>

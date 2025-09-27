@@ -4,7 +4,10 @@ import { Mascota } from '../../../../core/models/mascota.model';
 import { MascotasService } from '../../../../core/services/mascotas.service';
 import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
+import { TratamientoService } from '../../../../core/services/tratamiento.service';
 import { ChangeDetectorRef } from '@angular/core';
+import { Tratamiento } from '../../../../core/models/tratamiento.model';
+import { TratamientoDTO } from '../../../../core/models/DTO/tratamiento-dto';
 
 @Component({
   selector: 'app-mascota-detalle',
@@ -15,72 +18,95 @@ import { ChangeDetectorRef } from '@angular/core';
 export class MascotaDetalle implements OnInit {
   
   mascota?: Mascota;
+  tratamientos: TratamientoDTO[] = []; 
   defaultImage = "/assets/images/imagenError.webp";
   loading = true;
   error = false;
-  private routeSub?: Subscription;
+  loadingTratamientos = false;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private mascotasService: MascotasService,
+    private tratamientoService: TratamientoService,
     private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
-    console.log('Componente MascotaDetalle inicializado');
-    
-    this.routeSub = this.route.paramMap.subscribe(params => {
+    this.route.paramMap.subscribe(params => {
       const id = params.get('id');
-      console.log('Parámetro de ruta cambiado, ID:', id);
-      
       if (id) {
         this.cargarMascota(+id);
       } else {
-        console.error('No se encontró ID en la ruta');
         this.error = true;
         this.loading = false;
       }
     });
-
-    // También carga la mascota inicial con snapshot
-    const initialId = this.route.snapshot.paramMap.get('id');
-    if (initialId) {
-      console.log('Cargando mascota inicial con ID:', initialId);
-      this.cargarMascota(+initialId);
-    }
-  }
-
-  ngOnDestroy(): void {
-    console.log('Componente destruido');
-    this.routeSub?.unsubscribe(); 
   }
 
   cargarMascota(id: number): void {
-      this.loading = true;
-      this.error = false;
-      this.mascota = undefined;
+    this.loading = true;
+    this.error = false;
+    this.mascota = undefined;
+    this.tratamientos = [];
 
-      this.mascotasService.getById(id).subscribe({
-        next: (data) => {
-          console.log('Mascota recibida:', data);
-          this.mascota = data;
-          this.loading = false;
-          this.error = false;
-          this.cdr.detectChanges();  
-        },
-        error: (err) => {
-          console.error('Error cargando mascota', err);
-          this.loading = false;
-          this.error = true;
-          this.mascota = undefined;
-          this.cdr.detectChanges();   
+    this.mascotasService.getById(id).subscribe({
+      next: (data) => {
+        this.mascota = data;
+        this.loading = false;
+        this.error = false;
+        
+        if (this.mascota.id) {
+          this.cargarTratamientos(this.mascota.id);
         }
+        
+        this.cdr.detectChanges();  
+      },
+      error: (err) => {
+        console.error('Error cargando mascota', err);
+        this.loading = false;
+        this.error = true;
+        this.cdr.detectChanges();   
+      }
+    });
+  }
+
+  cargarTratamientos(mascotaId: number): void {
+    this.loadingTratamientos = true;
+    
+    this.tratamientoService.getTratamientosPorMascota(mascotaId).subscribe({
+      next: (tratamientos) => {
+        console.log('Tratamientos recibidos:', tratamientos);
+        this.tratamientos = tratamientos;
+        this.loadingTratamientos = false;
+        this.cdr.detectChanges();
+      },
+      error: (err) => {
+        console.error('Error cargando tratamientos:', err);
+        this.tratamientos = [];
+        this.loadingTratamientos = false;
+        this.cdr.detectChanges();
+      }
+    });
+  }
+
+  formatearFecha(fecha: string): string {
+    if (!fecha) return 'Fecha no disponible';
+    
+    try {
+      const date = new Date(fecha);
+      return date.toLocaleDateString('es-ES', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
       });
+    } catch (error) {
+      return fecha;
     }
+  }
 
   onImageError(event: Event) {
     (event.target as HTMLImageElement).src = this.defaultImage;
   }
-
 }
+

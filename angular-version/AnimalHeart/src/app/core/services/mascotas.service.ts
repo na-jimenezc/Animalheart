@@ -46,14 +46,15 @@ export class MascotasService {
 
   //Función para actualizar una mascota en el backend, SE REVISA EL fotoUrl c:
   update(id: number, dto: MascotaUpdateDTO): Observable<Mascota> {
-    const payload = {
-      ...dto,
-      fotoURL: dto.fotoUrl,
-    };
-    delete (payload as any).fotoUrl;
-
-    return this.http.put<Mascota>(`${this.API_URL}/${id}`, payload);
-  }
+      const payload = {
+        ...dto,
+        fotoURL: dto.fotoUrl || '', 
+      };
+      
+      delete (payload as any).fotoUrl;
+      console.log('Payload para update:', payload);
+      return this.http.put<Mascota>(`${this.API_URL}/${id}`, payload);
+    }
 
   //Función para desactivar una mascota en el backend
   desactivar(id: number): Observable<void> {
