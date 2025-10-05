@@ -12,6 +12,7 @@ import { Mascotas } from './paginas/veterinario/mascotas/mascotas';
 import { MascotaDetalle } from './paginas/veterinario/mascotas/mascota-detalle/mascota-detalle';
 import { AgregarMascota } from './paginas/veterinario/mascotas/agregar-mascota/agregar-mascota';
 import { EditarMascota } from './paginas/veterinario/mascotas/editar-mascota/editar-mascota';
+import { Administrador } from './paginas/administrador/administrador';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent }, 
@@ -19,7 +20,7 @@ export const routes: Routes = [
 
   //Login
   { path: 'login-veterinario', component: LoginVeterinario },
-  { path: 'login-admin', component: LoginAdmin },
+  { path: 'admin/login', component: LoginAdmin },
   { path: 'clientes/login-cliente', component: LoginCliente },
 
   /* CRUD de clientes ESTA VAINA ESTÁ PENDIENTE
@@ -34,6 +35,10 @@ export const routes: Routes = [
   { path: 'mascotas/editar/:id', component: EditarMascota },
   { path: 'mascotas/detalle/:id', component: MascotaDetalle },
 
-  //Redirecciones
+  //Admin
+  { path: 'admin/dashboard', component: Administrador },
+  { path: 'admin', redirectTo: 'admin/login', pathMatch: 'full' },
+
+    //Redirecciones
   { path: '**', redirectTo: '' },
 ];
