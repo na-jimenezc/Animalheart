@@ -13,6 +13,7 @@ import { MascotaDetalle } from './paginas/veterinario/mascotas/mascota-detalle/m
 import { AgregarMascota } from './paginas/veterinario/mascotas/agregar-mascota/agregar-mascota';
 import { EditarMascota } from './paginas/veterinario/mascotas/editar-mascota/editar-mascota';
 import { Administrador } from './paginas/administrador/administrador';
+import { adminGuard } from './core/guards/admin.guard'; // ⬅️ NUEVO
 
 export const routes: Routes = [
   { path: '', component: HomeComponent }, 
@@ -36,7 +37,7 @@ export const routes: Routes = [
   { path: 'mascotas/detalle/:id', component: MascotaDetalle },
 
   //Admin
-  { path: 'admin/dashboard', component: Administrador },
+  { path: 'admin/dashboard', component: Administrador, canActivate: [adminGuard] },
   { path: 'admin', redirectTo: 'admin/login', pathMatch: 'full' },
 
     //Redirecciones
