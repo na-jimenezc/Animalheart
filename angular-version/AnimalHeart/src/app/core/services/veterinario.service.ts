@@ -1,41 +1,41 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { Veterinario } from '../models/veterinario.model';
 import { HttpClient, HttpParams} from '@angular/common/http';
 
 @Injectable({ providedIn: 'root' })
 export class VeterinarioService {
-
-    private apiUrl = 'http://localhost:8080/api/veterinarios'; 
-    private veterinarioSubject = new BehaviorSubject<Veterinario | null>(null);
-    veterinario$ = this.veterinarioSubject.asObservable();
-
-  //private veterinarios = VETERINARIOS_SEED;
+  private apiUrl = 'http://localhost:8080/api/veterinarios';
+  private veterinarioSubject = new BehaviorSubject<Veterinario | null>(null);
+  veterinario$ = this.veterinarioSubject.asObservable();
 
   constructor(private http: HttpClient) {}
 
-
-  //Función para el login del veterinario
-  login(usuario: string, contrasenia: string): Observable<Veterinario | null> {
+  login(usuario: string, contrasenia: string): Observable<Veterinario> {
     const params = new HttpParams()
       .set('nombreUsuario', usuario)
       .set('contrasenia', contrasenia);
 
-    return this.http.post<Veterinario | null>(
-      `${this.apiUrl}/login`,
-      null,
-      { params }
+    return this.http.post<Veterinario>(`${this.apiUrl}/login`, null, { params }).pipe(
+      tap(vet => {
+        sessionStorage.setItem('vet', JSON.stringify(vet));
+        this.veterinarioSubject.next(vet);
+      })
     );
-
   }
 
-  //Función para establecer el veterinario logeado
+  getVetFromStorage(): Veterinario | null {
+    const raw = sessionStorage.getItem('vet');
+    return raw ? JSON.parse(raw) as Veterinario : null;
+  }
+
   setVeterinarioLogeado(vet: Veterinario): void {
+    sessionStorage.setItem('vet', JSON.stringify(vet));
     this.veterinarioSubject.next(vet);
   }
 
-  //Función para el logout del veterinario
   logout(): void {
+    sessionStorage.removeItem('vet');
     this.veterinarioSubject.next(null);
   }
 
