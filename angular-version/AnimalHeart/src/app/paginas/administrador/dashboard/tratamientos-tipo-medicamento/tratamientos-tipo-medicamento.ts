@@ -1,11 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+
+export interface TratamientoMedicamento {
+  medicamento: string;
+  cantidad: number;
+}
 
 @Component({
   selector: 'app-tratamientos-tipo-medicamento',
-  imports: [],
   templateUrl: './tratamientos-tipo-medicamento.html',
-  styleUrl: './tratamientos-tipo-medicamento.css'
+  styleUrls: ['./tratamientos-tipo-medicamento.css']
 })
 export class TratamientosTipoMedicamento {
-
+  @Input() tratamientosPorMedicamento: TratamientoMedicamento[] = [];
+  @Input() loading: boolean = false;
 }

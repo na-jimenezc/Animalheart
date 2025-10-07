@@ -1,11 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-total-tratamientos-mes',
-  imports: [],
   templateUrl: './total-tratamientos-mes.html',
-  styleUrl: './total-tratamientos-mes.css'
+  styleUrls: ['./total-tratamientos-mes.css']
 })
 export class TotalTratamientosMes {
-
+  @Input() totalTratamientos: number = 0;
+  @Input() loading: boolean = false;
 }

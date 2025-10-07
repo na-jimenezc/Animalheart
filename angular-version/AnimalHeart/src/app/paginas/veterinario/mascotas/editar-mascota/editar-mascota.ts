@@ -130,49 +130,48 @@ export class EditarMascota implements OnInit {
     }
   }
 
-  onSubmit(): void {
-    this.submitted = true;
-    this.successMessage = '';
-    this.errorMessage = '';
+onSubmit(): void {
+  this.submitted = true;
+  this.successMessage = '';
+  this.errorMessage = '';
 
-    if (this.form.invalid) {
-      this.form.markAllAsTouched();
-      console.log('Formulario inválido', this.form.errors);
-      return;
-    }
-
-    if (this.cargando) return;
-
-    this.cargando = true;
-
-    //DTO solo para el formulario
-    const dto: MascotaUpdateDTO = {
-      nombre: this.form.value.nombre,
-      tipo: this.form.value.tipo,
-      raza: this.form.value.raza,
-      enfermedad: this.form.value.enfermedad,
-      fotoUrl: this.form.value.fotoUrl || this.getDefaultImage(this.form.value.tipo),
-      activo: this.form.value.activo
-    };
-
-    console.log('Enviando DTO:', dto);
-
-    this.mascotasService.update(this.id, dto).subscribe({
-      next: (mascotaActualizada) => {
-        this.successMessage = 'Mascota actualizada correctamente';
-        console.log('Mascota actualizada:', mascotaActualizada);
-        
-        setTimeout(() => {
-          this.router.navigate(['/mascotas/ver-mascotas']);
-        }, 1500);
-      },
-      error: (err) => {
-        console.error('Error actualizando mascota:', err);
-        this.errorMessage = 'Error al actualizar la mascota: ' + (err.error?.message || err.message);
-        this.cargando = false;
-      }
-    });
+  if (this.form.invalid) {
+    this.form.markAllAsTouched();
+    console.log('Formulario inválido', this.form.errors);
+    return;
   }
+
+  if (this.cargando) return;
+
+  this.cargando = true;
+
+  // DTO solo para el formulario
+  const dto: MascotaUpdateDTO = {
+    nombre: this.form.value.nombre,
+    tipo: this.form.value.tipo,
+    raza: this.form.value.raza,
+    enfermedad: this.form.value.enfermedad,
+    fotoUrl: this.form.value.fotoUrl || this.getDefaultImage(this.form.value.tipo),
+    activo: this.form.value.activo
+  };
+
+  console.log('Enviando DTO:', dto);
+
+  this.mascotasService.update(this.id, dto).subscribe({
+    next: (mascotaActualizada) => {
+      this.successMessage = 'Mascota actualizada correctamente';
+      console.log('Mascota actualizada:', mascotaActualizada);
+      
+      // ✅ ELIMINADO EL setTimeout - Redirección inmediata
+      this.router.navigate(['/mascotas/ver-mascotas']);
+    },
+    error: (err) => {
+      console.error('Error actualizando mascota:', err);
+      this.errorMessage = 'Error al actualizar la mascota: ' + (err.error?.message || err.message);
+      this.cargando = false;
+    }
+  });
+}
 
   private getDefaultImage(tipo: string): string {
     return tipo === 'Perro' 

@@ -13,7 +13,9 @@ import { MascotaDetalle } from './paginas/veterinario/mascotas/mascota-detalle/m
 import { AgregarMascota } from './paginas/veterinario/mascotas/agregar-mascota/agregar-mascota';
 import { EditarMascota } from './paginas/veterinario/mascotas/editar-mascota/editar-mascota';
 import { Administrador } from './paginas/administrador/administrador';
-import { adminGuard } from './core/guards/admin.guard'; // ⬅️ NUEVO
+import { adminGuard } from './core/guards/admin.guard'; 
+import { AgregarDueno } from './paginas/veterinario/mascotas/agregar-dueno/agregar-dueno';
+import { AgregarTratamiento } from './paginas/veterinario/mascotas/agregar-tratamiento/agregar-tratamiento';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent }, 
@@ -35,6 +37,8 @@ export const routes: Routes = [
   { path: 'mascotas/agregar', component: AgregarMascota },
   { path: 'mascotas/editar/:id', component: EditarMascota },
   { path: 'mascotas/detalle/:id', component: MascotaDetalle },
+   { path: 'clientes/nuevo', component: AgregarDueno },
+   { path: 'tratamientos/agregar', component: AgregarTratamiento },
 
   //Admin
   { path: 'admin/dashboard', component: Administrador, canActivate: [adminGuard] },

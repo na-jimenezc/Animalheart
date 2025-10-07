@@ -1,1 +1,16 @@
-<p>ventas-totales works!</p>
+<div class="card text-white bg-secondary h-100">
+  <div class="card-body">
+    <div class="d-flex justify-content-between">
+      <div>
+        <h5 class="card-title">Ventas Totales</h5>
+        <h2 class="display-4" *ngIf="!loading">${{ ventasTotales.toFixed(2) }}</h2>
+        <div *ngIf="loading" class="spinner-border spinner-border-sm" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+      <div class="align-self-center">
+        <i class="fas fa-dollar-sign fa-2x"></i>
+      </div>
+    </div>
+  </div>
+</div>

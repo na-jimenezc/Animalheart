@@ -1,0 +1,177 @@
+
+<app-header-vet [veterinario]="veterinario" [error]="error"></app-header-vet>
+
+<section class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header bg-primary text-white">
+          <h4 class="mb-0">
+            <i class="bi bi-plus-circle me-2"></i>
+            Agregar Nuevo Tratamiento
+          </h4>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="tratamientoForm" (ngSubmit)="onSubmit()">
+            
+            <!-- Mascota -->
+            <div class="mb-3">
+              <label for="mascota" class="form-label">Mascota *</label>
+              <select 
+                id="mascota" 
+                class="form-select" 
+                formControlName="mascotaId"
+                [class.is-invalid]="tratamientoForm.get('mascotaId')?.invalid && tratamientoForm.get('mascotaId')?.touched">
+                <option value="">Seleccionar mascota...</option>
+                <option *ngFor="let mascota of mascotas" [value]="mascota.id">
+                  {{ mascota.nombre }} - {{ mascota.raza }} ({{ mascota.tipo }})
+                </option>
+              </select>
+              <div class="invalid-feedback">
+                Por favor selecciona una mascota
+              </div>
+            </div>
+
+            <!-- Fecha del tratamiento -->
+            <div class="mb-3">
+              <label for="fecha" class="form-label">Fecha del tratamiento *</label>
+              <input 
+                type="date" 
+                id="fecha" 
+                class="form-control" 
+                formControlName="fecha"
+                [class.is-invalid]="tratamientoForm.get('fecha')?.invalid && tratamientoForm.get('fecha')?.touched">
+              <div class="invalid-feedback">
+                Por favor ingresa la fecha del tratamiento
+              </div>
+            </div>
+
+            <!-- Medicamento -->
+            <div class="mb-3">
+              <label for="medicamento" class="form-label">Medicamento *</label>
+              <select 
+                id="medicamento" 
+                class="form-select" 
+                formControlName="medicamentoId"
+                [class.is-invalid]="tratamientoForm.get('medicamentoId')?.invalid && tratamientoForm.get('medicamentoId')?.touched">
+                <option value="">Seleccionar medicamento...</option>
+                <option *ngFor="let medicamento of medicamentos" [value]="medicamento.id">
+                  {{ medicamento.nombre }} - ${{ medicamento.precioVenta }} (Stock: {{ medicamento.unidadesDisponibles }})
+                </option>
+              </select>
+              <div class="invalid-feedback">
+                Por favor selecciona un medicamento
+              </div>
+            </div>
+
+            <!-- Cantidad con validación de stock -->
+            <div class="mb-3">
+              <label for="cantidad" class="form-label">Cantidad utilizada *</label>
+              <input 
+                type="number" 
+                id="cantidad" 
+                class="form-control" 
+                [class.is-invalid]="(tratamientoForm.get('cantidadUsada')?.invalid && tratamientoForm.get('cantidadUsada')?.touched) || stockError"
+                [class.is-valid]="tratamientoForm.get('cantidadUsada')?.valid && !stockError"
+                min="1"
+                [max]="getStockDisponible()"
+                formControlName="cantidadUsada"
+                (input)="validarStock()">
+              
+              <!-- Mensajes de error -->
+              <div *ngIf="tratamientoForm.get('cantidadUsada')?.errors?.['required'] && tratamientoForm.get('cantidadUsada')?.touched" 
+                   class="invalid-feedback">
+                La cantidad es requerida
+              </div>
+              <div *ngIf="tratamientoForm.get('cantidadUsada')?.errors?.['min']" 
+                   class="invalid-feedback">
+                La cantidad debe ser al menos 1
+              </div>
+              <div *ngIf="tratamientoForm.get('cantidadUsada')?.errors?.['pattern']" 
+                   class="invalid-feedback">
+                La cantidad debe ser un número entero positivo
+              </div>
+              
+              <!-- Mensaje de stock insuficiente -->
+              <div *ngIf="stockError" class="text-danger mt-1 small">
+                <i class="bi bi-exclamation-triangle-fill"></i> {{ stockError }}
+              </div>
+              
+              <!-- Información de stock disponible -->
+              <div *ngIf="medicamentoSeleccionado" class="form-text">
+                <span [class.text-success]="!stockError" [class.text-warning]="stockError">
+                  <i class="bi bi-box-seam"></i> 
+                  Unidades disponibles: <strong>{{ medicamentoSeleccionado.unidadesDisponibles }}</strong>
+                </span>
+                <span *ngIf="medicamentoSeleccionado.unidadesVendidas > 0" class="ms-2 text-muted">
+                  | Vendidas: {{ medicamentoSeleccionado.unidadesVendidas }}
+                </span>
+              </div>
+            </div>
+
+            <!-- Tipo de tratamiento -->
+            <div class="mb-3">
+              <label for="tipoTratamiento" class="form-label">Tipo de tratamiento *</label>
+              <select 
+                id="tipoTratamiento" 
+                class="form-select" 
+                formControlName="tipoTratamiento"
+                [class.is-invalid]="tratamientoForm.get('tipoTratamiento')?.invalid && tratamientoForm.get('tipoTratamiento')?.touched">
+                <option value="">Seleccionar tipo...</option>
+                <option value="Cirugía">Cirugía</option>
+                <option value="Cardiología">Cardiología</option>
+                <option value="Vacunación">Vacunación</option>
+                <option value="Urgencias">Urgencias</option>
+                <option value="Consulta General">Consulta General</option>
+              </select>
+              <div class="invalid-feedback">
+                Por favor selecciona el tipo de tratamiento
+              </div>
+            </div>
+
+            <!-- Observaciones -->
+            <div class="mb-3">
+              <label for="observaciones" class="form-label">Observaciones</label>
+              <textarea 
+                id="observaciones" 
+                class="form-control" 
+                rows="3" 
+                formControlName="observaciones"
+                placeholder="Observaciones adicionales sobre el tratamiento..."></textarea>
+            </div>
+
+            <!-- Resumen del tratamiento -->
+            <div *ngIf="medicamentoSeleccionado && tratamientoForm.get('cantidadUsada')?.valid && !stockError" 
+                 class="alert alert-info">
+              <h6><i class="bi bi-info-circle me-1"></i> Resumen del tratamiento:</h6>
+              <p class="mb-1">Medicamento: <strong>{{ medicamentoSeleccionado.nombre }}</strong></p>
+              <p class="mb-1">Costo unitario: <strong>${{ medicamentoSeleccionado.precioVenta }}</strong></p>
+              <p class="mb-1">Cantidad: <strong>{{ tratamientoForm.get('cantidadUsada')?.value }}</strong></p>
+              <p class="mb-0 fw-bold">Total: <strong>${{ (medicamentoSeleccionado.precioVenta * tratamientoForm.get('cantidadUsada')?.value).toFixed(2) }}</strong></p>
+              <hr class="my-2">
+              <small class="text-muted">
+                <i class="bi bi-arrow-down-circle"></i> 
+                Después del tratamiento, el stock se reducirá a 
+                <strong>{{ medicamentoSeleccionado.unidadesDisponibles - tratamientoForm.get('cantidadUsada')?.value }}</strong> unidades
+              </small>
+            </div>
+
+            <!-- Botones -->
+            <div class="d-flex gap-2 justify-content-end">
+              <button type="button" class="btn btn-secondary" routerLink="/mascotas">
+                <i class="bi bi-x-circle me-1"></i> Cancelar
+              </button>
+              <button 
+                type="submit" 
+                class="btn btn-primary"
+                [disabled]="tratamientoForm.invalid || isLoading || stockError">
+                <i class="bi bi-check-circle me-1"></i>
+                {{ isLoading ? 'Guardando...' : 'Guardar Tratamiento' }}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

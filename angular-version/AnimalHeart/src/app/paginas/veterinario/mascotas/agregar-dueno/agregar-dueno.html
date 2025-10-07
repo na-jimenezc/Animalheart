@@ -1,0 +1,91 @@
+<div class="bg-light min-vh-100">
+  <header class="vmk-header">
+    <div class="vmk-toolbar container d-flex align-items-center justify-content-between gap-2">
+      <div class="d-flex align-items-center gap-2">
+        <a routerLink="/mascotas/ver-mascotas" class="vmk-btn vmk-btn--ghost">
+          <i class="bi bi-arrow-left me-1"></i> Regresar
+        </a>
+      </div>
+      <a routerLink="/logout" class="vmk-btn vmk-btn--outline">
+        <i class="bi bi-box-arrow-right me-1"></i> Cerrar Sesión
+      </a>
+    </div>
+
+    <div class="vmk-hero">
+      <div class="container vmk-hero-inner">
+        <h1 class="vmk-title">
+          <i class="bi bi-person-plus-fill me-2"></i>Registrar Nuevo Dueño
+        </h1>
+      </div>
+    </div>
+  </header>
+
+  <main class="container mb-5">
+    <div class="form-container">
+      <div class="form-body">
+        <form [formGroup]="clienteForm" (ngSubmit)="onSubmit()">
+          <div class="form-section">
+            <h2 class="form-section-title">
+              <i class="bi bi-person-badge"></i>Información Personal
+            </h2>
+            
+            <div class="form-grid">
+              <div class="form-field">
+                <label class="form-label required">Cédula</label>
+                <input type="text" formControlName="cedula" class="form-input" required 
+                       placeholder="Número de cédula"/>
+                <div *ngIf="clienteForm.get('cedula')?.invalid && clienteForm.get('cedula')?.touched" 
+                     class="error-message">
+                  La cédula es requerida.
+                </div>
+              </div>
+
+              <div class="form-field">
+                <label class="form-label required">Nombres Completos</label>
+                <input type="text" formControlName="nombre" class="form-input" required 
+                       placeholder="Nombres y apellidos"/>
+                <div *ngIf="clienteForm.get('nombre')?.invalid && clienteForm.get('nombre')?.touched" 
+                     class="error-message">
+                  El nombre es requerido.
+                </div>
+              </div>
+
+              <div class="form-field">
+                <label class="form-label required">Correo Electrónico</label>
+                <input type="email" formControlName="correo" class="form-input" required 
+                       placeholder="ejemplo@correo.com"/>
+                <div *ngIf="clienteForm.get('correo')?.invalid && clienteForm.get('correo')?.touched" 
+                     class="error-message">
+                  <div *ngIf="clienteForm.get('correo')?.errors?.['required']">El correo es requerido.</div>
+                  <div *ngIf="clienteForm.get('correo')?.errors?.['email']">El formato del correo no es válido.</div>
+                </div>
+              </div>
+
+              <div class="form-field">
+                <label class="form-label required">Celular</label>
+                <div class="phone-input">
+                  <span class="phone-prefix">+57</span>
+                  <input type="tel" formControlName="celular" class="form-input phone-number" 
+                         placeholder="3001234567" required />
+                </div>
+                <div *ngIf="clienteForm.get('celular')?.invalid && clienteForm.get('celular')?.touched" 
+                     class="error-message">
+                  El celular es requerido.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="btn-container">
+            <button type="button" (click)="onCancel()" class="btn-secondary">
+              <i class="bi bi-x-circle me-2"></i>Cancelar
+            </button>
+            <button type="submit" class="btn-primary" [disabled]="clienteForm.invalid">
+              <i class="bi bi-check-circle me-2"></i>Registrar Dueño
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+</div>

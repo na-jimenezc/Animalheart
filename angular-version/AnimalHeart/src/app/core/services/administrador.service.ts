@@ -12,7 +12,7 @@ export class AdministradorService {
 
   constructor(private http: HttpClient) { }
 
-  // ✅ CORREGIDO: Enviar como JSON en el body
+ 
   login(correo: string, clave: string): Observable<Administrador> {
     const loginData = { correo, clave };
     

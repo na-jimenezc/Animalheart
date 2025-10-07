@@ -21,7 +21,10 @@ export class App {
       if (event instanceof NavigationEnd) {
       
         //Se oculta el header en la página de mascotas
-        this.ocultarHeader = event.urlAfterRedirects.startsWith('/mascotas');
+        this.ocultarHeader = 
+          event.urlAfterRedirects.startsWith('/mascotas') ||
+          event.urlAfterRedirects.startsWith('/clientes') || 
+          event.urlAfterRedirects.startsWith('/tratamientos');
       }
     });
   }

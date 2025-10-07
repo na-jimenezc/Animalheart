@@ -6,10 +6,11 @@ import { Veterinario } from '../../../core/models/veterinario.model';
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { HeaderVet } from '../../../componentes/header-vet/header-vet';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-mascotas',
-  imports: [ItemMascota, CommonModule, HeaderVet],
+  imports: [ItemMascota, CommonModule, HeaderVet, RouterModule],
   templateUrl: './mascotas.html',
   styleUrl: './mascotas.css'
 })
@@ -67,10 +68,8 @@ export class Mascotas implements OnInit {
     this.changeDetector.detectChanges();
   }
 
-  cambiarPagina(delta: number): void {
-    this.page += delta;
-    if (this.page < 1) this.page = 1;
-    if (this.page > this.totalPages) this.page = this.totalPages;
+  cambiarPagina(nuevaPagina: number): void {
+    this.page = nuevaPagina;
     this.actualizarPagina();
   }
 
@@ -85,6 +84,21 @@ export class Mascotas implements OnInit {
     if (this.page > 1) {
       this.page--;
       this.actualizarPagina();
+    }
+  }
+
+  // Nuevo método para desactivar mascota
+  desactivarMascota(mascota: Mascota): void {
+    if (mascota.id && mascota.activo) {
+      if (confirm(`¿Estás seguro de que quieres desactivar a ${mascota.nombre}?`)) {
+        this.mascotasService.desactivar(mascota.id).subscribe({
+          next: () => {
+            mascota.activo = false;
+            console.log('Mascota desactivada:', mascota.nombre);
+          },
+          error: (err) => console.error('Error desactivando mascota', err),
+        });
+      }
     }
   }
 }

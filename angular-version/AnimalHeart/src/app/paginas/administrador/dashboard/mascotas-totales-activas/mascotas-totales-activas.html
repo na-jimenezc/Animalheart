@@ -1,1 +1,41 @@
-<p>mascotas-totales-activas works!</p>
+<div class="row">
+  <!-- Total Mascotas -->
+  <div class="col-md-6 mb-3">
+    <div class="card text-white bg-info h-100">
+      <div class="card-body">
+        <div class="d-flex justify-content-between">
+          <div>
+            <h5 class="card-title">Total Mascotas</h5>
+            <h2 class="display-4" *ngIf="!loading">{{ totalMascotas }}</h2>
+            <div *ngIf="loading" class="spinner-border spinner-border-sm" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>
+          <div class="align-self-center">
+            <i class="fas fa-paw fa-2x"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mascotas Activas -->
+  <div class="col-md-6 mb-3">
+    <div class="card text-white bg-warning h-100">
+      <div class="card-body">
+        <div class="d-flex justify-content-between">
+          <div>
+            <h5 class="card-title">Mascotas Activas</h5>
+            <h2 class="display-4" *ngIf="!loading">{{ mascotasActivas }}</h2>
+            <div *ngIf="loading" class="spinner-border spinner-border-sm" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>
+          <div class="align-self-center">
+            <i class="fas fa-heartbeat fa-2x"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

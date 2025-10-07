@@ -1,11 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+
+export interface TopTratamiento {
+  medicamento: string;
+  unidadesVendidas: number;
+}
 
 @Component({
   selector: 'app-top3-tratamientos',
-  imports: [],
   templateUrl: './top3-tratamientos.html',
-  styleUrl: './top3-tratamientos.css'
+  styleUrls: ['./top3-tratamientos.css']
 })
 export class Top3Tratamientos {
-
+  @Input() top3Tratamientos: TopTratamiento[] = [];
+  @Input() loading: boolean = false;
 }

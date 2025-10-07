@@ -12,6 +12,8 @@ export class ClienteService {
 
   constructor(private http: HttpClient) {}
 
+  
+
   // --- LOGIN ---
   loginCliente(correo: string, cedula: string): Observable<Cliente> {
     return this.http.post<Cliente>(`${this.apiUrl}/login`, { correo, cedula });

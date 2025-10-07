@@ -1,0 +1,35 @@
+/* administrador.css */
+.administrador-container {
+  min-height: 100vh;
+  background-color: #f8f9fa;
+}
+
+.admin-header {
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.admin-header h4 {
+  font-weight: 600;
+}
+
+.admin-header p {
+  opacity: 0.9;
+}
+
+/* Asegurar que el dashboard ocupe el espacio disponible */
+app-dashboard {
+  display: block;
+  width: 100%;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .admin-header {
+    text-align: center;
+  }
+  
+  .admin-header .text-end {
+    text-align: center !important;
+    margin-top: 1rem;
+  }
+}

@@ -5,11 +5,13 @@ import { Router } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { AdministradorService } from '../../core/services/administrador.service';
 import { Inject } from '@angular/core';
+import { DashboardComponent } from './dashboard/dashboard';
+
 
 @Component({
   selector: 'app-administrador',
   standalone: true,
-  imports: [CommonModule, HttpClientModule],
+  imports: [CommonModule, HttpClientModule, DashboardComponent],
   templateUrl: './administrador.html',
   styleUrl: './administrador.css'
 })

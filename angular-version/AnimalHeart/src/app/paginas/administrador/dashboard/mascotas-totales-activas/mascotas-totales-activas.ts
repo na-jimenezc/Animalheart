@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-mascotas-totales-activas',
-  imports: [],
   templateUrl: './mascotas-totales-activas.html',
-  styleUrl: './mascotas-totales-activas.css'
+  styleUrls: ['./mascotas-totales-activas.css']
 })
 export class MascotasTotalesActivas {
-
+  @Input() totalMascotas: number = 0;
+  @Input() mascotasActivas: number = 0;
+  @Input() loading: boolean = false;
 }

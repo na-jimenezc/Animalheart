@@ -38,4 +38,9 @@ export class MedicamentosService {
   delete(id: number): Observable<void> {
     return this.http.delete<void>(`${this.API_URL}/${id}`);
   }
+   verificarStock(id: number, cantidadRequerida: number): Observable<{ disponible: boolean, stockActual: number }> {
+    return this.http.get<{ disponible: boolean, stockActual: number }>(
+      `${this.API_URL}/${id}/verificar-stock?cantidad=${cantidadRequerida}`
+    );
+  }
 }
