@@ -12,6 +12,11 @@ export class ClienteService {
 
   constructor(private http: HttpClient) {}
 
+  // --- LOGIN ---
+  loginCliente(correo: string, cedula: string): Observable<Cliente> {
+    return this.http.post<Cliente>(`${this.apiUrl}/login`, { correo, cedula });
+  }
+
   //Para obtener a todos los clientes
   getClientes(): Observable<Cliente[]> {
     return this.http.get<Cliente[]>(this.apiUrl);
@@ -40,11 +45,6 @@ export class ClienteService {
   //Para eliminar un cliente
   deleteCliente(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
-  }
-
-  //Revisión del login
-  loginCliente(correo: string, cedula: string): Observable<Cliente> {
-    return this.http.post<Cliente>(`${this.apiUrl}/login`, { correo, cedula });
   }
 
   //Para obtener las mascotas de un cliente

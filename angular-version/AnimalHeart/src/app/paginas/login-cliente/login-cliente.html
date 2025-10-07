@@ -41,13 +41,13 @@
           <input id="clave" name="clave" class="control"
                 [type]="mostrar ? 'text' : 'password'"
                 [(ngModel)]="data.clave" #clave="ngModel"
-                required minlength="6" autocomplete="current-password" placeholder="••••••••"
+                required minlength="3" autocomplete="current-password" placeholder="••••••••"
                 [class.is-invalid]="f.submitted && clave.invalid"
                 [class.is-valid]="clave.valid && (clave.dirty || clave.touched)" />
         </div>
 
         <div class="invalid-feedback d-block" *ngIf="clave.errors?.['required']">La contraseña es obligatoria.</div>
-        <div class="invalid-feedback d-block" *ngIf="clave.errors?.['minlength']">Mínimo 6 caracteres.</div>
+        <div class="invalid-feedback d-block" *ngIf="clave.errors?.['minlength']">Mínimo 3 caracteres.</div>
       </div>
 
       <!-- Honeypot simple -->

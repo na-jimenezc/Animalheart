@@ -1,7 +1,10 @@
+// src/app/paginas/login-cliente/login-cliente.ts
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
+import { ClienteService } from '../../core/services/cliente.service';
+import type { Cliente } from '../../core/models/cliente.model';
 
 type LoginClienteData = { correo: string; clave: string };
 
@@ -10,7 +13,7 @@ type LoginClienteData = { correo: string; clave: string };
   standalone: true,
   imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './login-cliente.html',
-  styleUrl: './login-cliente.css',
+  styleUrls: ['./login-cliente.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginCliente {
@@ -19,22 +22,36 @@ export class LoginCliente {
   cargando = false;
   error = '';
 
+  constructor(private clienteSrv: ClienteService, private router: Router) {}
+
   toggle() { this.mostrar = !this.mostrar; }
 
-  async onSubmit(form: NgForm) {
-    if (form.invalid) { form.control.markAllAsTouched(); return; }
-    this.cargando = true; this.error = '';
-    try {
-      const ok = this.data.correo.includes('@') && this.data.clave.length >= 6;
-      await new Promise(r => setTimeout(r, 500));
-      if (!ok) throw new Error('bad');
-
-      window.location.href = '/cliente/panel';
-    } catch {
-      this.error = 'Credenciales inválidas o servidor no disponible.';
-    } finally {
-      this.cargando = false;
+  onSubmit(form: NgForm): void {
+    if (form.invalid) {
+      form.control.markAllAsTouched();
+      return;
     }
+
+    this.cargando = true;
+    this.error = '';
+
+    // clave = cédula (según backend actual)
+    this.clienteSrv.loginCliente(this.data.correo, this.data.clave).subscribe({
+      next: (cliente: Cliente) => {
+        // Guarda la sesión simple (igual patrón que admin/vet pero en storage diferente si quieres)
+        sessionStorage.setItem('cliente', JSON.stringify(cliente));
+        // Redirige a una vista de cliente (ajusta a tu ruta real)
+        this.router.navigate(['/mascotas/ver-mascotas']);
+      },
+      error: (err) => {
+        console.error('Error en login cliente:', err);
+        this.error = err?.status === 401
+          ? 'Credenciales inválidas.'
+          : 'Servidor no disponible. Intenta más tarde.';
+        this.cargando = false;
+      },
+      complete: () => (this.cargando = false),
+    });
   }
 
   reset(form: NgForm) {
