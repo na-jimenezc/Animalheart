@@ -1,0 +1,71 @@
+<header class="client-toolbar">
+  <div class="client-wrap d-flex justify-content-between align-items-center">
+    <a class="client-btn" [routerLink]="['/']"><i class="bi bi-arrow-left"></i> Inicio</a>
+
+    <div class="d-flex align-items-center gap-2">
+      <span class="welcome-user">Hola, {{ cliente?.nombre }}</span>
+      <button class="client-btn" (click)="logout()">
+        <i class="bi bi-box-arrow-right"></i> Cerrar sesión
+      </button>
+    </div>
+  </div>
+</header>
+
+<section class="client-hero">
+  <div class="client-wrap">
+    <h1 class="client-hero-title">Mis Mascotas 🐾</h1>
+    <p class="lead">Aquí encuentras toda la información de tus compañeros peludos</p>
+  </div>
+</section>
+
+<main class="client-wrap my-5">
+  <div *ngIf="loading" class="mb-4">Cargando…</div>
+  <div *ngIf="!loading && error" class="alert alert-danger">{{ error }}</div>
+
+  <div *ngIf="!loading" class="row mb-4">
+    <div class="col-12 d-flex justify-content-between align-items-center">
+      <h2 class="h4 m-0">Tus compañeros</h2>
+      <span class="pet-badge">{{ mascotas.length }} mascota(s)</span>
+    </div>
+  </div>
+
+  <div *ngIf="!loading && mascotas.length === 0" class="empty-pets">
+    <i class="bi bi-inbox"></i>
+    <h3>No tienes mascotas registradas</h3>
+    <p>Ponte en contacto con tu veterinario para registrar a tus compañeros peludos</p>
+  </div>
+
+  <div class="row g-4" *ngIf="!loading && mascotas.length > 0">
+    <div class="col-12 col-sm-6 col-lg-4" *ngFor="let m of mascotas">
+      <a class="pet-card-link" [routerLink]="['/mascotas/detalle', m.id]">
+        <div class="pet-card h-100">
+          <div class="text-center mb-3">
+            <img *ngIf="m.fotoURL; else avatar"
+                 [src]="m.fotoURL" [alt]="m.nombre" class="pet-avatar" />
+            <ng-template #avatar>
+              <img [src]="'https://api.dicebear.com/7.x/bottts/svg?seed=' + m.nombre"
+                   [alt]="m.nombre" class="pet-avatar" />
+            </ng-template>
+          </div>
+
+          <div class="pet-card-body">
+            <h3 class="pet-name">{{ m.nombre }}</h3>
+            <div class="pet-type">{{ m.tipo }} • {{ m.edad }} años</div>
+
+            <div class="pet-info"><strong>Raza:</strong> {{ m.raza }}</div>
+            <div class="pet-info"><strong>Peso:</strong> {{ m.peso }} kg</div>
+            <div class="pet-info">
+              <strong>Enfermedad:</strong> {{ m.enfermedad || 'Ninguna' }}
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</main>
+
+<footer class="client-toolbar text-center mt-5 client-footer">
+  <div class="client-wrap">
+    <p class="mb-0 text-white"><i class="bi bi-c-circle"></i> 2025 – Animalheart</p>
+  </div>
+</footer>

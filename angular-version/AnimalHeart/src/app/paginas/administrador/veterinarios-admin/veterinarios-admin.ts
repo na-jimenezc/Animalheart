@@ -7,5 +7,4 @@ import { Component } from '@angular/core';
   styleUrl: './veterinarios-admin.css'
 })
 export class VeterinariosAdmin {
-
 }

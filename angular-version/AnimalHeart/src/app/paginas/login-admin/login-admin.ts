@@ -1,4 +1,3 @@
-// src/app/paginas/login-admin/login-admin.ts
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';

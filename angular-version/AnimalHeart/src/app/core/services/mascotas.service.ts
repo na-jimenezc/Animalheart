@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { Mascota } from '../models/mascota.model';
-
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { MascotaCreateDTO } from '../models/DTO/mascota-create.dto';
 import { MascotaUpdateDTO } from '../models/DTO/mascota-update.dto';
@@ -12,7 +11,6 @@ const STORAGE_KEY = 'mascotasData';
 @Injectable({ providedIn: 'root' })
 export class MascotasService {
 
-  //Dirección del backend
   private readonly API_URL = 'http://localhost:8080/api/mascotas';
   private apiUrl = 'http://localhost:8080/api/mascotas';
 
@@ -20,7 +18,6 @@ export class MascotasService {
     private http: HttpClient
   ) {}
 
-  //Función para obtener todas las mascotas desde el backend
   getAll(): Observable<Mascota[]> {
     console.log('Haciendo request a:', `${this.API_URL}/todas`);
     return this.http.get<Mascota[]>(`${this.API_URL}/todas`).pipe(
@@ -31,20 +28,16 @@ export class MascotasService {
     );
   }
 
-
-  //Obtener mascota por ID
   getById(id: number): Observable<Mascota> {
     return this.http.get<Mascota>(`${this.API_URL}/${id}`);
   }
 
-  //Función para crear una mascota en el backend con el DTO para que no explote
   create(dto: MascotaCreateDTO): Observable<MascotaDTO> {
     return this.http.post<MascotaDTO>(this.API_URL, dto, {
       headers: { 'Content-Type': 'application/json' }
     });
   }
 
-  //Función para actualizar una mascota en el backend, SE REVISA EL fotoUrl c:
   update(id: number, dto: MascotaUpdateDTO): Observable<Mascota> {
       const payload = {
         ...dto,
@@ -56,27 +49,21 @@ export class MascotasService {
       return this.http.put<Mascota>(`${this.API_URL}/${id}`, payload);
     }
 
-  //Función para desactivar una mascota en el backend
   desactivar(id: number): Observable<void> {
     return this.http.delete<void>(`${this.API_URL}/${id}/desactivar`);
   }
 
-  //Función para eliminar una mascota
   delete(id: number): Observable<void> {
     return this.http.delete<void>(`${this.API_URL}/${id}`);
   }
 
-  //Función para obtener las mascotas de un cliente específico
   getByCliente(clienteId: number): Observable<Mascota[]> {
     return this.http.get<Mascota[]>(`${this.API_URL}/cliente/${clienteId}`);
   }
 
-  //Para encontrar por id
   findById(id: number): Observable<Mascota> {
     return this.http.get<Mascota>(`${this.API_URL}/${id}`);
   }
-
-
 
   /*
   private readonly _state = new BehaviorSubject<Mascota[]>(this.loadInitialData());

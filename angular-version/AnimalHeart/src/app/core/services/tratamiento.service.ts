@@ -11,17 +11,15 @@ export class TratamientoService {
 
   constructor(private http: HttpClient) {}
 
-    //Tratamientos por mascota
-    getTratamientosPorMascota(mascotaId: number): Observable<TratamientoDTO[]> {
-        return this.http.get<TratamientoDTO[]>(`${this.API_URL}/${mascotaId}`);
-    }
+  getTratamientosPorMascota(mascotaId: number): Observable<TratamientoDTO[]> {
+    return this.http.get<TratamientoDTO[]>(`${this.API_URL}/${mascotaId}`);
+  }
 
-    // Agregar este método al servicio existente
-crearTratamiento(tratamientoData: any): Observable<any> {
-  return this.http.post<any>(this.API_URL, tratamientoData, {
-    headers: { 'Content-Type': 'application/json' }
-  });
-}
+  crearTratamiento(tratamientoData: any): Observable<any> {
+    return this.http.post<any>(this.API_URL, tratamientoData, {
+      headers: { 'Content-Type': 'application/json' }
+    });
+  }
 
   administrarMedicamento(tratamientoData: {
     idMascota: number,

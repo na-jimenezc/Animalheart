@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { GananciasTotales } from './ganancias-totales';
 
 describe('GananciasTotales', () => {

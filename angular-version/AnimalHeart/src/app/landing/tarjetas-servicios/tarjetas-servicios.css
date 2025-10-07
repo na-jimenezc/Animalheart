@@ -1,4 +1,3 @@
-/* ===================== SERVICIOS ===================== */
 #servicios {
   background: #B8D2D4;
   padding-top: 3rem;
@@ -38,7 +37,6 @@
   max-width: 33.333333%;
 }
 
-/* Tarjetas con mejor espaciado */
 .card-grupo1 .card,
 .card-grupo2 .card {
   width: 100%;
@@ -52,24 +50,21 @@
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
-/* Aseguramos que el card-body ocupe todo el espacio disponible */
 .card .card-body {
   display: flex;
   flex-direction: column;
   padding: 2rem;
-  flex-grow: 1; /* Ocupa todo el espacio disponible */
+  flex-grow: 1;
 }
 
-/* Contenedor de contenido que crece para empujar el botón hacia abajo */
 .card-content {
-  flex-grow: 1; /* Hace que este contenido ocupe todo el espacio disponible */
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
 }
 
-/* Botón siempre en la parte inferior */
 .card .card-body .btn, .card .card-body button {
-  margin-top: auto; /* Empuja el botón hacia la parte inferior */
+  margin-top: auto;
   width: 100%;
   justify-content: center;
   background: rgba(255, 255, 255, 0.2);
@@ -79,7 +74,7 @@
   padding: 0.75rem 1.5rem;
   border-radius: 8px;
   font-size: 18px;
-  align-self: flex-end; /* Asegura que esté en la parte inferior */
+  align-self: flex-end;
 }
 
 .card .card-body button:hover {
@@ -121,7 +116,6 @@
   flex-shrink: 0;
 }
 
-/* Estilos para las imágenes de servicios */
 .servicio-descripcion {
   display: flex;
   flex-direction: column;
@@ -148,7 +142,6 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-/* Ajustes responsivos */
 @media (max-width: 1200px) {
   #servicios .container {
     max-width: 1140px;
@@ -191,7 +184,6 @@
   }
 }
 
-/* Texto en blanco para la descripción expandida */
 .servicio-descripcion p {
   color: #fff !important;
   font-size: 18px;
@@ -200,7 +192,6 @@
   padding: 0 1rem;
 }
 
-/* ===================== FIGURA DECORATIVA ===================== */
 .figura-mascotas {
   position: relative;
   width: 100%;

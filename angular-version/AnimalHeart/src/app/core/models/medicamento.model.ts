@@ -1,6 +1,5 @@
 import type { Tratamiento } from './tratamiento.model';
 
-//CHECK BACKEND
 export interface Medicamento {
   id?: number;              
   nombre: string;
@@ -8,7 +7,5 @@ export interface Medicamento {
   precioVenta: number;
   unidadesDisponibles: number;
   unidadesVendidas: number; 
-
   tratamientos?: Tratamiento[];
 }
-

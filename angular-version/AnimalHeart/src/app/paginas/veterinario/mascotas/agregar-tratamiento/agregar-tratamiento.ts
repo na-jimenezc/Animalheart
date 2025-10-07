@@ -11,7 +11,6 @@ import { Medicamento } from '../../../../core/models/medicamento.model';
 import { VeterinarioService } from '../../../../core/services/veterinario.service';
 import { Veterinario } from '../../../../core/models/veterinario.model';
 
-// Validador personalizado para stock
 function stockValidator(medicamentoSeleccionado: Medicamento | null) {
   return (control: AbstractControl): ValidationErrors | null => {
     if (!medicamentoSeleccionado || !control.value) {
@@ -33,7 +32,6 @@ function stockValidator(medicamentoSeleccionado: Medicamento | null) {
         }
       };
     }
-    
     return null;
   };
 }
@@ -76,7 +74,7 @@ export class AgregarTratamiento implements OnInit {
         [
           Validators.required, 
           Validators.min(1),
-          Validators.pattern(/^[1-9]\d*$/) // Solo números positivos
+          Validators.pattern(/^[1-9]\d*$/)
         ]
       ],
       tipoTratamiento: ['', Validators.required],
@@ -88,7 +86,6 @@ export class AgregarTratamiento implements OnInit {
     this.cargarDatosIniciales();
     this.cargarVeterinario();
     
-    // Suscribirse a cambios para validaciones en tiempo real
     this.tratamientoForm.get('medicamentoId')?.valueChanges.subscribe(() => {
       this.onMedicamentoChange();
     });
@@ -106,7 +103,6 @@ export class AgregarTratamiento implements OnInit {
   }
 
   cargarDatosIniciales(): void {
-    // Cargar mascotas activas
     this.mascotasService.getAll().subscribe({
       next: (mascotas) => {
         this.mascotas = mascotas.filter(m => m.activo);
@@ -120,7 +116,6 @@ export class AgregarTratamiento implements OnInit {
       }
     });
 
-    // Cargar medicamentos
     this.medicamentosService.getAll().subscribe({
       next: (medicamentos) => {
         this.medicamentos = medicamentos;
@@ -139,7 +134,6 @@ export class AgregarTratamiento implements OnInit {
     const medicamentoId = this.tratamientoForm.get('medicamentoId')?.value;
     this.medicamentoSeleccionado = this.medicamentos.find(m => m.id === medicamentoId) || null;
     
-    // Actualizar validador de stock
     const cantidadControl = this.tratamientoForm.get('cantidadUsada');
     if (cantidadControl) {
       cantidadControl.setValidators([
@@ -166,7 +160,6 @@ export class AgregarTratamiento implements OnInit {
         cantidadControl.setErrors({ stockInsuficiente: true });
       } else {
         this.stockError = null;
-        // Solo limpiar errores de stock, mantener otros errores de validación
         if (cantidadControl.errors?.['stockInsuficiente']) {
           const newErrors = { ...cantidadControl.errors };
           delete newErrors['stockInsuficiente'];
@@ -189,7 +182,6 @@ export class AgregarTratamiento implements OnInit {
 
       const formValue = this.tratamientoForm.value;
       
-      // Validar stock una vez más antes de enviar
       if (this.medicamentoSeleccionado && formValue.cantidadUsada > this.medicamentoSeleccionado.unidadesDisponibles) {
         this.error = `No hay suficiente stock de ${this.medicamentoSeleccionado.nombre}. Stock disponible: ${this.medicamentoSeleccionado.unidadesDisponibles}`;
         this.isLoading = false;
@@ -202,7 +194,6 @@ export class AgregarTratamiento implements OnInit {
         return;
       }
 
-      // Usar el endpoint que actualiza automáticamente el stock
       const tratamientoData = {
         idMascota: formValue.mascotaId,
         idMedicamento: formValue.medicamentoId,
@@ -215,10 +206,8 @@ export class AgregarTratamiento implements OnInit {
       this.tratamientoService.administrarMedicamento(tratamientoData).subscribe({
         next: (response) => {
           this.isLoading = false;
-          // ✅ CORREGIDO: Redirigir a la ruta correcta
           this.router.navigate(['/mascotas/ver-mascotas']);
           
-          // Opcional: Mostrar mensaje de éxito
           console.log('Tratamiento guardado exitosamente');
         },
         error: (error) => {
@@ -228,7 +217,6 @@ export class AgregarTratamiento implements OnInit {
         }
       });
     } else {
-      // Marcar todos los campos como touched para mostrar errores
       Object.keys(this.tratamientoForm.controls).forEach(key => {
         const control = this.tratamientoForm.get(key);
         control?.markAsTouched();

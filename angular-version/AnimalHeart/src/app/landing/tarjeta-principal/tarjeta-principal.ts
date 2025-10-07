@@ -7,7 +7,4 @@ import { Component } from '@angular/core';
   styleUrl: './tarjeta-principal.css'
 })
 export class TarjetaPrincipal {
-
 }
-
-

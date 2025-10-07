@@ -1,11 +1,9 @@
-
 <app-header-vet [veterinario]="veterinario" [error]="error"></app-header-vet>
 
 <div class="form-container">
   <div class="form-body">
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       
-      <!-- Sección de la foto -->
       <div class="form-section">
         <h2 class="form-section-title">
           <i class="bi bi-camera"></i>Foto de la Mascota
@@ -28,7 +26,6 @@
         </div>
       </div>
 
-      <!-- Sección de información de la mascota -->
       <div class="form-section">
         <h2 class="form-section-title">
           <i class="bi bi-info-circle"></i>Información de la Mascota
@@ -91,7 +88,6 @@
         </div>
       </div>
 
-      <!-- Sección del dueño -->
       <div class="form-section">
         <h2 class="form-section-title">
           <i class="bi bi-person"></i>Información del Dueño
@@ -110,7 +106,6 @@
           </div>
         </div>
 
-        <!-- Información del cliente seleccionado -->
         <div *ngIf="form.get('clienteId')?.value" class="client-card">
           <div class="client-info">
             <div class="client-avatar">
@@ -124,7 +119,6 @@
         </div>
       </div>
 
-      <!-- Estado activo -->
       <div class="form-section">
         <div class="form-field">
           <div class="form-check">
@@ -134,7 +128,6 @@
         </div>
       </div>
 
-      <!-- Botones -->
       <div class="btn-container">
         <button type="button" class="btn-secondary" (click)="onCancel()">
           <i class="bi bi-x-circle me-2"></i>Cancelar
@@ -144,7 +137,6 @@
         </button>
       </div>
 
-      <!-- Mensajes -->
       <div *ngIf="successMessage" class="alert alert-success mt-3">
         <i class="bi bi-check-circle me-2"></i>{{ successMessage }}
       </div>

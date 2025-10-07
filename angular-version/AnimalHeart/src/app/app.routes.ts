@@ -1,4 +1,3 @@
-
 import { Routes } from '@angular/router';
 import { HomeComponent } from './landing/home/home.component';
 import { Contacto } from './paginas/contacto/contacto';
@@ -16,12 +15,12 @@ import { Administrador } from './paginas/administrador/administrador';
 import { adminGuard } from './core/guards/admin.guard'; 
 import { AgregarDueno } from './paginas/veterinario/mascotas/agregar-dueno/agregar-dueno';
 import { AgregarTratamiento } from './paginas/veterinario/mascotas/agregar-tratamiento/agregar-tratamiento';
+import { MisMascotas } from './paginas/cliente/mis-mascotas/mis-mascotas';
+import { EditarDueno } from './paginas/veterinario/mascotas/editar-dueno/editar-dueno';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent }, 
   { path: 'contacto', component: Contacto },
-
-  //Login
   { path: 'login-veterinario', component: LoginVeterinario },
   { path: 'admin/login', component: LoginAdmin },
   { path: 'clientes/login-cliente', component: LoginCliente },
@@ -32,18 +31,15 @@ export const routes: Routes = [
   { path: 'clientes/editar/:id', component: ClienteForm },
   { path: 'clientes/detalle/:id', component: ClienteDetalle }*/
 
-  //CRUD de mascotas
   { path: 'mascotas/ver-mascotas', component: Mascotas },
   { path: 'mascotas/agregar', component: AgregarMascota },
   { path: 'mascotas/editar/:id', component: EditarMascota },
   { path: 'mascotas/detalle/:id', component: MascotaDetalle },
-   { path: 'clientes/nuevo', component: AgregarDueno },
-   { path: 'tratamientos/agregar', component: AgregarTratamiento },
-
-  //Admin
+  { path: 'clientes/nuevo', component: AgregarDueno },
+  { path: 'tratamientos/agregar', component: AgregarTratamiento },
   { path: 'admin/dashboard', component: Administrador, canActivate: [adminGuard] },
   { path: 'admin', redirectTo: 'admin/login', pathMatch: 'full' },
-
-    //Redirecciones
+  { path: 'clientes/mis-mascotas', component: MisMascotas },
+  { path: 'veterinario/mascotas/editar-dueno/:id', component: EditarDueno },
   { path: '**', redirectTo: '' },
 ];

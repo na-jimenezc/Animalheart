@@ -1,7 +1,6 @@
 import type { Administrador } from './administrador.model';
 import type { Tratamiento } from './tratamiento.model';
 
-//CHECK BACKEND
 export interface Veterinario {
   id?: number;            
   nombre: string;
@@ -11,7 +10,6 @@ export interface Veterinario {
   imagen: string;          
   activo: number;          
   consultas: number;      
-
   administradores?: Administrador[]; 
   tratamientos?: Tratamiento[];
 }

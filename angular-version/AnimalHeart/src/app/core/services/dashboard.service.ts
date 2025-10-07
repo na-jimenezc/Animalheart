@@ -1,15 +1,13 @@
-// src/app/core/services/dashboard.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, forkJoin, of, map, switchMap, catchError } from 'rxjs';
-
 import { TratamientoService } from './tratamiento.service';
 import { MedicamentosService } from './medicamentos.service';
 import { VeterinarioService } from './veterinario.service';
 import { MascotasService } from './mascotas.service';
 
 export interface DashboardData {
-  totalTratamientosUltimoMes: number; // usamos este campo como "total global" (sin fechas)
+  totalTratamientosUltimoMes: number;
   tratamientosPorMedicamento: { medicamento: string, cantidad: number }[];
   veterinariosActivos: number;
   veterinariosInactivos: number;
@@ -35,9 +33,7 @@ export class DashboardService {
     private mascotasService: MascotasService
   ) {}
 
-  // ======= FLUJO PRINCIPAL (sin fechas): suma TODO lo que hay por mascota =======
   getDashboardData(): Observable<DashboardData> {
-    // Traemos bases que no dependen de tratamientos
     return forkJoin({
       medicamentos: this.medicamentoService.getAll().pipe(catchError(() => of([]))),
       veterinarios: this.veterinarioService.getAll().pipe(catchError(() => of([]))),
@@ -46,15 +42,13 @@ export class DashboardService {
       switchMap(({ medicamentos, veterinarios, mascotas }) => {
         const mascotasArr = Array.isArray(mascotas) ? mascotas : [];
         if (mascotasArr.length === 0) {
-          // Sin mascotas: devolvemos dashboard mínimo pero coherente
           return of(this._mapDashboard([], medicamentos, veterinarios, mascotasArr));
         }
 
-        // Para cada mascota, pedimos sus tratamientos
         const porMascota$ = mascotasArr.map((m: any) =>
           this.tratamientoService
             .getTratamientosPorMascota(m.id)
-            .pipe(catchError(() => of([]))) // si alguna mascota falla, no rompemos todo
+            .pipe(catchError(() => of([])))
         );
 
         return forkJoin(porMascota$).pipe(
@@ -68,18 +62,15 @@ export class DashboardService {
     );
   }
 
-  // ===== Helper para calcular todo SIN FECHAS a partir de listas =====
   private _mapDashboard(
     tratamientos: any[],
     medicamentos: any[],
     veterinarios: any[],
     mascotas: any[]
   ): DashboardData {
-    // Índice de medicamentos por id
     const medById = new Map<any, any>();
     for (const m of (medicamentos || [])) medById.set(m.id, m);
 
-    // Acumulado por medicamento
     const acc = new Map<string, { medicamento: string; cantidad: number; venta: number; costo: number }>();
     let ventasTotales = 0;
     let costoTotales  = 0;
@@ -106,22 +97,18 @@ export class DashboardService {
       acc.set(nombre, cur);
     }
 
-    // Tratamientos por medicamento (para tabla)
     const tratamientosPorMedicamento = Array.from(acc.values())
       .map(x => ({ medicamento: x.medicamento, cantidad: x.cantidad }));
 
-    // Top 3 por unidades
     const top3Tratamientos = Array.from(acc.values())
       .sort((a, b) => b.cantidad - a.cantidad)
       .slice(0, 3)
       .map(x => ({ medicamento: x.medicamento, unidadesVendidas: x.cantidad }));
 
-    // Veterinarios activos/inactivos (tolera boolean o 0/1)
     const isVetActivo = (v: any) => (typeof v?.activo === 'boolean' ? v.activo : v?.activo === 1);
     const veterinariosActivos   = (veterinarios || []).filter(isVetActivo).length;
     const veterinariosInactivos = Math.max((veterinarios?.length || 0) - veterinariosActivos, 0);
 
-    // Mascotas activas (tolera activo/activa como boolean o 0/1)
     const totalMascotas = mascotas?.length || 0;
     const isMascActiva = (m: any) =>
       typeof m?.activo === 'boolean' ? m.activo
@@ -130,7 +117,7 @@ export class DashboardService {
     const mascotasActivas = (mascotas || []).filter(isMascActiva).length;
 
     return {
-      totalTratamientosUltimoMes: (tratamientos?.length || 0), // usamos el campo como "total global"
+      totalTratamientosUltimoMes: (tratamientos?.length || 0),
       tratamientosPorMedicamento,
       veterinariosActivos,
       veterinariosInactivos,
@@ -143,7 +130,6 @@ export class DashboardService {
     };
   }
 
-  // ===== Helpers existentes (se mantienen por compatibilidad, no afectan el flujo actual) =====
   private processDashboardData(data: any): DashboardData {
     const ahora = new Date();
     const ultimoMes = new Date(ahora.getFullYear(), ahora.getMonth() - 1, ahora.getDate());

@@ -1,25 +1,21 @@
 <section class="envoltura">
   <div class="tarjeta-login">
-    <!-- Encabezado superior -->
     <div class="encabezado-pagina">
       <div class="nombre-sistema">Animalheart</div>
       <div class="subtitulo-sistema">Portal del Cliente</div>
     </div>
 
-    <!-- Icono y título -->
     <div class="encabezado-login">
       <div class="icono-login" aria-hidden="true">💗</div>
       <h3>Acceso Cliente</h3>
       <p>Por favor, ingresa tus credenciales</p>
     </div>
 
-    <!-- Mensaje de error -->
     <div *ngIf="error" class="alert alert-danger alert-dismissible fade show" role="alert" aria-live="polite">
       {{ error }}
       <button type="button" class="btn-close" (click)="error=''" aria-label="Cerrar"></button>
     </div>
 
-    <!-- Formulario -->
     <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
 
       <div class="campo-formulario">
@@ -33,7 +29,6 @@
         <div class="invalid-feedback d-block" *ngIf="correo.errors?.['email']">Formato de correo inválido.</div>
       </div>
 
-      <!-- Contraseña -->
       <div class="campo-formulario">
         <label for="clave" class="etiqueta">Contraseña</label>
 
@@ -50,7 +45,6 @@
         <div class="invalid-feedback d-block" *ngIf="clave.errors?.['minlength']">Mínimo 3 caracteres.</div>
       </div>
 
-      <!-- Honeypot simple -->
       <input type="text" name="company" class="d-none" tabindex="-1" autocomplete="off" aria-hidden="true" />
 
       <div class="acciones-formulario">

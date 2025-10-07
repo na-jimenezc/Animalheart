@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { TratamientosTipoMedicamento } from './tratamientos-tipo-medicamento';
 
 describe('TratamientosTipoMedicamento', () => {

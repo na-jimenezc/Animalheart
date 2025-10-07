@@ -1,0 +1,10 @@
+.wrap{max-width:720px;margin:32px auto;padding:24px;background:#fff;border-radius:12px;box-shadow:0 6px 16px rgba(0,0,0,.06)}
+h1{margin:0 0 16px}
+label{display:block;margin:16px 0 6px;color:#334}
+input{width:100%;padding:10px 12px;border:1px solid #cfd8dc;border-radius:8px}
+.actions{margin-top:20px;display:flex;gap:12px;justify-content:flex-end}
+.btn{padding:10px 16px;border-radius:999px;border:0;cursor:pointer}
+.btn.pri{background:#0ea5e9;color:white}
+.btn.sec{background:#e2e8f0}
+.msg{padding:12px}
+.msg.error{background:#fde8e8;color:#9b1c1c;border-radius:8px}

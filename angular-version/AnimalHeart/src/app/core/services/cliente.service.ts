@@ -2,59 +2,53 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Cliente } from '../models/cliente.model';
 import { HttpClient } from '@angular/common/http';
+import type { Mascota } from '../models/mascota.model';
 
 const STORAGE_KEY = 'clientesData';
 
 @Injectable({ providedIn: 'root' })
 export class ClienteService {
-
   private apiUrl = 'http://localhost:8080/api/clientes';
 
   constructor(private http: HttpClient) {}
 
-  
-
-  // --- LOGIN ---
   loginCliente(correo: string, cedula: string): Observable<Cliente> {
     return this.http.post<Cliente>(`${this.apiUrl}/login`, { correo, cedula });
   }
 
-  //Para obtener a todos los clientes
   getClientes(): Observable<Cliente[]> {
     return this.http.get<Cliente[]>(this.apiUrl);
   }
 
-  //Para obtener por id
   getClienteById(id: number): Observable<Cliente> {
     return this.http.get<Cliente>(`${this.apiUrl}/${id}`);
   }
 
-  //Para obtener por cédula
   getClienteByCedula(cedula: string): Observable<Cliente> {
     return this.http.get<Cliente>(`${this.apiUrl}/cedula/${cedula}`);
   }
 
-  //Para crear un nuevo cliente
   addCliente(cliente: Cliente): Observable<Cliente> {
     return this.http.post<Cliente>(this.apiUrl, cliente);
   }
 
-  //Para actualizar un cliente
   updateCliente(id: number, cliente: Cliente): Observable<Cliente> {
     return this.http.put<Cliente>(`${this.apiUrl}/${id}`, cliente);
   }
 
-  //Para eliminar un cliente
   deleteCliente(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 
-  //Para obtener las mascotas de un cliente
-  getMascotasByCliente(id: number): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/${id}/mascotas`);
+  getMascotasByCliente(id: number): Observable<Mascota[]> {
+    return this.http.get<Mascota[]>(`${this.apiUrl}/${id}/mascotas`);
   }
 
-  //Método para obtener todos los clientes 
+  getClienteFromStorage(): Cliente | null {
+    const raw = sessionStorage.getItem('cliente');
+    return raw ? (JSON.parse(raw) as Cliente) : null;
+  }
+
   findAll(): Observable<Cliente[]> {
     return this.http.get<Cliente[]>(this.apiUrl);
   }

@@ -1,4 +1,3 @@
-/* ====== Variables de color consistentes con la paleta anterior ====== */
 :root {
   --teal-700: #073352;
   --teal-600: #2a9a99;
@@ -12,7 +11,6 @@
   --shadow: 0 8px 24px rgba(0,0,0,.08);
 }
 
-/* ====== Estilos generales ====== */
 .bg-light {
   background: var(--bg);
   color: var(--text);
@@ -26,7 +24,6 @@
   min-height: 100vh;
 }
 
-/* ====== Header con imagen de fondo (como la página anterior) ====== */
 .vmk-header {
   background: url("/assets/images/vet_animalheart.jpeg") center/cover no-repeat;
   position: relative;
@@ -46,7 +43,6 @@
   z-index: 1;
 }
 
-/* Barra de herramientas */
 .vmk-toolbar {
   padding: 18px 0;
   min-height: 80px;
@@ -80,7 +76,6 @@
   color: var(--teal-700);
 }
 
-/* Hero section */
 .vmk-hero {
   padding: 12px 0 24px;
 }
@@ -98,7 +93,6 @@
   font-size: clamp(28px, 3.6vw, 40px);
 }
 
-/* ====== FORMULARIO ACTUALIZADO ====== */
 .form-container {
   max-width: 800px;
   margin: 2rem auto;
@@ -176,7 +170,6 @@
   margin-top: 2.5rem;
 }
 
-/* Botones con el estilo de la página anterior */
 .btn-primary {
   background: linear-gradient(135deg, var(--teal-600) 0%, var(--teal-700) 100%);
   border: none;
@@ -243,7 +236,6 @@
   border-radius: 0 12px 12px 0;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .form-grid {
     grid-template-columns: 1fr;
@@ -275,7 +267,6 @@
   }
 }
 
-/* Estilo para mensajes de error */
 .error-message {
   color: #e74a3b;
   font-size: 0.85rem;

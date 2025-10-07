@@ -1,4 +1,3 @@
-/* ====== Variables de color consistentes ====== */
 :root {
   --teal-700: #073352;
   --teal-600: #2a9a99;
@@ -12,7 +11,6 @@
   --shadow: 0 8px 24px rgba(0,0,0,.08);
 }
 
-/* ====== Estilos generales ====== */
 body {
   background: var(--bg);
   color: var(--text);
@@ -22,7 +20,6 @@ body {
   min-height: 100vh;
 }
 
-/* ====== FORMULARIO ACTUALIZADO ====== */
 .form-container {
   max-width: 1000px;
   margin: 2rem auto;
@@ -100,7 +97,6 @@ body {
   margin-top: 2.5rem;
 }
 
-/* Botones con el estilo consistente */
 .btn-primary {
   background: linear-gradient(135deg, var(--teal-600) 0%, var(--teal-700) 100%);
   border: none;
@@ -142,7 +138,6 @@ body {
   transform: translateY(-2px);
 }
 
-/* Estilos para la sección de foto */
 .photo-container {
   text-align: center;
   margin-bottom: 2rem;
@@ -177,7 +172,6 @@ body {
   background: var(--teal-200);
 }
 
-/* Estilos para la tarjeta de información del cliente */
 .client-card {
   background: var(--teal-200);
   border-radius: var(--radius);
@@ -236,7 +230,6 @@ body {
   }
 }
 
-/* Estilo para mensajes de error */
 .error-message {
   color: #e74a3b;
   font-size: 0.85rem;
@@ -246,12 +239,10 @@ body {
   gap: 0.3rem;
 }
 
-/* Acción bajo el select de clientes */
 .inline-actions{
   margin: .6rem 0 1.25rem;
 }
 
-/* Botón tipo "pill" */
 .btn-inline{
   display: inline-flex;
   align-items: center;

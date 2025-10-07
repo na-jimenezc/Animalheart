@@ -87,7 +87,6 @@ export class Mascotas implements OnInit {
     }
   }
 
-  // Nuevo método para desactivar mascota
   desactivarMascota(mascota: Mascota): void {
     if (mascota.id && mascota.activo) {
       if (confirm(`¿Estás seguro de que quieres desactivar a ${mascota.nombre}?`)) {

@@ -1,4 +1,3 @@
-
 export interface MascotaCreateDTO {
   nombre: string;
   raza: string;

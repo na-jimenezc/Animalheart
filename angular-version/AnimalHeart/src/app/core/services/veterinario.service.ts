@@ -39,32 +39,26 @@ export class VeterinarioService {
     this.veterinarioSubject.next(null);
   }
 
-  //Función para obtener todos los veterinarios
   getAll(): Observable<Veterinario[]> {
     return this.http.get<Veterinario[]>(this.apiUrl);
   }
 
-  //Función para obtener todos los veterinarios activos
   getActivos(): Observable<Veterinario[]> {
     return this.http.get<Veterinario[]>(`${this.apiUrl}/activos`);
   }
 
-  //Función para obtener todos los veterinarios por ID
   getById(id: number): Observable<Veterinario> {
     return this.http.get<Veterinario>(`${this.apiUrl}/${id}`);
   }
 
-  //Función para crear un veterinario
   create(vet: Veterinario): Observable<Veterinario> {
     return this.http.post<Veterinario>(this.apiUrl, vet);
   }
 
-  //Función para actualizar un veterinario
   update(id: number, vet: Veterinario): Observable<Veterinario> {
     return this.http.put<Veterinario>(`${this.apiUrl}/${id}`, vet);
   }
 
-  //Función para eliminar un veterinario
   delete(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }

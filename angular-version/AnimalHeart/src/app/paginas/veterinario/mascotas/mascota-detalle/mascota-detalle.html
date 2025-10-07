@@ -1,8 +1,6 @@
-
 <app-header-vet [veterinario]="veterinario" [error]="headerError"></app-header-vet>
 
 <div class="container my-4">
-  <!-- Loading -->
   <ng-container *ngIf="loading; else contenido">
     <div class="text-center py-5">
       <div class="spinner-border" role="status">
@@ -12,26 +10,21 @@
     </div>
   </ng-container>
 
-  <!-- Contenido -->
   <ng-template #contenido>
-    <!-- Error -->
     <div *ngIf="error" class="alert alert-danger text-center">
       Ocurrió un error al cargar la mascota. Intenta nuevamente.
     </div>
 
-    <!-- Mascota -->
     <ng-container *ngIf="mascota as m">
       <div class="form-container">
         <div class="form-body">
           
-          <!-- Información de la mascota -->
           <div class="form-section">
             <h2 class="form-section-title">
               <i class="bi bi-info-circle"></i>Información de la Mascota
             </h2>
             
             <div class="row">
-              <!-- Foto de la mascota -->
               <div class="col-md-4 text-center">
                 <div class="photo-container">
                   <img [src]="m.fotoURL || defaultImage" 
@@ -44,7 +37,6 @@
                 </div>
               </div>
 
-              <!-- Detalles de la mascota -->
               <div class="col-md-8">
                 <div class="form-grid">
                   <div class="form-field">
@@ -104,7 +96,6 @@
             </div>
           </div>
 
-          <!-- Información del dueño -->
           <div class="form-section" *ngIf="m.cliente">
             <h2 class="form-section-title">
               <i class="bi bi-person"></i>Información del Dueño
@@ -127,14 +118,33 @@
             </div>
           </div>
 
-          <!-- Tratamientos -->
+          <div *ngIf="m?.cliente?.id as cid; else sinDueno" class="mt-3 d-flex gap-2 flex-wrap">
+            <button class="btn btn-primary" (click)="editarDueno(cid)">
+              <i class="bi bi-pencil-square me-1"></i> Editar dueño
+            </button>
+
+            <button class="btn btn-outline-danger" (click)="eliminarDueno(cid)">
+              <i class="bi bi-trash me-1"></i> Eliminar dueño
+            </button>
+          </div>
+
+          <ng-template #sinDueno>
+            <div class="mt-3">
+              <div class="alert alert-info mb-2">
+                Esta mascota aún no tiene dueño asignado.
+              </div>
+              <a class="btn btn-outline-primary" [routerLink]="['/clientes/nuevo']">
+                <i class="bi bi-person-plus me-1"></i> Agregar dueño
+              </a>
+            </div>
+          </ng-template>
+
           <div class="form-section">
             <h2 class="form-section-title">
               <i class="bi bi-heart-pulse"></i>Tratamientos Recibidos
               <span class="badge bg-primary ms-2">{{ tratamientos.length }}</span>
             </h2>
             
-            <!-- Loading tratamientos -->
             <div *ngIf="loadingTratamientos" class="text-center py-3">
               <div class="spinner-border spinner-border-sm" role="status">
                 <span class="visually-hidden">Cargando tratamientos...</span>
@@ -142,7 +152,6 @@
               <p class="mt-2 small">Cargando tratamientos...</p>
             </div>
 
-            <!-- Lista de tratamientos -->
             <div *ngIf="!loadingTratamientos">
               <div *ngIf="tratamientos.length === 0" class="alert alert-warning">
                 <i class="bi bi-info-circle"></i> No hay tratamientos registrados para esta mascota.

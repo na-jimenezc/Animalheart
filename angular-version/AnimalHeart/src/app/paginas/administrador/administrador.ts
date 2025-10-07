@@ -1,4 +1,3 @@
-// administrador.ts - CORREGIDO
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
@@ -6,7 +5,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { AdministradorService } from '../../core/services/administrador.service';
 import { Inject } from '@angular/core';
 import { DashboardComponent } from './dashboard/dashboard';
-
 
 @Component({
   selector: 'app-administrador',
@@ -25,11 +23,9 @@ export class Administrador implements OnInit {
   ) {}
 
   ngOnInit() {
-    // Verificar si hay sesión activa
     this.admin = this.adminService.getAdminFromStorage();
     
     if (!this.admin) {
-      // Si no hay sesión, redirigir al login
       this.router.navigate(['/admin/login']);
       return;
     }

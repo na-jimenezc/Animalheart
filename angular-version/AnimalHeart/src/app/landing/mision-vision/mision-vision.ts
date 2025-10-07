@@ -7,5 +7,4 @@ import { Component } from '@angular/core';
   styleUrl: './mision-vision.css'
 })
 export class MisionVision {
-
 }

@@ -1,23 +1,20 @@
-
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-
 import { MascotasService } from '../../../../core/services/mascotas.service';
 import { ClienteService } from '../../../../core/services/cliente.service';
 import { Mascota } from '../../../../core/models/mascota.model';
 import { MascotaUpdateDTO } from '../../../../core/models/DTO/mascota-update.dto';
 import { Cliente } from '../../../../core/models/cliente.model';
-import { HeaderVet } from '../../../../componentes/header-vet/header-vet'; // AÑADIDO
-import { VeterinarioService } from '../../../../core/services/veterinario.service'; // AÑADIDO
-import { Veterinario } from '../../../../core/models/veterinario.model'; // AÑADIDO
-
+import { HeaderVet } from '../../../../componentes/header-vet/header-vet';
+import { VeterinarioService } from '../../../../core/services/veterinario.service';
+import { Veterinario } from '../../../../core/models/veterinario.model';
 
 @Component({
   selector: 'app-editar-mascota',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterModule, HeaderVet], // AÑADIDO HeaderVet
+  imports: [CommonModule, ReactiveFormsModule, RouterModule, HeaderVet],
   templateUrl: './editar-mascota.html',
   styleUrl: './editar-mascota.css',
 })
@@ -25,8 +22,8 @@ import { Veterinario } from '../../../../core/models/veterinario.model'; // AÑA
 export class EditarMascota implements OnInit {
   form!: FormGroup;
   clientes: Cliente[] = [];
-  veterinario: Veterinario | null = null; // AÑADIDO
-  error: string | null = null; // AÑADIDO
+  veterinario: Veterinario | null = null;
+  error: string | null = null;
 
   submitted = false;
   cargando = false;
@@ -42,18 +39,16 @@ export class EditarMascota implements OnInit {
     private router: Router,
     private mascotasService: MascotasService,
     private clienteService: ClienteService,
-    private veterinarioService: VeterinarioService // AÑADIDO
+    private veterinarioService: VeterinarioService
   ) {}
 
   ngOnInit(): void {
-    //Se obtiene el id y se cargan los clientes 
     this.obtenerIdDeRuta();
     this.cargarClientes();
     this.inicializarFormulario();
-    this.cargarVeterinario(); // AÑADIDO
+    this.cargarVeterinario();
   }
 
-  // AÑADIDO: Método para cargar veterinario
   private cargarVeterinario(): void {
     this.veterinario = this.veterinarioService.getVetFromStorage();
     if (!this.veterinario) {
@@ -134,7 +129,6 @@ export class EditarMascota implements OnInit {
     return this.form.controls;
   }
 
-  // AÑADIDO: Método para obtener cliente seleccionado
   getClienteSeleccionado(): Cliente | undefined {
     const clienteId = this.form.get('clienteId')?.value;
     return this.clientes.find(c => c.id === clienteId);
@@ -152,7 +146,6 @@ export class EditarMascota implements OnInit {
     }
   }
 
-  // AÑADIDO: Método para manejar error de imagen
   onImageError(): void {
     this.form.patchValue({ fotoUrl: '' });
   }
@@ -172,7 +165,6 @@ export class EditarMascota implements OnInit {
 
     this.cargando = true;
 
-    // DTO solo para el formulario
     const dto: MascotaUpdateDTO = {
       nombre: this.form.value.nombre,
       tipo: this.form.value.tipo,

@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { RouterModule, Router } from '@angular/router';
 import { finalize } from 'rxjs/operators';
-
 import { VeterinarioService } from '../../core/services/veterinario.service';
 import { Veterinario } from '../../core/models/veterinario.model';
 
@@ -28,12 +27,10 @@ export class LoginVeterinario {
     private router: Router
   ) {}
 
-  // Mostrar/ocultar contraseña
   togglePassword(): void {
     this.mostrarClave = !this.mostrarClave;
   }
 
-  // Envío del formulario
   onSubmit(form: NgForm): void {
     if (form.invalid) {
       form.control.markAllAsTouched();
@@ -52,7 +49,6 @@ export class LoginVeterinario {
             this.mensajeError = 'Credenciales inválidas';
             return;
           }
-          // Guardar sesión en el servicio y navegar
           this.vetService.setVeterinarioLogeado(vet);
           this.router.navigate(['/mascotas/ver-mascotas']);
         },

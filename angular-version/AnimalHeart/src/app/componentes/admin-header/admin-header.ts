@@ -7,5 +7,4 @@ import { Component } from '@angular/core';
   styleUrl: './admin-header.css'
 })
 export class AdminHeader {
-
 }

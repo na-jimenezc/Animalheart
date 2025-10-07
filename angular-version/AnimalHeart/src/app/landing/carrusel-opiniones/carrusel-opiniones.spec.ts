@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { CarruselOpiniones } from './carrusel-opiniones';
 
 describe('CarruselOpiniones', () => {

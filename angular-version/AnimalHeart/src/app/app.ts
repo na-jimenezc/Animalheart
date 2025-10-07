@@ -5,6 +5,7 @@ import { Footer } from './landing/footer/footer';
 import { Router, NavigationEnd } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+
 @Component({
   selector: 'app-root',
   imports: [RouterModule, Header, Footer, CommonModule,  HttpClientModule],
@@ -18,9 +19,7 @@ export class App {
 
   constructor(private router: Router) {
     this.router.events.subscribe(event => {
-      if (event instanceof NavigationEnd) {
-      
-        //Se oculta el header en la página de mascotas
+      if (event instanceof NavigationEnd) {      
         this.ocultarHeader = 
           event.urlAfterRedirects.startsWith('/mascotas') ||
           event.urlAfterRedirects.startsWith('/clientes') || 

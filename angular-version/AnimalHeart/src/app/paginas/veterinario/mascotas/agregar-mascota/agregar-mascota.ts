@@ -42,14 +42,12 @@ export class AgregarMascota implements OnInit {
       activo: [true]
     });
 
-    //Se cargan los clientes para seleccionalo
     this.clientesService.findAll().subscribe({
       next: (clientes) => (this.clientes = clientes),
       error: (err) => console.error('Error cargando clientes', err)
     });
   }
 
-  //Getter para los controles del formulario
   get f() {
     return this.mascotaForm.controls;
   }
@@ -60,7 +58,6 @@ export class AgregarMascota implements OnInit {
   }
 
   onFotoUrlChange(): void {
-
   }
 
   onTipoChange(): void {
@@ -100,9 +97,6 @@ export class AgregarMascota implements OnInit {
     }
   }
 }
-
-
-
 
   /*mascotaForm: FormGroup;
   clientes: Cliente[] = [];

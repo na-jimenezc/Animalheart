@@ -7,5 +7,4 @@ import { Component } from '@angular/core';
   styleUrl: './veterinarios-detalle.css'
 })
 export class VeterinariosDetalle {
-
 }

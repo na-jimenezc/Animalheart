@@ -1,4 +1,3 @@
-/* === LAYOUT A PANTALLA COMPLETA === */
 :host {
   display: block;
   min-height: calc(100dvh - 100px);
@@ -13,7 +12,6 @@
   padding: 32px 16px;
 }
 
-/* === TARJETA === */
 .tarjeta-login {
   width: 100%;
   max-width: 560px;
@@ -62,7 +60,6 @@
   color: #6b7a86;
 }
 
-/* === FORMULARIO === */
 .campo-formulario { margin-bottom: 18px; }
 .etiqueta {
   display: block;
@@ -106,7 +103,6 @@
 .control.is-valid { border-color: #198754; }
 .invalid-feedback { font-size: 0.875rem; }
 
-/* === ACCIONES === */
 .acciones-formulario { margin-top: 10px; }
 .boton-enviar {
   width: 100%;
@@ -135,7 +131,6 @@
 }
 .enlace-recuperar:hover { text-decoration: underline; }
 
-/* === RESPONSIVE === */
 @media (max-width: 420px) {
   .tarjeta-login { padding: 22px; border-radius: 16px; }
 }

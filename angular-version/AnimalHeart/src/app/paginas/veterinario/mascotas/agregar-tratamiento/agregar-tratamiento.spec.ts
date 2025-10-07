@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { AgregarTratamiento } from './agregar-tratamiento';
 
 describe('AgregarTratamiento', () => {

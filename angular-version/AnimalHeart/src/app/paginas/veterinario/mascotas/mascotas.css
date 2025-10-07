@@ -1,4 +1,3 @@
-/* ====== Tokens mínimos que esta vista sí usa ====== */
 :root{
   --teal-700:#073352;
   --teal-600:#2a9a99;
@@ -12,23 +11,19 @@
   --shadow:0 8px 24px rgba(0,0,0,.08);
 }
 
-/* ====== Base ====== */
 *{box-sizing:border-box}
 html,body{margin:0;background:var(--bg);color:var(--text);
   font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.45}
 img{max-width:100%;display:block}
 
-/* ====== Sticky footer layout en esta maqueta ====== */
 body.vet-mockup{min-height:100svh;display:flex;flex-direction:column}
 body.vet-mockup>main{flex:1}
 .vmk-footer{margin-top:auto}
 
-/* ====== Header/Hero (con overlay) ====== */
 .vmk-header{background:url("/assets/images/vet_animalheart.jpeg") center/cover no-repeat;position:relative;color:#fff}
 .vmk-header::before{content:"";position:absolute;inset:0;background:rgba(7,51,82,.92)}
 .vmk-header>*{position:relative;z-index:1}
 
-/* Barra superior de botones (píldoras) */
 .vmk-toolbar{background:transparent;color:#fff}
 .vmk-btn{display:inline-flex;align-items:center;gap:.4rem;padding:8px 14px;border-radius:999px;
   font-weight:600;font-size:14px;line-height:1;text-decoration:none;transition:.2s;color:#fff}
@@ -36,13 +31,11 @@ body.vet-mockup>main{flex:1}
 .vmk-btn--outline:hover{background:#fff;color:var(--teal-700)}
 .vmk-btn--danger:hover{background:var(--teal-700);color:#fff}
 
-/* Hero: logo + título */
 .vmk-hero{padding:12px 0 24px}
 .vmk-hero-inner{display:flex;align-items:center;gap:18px}
 .vmk-brand{height:58px;width:auto;object-fit:contain}
 .vmk-title{margin:0;font-weight:800;letter-spacing:.5px;font-size:clamp(28px,3.6vw,40px)}
 
-/* Bienvenida + icono de búsqueda */
 .vmk-welcome{background:#fff;border-radius:16px;box-shadow:var(--shadow);padding:18px 22px;margin-top:-18px}
 .vmk-welcome h2{font-size:clamp(18px,2.5vw,26px);font-weight:700;color:#0d3c58;letter-spacing:.2px}
 .vmk-welcome {
@@ -54,7 +47,6 @@ body.vet-mockup>main{flex:1}
 }
 .vmk-search{font-size:28px;color:#0d3c58;opacity:.9}
 
-/* ====== Tabla de pacientes ====== */
 .vmk-table-wrap{padding:28px 0 24px}
 .vmk-table-card{background:#fff;border-radius:18px;box-shadow:var(--shadow);padding:4px 8px 8px}
 
@@ -66,12 +58,10 @@ body.vet-mockup>main{flex:1}
 .vmk-table tbody td{padding:18px 12px;vertical-align:middle;border:0;border-bottom:4px solid #0e3d5b}
 .vmk-table tbody tr:last-child td{border-bottom:none}
 
-/* Avatar y chips */
 .vmk-avatar{width:52px;height:52px;border-radius:50%;object-fit:cover;border:2px solid var(--teal-200)}
 .vmk-col-name{font-weight:600}
 .vmk-badge{display:inline-block;padding:6px 10px;border-radius:999px;background:var(--teal-200);color:var(--teal-700);font-weight:600;font-size:.9rem}
 
-/* Botón “Ver más” tipo píldora */
 .vmk-pill{
   display:inline-flex;align-items:center;justify-content:center;gap:.35rem;
   padding:6px 14px;border-radius:999px;font-weight:600;font-size:.9rem;
@@ -80,10 +70,8 @@ body.vet-mockup>main{flex:1}
 .vmk-pill .bi{line-height:1;flex:0 0 auto}
 .vmk-pill:hover{background:var(--teal-700);transform:translateY(-1px)}
 
-/* ====== Footer ====== */
 .vmk-footer{background:var(--pink-300);padding:16px 0;color:#fff}
 
-/* === Acciones en la celda: separación vertical y estética consistente === */
 .vmk-table td.text-center{ display: table-cell !important; text-align: center; vertical-align: middle; }
 .vmk-table td.text-center > a.vmk-pill,
 .vmk-table td.text-center > form{ display: block; margin: 6px auto; }
@@ -96,7 +84,6 @@ body.vet-mockup>main{flex:1}
 .vmk-table tbody td{ border-bottom: 4px solid #0e3d5b; }
 .vmk-table tbody tr:last-child td{ border-bottom: none; }
 
-/* ====== Highlight del botón "Registrar Mascota" ====== */
 .cta-registrar {
   position: relative; isolation: isolate;
   background: linear-gradient(135deg,#2fd4d2,#0f5d86);
@@ -121,7 +108,6 @@ body.vet-mockup>main{flex:1}
   to{transform:scale(1.15); opacity:0}
 }
 
-/* Coach-mark */
 .coachmark {
   position: absolute; top: 110%; left: 0; translate: 0 8px;
   background:#0f5d86; color:#fff; border-radius:12px; padding:.6rem .8rem;
@@ -137,7 +123,6 @@ body.vet-mockup>main{flex:1}
   font-size:1rem; cursor:pointer; opacity:.85;
 }
 
-/* FAB móvil */
 .fab-registrar{
   position: fixed; right: 18px; bottom: 18px; z-index: 50;
   display: inline-flex; align-items:center; justify-content:center;
@@ -150,7 +135,6 @@ body.vet-mockup>main{flex:1}
 @media (min-width: 992px){ .fab-registrar{ display:none; } }
 @media (prefers-reduced-motion: reduce){ .cta-registrar::after{ animation: none; } }
 
-/* ===== Botón "Agregar dueño" (junto a Registrar Mascota) ===== */
 .cta-dueno{
   position: relative; isolation: isolate;
   background: linear-gradient(135deg,#34d399,#0ea5a4);
@@ -178,9 +162,6 @@ body.vet-mockup>main{flex:1}
   .cta-dueno::after{ animation: none; }
 }
 
-/* --- Fix contraste en "Registrar Mascota" --- */
-
-/* Evita que .vmk-btn--outline lo pinte de blanco al hacer hover */
 .vmk-btn--outline.cta-registrar,
 .vmk-btn--outline.cta-registrar:hover,
 .vmk-btn--ghost.cta-registrar:hover{
@@ -189,18 +170,15 @@ body.vet-mockup>main{flex:1}
   border-color: transparent;
 }
 
-/* Pequeño realce del texto sobre el glow */
 .cta-registrar{
   text-shadow: 0 1px 0 rgba(0,0,0,.25);
 }
 
-/* ====== BARRA SUPERIOR MÁS GRANDE ====== */
 .vmk-toolbar {
   padding: 18px 0;
   min-height: 80px;
 }
 
-/* ====== PAGINACIÓN MEJORADA ====== */
 .pagination {
   margin: 20px 0;
 }
@@ -231,7 +209,6 @@ body.vet-mockup>main{flex:1}
   border-color: #dee2e6;
 }
 
-/* ====== ENCABEZADO DE TABLA ESTILIZADO ====== */
 .vmk-table thead tr {
   background: var(--teal-700) !important;
 }
@@ -255,36 +232,30 @@ body.vet-mockup>main{flex:1}
   border-bottom-right-radius: 14px;
 }
 
-/* Aseguramos que el texto de la tabla sea oscuro, sin afectar el header */
 .vmk-table thead th {
   color: #fff;
 }
 
-/* Mejoramos el espaciado general de la tabla */
 .vmk-table tbody td {
   padding: 16px 12px;
   vertical-align: middle;
 }
 
-/* Ajustamos el tamaño de los badges para mejor visualización */
 .vmk-table .badge {
   font-size: 0.85em;
   padding: 0.5em 0.75em;
 }
 
-/* Centrado general para todas las celdas de la tabla */
 .vmk-table th, 
 .vmk-table td {
   text-align: center;
   vertical-align: middle;
 }
 
-/* Ajuste específico para la columna de nombre */
 .vmk-col-name {
   text-align: center !important;
 }
 
-/* Ajuste para los badges */
 .vmk-table .badge,
 .vmk-badge {
   display: inline-block;
@@ -292,13 +263,11 @@ body.vet-mockup>main{flex:1}
   text-align: center;
 }
 
-/* Ajuste para la imagen de avatar */
 .vmk-avatar {
   margin: 0 auto;
   display: block;
 }
 
-/* Ajuste para los botones en celda de acciones */
 .vmk-table td.text-center {
   display: table-cell;
   text-align: center;
@@ -312,26 +281,20 @@ body.vet-mockup>main{flex:1}
   vertical-align: middle;
 }
 
-/* Asegurar que todos los elementos en celdas estén centrados */
 .vmk-table tbody td > * {
   margin-left: auto;
   margin-right: auto;
   text-align: center;
 }
 
-/* Ajuste específico para formularios en celdas */
 .vmk-table td.text-center form {
   display: inline-block;
 }
 
-/* Asegurar que los encabezados estén centrados */
 .vmk-table thead th {
   text-align: center;
 }
 
-/* ====== BOTONES TABLA ====== */
-
-/* Contenedor para botones de acciones - AHORA CON ANCHO FIJO */
 .vmk-table .actions-container {
   display: flex;
   flex-direction: column;
@@ -341,7 +304,6 @@ body.vet-mockup>main{flex:1}
   margin: 0 auto;
 }
 
-/* Estilo uniforme para todos los botones de acción - MISMO ANCHO */
 .vmk-table .action-btn {
   display: flex;
   align-items: center;
@@ -361,7 +323,6 @@ body.vet-mockup>main{flex:1}
   min-height: 32px;
 }
 
-/* Botón Ver más */
 .vmk-pill {
   background: var(--teal-600);
   color: #fff;
@@ -372,7 +333,6 @@ body.vet-mockup>main{flex:1}
   transform: translateY(-1px);
 }
 
-/* Botón Editar */
 .btn-edit {
   background: var(--teal-200);
   color: var(--teal-700);
@@ -385,7 +345,6 @@ body.vet-mockup>main{flex:1}
   border-color: var(--teal-700);
 }
 
-/* Botón Desactivar - ya tiene el ancho correcto */
 .btn-outline-danger {
   border: 2px solid #d32f2f;
   color: #d32f2f;
@@ -398,27 +357,17 @@ body.vet-mockup>main{flex:1}
   color: #fff;
 }
 
-/* Ajuste para formulario */
 .vmk-table td.text-center form {
   width: 100%;
   display: flex;
   justify-content: center;
 }
 
-/* Asegurar que todos los botones tengan el mismo tamaño */
 .vmk-table .action-btn,
 .vmk-table .btn-outline-danger {
   min-width: 110px;
 }
 
-
-
-
-
-
-/* ====== FORMULARIO DE EDICIÓN DE CLIENTE ====== */
-
-/* ====== ESTILO DE TABLA AL ESTILO VETERINARIOS (CON AZUL) ====== */
 .vmk-table-card {
   background: var(--teal-200);
   border-radius: 18px;
@@ -463,7 +412,6 @@ body.vet-mockup>main{flex:1}
   border-bottom-right-radius: 14px;
 }
 
-/* Avatar */
 .va-avatar {
   width: 150px;
   height: 60px;
@@ -479,7 +427,6 @@ body.vet-mockup>main{flex:1}
   text-align: center;
 }
 
-/* Badge */
 .va-badge {
   display: inline-block;
   padding: 6px 10px;
@@ -490,7 +437,6 @@ body.vet-mockup>main{flex:1}
   font-size: 0.9rem;
 }
 
-/* Botones */
 .va-pill {
   display: inline-flex;
   align-items: center;
@@ -512,7 +458,6 @@ body.vet-mockup>main{flex:1}
   transform: translateY(-1px);
 }
 
-/* Estado vacío */
 .va-empty {
   text-align: center;
   padding: 24px;
@@ -526,7 +471,6 @@ body.vet-mockup>main{flex:1}
   grid-template-columns: 100px 1.2fr 1fr 0.8fr 0.8fr 1fr 0.8fr 1.2fr;
 }
 
-/* Ocultar encabezado de la tabla en móvil */
 @media (max-width: 767px) {
   .va-table-head {
     display: none;
@@ -567,7 +511,6 @@ body.vet-mockup>main{flex:1}
     border-bottom-right-radius: 14px;
   }
   
-  /* Etiquetas para móvil */
   .va-table td::before {
     content: attr(data-label);
     font-weight: 600;
@@ -577,7 +520,6 @@ body.vet-mockup>main{flex:1}
   }
 }
 
-/* Ajustes para los botones de acciones en la nueva tabla */
 .va-table .actions-container {
   display: flex;
   flex-direction: column;
@@ -606,7 +548,6 @@ body.vet-mockup>main{flex:1}
   min-height: 32px;
 }
 
-/* Botón Editar */
 .va-table .btn-edit {
   background: var(--teal-200);
   color: var(--teal-700);
@@ -619,7 +560,6 @@ body.vet-mockup>main{flex:1}
   border-color: var(--teal-700);
 }
 
-/* Botón Desactivar */
 .va-table .btn-outline-danger {
   border: 2px solid #d32f2f;
   color: #d32f2f;
@@ -632,20 +572,17 @@ body.vet-mockup>main{flex:1}
   color: #fff;
 }
 
-/* Ajuste para formulario */
 .va-table td.text-center form {
   width: 100%;
   display: flex;
   justify-content: center;
 }
 
-/* Añadir variable de color azul claro si no existe */
 :root {
   --teal-100: #d9f2f1;
   --teal-300: #8dd6d5;
 }
 
-/* ====== ESTRUCTURA UNIFICADA DE TABLA ====== */
 .table-container {
   display: flex;
   flex-direction: column;
@@ -713,7 +650,6 @@ body.vet-mockup>main{flex:1}
   color: var(--muted);
 }
 
-/* ====== BOTONES CON TAMAÑO Y FORMA CONSISTENTE ====== */
 .actions-container {
   display: flex;
   flex-direction: column;
@@ -744,7 +680,6 @@ body.vet-mockup>main{flex:1}
   border: 2px solid transparent;
 }
 
-/* Botón Ver más */
 .btn-view {
   background: var(--teal-600);
   color: #fff;
@@ -755,7 +690,6 @@ body.vet-mockup>main{flex:1}
   transform: translateY(-1px);
 }
 
-/* Botón Editar */
 .btn-edit {
   background: var(--teal-200);
   color: var(--teal-700);
@@ -768,7 +702,6 @@ body.vet-mockup>main{flex:1}
   border-color: var(--teal-700);
 }
 
-/* Botón Desactivar */
 .btn-deactivate {
   background: #fff;
   color: #d32f2f;
@@ -780,14 +713,12 @@ body.vet-mockup>main{flex:1}
   color: #fff;
 }
 
-/* Ajuste para formulario */
 .actions-container form {
   width: 100%;
   display: flex;
   justify-content: center;
 }
 
-/* Responsividad para móviles */
 @media (max-width: 767px) {
   .table-header {
     display: none;
@@ -835,27 +766,21 @@ body.vet-mockup>main{flex:1}
   }
 }
 
-/* ====== Header fijo completo (barra + hero + título) ====== */
-
-/* Header fijo: que quede por encima de la página */
 .vmk-header{
   position: sticky;
   top: 0;
   z-index: 3000;
 }
 
-/* El overlay visual NO debe capturar clics */
 .vmk-header::before{
   pointer-events: none;
 }
 
-/* Por si algún estilo heredado desactiva eventos en hijos */
 .vmk-toolbar,
 .vmk-toolbar *{
   pointer-events: auto;
 }
 
-/* La barra vuelve a flujo normal; conservamos su estilo visual */
 .vmk-toolbar{
   position: static;
   background: transparent;
@@ -863,12 +788,10 @@ body.vet-mockup>main{flex:1}
   border-bottom: 1px solid rgba(255,255,255,.08);
 }
 
-/* Sutileza: cuando el header esté pegado, una ligera sombra ayuda a separar del contenido */
 @supports(selector(:has(*))){
   .vmk-header:has(.vmk-toolbar){ box-shadow: 0 1px 0 rgba(255,255,255,.06); }
 }
 
-/* --- Fix: asegurar que los botones del header sean blancos --- */
 .vmk-toolbar a,
 .vmk-toolbar .vmk-btn {
   color: #fff !important;
@@ -880,7 +803,6 @@ body.vet-mockup>main{flex:1}
   opacity: 0.9;
 }
 
-/* --- Fix definitivo: botones de header siempre blancos --- */
 .vmk-toolbar .vmk-btn,
 .vmk-toolbar .vmk-btn--ghost,
 .vmk-toolbar .vmk-btn--outline {
@@ -894,7 +816,6 @@ body.vet-mockup>main{flex:1}
   opacity: 0.9;
 }
 
-/* --- Header: forzar color blanco también en reposo (link/visited) --- */
 .vmk-toolbar .vmk-btn,
 .vmk-toolbar .vmk-btn:link,
 .vmk-toolbar .vmk-btn:visited,
@@ -906,7 +827,6 @@ body.vet-mockup>main{flex:1}
   -webkit-text-fill-color:#fff;
 }
 
-/* Asegurar el blanco en íconos bootstrap y cualquier svg dentro del header */
 .vmk-toolbar .bi,
 .vmk-toolbar svg{
   color:#fff !important;
@@ -915,13 +835,11 @@ body.vet-mockup>main{flex:1}
   opacity:1 !important;
 }
 
-/* Variantes que podían sobreescribir el color en reposo */
 .vmk-toolbar .vmk-btn--ghost,
 .vmk-toolbar .vmk-btn--outline{
   color:#fff !important;
 }
 
-/* Mantener feedback en hover sin cambiar el color */
 .vmk-toolbar .vmk-btn:hover,
 .vmk-toolbar .vmk-btn--ghost:hover,
 .vmk-toolbar .vmk-btn--outline:hover{
@@ -929,7 +847,6 @@ body.vet-mockup>main{flex:1}
   opacity:.9;
 }
 
-/* === FIX FINAL: texto del header siempre blanco (gana a cualquier override) === */
 .vmk-header .vmk-toolbar,
 .vmk-header .vmk-toolbar a,
 .vmk-header .vmk-toolbar a:link,
@@ -946,11 +863,9 @@ body.vet-mockup>main{flex:1}
   opacity: 1 !important;
 }
 
-/* Mantener feedback en hover sin cambiar el color */
 .vmk-header .vmk-toolbar a:hover,
 .vmk-header .vmk-toolbar .vmk-btn:hover { opacity: .9; }
 
-/* ====== Botón especial para "Cerrar Sesión" ====== */
 .cta-logout {
   position: relative;
   isolation: isolate;
@@ -990,7 +905,6 @@ body.vet-mockup>main{flex:1}
   .cta-logout::after { animation: none; }
 }
 
-/* ====== Botón especial para "Regresar" ====== */
 .cta-back {
   position: relative;
   isolation: isolate;
@@ -1030,40 +944,33 @@ body.vet-mockup>main{flex:1}
   .cta-back::after { animation: none; }
 }
 
-/* ====== TIPOGRAFÍA + ESPACIADO MÁS GRANDE (solo tabla de esta vista) ====== */
-/* Encabezados de la tabla */
 .table-header .header-cell{
   font-size: clamp(1.05rem, 1.4vw, 1.25rem);
   line-height: 1.35;
 }
 
-/* Celdas con datos */
 .table-body .table-cell{
   font-size: clamp(1.05rem, 1.6vw, 1.25rem);
   line-height: 1.45;
 }
 
-/* Nombre de la mascota un poco más destacado */
 .table-body .va-cell-name{
   font-size: clamp(1.15rem, 1.8vw, 1.35rem);
   font-weight: 700;
 }
 
-/* Badges: edad, tipo, estado, activo */
 .table-body .va-badge,
 .table-body .badge{
   font-size: clamp(0.95rem, 1.2vw, 1.05rem);
   padding: 0.55em 0.9em;
 }
 
-/* Avatar ligeramente mayor para acompañar el aumento de texto */
 .table-body .va-avatar{
   width: 72px;
   height: 72px;
   border-radius: 50%;
 }
 
-/* En móviles mantenemos legibilidad sin exagerar tamaños */
 @media (max-width: 767px){
   .table-body .table-cell{ font-size: 1.05rem; }
   .table-body .va-cell-name{ font-size: 1.15rem; }

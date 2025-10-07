@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { Top3Tratamientos } from './top3-tratamientos';
 
 describe('Top3Tratamientos', () => {
