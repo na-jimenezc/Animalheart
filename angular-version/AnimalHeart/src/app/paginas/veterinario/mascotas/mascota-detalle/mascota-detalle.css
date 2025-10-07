@@ -1,22 +1,181 @@
 
+/* ====== Variables de color consistentes ====== */
+:root {
+  --teal-700: #073352;
+  --teal-600: #2a9a99;
+  --teal-200: #bfe6e5;
+  --pink-300: #58AAAE;
+  --bg: #f7f7f8;
+  --surface: #ffffff;
+  --text: #1b1e22;
+  --muted: #5e6a72;
+  --radius: 18px;
+  --shadow: 0 8px 24px rgba(0,0,0,.08);
+}
+
+/* ====== Estilos generales ====== */
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+  line-height: 1.45;
+  margin: 0;
+  min-height: 100vh;
+}
+
+/* ====== FORMULARIO ACTUALIZADO ====== */
+.form-container {
+  max-width: 1000px;
+  margin: 2rem auto;
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.form-body {
+  padding: 2.5rem;
+}
+
+.form-section {
+  margin-bottom: 2.5rem;
+}
+
+.form-section-title {
+  color: var(--teal-700);
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--teal-200);
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.form-field {
+  margin-bottom: 1.5rem;
+}
+
+.form-label {
+  font-weight: 600;
+  color: var(--teal-700);
+  margin-bottom: 0.75rem;
+  display: block;
+  font-size: 0.95rem;
+}
+
+/* Estilos para la sección de foto */
+.photo-container {
+  text-align: center;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.photo-preview {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--teal-200);
+  margin: 0 auto;
+}
+
+.photo-placeholder {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: #f8f9fa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  border: 2px dashed var(--teal-200);
+  margin: 0 auto;
+  transition: all 0.3s ease;
+}
+
+/* Estilos para la tarjeta de información del cliente */
+.client-card {
+  background: var(--teal-200);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  border-left: 4px solid var(--teal-700);
+}
+
+.client-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.client-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--teal-700);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.2rem;
+}
+
+.client-details h4 {
+  margin: 0;
+  color: var(--teal-700);
+  font-size: 1.1rem;
+}
+
+.client-details p {
+  margin: 0.3rem 0 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* Estilo para campos estáticos */
+.form-control-static {
+  padding: 0.9rem 1rem;
+  background: #f9f9fa;
+  border-radius: 12px;
+  border: 2px solid var(--teal-200);
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Estilos de tabla para tratamientos */
 .table th {
   border-top: none;
   font-weight: 600;
+  background: var(--teal-200);
 }
 
 .badge {
   font-size: 0.75em;
 }
 
-.card {
-  border: none;
-  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
-}
-
-.card-header {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
-}
-
 .table-hover tbody tr:hover {
   background-color: rgba(0, 0, 0, 0.02);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-body {
+    padding: 1.5rem;
+  }
+
+  .client-info {
+    flex-direction: column;
+    text-align: center;
+  }
 }

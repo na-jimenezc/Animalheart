@@ -1,5 +1,7 @@
-<div class="container my-4">
 
+<app-header-vet [veterinario]="veterinario" [error]="headerError"></app-header-vet>
+
+<div class="container my-4">
   <!-- Loading -->
   <ng-container *ngIf="loading; else contenido">
     <div class="text-center py-5">
@@ -19,116 +21,175 @@
 
     <!-- Mascota -->
     <ng-container *ngIf="mascota as m">
-      <div class="row">
-        <!-- Información de la mascota -->
-        <aside class="col-md-4">
-          <div class="card shadow-sm mb-4">
-            <img [src]="m.fotoURL || defaultImage" 
-                 [alt]="m.nombre" 
-                 class="card-img-top"
-                 (error)="onImageError($event)"
-                 style="height: 300px; object-fit: cover;">
+      <div class="form-container">
+        <div class="form-body">
+          
+          <!-- Información de la mascota -->
+          <div class="form-section">
+            <h2 class="form-section-title">
+              <i class="bi bi-info-circle"></i>Información de la Mascota
+            </h2>
+            
+            <div class="row">
+              <!-- Foto de la mascota -->
+              <div class="col-md-4 text-center">
+                <div class="photo-container">
+                  <img [src]="m.fotoURL || defaultImage" 
+                       [alt]="m.nombre" 
+                       class="photo-preview"
+                       (error)="onImageError($event)">
+                  <div class="photo-placeholder" *ngIf="!m.fotoURL">
+                    <i class="bi bi-camera me-2"></i> Sin imagen
+                  </div>
+                </div>
+              </div>
 
-            <div class="card-body">
-              <h2 class="card-title text-primary">{{ m.nombre }}</h2>
-              <div class="pet-info">
-                <p><strong>Edad:</strong> {{ m.edad }} años</p>
-                <p><strong>Tipo:</strong> {{ m.tipo }}</p>
-                <p><strong>Raza:</strong> {{ m.raza }}</p>
-                <p><strong>Peso:</strong> {{ m.peso }} kg</p>
-                <p><strong>Estado de salud:</strong> 
-                  <span class="badge" [ngClass]="{
-                    'bg-success': m.estado === 'Sano',
-                    'bg-warning': m.estado === 'En tratamiento',
-                    'bg-danger': m.estado === 'Enfermo'
-                  }">{{ m.estado }}</span>
-                </p>
-                <p><strong>Enfermedades:</strong> {{ m.enfermedad }}</p>
+              <!-- Detalles de la mascota -->
+              <div class="col-md-8">
+                <div class="form-grid">
+                  <div class="form-field">
+                    <label class="form-label">Nombre</label>
+                    <div class="form-control-static">{{ m.nombre }}</div>
+                  </div>
+
+                  <div class="form-field">
+                    <label class="form-label">Tipo</label>
+                    <div class="form-control-static">{{ m.tipo }}</div>
+                  </div>
+
+                  <div class="form-field">
+                    <label class="form-label">Raza</label>
+                    <div class="form-control-static">{{ m.raza }}</div>
+                  </div>
+
+                  <div class="form-field">
+                    <label class="form-label">Edad</label>
+                    <div class="form-control-static">{{ m.edad }} años</div>
+                  </div>
+
+                  <div class="form-field">
+                    <label class="form-label">Peso</label>
+                    <div class="form-control-static">{{ m.peso }} kg</div>
+                  </div>
+
+                  <div class="form-field">
+                    <label class="form-label">Estado de salud</label>
+                    <div class="form-control-static">
+                      <span class="badge" [ngClass]="{
+                        'bg-success': m.estado === 'Sano',
+                        'bg-warning': m.estado === 'En tratamiento',
+                        'bg-danger': m.estado === 'Enfermo'
+                      }">{{ m.estado }}</span>
+                    </div>
+                  </div>
+
+                  <div class="form-field">
+                    <label class="form-label">Enfermedad/Diagnóstico</label>
+                    <div class="form-control-static">{{ m.enfermedad }}</div>
+                  </div>
+
+                  <div class="form-field">
+                    <label class="form-label">Estado</label>
+                    <div class="form-control-static">
+                      <span class="badge" [ngClass]="{
+                        'bg-success': m.activo,
+                        'bg-secondary': !m.activo
+                      }">
+                        {{ m.activo ? 'Activa' : 'Inactiva' }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </aside>
 
-        <!-- Historial médico y tratamientos -->
-        <section class="col-md-8">
-          <!-- Historial médico -->
-          <div class="card shadow-sm mb-4">
-            <div class="card-header bg-light">
-              <h3 class="card-title mb-0">Historial Médico</h3>
-            </div>
-            <div class="card-body">
-              <div class="alert alert-info">
-                Información general del historial médico de {{ m.nombre }}.
+          <!-- Información del dueño -->
+          <div class="form-section" *ngIf="m.cliente">
+            <h2 class="form-section-title">
+              <i class="bi bi-person"></i>Información del Dueño
+            </h2>
+            
+            <div class="client-card">
+              <div class="client-info">
+                <div class="client-avatar">
+                  <i class="bi bi-person"></i>
+                </div>
+                <div class="client-details">
+                  <h4>{{ m.cliente.nombre }}</h4>
+                  <p>
+                    <strong>Cédula:</strong> {{ m.cliente.cedula }} | 
+                    <strong>Correo:</strong> {{ m.cliente.correo }} | 
+                    <strong>Teléfono:</strong> {{ m.cliente.celular }}
+                  </p>
+                </div>
               </div>
             </div>
           </div>
 
           <!-- Tratamientos -->
-          <div class="card shadow-sm">
-            <div class="card-header bg-light d-flex justify-content-between align-items-center">
-              <h3 class="card-title mb-0">Tratamientos Recibidos</h3>
-              <span class="badge bg-primary">{{ tratamientos.length }}</span>
+          <div class="form-section">
+            <h2 class="form-section-title">
+              <i class="bi bi-heart-pulse"></i>Tratamientos Recibidos
+              <span class="badge bg-primary ms-2">{{ tratamientos.length }}</span>
+            </h2>
+            
+            <!-- Loading tratamientos -->
+            <div *ngIf="loadingTratamientos" class="text-center py-3">
+              <div class="spinner-border spinner-border-sm" role="status">
+                <span class="visually-hidden">Cargando tratamientos...</span>
+              </div>
+              <p class="mt-2 small">Cargando tratamientos...</p>
             </div>
-            <div class="card-body">
-              
-              <!-- Loading tratamientos -->
-              <div *ngIf="loadingTratamientos" class="text-center py-3">
-                <div class="spinner-border spinner-border-sm" role="status">
-                  <span class="visually-hidden">Cargando tratamientos...</span>
-                </div>
-                <p class="mt-2 small">Cargando tratamientos...</p>
+
+            <!-- Lista de tratamientos -->
+            <div *ngIf="!loadingTratamientos">
+              <div *ngIf="tratamientos.length === 0" class="alert alert-warning">
+                <i class="bi bi-info-circle"></i> No hay tratamientos registrados para esta mascota.
               </div>
 
-              <!-- Lista de tratamientos -->
-              <div *ngIf="!loadingTratamientos">
-                <div *ngIf="tratamientos.length === 0" class="alert alert-warning">
-                  <i class="bi bi-info-circle"></i> No hay tratamientos registrados para esta mascota.
-                </div>
-
-                <div *ngIf="tratamientos.length > 0" class="table-responsive">
-                  <table class="table table-hover">
-                    <thead class="table-light">
-                      <tr>
-                        <th>Fecha</th>
-                        <th>Medicamento</th>
-                        <th>Cantidad</th>
-                        <th>Veterinario</th>
-                        <th>Especialidad</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr *ngFor="let tratamiento of tratamientos">
-                        <td>
-                          <strong>{{ formatearFecha(tratamiento.fecha) }}</strong>
-                        </td>
-                        <td>
-                          <span class="fw-bold text-primary">{{ tratamiento.medicamento.nombre }}</span>
-                          <br>
-                          <small class="text-muted">
-                            Precio: ${{ tratamiento.medicamento.precioVenta | number }}
-                          </small>
-                        </td>
-                        <td>
-                          <span class="badge bg-secondary">{{ tratamiento.cantidadUsada }} unidades</span>
-                        </td>
-                        <td>
-                          {{ tratamiento.veterinario.nombre }}
-                          <br>
-                          <small class="text-muted">{{ tratamiento.veterinario.nombreUsuario }}</small>
-                        </td>
-                        <td>
-                          <span class="badge bg-info">{{ tratamiento.veterinario.especialidad }}</span>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
+              <div *ngIf="tratamientos.length > 0" class="table-responsive">
+                <table class="table table-hover">
+                  <thead class="table-light">
+                    <tr>
+                      <th>Fecha</th>
+                      <th>Medicamento</th>
+                      <th>Cantidad</th>
+                      <th>Veterinario</th>
+                      <th>Especialidad</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let tratamiento of tratamientos">
+                      <td>
+                        <strong>{{ formatearFecha(tratamiento.fecha) }}</strong>
+                      </td>
+                      <td>
+                        <span class="fw-bold text-primary">{{ tratamiento.medicamento.nombre }}</span>
+                        <br>
+                        <small class="text-muted">
+                          Precio: ${{ tratamiento.medicamento.precioVenta | number }}
+                        </small>
+                      </td>
+                      <td>
+                        <span class="badge bg-secondary">{{ tratamiento.cantidadUsada }} unidades</span>
+                      </td>
+                      <td>
+                        {{ tratamiento.veterinario.nombre }}
+                        <br>
+                        <small class="text-muted">{{ tratamiento.veterinario.nombreUsuario }}</small>
+                      </td>
+                      <td>
+                        <span class="badge bg-info">{{ tratamiento.veterinario.especialidad }}</span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
-        </section>
+        </div>
       </div>
     </ng-container>
   </ng-template>
-
 </div>

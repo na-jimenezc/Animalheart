@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Mascota } from '../../../../core/models/mascota.model';
@@ -8,10 +9,13 @@ import { TratamientoService } from '../../../../core/services/tratamiento.servic
 import { ChangeDetectorRef } from '@angular/core';
 import { Tratamiento } from '../../../../core/models/tratamiento.model';
 import { TratamientoDTO } from '../../../../core/models/DTO/tratamiento-dto';
+import { HeaderVet } from '../../../../componentes/header-vet/header-vet'; // AÑADIDO
+import { VeterinarioService } from '../../../../core/services/veterinario.service'; // AÑADIDO
+import { Veterinario } from '../../../../core/models/veterinario.model'; // AÑADIDO
 
 @Component({
   selector: 'app-mascota-detalle',
-  imports: [CommonModule],
+  imports: [CommonModule, HeaderVet], // AÑADIDO HeaderVet
   templateUrl: './mascota-detalle.html',
   styleUrls: ['./mascota-detalle.css']
 })
@@ -23,16 +27,20 @@ export class MascotaDetalle implements OnInit {
   loading = true;
   error = false;
   loadingTratamientos = false;
+  veterinario: Veterinario | null = null; // AÑADIDO
+  headerError: string | null = null; // AÑADIDO
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private mascotasService: MascotasService,
     private tratamientoService: TratamientoService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private veterinarioService: VeterinarioService // AÑADIDO
   ) {}
 
   ngOnInit(): void {
+    this.cargarVeterinario(); // AÑADIDO
     this.route.paramMap.subscribe(params => {
       const id = params.get('id');
       if (id) {
@@ -42,6 +50,14 @@ export class MascotaDetalle implements OnInit {
         this.loading = false;
       }
     });
+  }
+
+  // AÑADIDO: Método para cargar veterinario
+  private cargarVeterinario(): void {
+    this.veterinario = this.veterinarioService.getVetFromStorage();
+    if (!this.veterinario) {
+      this.headerError = 'No se encontró información del veterinario. Por favor, inicie sesión nuevamente.';
+    }
   }
 
   cargarMascota(id: number): void {
@@ -109,4 +125,3 @@ export class MascotaDetalle implements OnInit {
     (event.target as HTMLImageElement).src = this.defaultImage;
   }
 }
-
