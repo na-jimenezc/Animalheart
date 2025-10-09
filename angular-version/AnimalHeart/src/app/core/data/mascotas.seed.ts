@@ -51,5 +51,4 @@ export const MASCOTAS_SEED: Mascota[] = RAW_MASCOTAS.map((m) => {
   }
   const { clienteId, ...rest } = m;
   return { ...rest, cliente };
-});
-*/
+});*/

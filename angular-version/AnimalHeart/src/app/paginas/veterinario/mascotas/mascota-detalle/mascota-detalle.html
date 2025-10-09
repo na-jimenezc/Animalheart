@@ -118,7 +118,6 @@
             </div>
           </div>
 
-          <!-- Acciones del dueño -->
           <div class="actions owner-actions" *ngIf="m.cliente?.id as ownerId; else sinDueno">
             <a class="btn-owner"
               [routerLink]="['/clientes/detalle', ownerId]"
@@ -128,7 +127,6 @@
             </a>
           </div>
 
-          <!-- Si no hay dueño -->
           <ng-template #sinDueno>
             <div class="mt-3">
               <div class="alert alert-info mb-2">

@@ -18,8 +18,21 @@
   </div>
 </section>
 
-<main class="client-wrap my-5">
-  <div *ngIf="loading" class="mb-4">Cargando…</div>
+<main class="client-wrap my-5">   
+  <div *ngIf="loading === true" class="loading">{{this.loading}}</div>
+  <ng-container *ngIf="!loading">
+
+    <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+
+    <div *ngIf="!error && mascotas.length === 0" class="empty">
+      No tienes mascotas registradas.
+    </div>
+
+    <div *ngIf="!error && mascotas.length > 0" class="lista">
+    </div>
+
+  </ng-container>
+
   <div *ngIf="!loading && error" class="alert alert-danger">{{ error }}</div>
 
   <div *ngIf="!loading" class="row mb-4">

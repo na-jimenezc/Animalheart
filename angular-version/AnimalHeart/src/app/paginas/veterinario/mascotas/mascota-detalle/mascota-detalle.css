@@ -171,7 +171,6 @@ body {
   }
 }
 
-/* Botón destacado para ver dueño */
 .btn-owner {
   --c1: var(--teal-600);
   --c2: #17c0d3;
@@ -206,14 +205,11 @@ body {
   outline-offset: 2px;
 }
 
-/* Coloca el botón más cerca del card del dueño,
-   y deja aire con el siguiente título. */
 .owner-actions {
-  margin-top: 0.6rem;   /* sube el botón */
-  margin-bottom: 2rem;  /* separa del siguiente título */
+  margin-top: 0.6rem;
+  margin-bottom: 2rem;
 }
 
-/* Si quieres afinar un poquito más en pantallas grandes */
 @media (min-width: 992px) {
   .owner-actions {
     margin-top: 0.5rem;

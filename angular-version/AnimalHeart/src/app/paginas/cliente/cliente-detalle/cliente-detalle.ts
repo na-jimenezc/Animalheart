@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-
 import { ClienteService } from '../../../core/services/cliente.service';
 import type { Cliente } from '../../../core/models/cliente.model';
 
 @Component({
   selector: 'app-cliente-detalle',
   standalone: true,
-  imports: [CommonModule, RouterModule],   // <-- IMPORTANTÍSIMO para routerLink
+  imports: [CommonModule, RouterModule],
   templateUrl: './cliente-detalle.html',
   styleUrls: ['./cliente-detalle.css']
 })
@@ -17,7 +16,6 @@ export class ClienteDetalle implements OnInit {
   loading = true;
   error = '';
 
-  /** opcional: para saber a qué mascota volver */
   fromMascotaId?: number;
 
   constructor(
@@ -56,7 +54,6 @@ export class ClienteDetalle implements OnInit {
 
   editar(): void {
     if (!this.cliente?.id) return;
-    // Reutiliza tu pantalla actual de edición
     this.router.navigate(['/veterinario/mascotas/editar-dueno', this.cliente.id], {
       queryParams: this.fromMascotaId ? { returnTo: `/mascotas/detalle/${this.fromMascotaId}` } : {}
     });

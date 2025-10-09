@@ -40,5 +40,4 @@ export const TRATAMIENTOS_SEED: Tratamiento[] = RAW_TRATAMIENTOS.map(t => {
     medicamento,
     veterinario,
   };
-});
-*/
+});*/

@@ -62,22 +62,4 @@ export class VeterinarioService {
   delete(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
-
-  /*Función para validar las credenciales del veterinario y guardar el veterinario
-  validarCredenciales(usuario: string, contrasena: string): Veterinario | null {
-    const vet = this.veterinarios.find(
-      v => v.nombreUsuario === usuario && v.contrasena === contrasena
-    ) || null;
-
-    if (vet) {
-      this.veterinarioSubject.next(vet); 
-    }
-
-    return vet;
-  }
-
-  //Función del logout
-  logout(): void {
-    this.veterinarioSubject.next(null);
-  }*/
 }

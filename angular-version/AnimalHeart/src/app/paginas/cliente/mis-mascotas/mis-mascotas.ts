@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule, Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { take, catchError, finalize } from 'rxjs/operators';
+import { of } from 'rxjs';
 import { ClienteService } from '../../../core/services/cliente.service';
 import type { Cliente } from '../../../core/models/cliente.model';
 import type { Mascota } from '../../../core/models/mascota.model';
@@ -13,12 +15,13 @@ import type { Mascota } from '../../../core/models/mascota.model';
   styleUrls: ['./mis-mascotas.css']
 })
 export class MisMascotas implements OnInit {
+
   loading = true;
-  error = '';
+  error   = '';
   cliente: Cliente | null = null;
   mascotas: Mascota[] = [];
 
-  constructor(private clienteSrv: ClienteService, private router: Router) {}
+  constructor(private clienteSrv: ClienteService, private router: Router, private changeDetectorRef: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     const raw = sessionStorage.getItem('cliente');
@@ -28,17 +31,27 @@ export class MisMascotas implements OnInit {
       this.router.navigate(['/clientes/login-cliente']);
       return;
     }
+    
+    this.error = '';
 
-    this.clienteSrv.getMascotasByCliente(this.cliente.id).subscribe({
-      next: (list) => {
-        this.mascotas = Array.isArray(list) ? list : [];
-        this.loading = false;
-      },
-      error: (err) => {
+    this.clienteSrv.getMascotasByCliente(this.cliente.id).pipe(
+      take(1),
+      catchError(err => {
         console.error('Error cargando mascotas del cliente:', err);
         this.error = 'No pudimos cargar tus mascotas. Intenta nuevamente.';
-        this.loading = false; // <- importante para salir del "Cargando..."
-      }
+        return of([] as Mascota[]);
+      }),
+      finalize(() => {
+        this.loading = false;
+      })
+    )
+    .subscribe(list => {
+      this.mascotas = Array.isArray(list) ? list : [];
+      console.log('Mascotas del cliente cargadas:', this.loading);
+      this.loading = false;
+      console.log('Mascotas del cliente cargadas:', this.loading);
+      this.changeDetectorRef.detectChanges();
+
     });
   }
 
