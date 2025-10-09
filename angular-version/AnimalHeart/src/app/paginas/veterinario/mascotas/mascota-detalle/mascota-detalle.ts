@@ -133,28 +133,16 @@ export class MascotaDetalle implements OnInit {
     }
   }
 
-  editarDueno(clienteId?: number): void {
-    if (!clienteId) return;
-    this.router.navigate(['/veterinario/mascotas/editar-dueno', clienteId]);
-  }
+  irADueno(): void {
+    const cid =
+      this.mascota?.cliente?.id ??
+      (this.mascota as any)?.clienteId ??
+      (this.mascota as any)?.cliente_id ??
+      (this.mascota as any)?.owner?.id ??
+      (this.mascota as any)?.owner_id;
 
-  eliminarDueno(clienteId?: number): void {
-    if (!clienteId) return;
-    const ok = confirm('¿Seguro que deseas eliminar este cliente? Esta acción no se puede deshacer.');
-    if (!ok) return;
-
-    this.clienteService.deleteCliente(clienteId).subscribe({
-      next: () => {
-        if (this.mascota) this.mascota.cliente = null;
-        alert('Cliente eliminado correctamente.');
-        this.cdr.detectChanges();
-      },
-
-      error: (err) => {
-        console.error('Error eliminando cliente', err);
-        alert('No se pudo eliminar el cliente. Intenta más tarde.');
-      }
-    });
+    if (!cid) { alert('Esta mascota no tiene dueño asignado.'); return; }
+    this.router.navigate(['clientes/detalle', cid]);
   }
 
   onImageError(event: Event) {

@@ -1,0 +1,28 @@
+<div class="wrap" *ngIf="!loading; else cargando">
+  <h2 class="title">Detalle del dueño</h2>
+
+  <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+
+  <ng-container *ngIf="cliente && !error">
+    <div class="card">
+      <div class="row">
+        <div class="col"><strong>Nombre:</strong> {{ cliente.nombre }}</div>
+        <div class="col"><strong>Cédula:</strong> {{ cliente.cedula }}</div>
+      </div>
+      <div class="row">
+        <div class="col"><strong>Correo:</strong> {{ cliente.correo }}</div>
+        <div class="col"><strong>Celular:</strong> {{ cliente.celular }}</div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="btn btn-primary" (click)="editar()">Editar dueño</button>
+      <button class="btn btn-danger" (click)="eliminar()">Eliminar dueño</button>
+      <a class="btn" (click)="volver()">Volver</a>
+    </div>
+  </ng-container>
+</div>
+
+<ng-template #cargando>
+  <div class="loading">Cargando dueño...</div>
+</ng-template>

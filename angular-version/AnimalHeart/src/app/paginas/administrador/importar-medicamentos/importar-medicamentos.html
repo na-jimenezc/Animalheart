@@ -1,0 +1,20 @@
+<h2>Importar Medicamentos (Excel)</h2>
+
+<input type="file" accept=".xlsx" (change)="onFileChange($event)" />
+<button class="btn btn-primary" (click)="subir()" [disabled]="!archivo || cargando">
+  {{ cargando ? 'Cargando...' : 'Importar' }}
+</button>
+
+<div *ngIf="resultado" class="mt-3">
+  <p><strong>Filas leídas:</strong> {{resultado.totalFilas}}</p>
+  <p><strong>Insertados:</strong> {{resultado.insertados}}</p>
+  <p><strong>Actualizados:</strong> {{resultado.actualizados}}</p>
+  <div *ngIf="resultado.errores?.length">
+    <h5>Errores:</h5>
+    <ul>
+      <li *ngFor="let e of resultado.errores">{{ e }}</li>
+    </ul>
+  </div>
+</div>
+
+<div *ngIf="error" class="alert alert-danger mt-3">{{ error }}</div>

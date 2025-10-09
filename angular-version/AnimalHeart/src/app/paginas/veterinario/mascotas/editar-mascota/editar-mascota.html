@@ -3,6 +3,39 @@
 <div class="form-container">
   <div class="form-body">
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+      <div class="form-section">
+        <h2 class="form-section-title">
+          <i class="bi bi-person"></i>Información del Dueño
+        </h2>
+
+        <div class="form-field">
+          <label class="form-label required">Seleccionar Cliente</label>
+          <select formControlName="clienteId" class="form-select" required>
+            <option value="">Seleccionar cliente...</option>
+            <option *ngFor="let c of clientes" [value]="c.id">
+              {{ c.nombre }} - C.C. {{ c.cedula }}
+            </option>
+          </select>
+          <div *ngIf="submitted && f['clienteId'].errors" class="error-message">
+            <div *ngIf="f['clienteId'].errors['required']">Debe seleccionar un cliente</div>
+          </div>
+        </div>
+
+        <div *ngIf="form.get('clienteId')?.value" class="client-card">
+          <div class="client-info">
+            <div class="client-avatar"><i class="bi bi-person"></i></div>
+            <div class="client-details">
+              <h4>{{ getClienteSeleccionado()?.nombre }}</h4>
+              <p>
+                C.C. {{ getClienteSeleccionado()?.cedula }} |
+                {{ getClienteSeleccionado()?.correo }} |
+                {{ getClienteSeleccionado()?.celular }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
       
       <div class="form-section">
         <h2 class="form-section-title">
@@ -84,37 +117,6 @@
             <label class="form-label">Enfermedad/Diagnóstico</label>
             <input type="text" formControlName="enfermedad" class="form-control" 
                    placeholder="Ej: Ninguna, Alergias, etc." />
-          </div>
-        </div>
-      </div>
-
-      <div class="form-section">
-        <h2 class="form-section-title">
-          <i class="bi bi-person"></i>Información del Dueño
-        </h2>
-        
-        <div class="form-field">
-          <label class="form-label required">Seleccionar Cliente</label>
-          <select formControlName="clienteId" class="form-select" required>
-            <option value="">Seleccionar cliente...</option>
-            <option *ngFor="let c of clientes" [value]="c.id">
-              {{ c.nombre }} - C.C. {{ c.cedula }}
-            </option>
-          </select>
-          <div *ngIf="submitted && f['clienteId'].errors" class="error-message">
-            <div *ngIf="f['clienteId'].errors['required']">Debe seleccionar un cliente</div>
-          </div>
-        </div>
-
-        <div *ngIf="form.get('clienteId')?.value" class="client-card">
-          <div class="client-info">
-            <div class="client-avatar">
-              <i class="bi bi-person"></i>
-            </div>
-            <div class="client-details">
-              <h4>{{ getClienteSeleccionado()?.nombre }}</h4>
-              <p>C.C. {{ getClienteSeleccionado()?.cedula }} | {{ getClienteSeleccionado()?.correo }} | {{ getClienteSeleccionado()?.celular }}</p>
-            </div>
           </div>
         </div>
       </div>

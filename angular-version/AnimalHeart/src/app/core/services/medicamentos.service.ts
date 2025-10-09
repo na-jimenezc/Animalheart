@@ -4,6 +4,13 @@ import { Observable } from 'rxjs';
 import { Medicamento } from '../models/medicamento.model';
 import { MedicamentoDTO } from '../models/DTO/medicamento-dto';
 
+interface ImportResponse {
+  totalFilas: number;
+  insertados: number;
+  actualizados: number;
+  errores: string[];
+}
+
 @Injectable({ providedIn: 'root' })
 export class MedicamentosService {
   
@@ -13,6 +20,12 @@ export class MedicamentosService {
 
   getAll(): Observable<Medicamento[]> {
     return this.http.get<Medicamento[]>(this.API_URL);
+  }
+
+  importFromExcel(file: File): Observable<ImportResponse> {
+    const fd = new FormData();
+    fd.append('file', file);
+    return this.http.post<ImportResponse>(`${this.API_URL}/import`, fd);
   }
 
   getById(id: number): Observable<Medicamento> {
