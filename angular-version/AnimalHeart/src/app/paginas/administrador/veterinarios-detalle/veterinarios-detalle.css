@@ -32,7 +32,7 @@ body.vet-mockup{
 
 /* ===================== HEADER (héroe rosado) ===================== */
 .vmk-header{
-  background:url("../IMAGES/vet_animalheart.jpeg") center/cover no-repeat;
+  background:url("../../../../assets/images/vet_animalheart.jpeg") center/cover no-repeat;
   position:relative; color:#fff;
 }
 .vmk-header::before{
@@ -127,7 +127,7 @@ body.vet-mockup{
 
 /* Header con overlay rosa (como el original) pero con estructura de mascotas */
 .vmk-header {
-    background: url("../IMAGES/admin-img.jpeg") center/cover no-repeat;
+    background: url("../../../../assets/images/admin-img.jpeg") center/cover no-repeat;
   position: relative;
   color: #fff;
 }

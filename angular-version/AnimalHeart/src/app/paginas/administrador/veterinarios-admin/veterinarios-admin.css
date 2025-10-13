@@ -148,7 +148,7 @@ a{color:inherit;text-decoration:none}
 /* ===================== HERO (overlay rosado) ===================== */
 .va-hero{
   position:relative;
-  background:url("../IMAGES/vet_animalheart.jpeg") center/cover no-repeat;
+  background:url("../../../../assets/images/vet_animalheart.jpeg") center/cover no-repeat;
   min-height:220px;
   display:flex; 
   align-items:center;
@@ -264,7 +264,7 @@ body.vet-mockup > main{ flex:1; }
 
 /* Header con overlay rosa (como el original) pero con estructura de mascotas */
 .vmk-header {
-  background: url("../IMAGES/admin-img.jpeg") center/cover no-repeat;
+  background: url("../../../../assets/images/admin-img.jpeg") center/cover no-repeat;
   position: relative;
   color: #fff;
 }
