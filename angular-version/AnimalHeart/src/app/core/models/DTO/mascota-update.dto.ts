@@ -3,6 +3,6 @@ export interface MascotaUpdateDTO {
   tipo: string;
   raza: string;
   enfermedad: string;
-  fotoUrl?: string; 
+  fotoURL?: string; 
   activo: boolean;
 }

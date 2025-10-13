@@ -41,7 +41,7 @@ export class MascotasService {
   update(id: number, dto: MascotaUpdateDTO): Observable<Mascota> {
       const payload = {
         ...dto,
-        fotoURL: dto.fotoUrl || '', 
+        fotoURL: dto.fotoURL || '', 
       };
       
       delete (payload as any).fotoUrl;

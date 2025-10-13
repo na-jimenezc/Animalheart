@@ -80,7 +80,7 @@ export class EditarMascota implements OnInit {
 
   private inicializarFormulario(): void {
     this.form = this.fb.group({
-      fotoUrl: [''],
+      fotoURL: [''],
       nombre: ['', [Validators.required, Validators.minLength(2)]],
       tipo: ['', Validators.required],
       raza: [''],
@@ -113,7 +113,7 @@ export class EditarMascota implements OnInit {
 
   private llenarFormulario(mascota: Mascota): void {
     this.form.patchValue({
-      fotoUrl: mascota.fotoURL || '',
+      fotoURL: mascota.fotoURL || '',
       nombre: mascota.nombre,
       tipo: mascota.tipo,
       raza: mascota.raza,
@@ -136,7 +136,7 @@ export class EditarMascota implements OnInit {
 
   onTipoChange(): void {
     const tipo = this.form.get('tipo')?.value;
-    const fotoCtrl = this.form.get('fotoUrl');
+    const fotoCtrl = this.form.get('fotoURL');
     
     if (tipo && !fotoCtrl?.value) {
       const defaultImage = tipo === 'Perro' 
@@ -147,7 +147,7 @@ export class EditarMascota implements OnInit {
   }
 
   onImageError(): void {
-    this.form.patchValue({ fotoUrl: '' });
+    this.form.patchValue({ fotoURL: '' });
   }
 
   onSubmit(): void {
@@ -158,6 +158,13 @@ export class EditarMascota implements OnInit {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
       console.log('Formulario inválido', this.form.errors);
+      console.log(this.form.value);
+      console.log(this.form.getRawValue());
+      console.log(this.form.errors);
+      Object.keys(this.form.controls).forEach(key => {
+        const controlErrors = this.form.get(key)?.errors;
+        if (controlErrors) console.log(key, controlErrors);
+      });
       return;
     }
 
@@ -170,7 +177,7 @@ export class EditarMascota implements OnInit {
       tipo: this.form.value.tipo,
       raza: this.form.value.raza,
       enfermedad: this.form.value.enfermedad,
-      fotoUrl: this.form.value.fotoUrl || this.getDefaultImage(this.form.value.tipo),
+      fotoURL: this.form.value.fotoURL || this.getDefaultImage(this.form.value.tipo),
       activo: this.form.value.activo
     };
 
@@ -202,6 +209,6 @@ export class EditarMascota implements OnInit {
   }
 
   onFotoUrlChange(): void {
-    console.log('URL de foto cambiada:', this.form.get('fotoUrl')?.value);
+    console.log('URL de foto cambiada:', this.form.get('fotoURL')?.value);
   }
 }

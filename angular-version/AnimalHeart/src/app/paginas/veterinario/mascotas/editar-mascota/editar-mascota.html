@@ -42,17 +42,17 @@
           <i class="bi bi-camera"></i>Foto de la Mascota
         </h2>
         <div class="photo-container">
-          <img [src]="form.value.fotoUrl || (form.value.tipo === 'Gato' ? '/assets/images/defaultGato.png' : '/assets/images/defaultPerro.jpg')" 
+          <img [src]="form.value.fotoURL || (form.value.tipo === 'Gato' ? '/assets/images/defaultGato.png' : '/assets/images/defaultPerro.jpg')" 
                class="photo-preview"
                (error)="onImageError()">
-          <div class="photo-placeholder" *ngIf="!form.value.fotoUrl">
+          <div class="photo-placeholder" *ngIf="!form.value.fotoURL">
             <i class="bi bi-camera me-2"></i> Imagen de la mascota
           </div>
         </div>
         
         <div class="form-field">
           <label class="form-label">URL de la Foto</label>
-          <input type="url" formControlName="fotoUrl" class="form-control" 
+          <input type="url" formControlName="fotoURL" class="form-control" 
                  placeholder="https://ejemplo.com/imagen.jpg"
                  (input)="onFotoUrlChange()">
           <div class="form-text">Pega la URL de una imagen o deja vacío para usar imagen por defecto</div>
