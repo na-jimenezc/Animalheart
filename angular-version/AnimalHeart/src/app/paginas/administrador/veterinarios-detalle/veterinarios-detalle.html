@@ -1,1 +1,69 @@
-<p>veterinarios-detalle works!</p>
+
+<div class="vet-mockup">
+  <main class="vmk-main">
+    
+    <!-- Loading state -->
+    <div *ngIf="loading" class="text-center p-5">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Cargando...</span>
+      </div>
+      <p class="mt-2">Cargando información del veterinario...</p>
+    </div>
+
+    <!-- Error state -->
+    <div *ngIf="error && !loading" class="text-center p-5">
+      <div class="alert alert-danger">
+        <i class="bi bi-exclamation-triangle"></i> {{ error }}
+      </div>
+      <button class="btn btn-primary" (click)="volverLista()">
+        Volver a la lista
+      </button>
+    </div>
+
+    <!-- Success state -->
+    <div *ngIf="veterinario && !loading" class="vd-wrap">
+      <div class="text-center mb-4">
+        <img
+          class="vd-photo"
+          [alt]="veterinario.nombre"
+          [src]="veterinario.imagen || 'https://picsum.photos/seed/vet-' + (veterinario.nombre?.replace(' ', '') || 'default') + '/600/720'">
+      </div>
+
+      <div class="vd-grid">
+        <div class="vd-item">
+          <div class="vd-icon"><i class="bi bi-badge-hd"></i></div>
+          <div class="vd-body">
+            <small>Estado actual</small>
+            <div class="vd-value" [class.text-ok]="veterinario.activo === 1" [class.text-off]="veterinario.activo === 0">
+              {{ veterinario.activo === 1 ? 'Activo' : 'Inactivo' }}
+            </div>
+          </div>
+        </div>
+
+        <div class="vd-item">
+          <div class="vd-icon"><i class="bi bi-fingerprint"></i></div>
+          <div class="vd-body">
+            <small>ID</small>
+            <div class="vd-value">{{ veterinario.id }}</div>
+          </div>
+        </div>
+
+        <div class="vd-item">
+          <div class="vd-icon"><i class="bi bi-person-badge"></i></div>
+          <div class="vd-body">
+            <small>Nombres</small>
+            <div class="vd-value">{{ veterinario.nombre }}</div>
+          </div>
+        </div>
+
+        <div class="vd-item">
+          <div class="vd-icon"><i class="bi bi-hourglass-split"></i></div>
+          <div class="vd-body">
+            <small>Cantidad de Consultas</small>
+            <div class="vd-value">{{ veterinario.consultas }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

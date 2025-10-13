@@ -1,1 +1,66 @@
-<p>veterinarios-admin works!</p>
+
+<div class="vet-mockup">
+  <main class="va-wrap my-4">
+    <div class="va-table-card shadow-sm">
+      <div class="va-table-head d-none d-md-grid">
+        <span>Foto</span>
+        <span>Nombre</span>
+        <span>Especialidad</span>
+        <span>Consultas</span>
+        <span class="text-end">Información</span>
+      </div>
+
+      <!-- Loading state -->
+      <div *ngIf="loading" class="text-center p-4">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Cargando...</span>
+        </div>
+        <p class="mt-2">Cargando veterinarios...</p>
+      </div>
+
+      <!-- Error state -->
+      <div *ngIf="error && !loading" class="text-center p-4">
+        <div class="alert alert-danger">
+          <i class="bi bi-exclamation-triangle"></i> {{ error }}
+        </div>
+        <button class="btn btn-primary" (click)="cargarVeterinarios()">
+          Reintentar
+        </button>
+      </div>
+
+      <!-- Success state -->
+      <table *ngIf="!loading && !error" class="va-table" aria-label="Listado de veterinarios activos">
+        <tbody>
+          <tr *ngFor="let vet of veterinarios">
+            <td class="va-cell-avatar">
+              <div>
+                <img class="va-avatar"
+                     [alt]="vet.nombre"
+                     [src]="vet.imagen || 'https://picsum.photos/seed/vet-' + (vet.nombre?.replace(' ', '') || 'default') + '/96'">
+              </div>
+            </td>
+
+            <td class="va-cell-name">{{ vet.nombre }}</td>
+            <td>{{ vet.especialidad }}</td>
+
+            <td>
+              <span class="va-badge">{{ vet.consultas }} consultas</span>
+            </td>
+
+            <td class="text-end">
+              <a class="va-pill" (click)="verDetalle(vet.id!)">
+                <i class="bi bi-eye-fill"></i> Ver más
+              </a>
+            </td>
+          </tr>
+
+          <tr *ngIf="veterinarios.length === 0">
+            <td class="va-empty" colspan="5">
+              <i class="bi bi-exclamation-circle"></i> No hay veterinarios activos
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</div>
