@@ -29,6 +29,7 @@ img{max-width:100%;display:block} a{text-decoration:none;color:inherit}
 
 .client-footer{position:static;display:flex;align-items:center;justify-content:center;min-height:64px;background:var(--rose-600);padding:12px 0;box-shadow:0 -1px 0 rgba(0,0,0,.06);width:100vw;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw)}
 
+
 @media (max-width:768px){
   .client-hero-title{font-size:2rem}
   .pet-card{padding:20px}

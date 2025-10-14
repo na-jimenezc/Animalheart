@@ -1,16 +1,17 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { ChangeDetectorRef, Component, OnInit, PLATFORM_ID, Inject } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { take, catchError, finalize } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { ClienteService } from '../../../core/services/cliente.service';
+import { HeaderCliente } from '../../../componentes/header-cliente/header-cliente';
 import type { Cliente } from '../../../core/models/cliente.model';
 import type { Mascota } from '../../../core/models/mascota.model';
 
 @Component({
   selector: 'app-mis-mascotas',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, HeaderCliente],
   templateUrl: './mis-mascotas.html',
   styleUrls: ['./mis-mascotas.css']
 })
@@ -21,11 +22,19 @@ export class MisMascotas implements OnInit {
   cliente: Cliente | null = null;
   mascotas: Mascota[] = [];
 
-  constructor(private clienteSrv: ClienteService, private router: Router, private changeDetectorRef: ChangeDetectorRef) {}
+  constructor(
+    private clienteSrv: ClienteService, 
+    private router: Router, 
+    private changeDetectorRef: ChangeDetectorRef,
+    @Inject(PLATFORM_ID) private platformId: any
+  ) {}
 
   ngOnInit(): void {
-    const raw = sessionStorage.getItem('cliente');
-    this.cliente = raw ? (JSON.parse(raw) as Cliente) : null;
+    // Verificar si estamos en el navegador antes de usar sessionStorage
+    if (isPlatformBrowser(this.platformId)) {
+      const raw = sessionStorage.getItem('cliente');
+      this.cliente = raw ? (JSON.parse(raw) as Cliente) : null;
+    }
 
     if (!this.cliente?.id) {
       this.router.navigate(['/clientes/login-cliente']);
@@ -43,20 +52,20 @@ export class MisMascotas implements OnInit {
       }),
       finalize(() => {
         this.loading = false;
+        this.changeDetectorRef.detectChanges();
       })
     )
     .subscribe(list => {
       this.mascotas = Array.isArray(list) ? list : [];
-      console.log('Mascotas del cliente cargadas:', this.loading);
       this.loading = false;
-      console.log('Mascotas del cliente cargadas:', this.loading);
       this.changeDetectorRef.detectChanges();
-
     });
   }
 
   logout(): void {
-    sessionStorage.removeItem('cliente');
+    if (isPlatformBrowser(this.platformId)) {
+      sessionStorage.removeItem('cliente');
+    }
     this.router.navigate(['/clientes/login-cliente']);
   }
 }

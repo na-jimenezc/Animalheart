@@ -1,0 +1,108 @@
+<app-header-cliente (logout)="logout()"></app-header-cliente>
+
+<main class="client-wrap my-5" *ngIf="vm$ | async as vm">
+  <div class="row g-4" *ngIf="vm.mascota; else cargando">
+    <!-- Columna izquierda: ficha de la mascota + datos del dueño -->
+    <aside class="col-md-4">
+      <div class="card pet-card">
+        <div class="text-center mb-3">
+          <img
+            [src]="vm.mascota.fotoURL || defaultImage"
+            [alt]="vm.mascota.nombre"
+            class="pet-avatar"
+            (error)="onImageError($event)"
+          />
+        </div>
+
+        <h2 class="pet-name">{{ vm.mascota.nombre }}</h2>
+
+        <div class="pet-info">
+          <div class="pet-info"><strong>Edad:</strong> {{ vm.mascota.edad }} años</div>
+          <div class="pet-info"><strong>Tipo:</strong> {{ vm.mascota.tipo }}</div>
+          <div class="pet-info"><strong>Raza:</strong> {{ vm.mascota.raza }}</div>
+          <div class="pet-info"><strong>Peso:</strong> {{ vm.mascota.peso }} kg</div>
+        </div>
+
+        <div class="mt-4" *ngIf="vm.cliente">
+          <h4 class="pet-type"><i class="bi bi-person-vcard"></i> Tu información</h4>
+
+          <div class="pet-info"><strong>Nombre:</strong> {{ vm.cliente.nombre }}</div>
+          <div class="pet-info"><strong>Correo:</strong> {{ vm.cliente.correo }}</div>
+          <div class="pet-info"><strong>Teléfono:</strong> {{ vm.cliente.celular }}</div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Columna derecha: info médica -->
+    <section class="col-md-8">
+      <div class="card pet-card">
+        <h3 class="pet-name"><i class="bi bi-heart-pulse"></i> Información médica</h3>
+
+        <div class="mb-4">
+          <strong>Diagnóstico:</strong>
+          <p class="mb-0 pet-info">
+            {{ (vm.mascota.enfermedad || '').trim() ? vm.mascota.enfermedad : 'Sin enfermedades registradas' }}
+          </p>
+        </div>
+
+        <div>
+          <h4 class="pet-type">Tratamientos</h4>
+
+          <div *ngIf="vm.loadingTratamientos" class="text-center py-3">
+            <div class="spinner-border spinner-border-sm" role="status">
+              <span class="visually-hidden">Cargando tratamientos…</span>
+            </div>
+            <p class="mt-2 small">Cargando tratamientos…</p>
+          </div>
+
+          <ng-container *ngIf="!vm.loadingTratamientos">
+            <p *ngIf="!vm.tratamientos?.length" class="pet-info mb-0">
+              No hay tratamientos registrados.
+            </p>
+
+            <div *ngIf="vm.tratamientos?.length" class="table-responsive">
+              <table class="table table-hover">
+                <thead class="table-light">
+                  <tr>
+                    <th>Fecha</th>
+                    <th>Medicamento</th>
+                    <th>Cantidad</th>
+                    <th>Veterinario</th>
+                    <th>Especialidad</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let t of vm.tratamientos">
+                    <td><strong>{{ formatearFecha(t.fecha) }}</strong></td>
+                    <td>
+                      <span class="fw-bold text-primary">{{ t.medicamento?.nombre || '—' }}</span><br />
+                      <small class="text-muted" *ngIf="t.medicamento?.precioVenta != null">
+                        Precio: ${{ t.medicamento.precioVenta | number }}
+                      </small>
+                    </td>
+                    <td><span class="pet-badge">{{ t.cantidadUsada }} unidades</span></td>
+                    <td>
+                      {{ t.veterinario?.nombre || '—' }}<br />
+                      <small class="text-muted">{{ t.veterinario?.nombreUsuario || '' }}</small>
+                    </td>
+                    <td><span class="pet-badge">{{ t.veterinario?.especialidad || '—' }}</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </ng-container>
+        </div>
+
+        <div class="mt-4">
+          <a class="client-btn" [routerLink]="['/clientes/mis-mascotas']">
+            <i class="bi bi-arrow-left"></i> Volver a Mis Mascotas
+          </a>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<ng-template #cargando>
+  <div class="loading text-center p-4">Cargando mascota…</div>
+</ng-template>

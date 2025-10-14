@@ -16,6 +16,7 @@ import { MisMascotas } from './paginas/cliente/mis-mascotas/mis-mascotas';
 import { EditarDueno } from './paginas/veterinario/mascotas/editar-dueno/editar-dueno';
 import { ImportarMedicamentos } from './paginas/administrador/importar-medicamentos/importar-medicamentos';
 import { ClienteDetalle } from './paginas/cliente/cliente-detalle/cliente-detalle';
+import { ClienteMascotaDetalle } from './paginas/cliente/cliente-mascota-detalle/cliente-mascota-detalle';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent }, 
@@ -35,5 +36,6 @@ export const routes: Routes = [
   { path: 'clientes/mis-mascotas', component: MisMascotas },
   { path: 'veterinario/mascotas/editar-dueno/:id', component: EditarDueno },
   { path: 'admin/medicamentos/importar', component: ImportarMedicamentos },
+  { path: 'clientes/mascotas/:id', component: ClienteMascotaDetalle },
   { path: '**', redirectTo: '' },
 ];
