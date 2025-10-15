@@ -6,10 +6,9 @@ import { HeaderVet } from '../../../../componentes/header-vet/header-vet';
 import { MascotasService } from '../../../../core/services/mascotas.service';
 import { MedicamentosService } from '../../../../core/services/medicamentos.service';
 import { TratamientoService } from '../../../../core/services/tratamiento.service';
-import { Mascota } from '../../../../core/models/mascota.model';
 import { Medicamento } from '../../../../core/models/medicamento.model';
 import { VeterinarioService } from '../../../../core/services/veterinario.service';
-import { Veterinario } from '../../../../core/models/veterinario.model';
+import { timeout, finalize } from 'rxjs';
 
 function stockValidator(medicamentoSeleccionado: Medicamento | null) {
   return (control: AbstractControl): ValidationErrors | null => {
@@ -38,6 +37,7 @@ function stockValidator(medicamentoSeleccionado: Medicamento | null) {
 
 @Component({
   selector: 'app-agregar-tratamiento',
+  standalone: true,
   imports: [
     CommonModule, 
     ReactiveFormsModule, 
@@ -49,13 +49,13 @@ function stockValidator(medicamentoSeleccionado: Medicamento | null) {
 })
 export class AgregarTratamiento implements OnInit {
   tratamientoForm: FormGroup;
-  mascotas: Mascota[] = [];
-  medicamentos: Medicamento[] = [];
-  medicamentoSeleccionado: Medicamento | null = null;
-  veterinario: Veterinario | null = null;
+  mascotas: any[] = [];
+  medicamentos: any[] = [];
+  medicamentoSeleccionado: any | null = null;
+  veterinario: any | null = null;
   error: string | null = null;
-  isLoading: boolean = false;
   stockError: string | null = null;
+  isLoading = false;
 
   constructor(
     private fb: FormBuilder,
@@ -66,30 +66,22 @@ export class AgregarTratamiento implements OnInit {
     private router: Router
   ) {
     this.tratamientoForm = this.fb.group({
-      mascotaId: ['', Validators.required],
-      fecha: ['', Validators.required],
-      medicamentoId: ['', Validators.required],
-      cantidadUsada: [
-        1, 
-        [
-          Validators.required, 
-          Validators.min(1),
-          Validators.pattern(/^[1-9]\d*$/)
-        ]
-      ],
-      tipoTratamiento: ['', Validators.required],
-      observaciones: ['']
+      mascotaId: [null, Validators.required],
+      fecha: [null, Validators.required],
+      medicamentoId: [null, Validators.required],
+      cantidadUsada: [1, [Validators.required, Validators.min(1), Validators.pattern(/^[1-9]\d*$/)]],
+      tipoTratamiento: [null, Validators.required],
+      observaciones: [''],
     });
-  }
+    } 
 
   ngOnInit(): void {
     this.cargarDatosIniciales();
     this.cargarVeterinario();
-    
+
     this.tratamientoForm.get('medicamentoId')?.valueChanges.subscribe(() => {
       this.onMedicamentoChange();
     });
-    
     this.tratamientoForm.get('cantidadUsada')?.valueChanges.subscribe(() => {
       this.validarStock();
     });
@@ -131,100 +123,105 @@ export class AgregarTratamiento implements OnInit {
   }
 
   onMedicamentoChange(): void {
-    const medicamentoId = this.tratamientoForm.get('medicamentoId')?.value;
-    this.medicamentoSeleccionado = this.medicamentos.find(m => m.id === medicamentoId) || null;
-    
-    const cantidadControl = this.tratamientoForm.get('cantidadUsada');
-    if (cantidadControl) {
-      cantidadControl.setValidators([
-        Validators.required, 
-        Validators.min(1),
-        Validators.pattern(/^[1-9]\d*$/),
-        stockValidator(this.medicamentoSeleccionado)
-      ]);
-      cantidadControl.updateValueAndValidity();
-    }
-    
-    this.validarStock();
-  }
+  const raw = this.tratamientoForm.get('medicamentoId')?.value;
+  const medicamentoId = Number(raw); // cast defensivo
 
-  validarStock(): void {
-    const cantidadControl = this.tratamientoForm.get('cantidadUsada');
-    
-    if (cantidadControl && this.medicamentoSeleccionado) {
-      const cantidad = Number(cantidadControl.value);
-      const stockDisponible = this.medicamentoSeleccionado.unidadesDisponibles;
-      
-      if (!isNaN(cantidad) && cantidad > stockDisponible) {
-        this.stockError = `Error: Stock insuficiente. Solo hay ${stockDisponible} unidades disponibles.`;
-        cantidadControl.setErrors({ stockInsuficiente: true });
-      } else {
-        this.stockError = null;
-        if (cantidadControl.errors?.['stockInsuficiente']) {
-          const newErrors = { ...cantidadControl.errors };
-          delete newErrors['stockInsuficiente'];
-          cantidadControl.setErrors(Object.keys(newErrors).length ? newErrors : null);
-        }
-      }
-    } else {
-      this.stockError = null;
-    }
+  this.medicamentoSeleccionado =
+    this.medicamentos.find(m => Number(m.id) === medicamentoId) || null;
+
+  const cantidadControl = this.tratamientoForm.get('cantidadUsada');
+  if (cantidadControl) {
+    cantidadControl.setValidators([
+      Validators.required,
+      Validators.min(1),
+      Validators.pattern(/^[1-9]\d*$/),
+    ]);
+    cantidadControl.updateValueAndValidity();
   }
+  this.validarStock();
+}
+
+validarStock(): void {
+  const cantidadControl = this.tratamientoForm.get('cantidadUsada');
+  const cantidad = Number(cantidadControl?.value);
+  const stockDisponible = Number(this.medicamentoSeleccionado?.unidadesDisponibles ?? 0);
+
+  if (!this.medicamentoSeleccionado || !Number.isFinite(cantidad)) {
+    this.stockError = null;
+    return;
+  }
+  this.stockError = (cantidad > stockDisponible)
+    ? `Error: Stock insuficiente. Solo hay ${stockDisponible} unidades disponibles.`
+    : null;
+}
+
 
   getStockDisponible(): number {
     return this.medicamentoSeleccionado?.unidadesDisponibles || 0;
   }
 
+  private extractErrorMessage(err: any): string {
+  if (err?.name === 'TimeoutError') return 'El servidor tardó demasiado en responder.';
+  if (err?.status === 0) return 'No se pudo conectar con el servidor.';
+  if (typeof err?.error?.message === 'string') return err.error.message;
+
+  const errors = err?.error?.errors || err?.error;
+  if (errors && typeof errors === 'object') {
+    const list = Object.values(errors).flat().map((e: any) => String(e));
+    if (list.length) return list.join(' · ');
+  }
+  return 'Error al guardar el tratamiento. Intente nuevamente.';
+}
+
   onSubmit(): void {
-    if (this.tratamientoForm.valid && !this.stockError) {
-      this.isLoading = true;
-      this.error = null;
+  this.error = null;
 
-      const formValue = this.tratamientoForm.value;
-      
-      if (this.medicamentoSeleccionado && formValue.cantidadUsada > this.medicamentoSeleccionado.unidadesDisponibles) {
-        this.error = `No hay suficiente stock de ${this.medicamentoSeleccionado.nombre}. Stock disponible: ${this.medicamentoSeleccionado.unidadesDisponibles}`;
-        this.isLoading = false;
-        return;
-      }
+  if (this.tratamientoForm.invalid) {
+    Object.values(this.tratamientoForm.controls).forEach(c => c.markAsTouched());
+    this.error = 'Por favor complete todos los campos requeridos correctamente.';
+    return;
+  }
 
-      if (!this.veterinario?.id) {
-        this.error = 'No se pudo identificar al veterinario. Por favor, inicie sesión nuevamente.';
-        this.isLoading = false;
-        return;
-      }
+  if (!this.veterinario?.id) {
+    this.error = 'No se pudo identificar al veterinario. Por favor, inicie sesión nuevamente.';
+    return;
+  }
 
-      const tratamientoData = {
-        idMascota: formValue.mascotaId,
-        idMedicamento: formValue.medicamentoId,
-        idVeterinario: this.veterinario.id,
-        cantidadUsada: formValue.cantidadUsada
-      };
+  const v = this.tratamientoForm.value;
+  const cant = Number(v.cantidadUsada);
+  const stockDisponible = this.medicamentoSeleccionado?.unidadesDisponibles ?? 0;
 
-      console.log('Enviando tratamiento:', tratamientoData);
+  if (!this.medicamentoSeleccionado) {
+    this.error = 'Seleccione un medicamento.';
+    return;
+  }
+  if (!Number.isFinite(cant) || cant <= 0) {
+    this.error = 'Ingrese una cantidad válida (> 0).';
+    return;
+  }
+  if (stockDisponible <= 0 || cant > stockDisponible) {
+    this.error = `No hay suficiente stock de ${this.medicamentoSeleccionado.nombre}. ` +
+                 `Stock disponible: ${stockDisponible}.`;
+    return;
+  }
 
-      this.tratamientoService.administrarMedicamento(tratamientoData).subscribe({
-        next: (response) => {
-          this.isLoading = false;
-          this.router.navigate(['/mascotas/ver-mascotas']);
-          
-          console.log('Tratamiento guardado exitosamente');
-        },
-        error: (error) => {
-          this.isLoading = false;
-          console.error('Error al guardar tratamiento:', error);
-          this.error = error.error?.message || 'Error al guardar el tratamiento. Por favor, intente nuevamente.';
-        }
-      });
-    } else {
-      Object.keys(this.tratamientoForm.controls).forEach(key => {
-        const control = this.tratamientoForm.get(key);
-        control?.markAsTouched();
-      });
-      
-      if (!this.error) {
-        this.error = 'Por favor complete todos los campos requeridos correctamente.';
-      }
-    }
+  this.isLoading = true;
+
+  const payload = {
+    idMascota: Number(v.mascotaId),
+    idMedicamento: Number(v.medicamentoId),
+    idVeterinario: Number(this.veterinario.id),
+    cantidadUsada: Number(v.cantidadUsada),
+  };
+
+  this.tratamientoService.administrarMedicamento(payload)
+    .pipe(
+      timeout(15000),
+      finalize(() => this.isLoading = false)
+    )
+    .subscribe({
+      next: _ => this.router.navigate(['/mascotas/ver-mascotas']),
+      error: err => this.error = this.extractErrorMessage(err),
+    });
   }
 }
