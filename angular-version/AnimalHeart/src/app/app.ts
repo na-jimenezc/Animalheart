@@ -23,7 +23,8 @@ export class App {
         this.ocultarHeader = 
           event.urlAfterRedirects.startsWith('/mascotas') ||
           event.urlAfterRedirects.startsWith('/login/') || 
-          event.urlAfterRedirects.startsWith('/admin/dashboard') || 
+          event.urlAfterRedirects.startsWith('/admin/dashboard') ||
+            event.urlAfterRedirects.startsWith('/admin/veterinarios') ||
           event.urlAfterRedirects.startsWith('/tratamientos');
       }
     });

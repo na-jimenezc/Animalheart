@@ -1,1 +1,205 @@
-<p>veterinario-crear works!</p>
+<app-admin-header></app-admin-header>
+
+<main class="vmk-main">
+  <div class="va-wrap my-4">
+   <!--Mensaje de éxtio-->
+    @if (mostrarExito) {
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="bi bi-check-circle-fill me-2"></i>
+        <strong>¡Éxito!</strong> Veterinario creado correctamente. Redirigiendo...
+        <button type="button" class="btn-close" (click)="mostrarExito = false" aria-label="Close"></button>
+      </div>
+    }
+
+    <!--Mensaje de error-->
+    @if (error) {
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <i class="bi bi-exclamation-triangle-fill me-2"></i>
+        {{ error }}
+        <button type="button" class="btn-close" (click)="error = ''" aria-label="Close"></button>
+      </div>
+    }
+
+    <!--Sección para crear un veterinario-->
+    <div class="va-form-card shadow-sm">
+      <div class="va-form-header">
+        <h1 class="va-form-title">
+          <i class="bi bi-person-plus me-2"></i>
+          Crear Nuevo Veterinario
+        </h1>
+        <p class="va-form-subtitle">Completa la información para registrar un nuevo veterinario en el sistema</p>
+      </div>
+
+      <form #form="ngForm" (ngSubmit)="crearVeterinario(form)" class="va-form" >
+        <div class="row g-4">
+
+          <!--Nombre-->
+          <div class="col-md-6">
+            <label for="nombre" class="va-form-label">
+              Nombre Completo <span class="text-danger">*</span>
+            </label>
+            <input
+              type="text"
+              id="nombre"
+              name="nombre"
+              class="va-form-control"
+              [(ngModel)]="veterinario.nombre"
+              #nombre="ngModel"
+              required
+              minlength="2"
+              maxlength="100"
+              placeholder="Ej: Dr. Juan Pérez García"
+              (blur)="generarImagenPorDefecto()"
+              [class.is-invalid]="nombre.invalid && nombre.touched">
+              <!--Se hacen las validaciones-->
+            @if (nombre.invalid && nombre.touched) {
+              <div class="va-form-feedback">
+                @if (nombre.errors?.['required']) {
+                  <span>El nombre es obligatorio</span>
+                }
+                @if (nombre.errors?.['minlength']) {
+                  <span>El nombre debe tener al menos 2 caracteres</span>
+                }
+              </div>
+            }
+          </div>
+
+          <!--Especialidad-->
+          <div class="col-md-6">
+            <label for="especialidad" class="va-form-label">
+              Especialidad <span class="text-danger">*</span>
+            </label>
+            <select
+              id="especialidad"
+              name="especialidad"
+              class="va-form-control"
+              [(ngModel)]="veterinario.especialidad"
+              #especialidad="ngModel"
+              required
+              [class.is-invalid]="especialidad.invalid && especialidad.touched">
+              <option value="">Selecciona una especialidad</option>
+              @for (esp of especialidades; track esp) {
+                <option [value]="esp">{{ esp }}</option>
+              }
+            </select>
+            <!--Validaciones :D-->
+            @if (especialidad.invalid && especialidad.touched) {
+              <div class="va-form-feedback">
+                <span>La especialidad es obligatoria</span>
+              </div>
+            }
+          </div>
+
+          <!--Nombre de Usuario-->
+          <div class="col-md-6">
+            <label for="nombreUsuario" class="va-form-label">
+              Nombre de Usuario <span class="text-danger">*</span>
+            </label>
+            <input
+              type="text"
+              id="nombreUsuario"
+              name="nombreUsuario"
+              class="va-form-control"
+              [(ngModel)]="veterinario.nombreUsuario"
+              #nombreUsuario="ngModel"
+              required
+              minlength="3"
+              maxlength="50"
+              placeholder="Ej: juan.perez"
+              [class.is-invalid]="nombreUsuario.invalid && nombreUsuario.touched">
+              <!--Validaciones de onombre de usuario-->
+            @if (nombreUsuario.invalid && nombreUsuario.touched) {
+              <div class="va-form-feedback">
+                @if (nombreUsuario.errors?.['required']) {
+                  <span>El nombre de usuario es obligatorio</span>
+                }
+                @if (nombreUsuario.errors?.['minlength']) {
+                  <span>El usuario debe tener al menos 3 caracteres</span>
+                }
+              </div>
+            }
+          </div>
+
+          <!--Contraseña-->
+          <div class="col-md-6">
+            <label for="contrasenia" class="va-form-label">
+              Contraseña <span class="text-danger">*</span>
+            </label>
+            <input
+              type="password"
+              id="contrasenia"
+              name="contrasenia"
+              class="va-form-control"
+              [(ngModel)]="veterinario.contrasenia"
+              #contrasenia="ngModel"
+              required
+              minlength="6"
+              placeholder="Mínimo 6 caracteres"
+              [class.is-invalid]="contrasenia.invalid && contrasenia.touched">
+              <!--Validaciones de contraseña-->
+            @if (contrasenia.invalid && contrasenia.touched) {
+              <div class="va-form-feedback">
+                @if (contrasenia.errors?.['required']) {
+                  <span>La contraseña es obligatoria</span>
+                }
+                @if (contrasenia.errors?.['minlength']) {
+                  <span>La contraseña debe tener al menos 6 caracteres</span>
+                }
+              </div>
+            }
+          </div>
+
+          <!--Imagen (URL)-->
+          <div class="col-12">
+            <label for="imagen" class="va-form-label">
+              URL de Imagen
+            </label>
+            <input
+              type="url"
+              id="imagen"
+              name="imagen"
+              class="va-form-control"
+              [(ngModel)]="veterinario.imagen"
+              #imagen="ngModel"
+              placeholder="https://ejemplo.com/imagen.jpg"
+              pattern="https?://.+">
+            <div class="va-form-help">
+              <i class="bi bi-info-circle me-1"></i>
+              Opcional. Si no proporcionas una imagen, se generará automáticamente.
+            </div>
+            @if (veterinario.imagen) {
+                <!--Se utilizan avatars genéricos para los usuarios-->
+              <div class="mt-3">
+                <p class="va-form-label mb-2">Vista previa:</p>
+                <img 
+                  [src]="veterinario.imagen" 
+                  alt="Vista previa" 
+                  class="va-avatar-preview"
+                  onerror="this.src='https://ui-avatars.com/api/?name=Veterinario&size=256&background=random'">
+              </div>
+            }
+          </div>
+        </div>
+
+        <!--Botones de acción-->
+        <div class="va-form-actions">
+          <button type="button" class="va-btn va-btn--secondary" (click)="cancelar()" [disabled]="loading">
+            <i class="bi bi-x-circle me-2"></i>
+            Cancelar
+          </button>
+          <button type="submit" class="va-btn va-btn--primary" [disabled]="loading || form.invalid">
+            @if (loading) {
+              <div class="spinner-border spinner-border-sm me-2" role="status">
+                <span class="visually-hidden">Creando...</span>
+              </div>
+              Creando...
+            } @else {
+              <i class="bi bi-check-circle me-2"></i>
+              Crear Veterinario
+            }
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</main>

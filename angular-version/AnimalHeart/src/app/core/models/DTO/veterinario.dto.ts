@@ -7,3 +7,5 @@ export interface VeterinarioDTO {
   activo: number;          
   consultas: number;      
 }
+
+

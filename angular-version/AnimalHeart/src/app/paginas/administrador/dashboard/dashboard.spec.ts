@@ -22,7 +22,7 @@ describe('DashboardComponent', () => {
 
     dashboardService = TestBed.inject(DashboardService) as jasmine.SpyObj<DashboardService>;
     
-    // Mock de datos para las pruebas
+    //Mock de datos para las pruebas
     dashboardService.getDashboardData.and.returnValue(of({
       totalTratamientosUltimoMes: 0,
       tratamientosPorMedicamento: [],

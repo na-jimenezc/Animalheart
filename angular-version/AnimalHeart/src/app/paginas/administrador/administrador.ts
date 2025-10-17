@@ -17,7 +17,7 @@ export class Administrador implements OnInit {
   admin: any = null;
   veterinarios: any[] = [];
   cargando = true;
-  dashboardReady = false; // Nueva propiedad
+  dashboardReady = false; 
 
   constructor(
     private router: Router,
@@ -32,16 +32,19 @@ export class Administrador implements OnInit {
       return;
     }
 
-    // Primero cargar veterinarios, luego mostrar dashboard
+    //Se cargan los veterinarios y luego se muestra el dashboard
     this.cargarVeterinarios();
   }
 
   cargarVeterinarios() {
     this.adminService.getVeterinarios().subscribe({
+
       next: (veterinarios: any[]) => {
+
         this.veterinarios = veterinarios;
         this.cargando = false;
-        // Esperar un tick antes de mostrar el dashboard
+        
+        //Se espera un momento para que se cargue bien el dashboard
         setTimeout(() => {
           this.dashboardReady = true;
         }, 0);

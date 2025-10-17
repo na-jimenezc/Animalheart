@@ -18,6 +18,10 @@ import { ImportarMedicamentos } from './paginas/administrador/importar-medicamen
 import { ClienteDetalle } from './paginas/cliente/cliente-detalle/cliente-detalle';
 import { ClienteMascotaDetalle } from './paginas/cliente/cliente-mascota-detalle/cliente-mascota-detalle';
 
+import { VeterinariosAdminComponent } from './paginas/administrador/veterinarios-admin/veterinarios-admin';
+import { VeterinariosDetalleComponent } from './paginas/administrador/veterinarios-detalle/veterinarios-detalle';
+import { VeterinarioCrear } from './paginas/administrador/veterinario-crear/veterinario-crear';
+
 export const routes: Routes = [
   { path: '', component: HomeComponent }, 
   { path: 'contacto', component: Contacto },
@@ -37,5 +41,11 @@ export const routes: Routes = [
   { path: 'veterinario/mascotas/editar-dueno/:id', component: EditarDueno },
   { path: 'admin/medicamentos/importar', component: ImportarMedicamentos },
   { path: 'clientes/mascotas/:id', component: ClienteMascotaDetalle },
+
+  { path: 'admin/veterinarios', component: VeterinariosAdminComponent, canActivate: [adminGuard] },
+  { path: 'admin/veterinarios/crear', component: VeterinarioCrear, canActivate: [adminGuard] },
+  { path: 'admin/veterinarios/:id', component: VeterinariosDetalleComponent, canActivate: [adminGuard] },
+
+
   { path: '**', redirectTo: '' },
 ];

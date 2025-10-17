@@ -1,69 +1,208 @@
 
-<div class="vet-mockup">
-  <main class="vmk-main">
-    
-    <!-- Loading state -->
-    <div *ngIf="loading" class="text-center p-5">
+<!-- Header modificado para editar -->
+<header class="vmk-header">
+  <div class="vmk-toolbar container d-flex align-items-center justify-content-between gap-2">
+    <div class="d-flex align-items-center gap-2">
+      @if (!modoEdicion && veterinario) {
+        <button class="vmk-btn cta-dueno" (click)="activarEdicion()">
+          <i class="bi bi-pencil-fill me-1"></i> Editar
+        </button>
+      }
+    </div>
+  </div>
+
+  <div class="vmk-hero">
+    <div class="container vmk-hero-inner">
+      <h1 class="vmk-title">
+        <i class="bi bi-heart-pulse me-2"></i>
+        {{ modoEdicion ? 'Editar' : 'Detalle de' }} Veterinario
+      </h1>
+    </div>
+  </div>
+</header>
+
+<main class="vmk-main">
+  <!--Loading state-->
+  @if (loading) {
+    <div class="text-center p-5">
       <div class="spinner-border text-primary" role="status">
         <span class="visually-hidden">Cargando...</span>
       </div>
-      <p class="mt-2">Cargando información del veterinario...</p>
+      <p class="mt-3">Cargando información del veterinario...</p>
     </div>
+  }
 
-    <!-- Error state -->
-    <div *ngIf="error && !loading" class="text-center p-5">
+  <!--Error state-->
+  @if (error && !loading) {
+    <div class="text-center p-5">
       <div class="alert alert-danger">
         <i class="bi bi-exclamation-triangle"></i> {{ error }}
       </div>
       <button class="btn btn-primary" (click)="volverLista()">
+        <i class="bi bi-arrow-left me-2"></i>
         Volver a la lista
       </button>
     </div>
+  }
 
-    <!-- Success state -->
-    <div *ngIf="veterinario && !loading" class="vd-wrap">
-      <div class="text-center mb-4">
-        <img
-          class="vd-photo"
-          [alt]="veterinario.nombre"
-          [src]="veterinario.imagen || 'https://picsum.photos/seed/vet-' + (veterinario.nombre.replace(' ', '') || 'default') + '/600/720'">
-      </div>
+  <!--Success state-->
+  @if (veterinario && !loading && !error) {
+    <div class="vd-wrap">
+      @if (!modoEdicion) {
+        <!--MODO VISTA-->
+        <!--Foto del veterinario-->
+        <div class="text-center mb-4">
+          <img
+            class="vd-photo"
+            [alt]="veterinario.nombre"
+            [src]="veterinario.imagen || 'https://picsum.photos/seed/vet-' + veterinario.nombre.replace(' ', '') + '/600/720'">
+        </div>
 
-      <div class="vd-grid">
-        <div class="vd-item">
-          <div class="vd-icon"><i class="bi bi-badge-hd"></i></div>
-          <div class="vd-body">
-            <small>Estado actual</small>
-            <div class="vd-value" [class.text-ok]="veterinario.activo === 1" [class.text-off]="veterinario.activo === 0">
-              {{ veterinario.activo === 1 ? 'Activo' : 'Inactivo' }}
+        <!--Grid de información-->
+        <div class="vd-grid">
+          <div class="vd-item">
+            <div class="vd-icon"><i class="bi bi-badge-hd"></i></div>
+            <div class="vd-body">
+              <small>Estado actual</small>
+              <div class="vd-value" 
+                   [class.text-ok]="veterinario.activo === 1"
+                   [class.text-off]="veterinario.activo === 0">
+                {{ veterinario.activo === 1 ? 'Activo' : 'Inactivo' }}
+              </div>
+            </div>
+          </div>
+
+          <div class="vd-item">
+            <div class="vd-icon"><i class="bi bi-fingerprint"></i></div>
+            <div class="vd-body">
+              <small>ID</small>
+              <div class="vd-value">{{ veterinario.id }}</div>
+            </div>
+          </div>
+
+          <div class="vd-item">
+            <div class="vd-icon"><i class="bi bi-person-badge"></i></div>
+            <div class="vd-body">
+              <small>Nombre Completo</small>
+              <div class="vd-value">{{ veterinario.nombre }}</div>
+            </div>
+          </div>
+
+          <div class="vd-item">
+            <div class="vd-icon"><i class="bi bi-star-fill"></i></div>
+            <div class="vd-body">
+              <small>Especialidad</small>
+              <div class="vd-value">{{ veterinario.especialidad }}</div>
+            </div>
+          </div>
+
+          <div class="vd-item">
+            <div class="vd-icon"><i class="bi bi-person-circle"></i></div>
+            <div class="vd-body">
+              <small>Nombre de Usuario</small>
+              <div class="vd-value">{{ veterinario.nombreUsuario }}</div>
+            </div>
+          </div>
+
+          <div class="vd-item">
+            <div class="vd-icon"><i class="bi bi-hourglass-split"></i></div>
+            <div class="vd-body">
+              <small>Cantidad de Consultas</small>
+              <div class="vd-value">{{ veterinario.consultas }}</div>
             </div>
           </div>
         </div>
+      } @else {
+        <!--MODO EDICIÓN-->
+        <form class="edit-form" (ngSubmit)="guardarCambios()">
+          <div class="row g-4">
+            <!--Nombre-->
+            <div class="col-md-6">
+              <label class="form-label fw-bold">
+                <i class="bi bi-person-badge me-2"></i>Nombre Completo
+              </label>
+              <input type="text" 
+                     class="form-control form-control-lg" 
+                     [(ngModel)]="veterinarioEdit.nombre"
+                     name="nombre"
+                     required
+                     placeholder="Ej: Dr. Juan Pérez">
+            </div>
 
-        <div class="vd-item">
-          <div class="vd-icon"><i class="bi bi-fingerprint"></i></div>
-          <div class="vd-body">
-            <small>ID</small>
-            <div class="vd-value">{{ veterinario.id }}</div>
-          </div>
-        </div>
+            <!--Especialidad-->
+            <div class="col-md-6">
+              <label class="form-label fw-bold">
+                <i class="bi bi-star-fill me-2"></i>Especialidad
+              </label>
+              <input type="text" 
+                     class="form-control form-control-lg" 
+                     [(ngModel)]="veterinarioEdit.especialidad"
+                     name="especialidad"
+                     required
+                     placeholder="Ej: Cirugía, Dermatología">
+            </div>
 
-        <div class="vd-item">
-          <div class="vd-icon"><i class="bi bi-person-badge"></i></div>
-          <div class="vd-body">
-            <small>Nombres</small>
-            <div class="vd-value">{{ veterinario.nombre }}</div>
-          </div>
-        </div>
+            <!--Nombre de Usuario-->
+            <div class="col-md-6">
+              <label class="form-label fw-bold">
+                <i class="bi bi-person-circle me-2"></i>Nombre de Usuario
+              </label>
+              <input type="text" 
+                     class="form-control form-control-lg" 
+                     [(ngModel)]="veterinarioEdit.nombreUsuario"
+                     name="nombreUsuario"
+                     required
+                     placeholder="Ej: juanperez">
+            </div>
 
-        <div class="vd-item">
-          <div class="vd-icon"><i class="bi bi-hourglass-split"></i></div>
-          <div class="vd-body">
-            <small>Cantidad de Consultas</small>
-            <div class="vd-value">{{ veterinario.consultas }}</div>
+            <!--Contraseña-->
+            <div class="col-md-6">
+              <label class="form-label fw-bold">
+                <i class="bi bi-key-fill me-2"></i>Nueva Contraseña
+              </label>
+              <input type="password" 
+                     class="form-control form-control-lg" 
+                     [(ngModel)]="veterinarioEdit.contrasenia"
+                     name="contrasenia"
+                     placeholder="Dejar vacío para no cambiar">
+              <small class="text-muted">Solo completa si deseas cambiar la contraseña</small>
+            </div>
+
+            <!-- URL de Imagen -->
+            <div class="col-12">
+              <label class="form-label fw-bold">
+                <i class="bi bi-image-fill me-2"></i>URL de la Imagen
+              </label>
+              <input type="text" 
+                     class="form-control form-control-lg" 
+                     [(ngModel)]="veterinarioEdit.imagen"
+                     name="imagen"
+                     placeholder="https://ejemplo.com/imagen.jpg">
+            </div>
+
+            <!-- Botones -->
+            <div class="col-12">
+              <div class="d-flex gap-3 justify-content-end">
+                <button type="button" 
+                        class="btn btn-secondary btn-lg"
+                        (click)="cancelarEdicion()">
+                  <i class="bi bi-x-lg me-2"></i>Cancelar
+                </button>
+                <button type="submit" 
+                        class="btn btn-primary btn-lg"
+                        [disabled]="guardando">
+                  @if (guardando) {
+                    <span class="spinner-border spinner-border-sm me-2"></span>
+                  } @else {
+                    <i class="bi bi-check-lg me-2"></i>
+                  }
+                  Guardar Cambios
+                </button>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
+        </form>
+      }
     </div>
-  </main>
-</div>
+  }
+</main>

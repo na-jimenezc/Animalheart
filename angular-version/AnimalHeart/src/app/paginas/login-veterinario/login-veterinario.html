@@ -5,6 +5,7 @@
       <div class="subtitulo-sistema">Portal del Veterinario</div>
     </div>
 
+<!--Ingreso de datos-->
     <div class="encabezado-login">
       <div class="icono-login" aria-hidden="true">
         <span class="huella">🐾</span>
@@ -14,10 +15,11 @@
     </div>
 
     <div *ngIf="mensajeError" class="alert alert-danger alert-dismissible fade show" role="alert" aria-live="polite">
-      {{ mensajeError }}
+      <strong>Error:</strong> {{ mensajeError }}
       <button type="button" class="btn-close" (click)="mensajeError=''" aria-label="Cerrar"></button>
     </div>
 
+    <!--Form :D con sus confirmaciones-->
     <form #formLogin="ngForm" (ngSubmit)="onSubmit(formLogin)" novalidate>
       <div class="campo-formulario">
         <label for="usuario" class="etiqueta">Usuario</label>
@@ -51,6 +53,7 @@
 
       <input type="text" name="company" class="d-none" tabindex="-1" autocomplete="off" aria-hidden="true" />
 
+      <!--Botón que va cambiando su estado-->
       <div class="acciones-formulario">
         <button class="boton-enviar" type="submit" [disabled]="cargando || formLogin.invalid">
           {{ cargando ? 'Accediendo…' : 'ACCEDER AL SISTEMA' }}

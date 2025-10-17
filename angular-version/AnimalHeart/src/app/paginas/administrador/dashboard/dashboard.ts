@@ -89,7 +89,7 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterViewInit {
       if (this.loading) {
         this.error = 'Tiempo de espera agotado. Por favor, intente nuevamente.';
         this.loading = false;
-        console.log('imeout - loading establecido a false');
+        console.log('Timeout - loading establecido a false');
       }
     }, 30000);
 

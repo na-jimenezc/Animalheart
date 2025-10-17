@@ -1,3 +1,4 @@
+<!--Header general para el administrador-->
 <header class="vmk-header">
   <div class="vmk-toolbar container d-flex align-items-center justify-content-between gap-2">
     <div class="d-flex align-items-center gap-2">
@@ -5,11 +6,18 @@
         <i class="bi bi-arrow-left me-1"></i> Regresar
       </a>
 
+      <!--Para ver veterinarios-->
       <a routerLink="/admin/veterinarios" class="vmk-btn cta-dueno">
-        <i class="bi bi-person-plus me-1"></i> Ver Veterinarios
+        <i class="bi bi-list-ul me-1"></i> Ver Veterinarios
+      </a>
+
+      <!--Para crear un veterinario-->
+      <a routerLink="/admin/veterinarios/crear" class="vmk-btn cta-logout">
+        <i class="bi bi-person-plus me-1"></i> Crear Veterinario
       </a>
     </div>
 
+    <!--Para cerrar sesión-->
     <button class="vmk-btn cta-logout" (click)="logout()">
       <i class="bi bi-box-arrow-right me-1"></i> Cerrar Sesión
     </button>

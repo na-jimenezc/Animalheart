@@ -1,66 +1,139 @@
+<app-admin-header></app-admin-header>
 
-<div class="vet-mockup">
-  <main class="va-wrap my-4">
-    <div class="va-table-card shadow-sm">
-      <div class="va-table-head d-none d-md-grid">
-        <span>Foto</span>
-        <span>Nombre</span>
-        <span>Especialidad</span>
-        <span>Consultas</span>
-        <span class="text-end">Información</span>
-      </div>
-
-      <!-- Loading state -->
-      <div *ngIf="loading" class="text-center p-4">
+<main class="vmk-main">
+  <div class="va-wrap my-4">
+    <!--Loading state-->
+    @if (loading) {
+      <div class="text-center p-5">
         <div class="spinner-border text-primary" role="status">
           <span class="visually-hidden">Cargando...</span>
         </div>
-        <p class="mt-2">Cargando veterinarios...</p>
+        <p class="mt-3">Cargando veterinarios...</p>
       </div>
+    }
 
-      <!-- Error state -->
-      <div *ngIf="error && !loading" class="text-center p-4">
+    <!--Error-->
+    @if (error && !loading) {
+      <div class="text-center p-5">
         <div class="alert alert-danger">
           <i class="bi bi-exclamation-triangle"></i> {{ error }}
         </div>
         <button class="btn btn-primary" (click)="cargarVeterinarios()">
+          <i class="bi bi-arrow-clockwise me-2"></i>
           Reintentar
         </button>
       </div>
+    }
 
-      <!-- Success state -->
-      <table *ngIf="!loading && !error" class="va-table" aria-label="Listado de veterinarios activos">
-        <tbody>
-          <tr *ngFor="let vet of veterinarios">
-            <td class="va-cell-avatar">
-              <div>
-                <img class="va-avatar"
-                     [alt]="vet.nombre"
-                     [src]="vet.imagen || 'https://picsum.photos/seed/vet-' + (vet.nombre.replace(' ', '') || 'default') + '/96'">
-              </div>
-            </td>
+    <!--Tablita de datos-->
+    @if (!loading && !error) {
+      <div class="va-table-card shadow-sm">
+        <!--Header de columnas-->
+        <div class="va-table-head d-none d-md-grid">
+          <span>Foto</span>
+          <span>Nombre</span>
+          <span>Especialidad</span>
+          <span>Estado</span>
+          <span>Consultas</span>
+          <span class="text-end">Acciones</span>
+        </div>
 
-            <td class="va-cell-name">{{ vet.nombre }}</td>
-            <td>{{ vet.especialidad }}</td>
+        <!--Tabla de veterinarios-->
+        @if (veterinarios.length > 0) {
+          <table class="va-table" aria-label="Listado de veterinarios">
+            <tbody>
+              @for (vet of veterinarios; track trackByVetId($index, vet)) {
+                <tr>
+                  <!--Foto-->
+                  <td class="va-cell-avatar">
+                    <div>
+                      <img class="va-avatar"
+                           [alt]="vet.nombre"
+                           [src]="vet.imagen || 'https://ui-avatars.com/api/?name=' + encodeURIComponent(vet.nombre) + '&size=96&background=random'">
+                    </div>
+                  </td>
 
-            <td>
-              <span class="va-badge">{{ vet.consultas }} consultas</span>
-            </td>
+                  <!--Nombre-->
+                  <td class="va-cell-name">{{ vet.nombre }}</td>
 
-            <td class="text-end">
-              <a class="va-pill" (click)="verDetalle(vet.id!)">
-                <i class="bi bi-eye-fill"></i> Ver más
-              </a>
-            </td>
-          </tr>
+                  <!--Especialidad-->
+                  <td>{{ vet.especialidad }}</td>
+                  
+                  <!--Estado-->
+                  <td>
+                    <span class="badge" 
+                          [class.bg-success]="vet.activo === 1" 
+                          [class.bg-danger]="vet.activo === 0">
+                      {{ vet.activo === 1 ? 'Activo' : 'Inactivo' }}
+                    </span>
+                  </td>
 
-          <tr *ngIf="veterinarios.length === 0">
-            <td class="va-empty" colspan="5">
-              <i class="bi bi-exclamation-circle"></i> No hay veterinarios activos
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </main>
-</div>
+                  <!--Consultas-->
+                  <td>
+                    <span class="va-badge">{{ vet.consultas }}</span>
+                  </td>
+
+                  <!-- Acciones -->
+                  <td class="text-end">
+                    <div class="d-flex gap-2 justify-content-end flex-wrap">
+                      <!--Ver detalle-->
+                      <button class="va-pill va-pill--secondary" 
+                              (click)="verDetalle(vet.id!)"
+                              [disabled]="procesando && !estaEliminando(vet.id!)"
+                              title="Ver detalle">
+                        <i class="bi bi-eye-fill"></i>
+                      </button>
+
+                      <!--Activar/Desactivar-->
+                      @if (vet.activo === 1) {
+                        <button class="va-pill va-pill--danger" 
+                                (click)="toggleActivo(vet)"
+                                [disabled]="procesando && !estaEliminando(vet.id!)"
+                                title="Desactivar veterinario">
+                          <i class="bi bi-pause-fill"></i>
+                        </button>
+                      } @else {
+                        <button class="va-pill va-pill--success" 
+                                (click)="toggleActivo(vet)"
+                                [disabled]="procesando && !estaEliminando(vet.id!)"
+                                title="Activar veterinario">
+                          <i class="bi bi-play-fill"></i>
+                        </button>
+                      }
+
+                      <!--Eliminar-->
+                      <button class="va-pill va-pill--dark" 
+                              (click)="eliminarVeterinario(vet)"
+                              [disabled]="procesando"
+                              [class.va-pill--processing]="estaEliminando(vet.id!)"
+                              title="Eliminar permanentemente">
+                        @if (estaEliminando(vet.id!)) {
+                          <div class="spinner-border spinner-border-sm" role="status">
+                            <span class="visually-hidden">Eliminando...</span>
+                          </div>
+                        } @else {
+                          <i class="bi bi-trash-fill"></i>
+                        }
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        } @else {
+
+          <!--Empty state-->
+          <div class="va-empty text-center py-5">
+            <i class="bi bi-exclamation-circle fs-1 d-block mb-3"></i>
+            <p class="mb-3">No hay veterinarios registrados</p>
+            <a class="btn btn-primary" routerLink="/admin/veterinarios/crear">
+              <i class="bi bi-person-plus me-2"></i>
+              Crear primer veterinario
+            </a>
+          </div>
+        }
+      </div>
+    }
+  </div>
+</main>

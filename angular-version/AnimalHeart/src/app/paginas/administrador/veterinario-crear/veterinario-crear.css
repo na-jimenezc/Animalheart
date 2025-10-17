@@ -1,0 +1,200 @@
+/* ===================== FORMULARIO ===================== */
+.va-form-card {
+  background: var(--rose-100);
+  border-radius: 20px;
+  padding: 32px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.08);
+  margin: 2rem 0;
+}
+
+.va-form-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.va-form-title {
+  font-weight: 800;
+  font-size: 2rem;
+  color: var(--ink);
+  margin-bottom: 0.5rem;
+}
+
+.va-form-subtitle {
+  color: #6b7280;
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.va-form {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.va-form-label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--ink);
+  font-size: 0.95rem;
+}
+
+.va-form-control {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: all 0.2s;
+  background: white;
+  font-family: inherit;
+}
+
+.va-form-control:focus {
+  outline: none;
+  border-color: var(--rose-500);
+  box-shadow: 0 0 0 3px rgba(232, 108, 131, 0.1);
+}
+
+.va-form-control.is-invalid {
+  border-color: #dc3545;
+}
+
+.va-form-control.is-invalid:focus {
+  border-color: #dc3545;
+  box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1);
+}
+
+.va-form-feedback {
+  color: #dc3545;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  display: block;
+}
+
+.va-form-help {
+  color: #6b7280;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  display: flex;
+  align-items: center;
+}
+
+/* Vista previa de avatar */
+.va-avatar-preview {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--rose-200);
+}
+
+/* Botones del formulario */
+.va-form-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--rose-200);
+}
+
+.va-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 1rem;
+  min-height: 48px;
+}
+
+.va-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+.va-btn--primary {
+  background-color: #10924a !important;
+  color: #fff !important; 
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-weight: 600;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.va-btn--primary:hover:not(:disabled) {
+  background-color: #0b6d39 !important;
+  color: #fff !important;
+  transform: translateY(-1px);
+}
+
+.va-btn--primary[disabled] {
+  opacity: 0.6;
+  background-color: #10924a !important;
+  color: #fff !important;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.va-btn--primary:hover:not(:disabled) {
+  background: var(--rose-600);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(232, 108, 131, 0.3);
+}
+
+.va-btn--secondary {
+  background: #6c757d;
+  color: white;
+}
+
+.va-btn--secondary:hover:not(:disabled) {
+  background: #5a6268;
+  transform: translateY(-2px);
+}
+
+.alert {
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  border: none;
+}
+
+.alert-success {
+  background: #d1e7dd;
+  color: #0f5132;
+}
+
+.alert-danger {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+.alert-dismissible .btn-close {
+  padding: 0.75rem;
+}
+
+@media (max-width: 768px) {
+  .va-form-card {
+    padding: 1.5rem;
+    margin: 1rem 0;
+  }
+  
+  .va-form-title {
+    font-size: 1.5rem;
+  }
+  
+  .va-form-actions {
+    flex-direction: column-reverse;
+  }
+  
+  .va-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
