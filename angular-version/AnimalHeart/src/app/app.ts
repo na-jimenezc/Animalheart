@@ -22,7 +22,8 @@ export class App {
       if (event instanceof NavigationEnd) {      
         this.ocultarHeader = 
           event.urlAfterRedirects.startsWith('/mascotas') ||
-          event.urlAfterRedirects.startsWith('/clientes') || 
+          event.urlAfterRedirects.startsWith('/login/') || 
+          event.urlAfterRedirects.startsWith('/admin/dashboard') || 
           event.urlAfterRedirects.startsWith('/tratamientos');
       }
     });
