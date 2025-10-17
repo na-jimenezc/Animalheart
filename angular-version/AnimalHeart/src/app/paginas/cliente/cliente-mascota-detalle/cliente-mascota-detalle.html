@@ -75,17 +75,17 @@
                   <tr *ngFor="let t of vm.tratamientos">
                     <td><strong>{{ formatearFecha(t.fecha) }}</strong></td>
                     <td>
-                      <span class="fw-bold text-primary">{{ t.medicamento?.nombre || '—' }}</span><br />
+                      <span class="fw-bold text-primary">{{ t.medicamento.nombre || '—' }}</span><br />
                       <small class="text-muted" *ngIf="t.medicamento?.precioVenta != null">
                         Precio: ${{ t.medicamento.precioVenta | number }}
                       </small>
                     </td>
                     <td><span class="pet-badge">{{ t.cantidadUsada }} unidades</span></td>
                     <td>
-                      {{ t.veterinario?.nombre || '—' }}<br />
-                      <small class="text-muted">{{ t.veterinario?.nombreUsuario || '' }}</small>
+                      {{ t.veterinario.nombre || '—' }}<br />
+                      <small class="text-muted">{{ t.veterinario.nombreUsuario || '' }}</small>
                     </td>
-                    <td><span class="pet-badge">{{ t.veterinario?.especialidad || '—' }}</span></td>
+                    <td><span class="pet-badge">{{ t.veterinario.especialidad || '—' }}</span></td>
                   </tr>
                 </tbody>
               </table>

@@ -26,7 +26,7 @@
         <img
           class="vd-photo"
           [alt]="veterinario.nombre"
-          [src]="veterinario.imagen || 'https://picsum.photos/seed/vet-' + (veterinario.nombre?.replace(' ', '') || 'default') + '/600/720'">
+          [src]="veterinario.imagen || 'https://picsum.photos/seed/vet-' + (veterinario.nombre.replace(' ', '') || 'default') + '/600/720'">
       </div>
 
       <div class="vd-grid">

@@ -1,7 +1,6 @@
 import { MascotasService } from '../../../core/services/mascotas.service';
 import { VeterinarioService } from '../../../core/services/veterinario.service';
 import { Mascota } from '../../../core/models/mascota.model';
-import { ItemMascota } from './item-mascota/item-mascota';
 import { Veterinario } from '../../../core/models/veterinario.model';
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
@@ -10,7 +9,7 @@ import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-mascotas',
-  imports: [ItemMascota, CommonModule, HeaderVet, RouterModule],
+  imports: [CommonModule, HeaderVet, RouterModule],
   templateUrl: './mascotas.html',
   styleUrl: './mascotas.css'
 })
