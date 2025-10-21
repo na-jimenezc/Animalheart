@@ -1,16 +1,19 @@
-<div class="card text-white bg-primary h-100">
-  <div class="card-body">
-    <div class="d-flex justify-content-between">
-      <div>
-        <h5 class="card-title">Tratamientos (Último Mes)</h5>
-        <h2 class="display-4" *ngIf="!loading">{{ totalTratamientos }}</h2>
-        <div *ngIf="loading" class="spinner-border spinner-border-sm" role="status">
-          <span class="visually-hidden">Loading...</span>
-        </div>
-      </div>
-      <div class="align-self-center">
-        <i class="fas fa-syringe fa-2x"></i>
-      </div>
+<div class="stat-card">
+  <div class="stat-card-header header-primary">
+    <h5 class="card-title mb-0">
+      <i class="fas fa-syringe me-2"></i>
+      Tratamientos (Último Mes)
+    </h5>
+  </div>
+  <div class="stat-card-body">
+    <div class="stat-icon icon-primary">
+      <i class="fas fa-syringe"></i>
     </div>
+    <div class="stat-count" *ngIf="!loading">{{ totalTratamientos }}</div>
+    <div *ngIf="loading" class="spinner-border spinner-border-sm" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <div class="stat-title">Total Tratamientos</div>
+    <div class="stat-subtitle">En el último mes</div>
   </div>
 </div>

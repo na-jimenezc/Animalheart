@@ -1,0 +1,341 @@
+:host {
+  display: block;
+  animation: fadeIn 0.6s ease-out;
+}
+
+.podium-card {
+  border: none;
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  box-shadow: 0 8px 32px rgba(159, 64, 80, 0.08);
+  border-radius: 18px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.podium-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(159, 64, 80, 0.12);
+}
+
+.podium-header {
+  background: linear-gradient(135deg, #e86c83 0%, #d03453 100%) !important;
+  border: none;
+  color: white;
+  font-weight: 600;
+  padding: 1.5rem;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.podium-body {
+  padding: 2rem 1rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.podium-container {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 1.5rem;
+  flex: 1;
+  min-height: 320px;
+  position: relative;
+}
+
+.podium-item {
+  flex: 1;
+  max-width: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+.podium-pedestal {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.3s ease;
+  height: 100%;
+  justify-content: flex-end;
+}
+
+.podium-pedestal:hover {
+  transform: translateY(-5px);
+}
+
+/* Primer lugar - Rosa del dashboard */
+.first-place .podium-pedestal {
+  order: 2;
+}
+
+.first-place .podium-content {
+  background: linear-gradient(135deg, #e86c83 0%, #d03453 100%);
+  border: 3px solid #d5536c;
+  box-shadow: 0 8px 25px rgba(232, 108, 131, 0.3);
+  height: 240px;
+  min-height: 240px;
+  color: white;
+}
+
+.first-place .podium-rank {
+  background: linear-gradient(135deg, #e86c83, #d03453);
+  color: white;
+  font-size: 1.5rem;
+  width: 60px;
+  height: 60px;
+  border: 2px solid white;
+}
+
+.first-place .treatment-name {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: white;
+}
+
+.first-place .units {
+  font-size: 2.2rem;
+  color: white;
+}
+
+.first-place .treatment-stats small {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.crown {
+  font-size: 1.8rem;
+  margin-top: 0.5rem;
+  animation: bounce 2s infinite;
+  color: #ffd700;
+}
+
+/* Segundo lugar - Turquesa del dashboard */
+.second-place .podium-pedestal {
+  order: 1;
+}
+
+.second-place .podium-content {
+  background: linear-gradient(135deg, #409E9F 0%, #368a91 100%);
+  border: 2px solid #368a91;
+  box-shadow: 0 6px 20px rgba(64, 158, 159, 0.3);
+  height: 200px;
+  min-height: 200px;
+  color: white;
+}
+
+.second-place .podium-rank {
+  background: linear-gradient(135deg, #409E9F, #368a91);
+  color: white;
+  font-size: 1.3rem;
+  width: 55px;
+  height: 55px;
+  border: 2px solid white;
+}
+
+.second-place .treatment-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: white;
+}
+
+.second-place .units {
+  font-size: 1.9rem;
+  color: white;
+}
+
+.second-place .treatment-stats small {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Tercer lugar - Rosa claro del dashboard */
+.third-place .podium-pedestal {
+  order: 3;
+}
+
+.third-place .podium-content {
+  background: linear-gradient(135deg, #fddde6 0%, #f6bdc5 100%);
+  border: 2px solid #f6bdc5;
+  box-shadow: 0 6px 20px rgba(253, 221, 230, 0.3);
+  height: 180px;
+  min-height: 180px;
+  color: #1f2937;
+}
+
+.third-place .podium-rank {
+  background: linear-gradient(135deg, #fddde6, #f6bdc5);
+  color: #1f2937;
+  font-size: 1.1rem;
+  width: 50px;
+  height: 50px;
+  border: 2px solid #e86c83;
+}
+
+.third-place .treatment-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.third-place .units {
+  font-size: 1.7rem;
+  color: #1f2937;
+}
+
+.third-place .treatment-stats small {
+  color: #6b7280;
+}
+
+/* Elementos comunes del podio */
+.podium-content {
+  background: white;
+  border-radius: 15px;
+  padding: 1.5rem 1rem;
+  text-align: center;
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.podium-rank {
+  background: linear-gradient(135deg, #e86c83, #d03453);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  margin-bottom: -25px;
+  z-index: 2;
+  position: relative;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.treatment-name {
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.treatment-stats {
+  color: #374151;
+  text-align: center;
+}
+
+.units {
+  font-weight: 700;
+  display: block;
+  line-height: 1;
+}
+
+.treatment-stats small {
+  font-size: 0.8rem;
+  opacity: 0.8;
+}
+
+.no-podium {
+  padding: 3rem 1rem;
+  color: #6b7280;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.podium-spinner {
+  border-color: #e86c83;
+  border-right-color: transparent;
+}
+
+.loading-container {
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+}
+
+/* Animaciones */
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.podium-item {
+  animation: fadeIn 0.6s ease-out backwards;
+}
+
+.first-place { animation-delay: 0.3s; }
+.second-place { animation-delay: 0.1s; }
+.third-place { animation-delay: 0.2s; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .podium-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    min-height: auto;
+  }
+  
+  .podium-item {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+  }
+  
+  .podium-pedestal {
+    flex-direction: row;
+    gap: 1rem;
+    height: auto;
+    justify-content: flex-start;
+  }
+  
+  .podium-content {
+    height: auto !important;
+    min-height: 120px !important;
+    flex: 1;
+  }
+  
+  .first-place .podium-pedestal { order: 1; }
+  .second-place .podium-pedestal { order: 2; }
+  .third-place .podium-pedestal { order: 3; }
+  
+  .podium-rank {
+    margin-bottom: 0;
+    margin-right: -15px;
+    z-index: 2;
+  }
+}

@@ -1,1 +1,39 @@
-<p>veterinarios-activos-inactivos works!</p>
+<div class="row">
+  <div class="col-md-6 mb-3">
+    <div class="card text-white h-100 veterinarios-activos">
+      <div class="card-body">
+        <div class="d-flex justify-content-between">
+          <div>
+            <h5 class="card-title">Veterinarios Activos</h5>
+            <h2 class="display-4" *ngIf="!loading">{{ activos }}</h2>
+            <div *ngIf="loading" class="spinner-border spinner-border-sm" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>
+          <div class="align-self-center">
+            <i class="fas fa-user-md fa-2x"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6 mb-3">
+    <div class="card text-white h-100 veterinarios-inactivos">
+      <div class="card-body">
+        <div class="d-flex justify-content-between">
+          <div>
+            <h5 class="card-title">Veterinarios Inactivos</h5>
+            <h2 class="display-4" *ngIf="!loading">{{ inactivos }}</h2>
+            <div *ngIf="loading" class="spinner-border spinner-border-sm" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>
+          <div class="align-self-center">
+            <i class="fas fa-user-times fa-2x"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

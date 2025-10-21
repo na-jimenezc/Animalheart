@@ -1,25 +1,65 @@
-<div class="card">
-  <div class="card-header">
-    <h5 class="card-title mb-0">Top 3 Tratamientos Más Vendidos</h5>
+<div class="card podium-card h-100">
+  <div class="card-header podium-header">
+    <h5 class="card-title mb-0">
+      <i class="fas fa-trophy me-2"></i>
+      Top 3 Tratamientos Más Vendidos
+    </h5>
   </div>
-  <div class="card-body">
-    <div *ngIf="loading" class="text-center">
-      <div class="spinner-border" role="status">
+  <div class="card-body podium-body">
+    <div *ngIf="loading" class="text-center loading-container d-flex flex-column justify-content-center align-items-center flex-grow-1">
+      <div class="spinner-border podium-spinner" role="status">
         <span class="visually-hidden">Loading...</span>
       </div>
+      <p class="mt-2 text-muted">Cargando podio...</p>
     </div>
     
-    <div *ngIf="!loading" class="list-group">
-      <div *ngFor="let item of top3Tratamientos; let i = index" 
-           class="list-group-item d-flex justify-content-between align-items-center">
-        <div>
-          <span class="badge bg-primary me-2">#{{ i + 1 }}</span>
-          {{ item.medicamento }}
+    <div *ngIf="!loading" class="podium-container">
+      <!-- Segundo lugar -->
+      <div class="podium-item second-place" *ngIf="top3Tratamientos[1]">
+        <div class="podium-pedestal">
+          <div class="podium-rank">2°</div>
+          <div class="podium-content">
+            <div class="treatment-name">{{ top3Tratamientos[1].medicamento }}</div>
+            <div class="treatment-stats">
+              <span class="units">{{ top3Tratamientos[1].unidadesVendidas }}</span>
+              <small>unidades</small>
+            </div>
+          </div>
         </div>
-        <span class="badge bg-success rounded-pill">{{ item.unidadesVendidas }} unidades</span>
       </div>
-      <div *ngIf="top3Tratamientos.length === 0" class="list-group-item text-center">
-        No hay datos disponibles
+
+      <!-- Primer lugar -->
+      <div class="podium-item first-place" *ngIf="top3Tratamientos[0]">
+        <div class="podium-pedestal">
+          <div class="podium-rank">1°</div>
+          <div class="podium-content">
+            <div class="treatment-name">{{ top3Tratamientos[0].medicamento }}</div>
+            <div class="treatment-stats">
+              <span class="units">{{ top3Tratamientos[0].unidadesVendidas }}</span>
+              <small>unidades</small>
+            </div>
+            <div class="crown">👑</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tercer lugar -->
+      <div class="podium-item third-place" *ngIf="top3Tratamientos[2]">
+        <div class="podium-pedestal">
+          <div class="podium-rank">3°</div>
+          <div class="podium-content">
+            <div class="treatment-name">{{ top3Tratamientos[2].medicamento }}</div>
+            <div class="treatment-stats">
+              <span class="units">{{ top3Tratamientos[2].unidadesVendidas }}</span>
+              <small>unidades</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="top3Tratamientos.length === 0" class="no-podium text-center">
+        <i class="fas fa-trophy fa-3x mb-3 text-muted"></i>
+        <p class="text-muted">No hay datos para mostrar el podio</p>
       </div>
     </div>
   </div>

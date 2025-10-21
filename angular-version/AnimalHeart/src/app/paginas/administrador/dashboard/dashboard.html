@@ -1,7 +1,6 @@
-
 <div class="dashboard-container">
   <div class="d-flex justify-content-between align-items-center mb-4">
-    <h1 class="mb-0">Dashboard - Administrador</h1>
+    <h1 class="mb-0"></h1>
     <button class="btn btn-primary" (click)="refreshDashboard()" [disabled]="loading">
       <i class="fas fa-sync-alt me-2" [class.fa-spin]="loading"></i>
       Actualizar
@@ -37,34 +36,42 @@
         </app-total-tratamientos-mes>
       </div>
 
+      <!-- Veterinarios Activos -->
       <div class="col-xl-3 col-md-6">
-        <div class="card text-white bg-success h-100">
-          <div class="card-body">
-            <div class="d-flex justify-content-between">
-              <div>
-                <h5 class="card-title">Veterinarios Activos</h5>
-                <h2 class="display-4">{{ dashboardData.veterinariosActivos }}</h2>
-              </div>
-              <div class="align-self-center">
-                <i class="fas fa-user-md fa-2x"></i>
-              </div>
+        <div class="card vet-card">
+          <div class="card-header vet-card-header vet-activos-header">
+            <h5 class="card-title mb-0">
+              <i class="fas fa-user-md me-2"></i>
+              Veterinarios Activos
+            </h5>
+          </div>
+          <div class="card-body vet-card-body">
+            <div class="vet-icon vet-activos-icon">
+              <i class="fas fa-user-check"></i>
             </div>
+            <div class="vet-count">{{ dashboardData.veterinariosActivos }}</div>
+            <div class="vet-title">Profesionales Activos</div>
+            <div class="vet-subtitle">Disponibles para consultas</div>
           </div>
         </div>
       </div>
 
+      <!-- Veterinarios Inactivos -->
       <div class="col-xl-3 col-md-6">
-        <div class="card text-white bg-danger h-100">
-          <div class="card-body">
-            <div class="d-flex justify-content-between">
-              <div>
-                <h5 class="card-title">Veterinarios Inactivos</h5>
-                <h2 class="display-4">{{ dashboardData.veterinariosInactivos }}</h2>
-              </div>
-              <div class="align-self-center">
-                <i class="fas fa-user-times fa-2x"></i>
-              </div>
+        <div class="card vet-card">
+          <div class="card-header vet-card-header vet-inactivos-header">
+            <h5 class="card-title mb-0">
+              <i class="fas fa-user-md me-2"></i>
+              Veterinarios Inactivos
+            </h5>
+          </div>
+          <div class="card-body vet-card-body">
+            <div class="vet-icon vet-inactivos-icon">
+              <i class="fas fa-user-times"></i>
             </div>
+            <div class="vet-count">{{ dashboardData.veterinariosInactivos }}</div>
+            <div class="vet-title">Profesionales Inactivos</div>
+            <div class="vet-subtitle">No disponibles temporalmente</div>
           </div>
         </div>
       </div>
@@ -110,17 +117,17 @@
           </div>
 
           <div class="col-12">
-            <div class="card">
-              <div class="card-header bg-dark text-white">
+            <div class="card veterinarios-card">
+              <div class="card-header veterinarios-header">
                 <h5 class="card-title mb-0">
                   <i class="fas fa-users me-2"></i>
                   Todos los Veterinarios
                 </h5>
               </div>
-              <div class="card-body">
+              <div class="card-body p-0">
                 <div class="table-responsive">
-                  <table class="table table-hover">
-                    <thead class="table-light">
+                  <table class="table veterinarios-table">
+                    <thead>
                       <tr>
                         <th>Nombre</th>
                         <th>Especialidad</th>
@@ -136,17 +143,18 @@
                           <td>{{ vet.especialidad }}</td>
                           <td>{{ vet.nombreUsuario }}</td>
                           <td>
-                            <span [class]="vet.activo === 1 ? 'badge bg-success' : 'badge bg-danger'">
+                            <span [class]="vet.activo === 1 ? 'badge-estado badge-activo' : 'badge-estado badge-inactivo'">
                               {{ vet.activo === 1 ? 'Activo' : 'Inactivo' }}
                             </span>
                           </td>
                           <td>
-                            <span class="badge bg-primary">{{ vet.consultas || 0 }}</span>
+                            <span class="badge-consultas">{{ vet.consultas || 0 }}</span>
                           </td>
                         </tr>
                       } @empty {
                         <tr>
-                          <td colspan="5" class="text-center text-muted py-4">
+                          <td colspan="5" class="no-veterinarios">
+                            <i class="fas fa-user-md fa-2x mb-2 d-block"></i>
                             No hay veterinarios registrados
                           </td>
                         </tr>

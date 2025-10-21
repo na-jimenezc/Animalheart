@@ -1,38 +1,265 @@
 .dashboard-container {
   padding: 20px;
-  background-color: #f8f9fa;
+  background: linear-gradient(135deg, #f7f7f8 0%, #ffffff 100%);
   min-height: 100vh;
+  animation: fadeIn 0.8s ease-out;
 }
 
 .card {
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 32px rgba(159, 64, 80, 0.1);
   border: none;
-  border-radius: 10px;
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  border-radius: 18px;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  overflow: hidden;
+  position: relative;
+  background: #ffffff;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transition: left 0.6s;
+}
+
+.card:hover::before {
+  left: 100%;
 }
 
 .card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px rgba(159, 64, 80, 0.15);
 }
 
 .display-4 {
-  font-weight: 300;
+  font-weight: 700;
+  background: linear-gradient(135deg, #e86c83, #d03453);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-.table th {
-  border-top: none;
+/* Tarjetas de veterinarios activos e inactivos */
+.vet-card {
+  border: none;
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  box-shadow: 0 8px 32px rgba(159, 64, 80, 0.08);
+  border-radius: 18px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  height: 100%;
+}
+
+.vet-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(159, 64, 80, 0.12);
+}
+
+.vet-card-header {
+  border: none;
+  color: white;
   font-weight: 600;
-  color: #495057;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.vet-activos-header {
+  background: linear-gradient(135deg, #48bb78, #38a169) !important;
+}
+
+.vet-inactivos-header {
+  background: linear-gradient(135deg, #e86c83, #d03453) !important;
+}
+
+.vet-card-body {
+  padding: 2rem 1.5rem;
+  text-align: center;
+}
+
+.vet-count {
+  font-weight: 700;
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, #e86c83, #d03453);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.vet-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  opacity: 0.8;
+}
+
+.vet-activos-icon {
+  color: #48bb78;
+}
+
+.vet-inactivos-icon {
+  color: #e86c83;
+}
+
+.vet-title {
+  font-weight: 600;
+  color: #2d3748;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.vet-subtitle {
+  color: #6b7280;
+  font-size: 0.9rem;
+}
+
+/* Estilos para la tabla de veterinarios */
+.veterinarios-card {
+  border: none;
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  box-shadow: 0 8px 32px rgba(159, 64, 80, 0.08);
+  border-radius: 18px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.veterinarios-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(159, 64, 80, 0.12);
+}
+
+.veterinarios-header {
+  background: linear-gradient(135deg, #e86c83 0%, #d03453 100%) !important;
+  border: none;
+  color: white;
+  font-weight: 600;
+  padding: 1.5rem;
+}
+
+.veterinarios-table {
+  margin: 0;
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+}
+
+.veterinarios-table th {
+  background: linear-gradient(135deg, #409E9F 0%, #368a91 100%);
+  color: white;
+  font-weight: 600;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 2px solid #368a91;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.veterinarios-table th:first-child {
+  border-radius: 0;
+}
+
+.veterinarios-table th:last-child {
+  border-radius: 0;
+}
+
+.veterinarios-table td {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid #f1f5f9;
+  transition: all 0.3s ease;
+  color: #2d3748;
+  font-weight: 500;
+}
+
+.veterinarios-table tbody tr {
+  transition: all 0.3s ease;
+}
+
+.veterinarios-table tbody tr:hover {
+  background: linear-gradient(135deg, #fff2f5 0%, #ffe6ec 100%);
+  transform: scale(1.01);
+}
+
+.badge-estado {
+  padding: 0.5rem 1rem;
+  border-radius: 15px;
+  font-weight: 600;
+  font-size: 0.8rem;
+  display: inline-block;
+  min-width: 80px;
+  text-align: center;
+}
+
+.badge-activo {
+  background: linear-gradient(135deg, #48bb78, #38a169);
+  color: white;
+}
+
+.badge-inactivo {
+  background: linear-gradient(135deg, #e86c83, #d03453);
+  color: white;
+}
+
+.badge-consultas {
+  background: linear-gradient(135deg, #409E9F, #368a91);
+  color: white;
+  padding: 0.4rem 0.8rem;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.75rem;
+}
+
+.no-veterinarios {
+  padding: 3rem 1.5rem;
+  color: #a0aec0;
+  font-style: italic;
+  text-align: center;
+}
+
+.table-responsive {
+  border-radius: 0 0 18px 18px;
+  overflow: hidden;
 }
 
 .badge {
   font-size: 0.75em;
+  padding: 0.5em 1em;
+  border-radius: 12px;
 }
 
 .spinner-border-sm {
   width: 1.5rem;
   height: 1.5rem;
+  border-width: 0.2em;
+}
+
+.alert {
+  border: none;
+  border-radius: 18px;
+  box-shadow: 0 4px 16px rgba(220, 53, 69, 0.2);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #e86c83, #d03453);
+  border: none;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(232, 108, 131, 0.4);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @media (max-width: 768px) {
@@ -47,4 +274,310 @@
   .card-body {
     padding: 1rem;
   }
+  
+  .card:hover {
+    transform: none;
+  }
+  
+  .veterinarios-table th,
+  .veterinarios-table td {
+    padding: 1rem;
+    font-size: 0.85rem;
+  }
+  
+  .veterinarios-header {
+    padding: 1.25rem;
+  }
+  
+  .vet-card-body {
+    padding: 1.5rem 1rem;
+  }
+  
+  .vet-count {
+    font-size: 2.5rem;
+  }
+  
+  .vet-icon {
+    font-size: 2.5rem;
+  }
+
+  .dashboard-container {
+  padding: 20px;
+  background: linear-gradient(135deg, #f7f7f8 0%, #ffffff 100%);
+  min-height: 100vh;
+  animation: fadeIn 0.8s ease-out;
+}
+
+/* Estilo unificado para todas las tarjetas */
+.stat-card {
+  border: none;
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  box-shadow: 0 8px 32px rgba(159, 64, 80, 0.08);
+  border-radius: 18px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  height: 100%;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(159, 64, 80, 0.12);
+}
+
+.stat-card-header {
+  border: none;
+  color: white;
+  font-weight: 600;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.stat-card-body {
+  padding: 2rem 1.5rem;
+  text-align: center;
+}
+
+.stat-count {
+  font-weight: 700;
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, #e86c83, #d03453);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.stat-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  opacity: 0.8;
+}
+
+.stat-title {
+  font-weight: 600;
+  color: #2d3748;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.stat-subtitle {
+  color: #6b7280;
+  font-size: 0.9rem;
+}
+
+/* Colores para los encabezados */
+.header-primary {
+  background: linear-gradient(135deg, #e86c83 0%, #d03453 100%) !important;
+}
+
+.header-secondary {
+  background: linear-gradient(135deg, #409E9F 0%, #368a91 100%) !important;
+}
+
+.header-info {
+  background: linear-gradient(135deg, #0ea5a4 0%, #368a91 100%) !important;
+}
+
+.header-warning {
+  background: linear-gradient(135deg, #f6bdc5 0%, #e86c83 100%) !important;
+}
+
+.header-success {
+  background: linear-gradient(135deg, #48bb78, #38a169) !important;
+}
+
+/* Colores para los iconos */
+.icon-primary {
+  color: #e86c83;
+}
+
+.icon-secondary {
+  color: #409E9F;
+}
+
+.icon-info {
+  color: #0ea5a4;
+}
+
+.icon-warning {
+  color: #e86c83;
+}
+
+.icon-success {
+  color: #48bb78;
+}
+
+/* Estilos para la tabla de veterinarios */
+.veterinarios-card {
+  border: none;
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  box-shadow: 0 8px 32px rgba(159, 64, 80, 0.08);
+  border-radius: 18px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.veterinarios-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(159, 64, 80, 0.12);
+}
+
+.veterinarios-header {
+  background: linear-gradient(135deg, #e86c83 0%, #d03453 100%) !important;
+  border: none;
+  color: white;
+  font-weight: 600;
+  padding: 1.5rem;
+}
+
+.veterinarios-table {
+  margin: 0;
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+}
+
+.veterinarios-table th {
+  background: linear-gradient(135deg, #409E9F 0%, #368a91 100%);
+  color: white;
+  font-weight: 600;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 2px solid #368a91;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.veterinarios-table th:first-child {
+  border-radius: 0;
+}
+
+.veterinarios-table th:last-child {
+  border-radius: 0;
+}
+
+.veterinarios-table td {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid #f1f5f9;
+  transition: all 0.3s ease;
+  color: #2d3748;
+  font-weight: 500;
+}
+
+.veterinarios-table tbody tr {
+  transition: all 0.3s ease;
+}
+
+.veterinarios-table tbody tr:hover {
+  background: linear-gradient(135deg, #fff2f5 0%, #ffe6ec 100%);
+  transform: scale(1.01);
+}
+
+.badge-estado {
+  padding: 0.5rem 1rem;
+  border-radius: 15px;
+  font-weight: 600;
+  font-size: 0.8rem;
+  display: inline-block;
+  min-width: 80px;
+  text-align: center;
+}
+
+.badge-activo {
+  background: linear-gradient(135deg, #48bb78, #38a169);
+  color: white;
+}
+
+.badge-inactivo {
+  background: linear-gradient(135deg, #e86c83, #d03453);
+  color: white;
+}
+
+.badge-consultas {
+  background: linear-gradient(135deg, #409E9F, #368a91);
+  color: white;
+  padding: 0.4rem 0.8rem;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.75rem;
+}
+
+.no-veterinarios {
+  padding: 3rem 1.5rem;
+  color: #a0aec0;
+  font-style: italic;
+  text-align: center;
+}
+
+.table-responsive {
+  border-radius: 0 0 18px 18px;
+  overflow: hidden;
+}
+
+.badge {
+  font-size: 0.75em;
+  padding: 0.5em 1em;
+  border-radius: 12px;
+}
+
+.spinner-border-sm {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-width: 0.2em;
+}
+
+.alert {
+  border: none;
+  border-radius: 18px;
+  box-shadow: 0 4px 16px rgba(220, 53, 69, 0.2);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #e86c83, #d03453);
+  border: none;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(232, 108, 131, 0.4);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-container {
+    padding: 10px;
+  }
+  
+  .stat-count {
+    font-size: 2.5rem;
+  }
+  
+  .stat-icon {
+    font-size: 2.5rem;
+  }
+  
+  .stat-card-body {
+    padding: 1.5rem 1rem;
+  }
+  
+  .veterinarios-table th,
+  .veterinarios-table td {
+    padding: 1rem;
+    font-size: 0.85rem;
+  }
+  
+  .veterinarios-header {
+    padding: 1.25rem;
+  }
+}
 }

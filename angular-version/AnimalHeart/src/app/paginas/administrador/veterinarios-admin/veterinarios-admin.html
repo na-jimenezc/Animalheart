@@ -1,3 +1,4 @@
+
 <app-admin-header></app-admin-header>
 
 <main class="vmk-main">
@@ -27,7 +28,7 @@
 
     <!--Tablita de datos-->
     @if (!loading && !error) {
-      <div class="va-table-card shadow-sm">
+      <div class="va-table-card">
         <!--Header de columnas-->
         <div class="va-table-head d-none d-md-grid">
           <span>Foto</span>
@@ -45,7 +46,7 @@
               @for (vet of veterinarios; track trackByVetId($index, vet)) {
                 <tr>
                   <!--Foto-->
-                  <td class="va-cell-avatar">
+                  <td class="va-cell-avatar" data-label="Foto">
                     <div>
                       <img class="va-avatar"
                            [alt]="vet.nombre"
@@ -54,13 +55,13 @@
                   </td>
 
                   <!--Nombre-->
-                  <td class="va-cell-name">{{ vet.nombre }}</td>
+                  <td class="va-cell-name" data-label="Nombre">{{ vet.nombre }}</td>
 
                   <!--Especialidad-->
-                  <td>{{ vet.especialidad }}</td>
+                  <td data-label="Especialidad">{{ vet.especialidad }}</td>
                   
                   <!--Estado-->
-                  <td>
+                  <td data-label="Estado">
                     <span class="badge" 
                           [class.bg-success]="vet.activo === 1" 
                           [class.bg-danger]="vet.activo === 0">
@@ -69,12 +70,12 @@
                   </td>
 
                   <!--Consultas-->
-                  <td>
+                  <td data-label="Consultas">
                     <span class="va-badge">{{ vet.consultas }}</span>
                   </td>
 
                   <!-- Acciones -->
-                  <td class="text-end">
+                  <td class="text-end" data-label="Acciones">
                     <div class="d-flex gap-2 justify-content-end flex-wrap">
                       <!--Ver detalle-->
                       <button class="va-pill va-pill--secondary" 
@@ -82,6 +83,7 @@
                               [disabled]="procesando && !estaEliminando(vet.id!)"
                               title="Ver detalle">
                         <i class="bi bi-eye-fill"></i>
+                        <span class="d-none d-md-inline">Ver</span>
                       </button>
 
                       <!--Activar/Desactivar-->
@@ -91,6 +93,7 @@
                                 [disabled]="procesando && !estaEliminando(vet.id!)"
                                 title="Desactivar veterinario">
                           <i class="bi bi-pause-fill"></i>
+                          <span class="d-none d-md-inline">Pausar</span>
                         </button>
                       } @else {
                         <button class="va-pill va-pill--success" 
@@ -98,6 +101,7 @@
                                 [disabled]="procesando && !estaEliminando(vet.id!)"
                                 title="Activar veterinario">
                           <i class="bi bi-play-fill"></i>
+                          <span class="d-none d-md-inline">Activar</span>
                         </button>
                       }
 
@@ -114,6 +118,7 @@
                         } @else {
                           <i class="bi bi-trash-fill"></i>
                         }
+                        <span class="d-none d-md-inline">Eliminar</span>
                       </button>
                     </div>
                   </td>

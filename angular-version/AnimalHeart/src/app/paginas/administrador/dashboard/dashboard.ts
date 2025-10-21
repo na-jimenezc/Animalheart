@@ -7,6 +7,7 @@ import { Top3Tratamientos } from './top3-tratamientos/top3-tratamientos';
 import { MascotasTotalesActivas } from './mascotas-totales-activas/mascotas-totales-activas';
 import { GananciasTotales } from './ganancias-totales/ganancias-totales';
 import { VentasTotales } from './ventas-totales/ventas-totales';
+import { VeterinariosActivosInactivos } from './veterinarios-activos-inactivos/veterinarios-activos-inactivos'
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -20,6 +21,7 @@ import { Subscription } from 'rxjs';
     MascotasTotalesActivas,
     GananciasTotales,
     VentasTotales,
+    VeterinariosActivosInactivos,
   ],
   templateUrl: './dashboard.html',
   styleUrls: ['./dashboard.css']
