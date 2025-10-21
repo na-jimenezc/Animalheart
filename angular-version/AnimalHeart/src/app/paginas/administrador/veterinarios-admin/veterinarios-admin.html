@@ -1,4 +1,3 @@
-
 <app-admin-header></app-admin-header>
 
 <main class="vmk-main">
@@ -26,6 +25,17 @@
       </div>
     }
 
+    <!-- Barra de búsqueda -->
+    <div class="va-search-container mb-4 d-flex justify-content-center">
+      <input
+        type="text"
+        class="form-control w-50 shadow-sm"
+        placeholder="Buscar veterinario por cédula, nombre o especialidad..."
+        [(ngModel)]="terminoBusqueda"
+        (input)="buscarVeterinarios()"
+      />
+    </div>
+
     <!--Tablita de datos-->
     @if (!loading && !error) {
       <div class="va-table-card">
@@ -40,10 +50,10 @@
         </div>
 
         <!--Tabla de veterinarios-->
-        @if (veterinarios.length > 0) {
+        @if (veterinariosFiltrados.length > 0) {
           <table class="va-table" aria-label="Listado de veterinarios">
             <tbody>
-              @for (vet of veterinarios; track trackByVetId($index, vet)) {
+              @for (vet of veterinariosFiltrados; track trackByVetId($index, vet)) {
                 <tr>
                   <!--Foto-->
                   <td class="va-cell-avatar" data-label="Foto">
@@ -93,7 +103,7 @@
                                 [disabled]="procesando && !estaEliminando(vet.id!)"
                                 title="Desactivar veterinario">
                           <i class="bi bi-pause-fill"></i>
-                          <span class="d-none d-md-inline">Pausar</span>
+                          <span class="d-none d-md-inline">Desactivar</span>
                         </button>
                       } @else {
                         <button class="va-pill va-pill--success" 

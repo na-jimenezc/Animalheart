@@ -1,6 +1,27 @@
 <app-header-vet [veterinario]="veterinario"></app-header-vet>
 
 <main class="container vmk-table-wrap">
+  <!-- Barra de búsqueda -->
+  <div class="va-search-wrap container mb-3">
+    <div class="va-search">
+      <i class="bi bi-search"></i>
+      <input
+        type="text"
+        class="form-control va-search-input"
+        placeholder="Buscar mascota por nombre…"
+        [(ngModel)]="terminoBusqueda"
+        (input)="buscarMascotas()"
+        aria-label="Buscar mascota por nombre" />
+      <button
+        *ngIf="terminoBusqueda"
+        type="button"
+        class="btn btn-link va-search-clear"
+        (click)="terminoBusqueda=''; buscarMascotas()"
+        aria-label="Limpiar búsqueda">
+        <i class="bi bi-x-circle"></i>
+      </button>
+    </div>
+  </div>
   <div class="vmk-table-card">
     <div class="table-container">
       <div class="table-header">

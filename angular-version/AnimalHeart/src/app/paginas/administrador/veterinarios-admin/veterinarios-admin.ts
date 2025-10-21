@@ -4,11 +4,14 @@ import { CommonModule } from '@angular/common';
 import { VeterinarioService } from '../../../core/services/veterinario.service';
 import { Veterinario } from '../../../core/models/veterinario.model';
 import { AdminHeader } from '../../../componentes/admin-header/admin-header';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';         
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';       
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-veterinarios-admin',
   standalone: true,
-  imports: [CommonModule, AdminHeader, RouterLink],
+  imports: [CommonModule, FormsModule, AdminHeader, RouterLink],
   templateUrl: './veterinarios-admin.html',
   styleUrl: './veterinarios-admin.css'
 })
@@ -18,6 +21,9 @@ export class VeterinariosAdminComponent implements OnInit {
   error: string = '';
   procesando: boolean = false;
   eliminandoId: number | null = null; //Para controlar qué veterinario se está eliminando
+  search = new FormControl<string>('', { nonNullable: true });
+  terminoBusqueda: string = '';                
+  veterinariosFiltrados: Veterinario[] = [];   
 
   //Se usa para facilitar las rutas de imágenes
   encodeURIComponent = encodeURIComponent;
@@ -35,6 +41,8 @@ export class VeterinariosAdminComponent implements OnInit {
     console.log('ngOnInit llamado en lista de veterinarios');
     this.cargarVeterinarios();
   }
+
+  limpiarBusqueda(): void { this.search.setValue(''); }
 
   cargarVeterinarios(): void {
     console.log('Iniciando carga de veterinarios...');
@@ -61,6 +69,7 @@ export class VeterinariosAdminComponent implements OnInit {
         this.ngZone.run(() => {
           //Se revisa que se haya recibido un array
           this.veterinarios = Array.isArray(vets) ? [...vets] : [];
+          this.veterinariosFiltrados = [...this.veterinarios];
           this.loading = false;
           
           console.log('Estado actualizado. Veterinarios en componente:', this.veterinarios.length);
@@ -110,6 +119,24 @@ export class VeterinariosAdminComponent implements OnInit {
     });
   }
 
+  buscarVeterinarios(): void {
+    const t = (this.terminoBusqueda || '').trim().toLowerCase();
+    if (!t) {
+      this.veterinariosFiltrados = [...this.veterinarios];
+      return;
+    }
+
+    this.veterinariosFiltrados = this.veterinarios.filter(v => {
+      const nombre = (v.nombre ?? '').toLowerCase();
+      const esp    = (v.especialidad ?? '').toLowerCase();
+
+      // Si algún backend te devuelve 'cedula', la tomamos; si no, usamos id.
+      const cedulaOId = String((v as any).cedula ?? v.id ?? '');
+
+      return nombre.includes(t) || esp.includes(t) || cedulaOId.includes(t);
+    });
+  }
+
   verDetalle(id: number): void {
     console.log('Navegando a detalle del veterinario:', id);
     this.router.navigate(['/admin/veterinarios', id]);
@@ -147,6 +174,7 @@ export class VeterinariosAdminComponent implements OnInit {
 
           if(index !== -1){
             this.veterinarios[index].activo = nuevoEstado;
+            this.buscarVeterinarios();
           }
           
           //Se reactiva la interfaz solamente para el veterinario que se estaba procesando
@@ -199,7 +227,7 @@ export class VeterinariosAdminComponent implements OnInit {
         this.ngZone.run(() => {
           //Se elimina el veterinario de la lista localmente
           this.veterinarios = this.veterinarios.filter(v => v.id !== vet.id);
-          
+          this.buscarVeterinarios();
           this.procesando = false;
           this.eliminandoId = null;
           this.cdr.detectChanges();

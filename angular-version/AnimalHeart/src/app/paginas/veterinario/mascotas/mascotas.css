@@ -977,3 +977,33 @@ body.vet-mockup>main{flex:1}
   .table-body .va-badge,
   .table-body .badge{ font-size: 0.95rem; }
 }
+
+.va-search-wrap { display:flex; justify-content:flex-end; }
+.va-search {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  border: 2px solid var(--teal-200);
+  border-radius: 999px;
+  padding: 6px 12px;
+  box-shadow: var(--shadow);
+  max-width: 520px;
+  width: 100%;
+}
+.va-search .bi-search { color: var(--teal-700); font-size: 1.1rem; }
+.va-search-input {
+  border: none;
+  outline: none;
+  flex: 1;
+  font-weight: 600;
+  color: var(--teal-700);
+}
+.va-search-input::placeholder { color: #7aa9ad; }
+.va-search-clear {
+  color: var(--teal-700);
+  text-decoration: none;
+  padding: 0 6px;
+}
+.va-search-clear:hover { opacity: .8; }

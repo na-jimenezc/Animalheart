@@ -49,6 +49,18 @@ export class VeterinarioService {
     this.veterinarioSubject.next(null);
   }
 
+  buscar(term: string) {
+    const v = (term ?? '').trim();
+    if (!v) return this.getAll();
+
+    const onlyDigits = /^[0-9]+$/.test(v);
+    let params = new HttpParams();
+    if (onlyDigits) params = params.set('cedula', v);
+    else params = params.set('nombre', v); // o especialidad si detectas otra cosa
+
+    return this.http.get<Veterinario[]>(this.apiUrl, { params });
+  }
+
   //Observable para obtener todos los veterinarios
   getAll(): Observable<Veterinario[]> {
     return this.http.get<Veterinario[]>(this.apiUrl);
@@ -83,7 +95,6 @@ export class VeterinarioService {
 
     return this.http.post<Veterinario>(this.apiUrl, nuevoVet, { headers });
   }
-
 
   //Observable para actualizar un veterinario
   update(id: number, veterinario: Veterinario): Observable<Veterinario> {

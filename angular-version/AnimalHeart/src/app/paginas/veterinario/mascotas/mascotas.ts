@@ -6,10 +6,12 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { HeaderVet } from '../../../componentes/header-vet/header-vet';
 import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-mascotas',
-  imports: [CommonModule, HeaderVet, RouterModule],
+  standalone: true,
+  imports: [CommonModule, HeaderVet, RouterModule, FormsModule],
   templateUrl: './mascotas.html',
   styleUrl: './mascotas.css'
 })
@@ -17,6 +19,8 @@ export class Mascotas implements OnInit {
   todasLasMascotas: Mascota[] = [];
   mascotas: Mascota[] = [];
   veterinario: Veterinario | null = null;
+  terminoBusqueda: string = '';
+  mascotasFiltradas: Mascota[] = [];
 
   page = 1;
   size = 5;
@@ -45,8 +49,10 @@ export class Mascotas implements OnInit {
     this.mascotasService.getAll().subscribe({
       next: (mascotas: Mascota[]) => {
         this.todasLasMascotas = mascotas;
+        this.mascotasFiltradas = [...this.todasLasMascotas];
         this.totalElements = mascotas.length;
         this.totalPages = Math.ceil(mascotas.length / this.size);
+        this.page = 1;
         this.actualizarPagina();
         this.cargando = false;
         this.changeDetector.detectChanges(); 
@@ -63,7 +69,7 @@ export class Mascotas implements OnInit {
   actualizarPagina(): void {
     const startIndex = (this.page - 1) * this.size;
     const endIndex = startIndex + this.size;
-    this.mascotas = this.todasLasMascotas.slice(startIndex, endIndex);
+    this.mascotas = this.mascotasFiltradas.slice(startIndex, endIndex);
     this.changeDetector.detectChanges();
   }
 
@@ -98,5 +104,26 @@ export class Mascotas implements OnInit {
         });
       }
     }
+  }
+
+  buscarMascotas(): void {
+    const t = (this.terminoBusqueda || '').trim().toLowerCase();
+
+    if (!t) {
+      // sin texto → restaurar todo
+      this.mascotasFiltradas = [...this.todasLasMascotas];
+    } else {
+      // filtrar por nombre (puedes sumar más campos si quieres)
+      this.mascotasFiltradas = this.todasLasMascotas.filter(m =>
+        (m.nombre ?? '').toLowerCase().includes(t)
+      );
+    }
+
+    // recalcular totales y reiniciar a la primera página
+    this.totalElements = this.mascotasFiltradas.length;
+    this.totalPages = Math.max(1, Math.ceil(this.totalElements / this.size));
+    this.page = 1;
+
+    this.actualizarPagina();
   }
 }

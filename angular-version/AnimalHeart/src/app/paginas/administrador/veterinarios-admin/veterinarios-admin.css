@@ -1,4 +1,3 @@
-
 /* ===================== TOKENS mínimos ===================== */
 :root{
   --rose-50: #fff2f5;
@@ -610,4 +609,41 @@ a{color:inherit;text-decoration:none}
     padding: 22px 20px;
     max-width: 250px;
   }
+}
+
+.va-search-container input {
+  border-radius: 2rem;
+  padding: 0.6rem 1.2rem;
+  border: 2px solid #e4b1b1;
+  transition: all 0.3s ease;
+}
+
+.va-search-container input:focus {
+  border-color: #d96c6c;
+  box-shadow: 0 0 0 0.25rem rgba(217, 108, 108, 0.25);
+  outline: none;
+}
+
+.va-table-card,
+.va-table,
+.va-table td,
+.va-table td *,
+.va-cell-name {
+  color: var(--ink) !important;
+}
+
+.va-table-head span {
+  color: var(--turquesa) !important;
+}
+
+.badge {
+  color: #fff;
+}
+.bg-success { background: var(--turquesa) !important; }
+.bg-danger  { background: var(--rose-500) !important; }
+
+.va-badge {
+  background: #f3f6f8 !important;
+  color: #23303a !important;
+  border: 1px solid #e2e8ef !important;
 }
