@@ -77,23 +77,32 @@ export class AgregarMascota implements OnInit {
   }
 
   onSubmit(): void {
-    if (this.mascotaForm.valid) {
-      const formValue = this.mascotaForm.value;
+    this.submitted = true;
+    if (!this.mascotaForm.valid || this.guardando) { return; }
 
-      const dto: MascotaCreateDTO = {
-        ...formValue,
-        estado: formValue.enfermedad && formValue.enfermedad.trim() !== ''
-          ? 'Enfermo'
-          : 'Sano'
-      };
+    this.guardando = true;
 
-      this.mascotasService.create(dto).subscribe({
-        next: (res) => {
-          console.log('Mascota creada', res);
-          this.mascotaForm.reset();
-        },
-        error: (err) => console.error('Error creando mascota', err)
-      });
-    }
+    const formValue = this.mascotaForm.value;
+
+    const dto: MascotaCreateDTO = {
+      ...formValue,
+      estado: formValue.enfermedad && formValue.enfermedad.trim() !== '' ? 'Enfermo' : 'Sano'
+    };
+
+    this.mascotasService.create(dto).subscribe({
+      next: (res) => {
+        console.log('Mascota creada', res);
+        this.router.navigate(['/mascotas/ver-mascotas'], {
+          state: { justCreated: true }
+        });
+      },
+      error: (err) => {
+        console.error('Error creando mascota', err);
+        this.guardando = false; // re-habilita el botón si falla
+      },
+      complete: () => {
+        this.guardando = false;
+      }
+    });
   }
 }

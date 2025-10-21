@@ -80,11 +80,12 @@
               <a [routerLink]="['/mascotas/editar', mascota.id]" class="action-btn btn-edit">
                 <i class="bi bi-pencil"></i> Editar
               </a>
-              <button type="button" 
+              <button type="button"
                       class="action-btn btn-deactivate"
                       (click)="desactivarMascota(mascota)"
-                      [disabled]="!mascota.activo">
-                <i class="bi bi-trash"></i> Desactivar
+                      [disabled]="desactivandoId === mascota.id && procesando">
+                <i class="bi bi-trash"></i>
+                {{ (desactivandoId === mascota.id && procesando) ? 'Desactivando…' : 'Desactivar' }}
               </button>
             </div>
           </div>

@@ -12,8 +12,8 @@
         <div class="form-field">
           <label class="form-label required">Seleccionar Cliente</label>
           <select formControlName="clienteId" class="form-select" required>
-            <option value="">Seleccionar cliente...</option>
-            <option *ngFor="let c of clientes" [value]="c.id">
+            <option [ngValue]="null">Seleccionar cliente...</option>
+            <option *ngFor="let c of clientes" [ngValue]="c.id">
               {{ c.nombre }} - C.C. {{ c.cedula }}
             </option>
           </select>

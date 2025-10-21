@@ -82,12 +82,12 @@ export class EditarMascota implements OnInit {
     this.form = this.fb.group({
       fotoURL: [''],
       nombre: ['', [Validators.required, Validators.minLength(2)]],
-      tipo: ['', Validators.required],
-      raza: [''],
-      edad: [1, [Validators.required, Validators.min(0)]],
+      tipo:   ['', Validators.required],
+      raza:   [''],
+      edad:   [1, [Validators.required, Validators.min(0)]],
       enfermedad: ['Ninguna'],
-      peso: [1, [Validators.required, Validators.min(0.1), Validators.max(100)]],
-      clienteId: ['', Validators.required],
+      peso:   [1, [Validators.required, Validators.min(0.1), Validators.max(100)]],
+      clienteId: [null, Validators.required],
       activo: [true],
     });
   }
@@ -114,13 +114,13 @@ export class EditarMascota implements OnInit {
   private llenarFormulario(mascota: Mascota): void {
     this.form.patchValue({
       fotoURL: mascota.fotoURL || '',
-      nombre: mascota.nombre,
-      tipo: mascota.tipo,
-      raza: mascota.raza,
-      edad: mascota.edad,
+      nombre:  mascota.nombre,
+      tipo:    mascota.tipo,
+      raza:    mascota.raza,
+      edad:    mascota.edad,
       enfermedad: mascota.enfermedad,
-      peso: mascota.peso,
-      clienteId: mascota.cliente?.id || '', 
+      peso:    mascota.peso,
+      clienteId: mascota.cliente?.id ?? null,
       activo: mascota.activo,
     });
   }
@@ -130,8 +130,9 @@ export class EditarMascota implements OnInit {
   }
 
   getClienteSeleccionado(): Cliente | undefined {
-    const clienteId = this.form.get('clienteId')?.value;
-    return this.clientes.find(c => c.id === clienteId);
+    const raw = this.form.get('clienteId')?.value;
+    const clienteId = raw == null ? null : Number(raw);
+    return clienteId == null ? undefined : this.clientes.find(c => c.id === clienteId);
   }
 
   onTipoChange(): void {

@@ -7,6 +7,7 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { HeaderVet } from '../../../componentes/header-vet/header-vet';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { finalize, take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-mascotas',
@@ -33,6 +34,9 @@ export class Mascotas implements OnInit {
     private veterinarioService: VeterinarioService,
     private changeDetector: ChangeDetectorRef
   ) {}
+
+  procesando = false;
+  desactivandoId: number | null = null;
 
   ngOnInit(): void {
     this.cargarTodasLasMascotas();
@@ -93,33 +97,46 @@ export class Mascotas implements OnInit {
   }
 
   desactivarMascota(mascota: Mascota): void {
-    if (mascota.id && mascota.activo) {
-      if (confirm(`¿Estás seguro de que quieres desactivar a ${mascota.nombre}?`)) {
-        this.mascotasService.desactivar(mascota.id).subscribe({
-          next: () => {
-            mascota.activo = false;
-            console.log('Mascota desactivada:', mascota.nombre);
-          },
-          error: (err) => console.error('Error desactivando mascota', err),
-        });
+    if (!mascota?.id || !mascota.activo) { return; }
+    if (!confirm(`¿Estás seguro de que quieres desactivar a ${mascota.nombre}?`)) { return; }
+
+    if (this.procesando && this.desactivandoId === mascota.id) { return; }
+
+    this.procesando = true;
+    this.desactivandoId = mascota.id;
+
+    const previo = mascota.activo;
+    mascota.activo = false;
+    this.changeDetector.detectChanges();
+
+    this.mascotasService.desactivar(mascota.id).pipe(
+      take(1),
+      finalize(() => {
+        this.procesando = false;
+        this.desactivandoId = null;
+        this.changeDetector.detectChanges();
+      })
+    ).subscribe({
+      next: () => {
+      },
+      error: (err) => {
+        mascota.activo = previo;
+        console.error('Error desactivando mascota', err);
       }
-    }
+    });
   }
 
   buscarMascotas(): void {
     const t = (this.terminoBusqueda || '').trim().toLowerCase();
 
     if (!t) {
-      // sin texto → restaurar todo
       this.mascotasFiltradas = [...this.todasLasMascotas];
     } else {
-      // filtrar por nombre (puedes sumar más campos si quieres)
       this.mascotasFiltradas = this.todasLasMascotas.filter(m =>
         (m.nombre ?? '').toLowerCase().includes(t)
       );
     }
 
-    // recalcular totales y reiniciar a la primera página
     this.totalElements = this.mascotasFiltradas.length;
     this.totalPages = Math.max(1, Math.ceil(this.totalElements / this.size));
     this.page = 1;
