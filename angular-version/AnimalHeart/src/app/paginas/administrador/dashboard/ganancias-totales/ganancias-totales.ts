@@ -9,7 +9,6 @@ import { CommonModule } from '@angular/common';
   standalone: true,
 })
 export class GananciasTotales {
-  @Input() ventasTotales: number = 0;
-  @Input() gananciasTotales: number = 0;
+  @Input() gananciasTotales: number = 0;  
   @Input() loading: boolean = false;
 }

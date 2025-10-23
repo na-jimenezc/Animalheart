@@ -35,7 +35,7 @@
   font-weight: 700;
   font-size: 3rem;
   margin-bottom: 0.5rem;
-  background: linear-gradient(135deg, #e86c83, #d03453);
+  background: linear-gradient(135deg, #48bb78, #38a169);  /* Verde para ganancias */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -59,22 +59,13 @@
   font-size: 0.9rem;
 }
 
-/* Colores para los encabezados */
-.header-primary {
-  background: linear-gradient(135deg, #e86c83 0%, #d03453 100%) !important;
+/* Colores para ganancias (verde) */
+.header-success {
+  background: linear-gradient(135deg, #48bb78, #38a169) !important;
 }
 
-.header-secondary {
-  background: linear-gradient(135deg, #409E9F 0%, #368a91 100%) !important;
-}
-
-/* Colores para los iconos */
-.icon-primary {
-  color: #e86c83;
-}
-
-.icon-secondary {
-  color: #409E9F;
+.icon-success {
+  color: #48bb78;
 }
 
 @keyframes fadeIn {

@@ -1,45 +1,19 @@
-<div class="row">
-  <div class="col-md-6 mb-3">
-    <div class="stat-card">
-      <div class="stat-card-header header-secondary">
-        <h5 class="card-title mb-0">
-          <i class="fas fa-dollar-sign me-2"></i>
-          Ventas Totales
-        </h5>
-      </div>
-      <div class="stat-card-body">
-        <div class="stat-icon icon-secondary">
-          <i class="fas fa-dollar-sign"></i>
-        </div>
-        <div class="stat-count" *ngIf="!loading">${{ ventasTotales.toFixed(2) }}</div>
-        <div *ngIf="loading" class="spinner-border spinner-border-sm" role="status">
-          <span class="visually-hidden">Loading...</span>
-        </div>
-        <div class="stat-title">Ventas Totales</div>
-        <div class="stat-subtitle">Acumulado general</div>
-      </div>
-    </div>
+<div class="stat-card">
+  <div class="stat-card-header header-success">
+    <h5 class="card-title mb-0">
+      <i class="fas fa-chart-line me-2"></i>
+      Ganancias Totales
+    </h5>
   </div>
-
-  <div class="col-md-6 mb-3">
-    <div class="stat-card">
-      <div class="stat-card-header header-primary">
-        <h5 class="card-title mb-0">
-          <i class="fas fa-chart-line me-2"></i>
-          Ganancias Totales
-        </h5>
-      </div>
-      <div class="stat-card-body">
-        <div class="stat-icon icon-primary">
-          <i class="fas fa-chart-line"></i>
-        </div>
-        <div class="stat-count" *ngIf="!loading">${{ gananciasTotales.toFixed(2) }}</div>
-        <div *ngIf="loading" class="spinner-border spinner-border-sm" role="status">
-          <span class="visually-hidden">Loading...</span>
-        </div>
-        <div class="stat-title">Ganancias Totales</div>
-        <div class="stat-subtitle">Utilidad neta</div>
-      </div>
+  <div class="stat-card-body">
+    <div class="stat-icon icon-success">
+      <i class="fas fa-money-bill-wave"></i>
     </div>
+    <div class="stat-count" *ngIf="!loading">${{ gananciasTotales.toFixed(2) }}</div>
+    <div *ngIf="loading" class="spinner-border spinner-border-sm" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <div class="stat-title">Ganancias Totales</div>
+    <div class="stat-subtitle">Utilidad neta</div>
   </div>
 </div>
