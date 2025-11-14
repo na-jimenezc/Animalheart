@@ -80,17 +80,30 @@
             </div>
 
             <div class="col-12 d-grid d-sm-inline-flex gap-2">
-              <button class="btn btn-primary" type="submit" [disabled]="contactForm.invalid">
-                <i class="bi bi-send-fill me-1"></i> Enviar
+              <button class="btn btn-primary" type="submit" [disabled]="contactForm.invalid || enviando">
+                <span *ngIf="!enviando">
+                  <i class="bi bi-send-fill me-1"></i> Enviar
+                </span>
+                <span *ngIf="enviando">
+                  <span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span>
+                  Enviando...
+                </span>
               </button>
-              <button class="btn btn-outline-secondary" type="button" (click)="resetForm(contactForm)">Limpiar</button>
+              <button class="btn btn-outline-secondary" type="button" (click)="resetForm(contactForm)" [disabled]="enviando">
+                Limpiar
+              </button>
             </div>
           </div>
         </form>
-
+        
         <div *ngIf="mensajeExito" class="alert alert-success mt-3" role="alert" aria-live="polite">
           <i class="bi bi-check-circle-fill me-2"></i>
           <span>{{ mensajeExito }}</span>
+        </div>
+
+        <div *ngIf="mensajeError" class="alert alert-danger mt-3" role="alert" aria-live="polite">
+          <i class="bi bi-exclamation-triangle-fill me-2"></i>
+          <span>{{ mensajeError }}</span>
         </div>
       </div>
 
@@ -102,7 +115,7 @@
             <p><i class="bi bi-geo-alt-fill"></i> Carrera 77#20-40, Bogotá, Colombia</p>
             <p><i class="bi bi-telephone-fill"></i> +57 320 534 4512</p>
             <p><i class="bi bi-envelope-fill"></i> animalheart@gmail.com</p>
-            <p><i class="bi bi-clock-fill"></i> Lunes a Viernes: 8:00 am – 6:00 pm</p>
+            <p><i class="bi bi-clock-fill"></i> Lunes a Viernes: 7:00 am – 8:00 pm</p>
             <p><i class="bi bi-clock-history"></i> Sábados: 9:00 am – 2:00 pm</p>
             <p><i class="bi bi-exclamation-triangle-fill"></i> Emergencias: 24/7</p>
 
